@@ -21,7 +21,7 @@ jobs:
       - name: setup aliyun oss
         uses: manyuanrong/setup-ossutil@master
         with:
-          endpoint: winhugo.oss-cn-shanghai.aliyuncs.com #修改为自己的Endpoint
+          endpoint: oss-cn-shanghai.aliyuncs.com #修改为自己的Endpoint
           access-key-id: ${{ secrets.OSS_KEY_ID }}
           access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
 
