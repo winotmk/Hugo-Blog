@@ -1,0 +1,29 @@
+name: deploy blog
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4  # 使用最新版本
+        with:
+          submodules: recursive    # 已包含子模块初始化
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.125.7'  # 指定版本更安全
+      - name: Build
+        run: hugo --minify
+      
+      - name: setup aliyun oss
+        uses: winotmk/Hugo-Blog@master
+        with:
+          endpoint: winhugo.oss-cn-shanghai.aliyuncs.com #修改为自己的Endpoint
+          access-key-id: ${{ secrets.OSS_KEY_ID }}
+          access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
+
+      - name: cp aliyun oss
+        run: ossutil cp -rf public oss://winhugo/ #修改为自己的
