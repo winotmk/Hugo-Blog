@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on My New Hugo Site</title>
+    <link>https://example.org/tags/web/</link>
+    <description>Recent content in Web on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://example.org/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSL证书手动更新</title>
+      <link>https://example.org/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</guid>
+      <description>&lt;p&gt;我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏&lt;/p&gt;&#xA;&lt;h2 id=&#34;获取新的证书&#34;&gt;获取新的证书&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://yundun.console.aliyun.com/?spm=5176.12818093_47.console-base_product-drawer-left.dcas.3be916d0TsU2HG&amp;amp;p=cas#/certExtend/free/cn-hangzhou?currentPage=1&amp;amp;pageSize=10&amp;amp;keyword=&amp;amp;statusCode=&#34;&gt;阿里云SSL证书管理&lt;/a&gt;&#xA;这里点个人测试证书，然后申请域名&lt;code&gt;winotmk.com&lt;/code&gt;与&lt;code&gt;md.winotmk.com&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;部署证书&#34;&gt;部署证书&lt;/h2&gt;&#xA;&lt;h3 id=&#34;部署全站加速的证书&#34;&gt;部署全站加速的证书&lt;/h3&gt;&#xA;&lt;p&gt;由于都是一个号里买的阿里云的产品，所以可以一键部署&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png&#34; alt=&#34;2025-02-20-21-32-48&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;部署到别的平台&#34;&gt;部署到别的平台&lt;/h3&gt;&#xA;&lt;p&gt;先下载证书，点更多&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-41-10_324634aa.png&#34; alt=&#34;2025-02-20-21-41-10&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;这里选下载tab，下载第一个pem/key格式的证书即可，解压下来会是两个文件&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-43-04_7196ba9d.png&#34; alt=&#34;2025-02-20-21-43-04&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;winotmk.com 是我在新万网买的，所以这里登录后台&#xA;&lt;a href=&#34;https://www.xinwanwang.com/login.asp&#34;&gt;www.xinwanwang.com/login.asp&lt;/a&gt;&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-36-55_f6ef3881.png&#34; alt=&#34;2025-02-20-21-36-55&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;用他给的管理员账号密码在控制面板里登录&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png&#34; alt=&#34;2025-02-20-21-38-38&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;登录上以后在域名绑定这里选关闭强制http访问再打开，把刚才下载下来的证书密钥文件两个分别复制到对话框里即可完成部署啦！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

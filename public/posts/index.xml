@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://mdblog.winotmk.com/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>Posts on My New Hugo Site</title>
+    <link>https://mdblog.winotmk.com/posts/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- 0.144.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Jan 2025 07:07:07 +0100</lastBuildDate>
-    <atom:link href="https://mdblog.winotmk.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mdblog.winotmk.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SSL证书手动更新</title>
       <link>https://mdblog.winotmk.com/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</link>
@@ -32,13 +32,6 @@
 &lt;p&gt;用他给的管理员账号密码在控制面板里登录
 &lt;img alt=&#34;2025-02-20-21-38-38&#34; loading=&#34;lazy&#34; src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;登录上以后在域名绑定这里选关闭强制http访问再打开，把刚才下载下来的证书密钥文件两个分别复制到对话框里即可完成部署啦！&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>My 1st post</title>
-      <link>https://mdblog.winotmk.com/page/</link>
-      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
-      <guid>https://mdblog.winotmk.com/page/</guid>
-      <description>Desc Text.</description>
     </item>
   </channel>
 </rss>
