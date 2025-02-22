@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Calibre_web on ExampleSite</title>
+    <link>http://localhost:12371/tags/calibre_web/</link>
+    <description>Recent content in Calibre_web on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/tags/calibre_web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>calibre_web的pdf封面提取问题</title>
+      <link>http://localhost:12371/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;&gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;
+作为自己nas上的图书馆时发现pdf文件无法生成封面，
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925124359.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;断断续续排查了两周，百思不得解，尝试过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置imagemagick的&lt;code&gt;policy.xml&lt;/code&gt;文件(&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;使用lscr.io/linuxserver/calibre-web:latest的镜像&lt;/li&gt;
+&lt;li&gt;自己重新构建镜像&lt;/li&gt;
+&lt;li&gt;重新安装calibre-web包和重装imagemagick包
+都解决不了，总之是十分折腾，最后认为可能是&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;可能是里少了一个&lt;code&gt;imagemagick-pdf&lt;/code&gt;包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程&lt;/h2&gt;
+&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123504.png&#34;&gt;
+查看文件：/config/calbre-web/calbre-web.log
+有这么一行：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123738.png&#34;&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[2024-09-25 12:10:22,144]  WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF&amp;#39; @ error/constitute.c/ReadImage/746
+[2024-09-25 12:10:22,145]  WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PDF转就转不出来
+所以找到了：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123303.png&#34;&gt;
+&lt;a href=&#34;https://github.com/ImageMagick/ImageMagick/issues/6148&#34;&gt;https://github.com/ImageMagick/ImageMagick/issues/6148&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123414.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;johngongcalibre-web的一些设置&#34;&gt;johngong/calibre-web的一些设置&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/gshang2017/docker/issues/133&#34;&gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;
+如果一编辑图书的元数据就卡死，可用尝试：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925134344.png&#34;&gt;
+这两条设置为true,则
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925134613.png&#34;&gt;
+这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
+&lt;h2 id=&#34;弯路&#34;&gt;弯路&lt;/h2&gt;
+&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925140205.png&#34;&gt;
+&lt;a href=&#34;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&#34;&gt;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&lt;/a&gt;
+所以可以有&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;policymap&amp;gt;
+    &amp;lt;policy domain=&amp;#34;coder&amp;#34; rights=&amp;#34;read | write&amp;#34; pattern=&amp;#34;{MSVG,MVG,PS,PDF,RSVG,SVG,XPS}&amp;#34; /&amp;gt;
+&amp;lt;/policymap&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是最容易找到的一种解法，但我自己试了无用，没有上面的装&lt;code&gt;apk add imagemagick-pdf&lt;/code&gt;好使&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

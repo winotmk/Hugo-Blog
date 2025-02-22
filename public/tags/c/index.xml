@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C on ExampleSite</title>
+    <link>http://localhost:12371/tags/c/</link>
+    <description>Recent content in C on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>段码屏开发—GPT4o带来的一点点震撼</title>
+      <link>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
+      <description>&lt;h2 id=&#34;硬件简介&#34;&gt;硬件简介&lt;/h2&gt;
+&lt;h3 id=&#34;屏幕&#34;&gt;屏幕&lt;/h3&gt;
+&lt;p&gt;屏幕使用了一块微雪的电子墨水段码屏
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135400.png&#34;&gt;
+文档在这里：
+&lt;a href=&#34;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&#34;&gt;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mcu&#34;&gt;MCU&lt;/h3&gt;
+&lt;p&gt;MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135455.png&#34;&gt;
+&lt;a href=&#34;https://www.waveshare.net/wiki/RP2040-Zero&#34;&gt;https://www.waveshare.net/wiki/RP2040-Zero&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;字节byte和比特bit的对应&#34;&gt;字节(byte)和比特(bit)的对应&lt;/h2&gt;
+&lt;p&gt;最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，
+本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我
+起初这个表对于完全没接触过这块的我完全不动他是什么意思&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185010.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185139.png&#34;&gt;
+*&lt;strong&gt;以下是GPT的回答&lt;/strong&gt;
+在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。&lt;/p&gt;
+&lt;h3 id=&#34;理解图表中的内容&#34;&gt;理解图表中的内容&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。&lt;/li&gt;
+&lt;li&gt;比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。&lt;/li&gt;
+&lt;li&gt;存储的数据: 存储在比特中的数据值（0 或 1）。&lt;/li&gt;
+&lt;li&gt;对应的颜色: 由数据值决定的像素颜色（黑色或白色）。
+5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;字节和比特的对应关系&#34;&gt;字节和比特的对应关系&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个字节有 8 位，每一位可以是 0 或 1。&lt;/li&gt;
+&lt;li&gt;0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。&lt;/li&gt;
+&lt;li&gt;0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解释示例&#34;&gt;解释示例&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;0x00 字节:
+&lt;ul&gt;
+&lt;li&gt;二进制表示：00000000&lt;/li&gt;
+&lt;li&gt;每个比特位都是 0，因此对应的像素颜色是黑色。&lt;/li&gt;
+&lt;li&gt;从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;0xff 字节:
+&lt;ul&gt;
+&lt;li&gt;二进制表示：11111111&lt;/li&gt;
+&lt;li&gt;每个比特位都是 1，因此对应的像素颜色是白色。&lt;/li&gt;
+&lt;li&gt;从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;示例代码解释&#34;&gt;示例代码解释&lt;/h3&gt;
+&lt;p&gt;如果你想用代码来解释字节和比特之间的关系，可以如下示例：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

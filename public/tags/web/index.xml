@@ -1,18 +1,84 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Web on My New Hugo Site</title>
-    <link>https://example.org/tags/web/</link>
-    <description>Recent content in Web on My New Hugo Site</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <atom:link href="https://example.org/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <title>Web on ExampleSite</title>
+    <link>http://localhost:12371/tags/web/</link>
+    <description>Recent content in Web on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/tags/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>SSL证书手动更新</title>
-      <link>https://example.org/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</link>
+      <title>网站框架收集</title>
+      <link>http://localhost:12371/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</guid>
-      <description>&lt;p&gt;我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏&lt;/p&gt;&#xA;&lt;h2 id=&#34;获取新的证书&#34;&gt;获取新的证书&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://yundun.console.aliyun.com/?spm=5176.12818093_47.console-base_product-drawer-left.dcas.3be916d0TsU2HG&amp;amp;p=cas#/certExtend/free/cn-hangzhou?currentPage=1&amp;amp;pageSize=10&amp;amp;keyword=&amp;amp;statusCode=&#34;&gt;阿里云SSL证书管理&lt;/a&gt;&#xA;这里点个人测试证书，然后申请域名&lt;code&gt;winotmk.com&lt;/code&gt;与&lt;code&gt;md.winotmk.com&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;部署证书&#34;&gt;部署证书&lt;/h2&gt;&#xA;&lt;h3 id=&#34;部署全站加速的证书&#34;&gt;部署全站加速的证书&lt;/h3&gt;&#xA;&lt;p&gt;由于都是一个号里买的阿里云的产品，所以可以一键部署&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png&#34; alt=&#34;2025-02-20-21-32-48&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;部署到别的平台&#34;&gt;部署到别的平台&lt;/h3&gt;&#xA;&lt;p&gt;先下载证书，点更多&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-41-10_324634aa.png&#34; alt=&#34;2025-02-20-21-41-10&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;这里选下载tab，下载第一个pem/key格式的证书即可，解压下来会是两个文件&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-43-04_7196ba9d.png&#34; alt=&#34;2025-02-20-21-43-04&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;winotmk.com 是我在新万网买的，所以这里登录后台&#xA;&lt;a href=&#34;https://www.xinwanwang.com/login.asp&#34;&gt;www.xinwanwang.com/login.asp&lt;/a&gt;&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-36-55_f6ef3881.png&#34; alt=&#34;2025-02-20-21-36-55&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;用他给的管理员账号密码在控制面板里登录&#xA;&lt;img src=&#34;http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png&#34; alt=&#34;2025-02-20-21-38-38&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;登录上以后在域名绑定这里选关闭强制http访问再打开，把刚才下载下来的证书密钥文件两个分别复制到对话框里即可完成部署啦！&lt;/p&gt;</description>
+      <guid>http://localhost:12371/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</guid>
+      <description>&lt;p&gt;其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在：
+&lt;a href=&#34;https://www.winotmk.com/&#34;&gt;https://www.winotmk.com/&lt;/a&gt;
+是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择
+同时还有一个
+&lt;a href=&#34;https://md.winotmk.com/&#34;&gt;https://md.winotmk.com/&lt;/a&gt;
+(&lt;a href=&#34;https://winotmk.github.io/&#34;&gt;https://winotmk.github.io/&lt;/a&gt;)
+由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速
+似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！&lt;/p&gt;
+&lt;p&gt;因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333&lt;/p&gt;
+&lt;h2 id=&#34;网站生成框架&#34;&gt;网站生成/框架&lt;/h2&gt;
+&lt;h3 id=&#34;typecho&#34;&gt;typecho&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619132246.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Typecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎
+&lt;a href=&#34;https://github.com/typecho/typecho&#34;&gt;https://github.com/typecho/typecho&lt;/a&gt;
+&lt;a href=&#34;https://typecho.org/&#34;&gt;https://typecho.org/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806150559.png&#34;&gt;
+这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;预览博客：
+&lt;a href=&#34;https://xhhdd.cc/index.php/archives/27/&#34;&gt;https://xhhdd.cc/index.php/archives/27/&lt;/a&gt;
+&lt;a href=&#34;https://cfanlost.com/&#34;&gt;https://cfanlost.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hugo&#34;&gt;hugo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;https://gohugo.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806151141.png&#34;&gt;
+似乎是类hexo生成静态网页，然后可以塞到github托管的&lt;/p&gt;
+&lt;h3 id=&#34;pelican&#34;&gt;pelican&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站
+&lt;a href=&#34;https://github.com/getpelican/pelican&#34;&gt;https://github.com/getpelican/pelican&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊&lt;/p&gt;
+&lt;h3 id=&#34;jekyllrb&#34;&gt;jekyllrb&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将纯文本转换为静态网站和博客
+&lt;a href=&#34;https://jekyllrb.com/&#34;&gt;https://jekyllrb.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;应该和上面类似，同样是静态文章生成，部署到github&lt;/p&gt;
+&lt;p&gt;预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240814160206.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;皮肤主题&#34;&gt;皮肤/主题&lt;/h2&gt;
+&lt;h3 id=&#34;typecho-1&#34;&gt;typecho&lt;/h3&gt;
+&lt;h4 id=&#34;handsome&#34;&gt;handsome&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ihewro.com/archives/489/&#34;&gt;https://www.ihewro.com/archives/489/&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806150942.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;pelican-1&#34;&gt;pelican&lt;/h3&gt;
+&lt;h4 id=&#34;attila&#34;&gt;attila&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/arulrajnet/attila&#34;&gt;https://github.com/arulrajnet/attila&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806152032.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806152133.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hugo-1&#34;&gt;hugo&lt;/h3&gt;
+&lt;h4 id=&#34;papermod&#34;&gt;PaperMod&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://themes.gohugo.io/themes/hugo-papermod/&#34;&gt;https://themes.gohugo.io/themes/hugo-papermod/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Demo:https://adityatelange.github.io/hugo-PaperMod/&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20241226162048.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;评论系统&#34;&gt;评论系统&lt;/h2&gt;
+&lt;h3 id=&#34;waline&#34;&gt;waline&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/walinejs/waline&#34;&gt;https://github.com/walinejs/waline&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806152451.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;utterances&#34;&gt;utterances&lt;/h3&gt;
+&lt;p&gt;是一个基于GitHub issues的轻量级评论，用github登录
+&lt;a href=&#34;https://utteranc.es/&#34;&gt;https://utteranc.es/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;2025-02-21-18-45-31&#34; loading=&#34;lazy&#34; src=&#34;http://pictures.winotmk.com/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/2025-02-21-18-45-31_1781e237.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

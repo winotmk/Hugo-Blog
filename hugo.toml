@@ -1,4 +1,0 @@
-baseURL = 'https://mdblog.winotmk.com/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = 'PaperMod'

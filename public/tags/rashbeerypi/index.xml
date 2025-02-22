@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rashbeerypi on ExampleSite</title>
+    <link>http://localhost:12371/tags/rashbeerypi/</link>
+    <description>Recent content in Rashbeerypi on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/tags/rashbeerypi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>地理数据采集器计划</title>
+      <link>http://localhost:12371/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</guid>
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;想要做一个便携的小设备，能够实现以下功能&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;记录当前地点的气压，温度，湿度等地理信息&lt;/li&gt;
+&lt;li&gt;记录GPS坐标信息&lt;/li&gt;
+&lt;li&gt;考虑加上摄像头记录当前周围视觉环境，同时可以将上述信息水印（字幕)在照片上&lt;/li&gt;
+&lt;li&gt;存储所有记录的数据以便之后进行可视化数据生成，可以用类似XML，Json，或者找有没有嵌入式轻量数据库实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它最好有以下这样的特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;手机一般大小可以塞进口袋&lt;/li&gt;
+&lt;li&gt;一定程度的防摔防水外壳&lt;/li&gt;
+&lt;li&gt;续航可以接受2-3天一充电&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以我的打算用现有的能买到的小板子和单片机来做，预算不是大问题，大概1500-2000，（包含试错和学习成本）考虑过几种方向：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ESP32&lt;/li&gt;
+&lt;li&gt;树莓派PICO&lt;/li&gt;
+&lt;li&gt;幸狐的板子和摄像头&lt;/li&gt;
+&lt;li&gt;树莓派Zero
+最后发现现在目前树莓派zero2w的价格只有一百出头了，可能比某些arduino的原版板子还便宜，值得一试，幸狐看起来也不错的样子，回头再研究&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面这是树莓派zero2w跑通串口通信时的样子&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240617150029.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这个网站不错：https://pinout.xyz/&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240618185812.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可知右上这几个接口就可以实现TTL的UART连接了，我尝试ground是要接的&lt;/p&gt;
+&lt;h2 id=&#34;资料&#34;&gt;资料&lt;/h2&gt;
+&lt;h3 id=&#34;ft232串口工具&#34;&gt;FT232串口工具&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waveshare.net/wiki/FT232_USB_UART_Board&#34;&gt;https://www.waveshare.net/wiki/FT232_USB_UART_Board&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160444.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;gps模块&#34;&gt;GPS模块&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waveshare.net/wiki/LC76G_GPS_Module&#34;&gt;https://www.waveshare.net/wiki/LC76G_GPS_Module&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160514.png&#34;&gt;
+在准备安装micropyGPS时
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160324.png&#34;&gt;
+提示&lt;code&gt;No module namd setuptools&lt;/code&gt;
+怀疑需要执行
+&lt;code&gt;apt-get install python3-setuptools&lt;/code&gt;
+可惜目前没有网络环境，回家尝试了&lt;/p&gt;
+&lt;h3 id=&#34;raspberry-zero-2w&#34;&gt;Raspberry Zero 2W&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W&#34;&gt;https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160629.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ups-模块&#34;&gt;UPS 模块&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waveshare.net/wiki/UPS_HAT_(C)&#34;&gt;https://www.waveshare.net/wiki/UPS_HAT_(C)&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160718.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境传感器&#34;&gt;环境传感器&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waveshare.net/shop/Environment-Sensor-HAT.htm&#34;&gt;https://www.waveshare.net/shop/Environment-Sensor-HAT.htm&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619160754.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;项目软件&#34;&gt;项目/软件&lt;/h2&gt;
+&lt;h3 id=&#34;数据可视化相关&#34;&gt;数据可视化相关&lt;/h3&gt;
+&lt;h4 id=&#34;很不错的开源教程data-science-for-beginners&#34;&gt;很不错的开源教程Data-Science-For-Beginners&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://microsoft.github.io/Data-Science-For-Beginners/#/&#34;&gt;https://microsoft.github.io/Data-Science-For-Beginners/#/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;matplotlib&#34;&gt;Matplotlib&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://matplotlib.org/stable/index.html&#34;&gt;https://matplotlib.org/stable/index.html&lt;/a&gt;
+Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表
+&lt;a href=&#34;https://microsoft.github.io/Data-Science-For-Beginners/#/3-Data-Visualization/09-visualization-quantities/README&#34;&gt;https://microsoft.github.io/Data-Science-For-Beginners/#/3-Data-Visualization/09-visualization-quantities/README&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240717142402.png&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;streamlit&#34;&gt;Streamlit&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/streamlit/streamlit&#34;&gt;https://github.com/streamlit/streamlit&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240717143550.png&#34;&gt;
+更偏向于python库直接生成web，同时也有很多数据可视化的内容，更实用？便于展示&lt;/p&gt;
+&lt;h4 id=&#34;powerbi&#34;&gt;powerbi&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.microsoft.com/en-us/power-platform/products/power-bi&#34;&gt;https://www.microsoft.com/en-us/power-platform/products/power-bi&lt;/a&gt;
+似乎是微软的web数据可视化绘图&lt;/p&gt;
+&lt;h4 id=&#34;gpxsee&#34;&gt;GPXSee&lt;/h4&gt;
+&lt;p&gt;配合gps数据收集可以展示出来
+&lt;a href=&#34;https://github.com/tumic0/GPXSee&#34;&gt;https://github.com/tumic0/GPXSee&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240719120310.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;图形库&#34;&gt;图形库&lt;/h3&gt;
+&lt;h4 id=&#34;lvgl&#34;&gt;LVGL&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://lvgl.100ask.net/master/get-started/index.html&#34;&gt;https://lvgl.100ask.net/master/get-started/index.html&lt;/a&gt;
+&lt;a href=&#34;https://github.com/lvgl/lvgl&#34;&gt;https://github.com/lvgl/lvgl&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240719122911.png&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;squareline-studio-ui---配合上面的lvgl用&#34;&gt;SquareLine Studio UI - 配合上面的LVGL用&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://squareline.io/&#34;&gt;https://squareline.io/&lt;/a&gt;
+&lt;a href=&#34;https://www.bilibili.com/video/BV1DX4y1v727/?vd_source=b7b7bdf106a064893c3c79e4a961f383&#34;&gt;https://www.bilibili.com/video/BV1DX4y1v727/?vd_source=b7b7bdf106a064893c3c79e4a961f383&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240719121330.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>树莓派上架设TimeMachine服务</title>
+      <link>http://localhost:12371/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</guid>
+      <description>&lt;p&gt;{% asset_img 20211013_002640.png 800 %}&lt;/p&gt;
+&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
+&lt;p&gt;前半参考：
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/335259509&#34;&gt;从此Mac上的文件再也不会丟了&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;后半参考：
+&lt;a href=&#34;https://www.jianshu.com/p/d9b180f6d397&#34;&gt;如何自己搭建一个Time Machine服务器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;挂载硬盘目录&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo mount /dev/sda2 /mnt/WinSource
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;1.安装netatalk和avahi（自己感觉avahi不装也行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install netatalk avahi-daemon -y
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.创建账户wintm来访问TimeMachine，&lt;strong&gt;至少别用root，root访问不能！&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;useradd -c &amp;#34;Time machine&amp;#34; -m -s /bin/bash wintm
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后设置密码&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo passwd wintm
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.配置netatalk&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo nano /etc/netatalk/AppleVolumes.default
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个文件似乎一行代表一个服务
+可以在&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# The line below sets some DEFAULT, starting with Netatalk 2.1.
+:DEFAULT: options:upriv,usedots
+
+# By default all users have access to their home directories.
+~/			&amp;#34;Home Directory&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下面加上一行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/mnt/WinSource/TimeMachine WinMachine allow:wintm options:tm
+#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.重启服务&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>树莓派路由器</title>
+      <link>http://localhost:12371/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</guid>
+      <description>&lt;h2 id=&#34;树莓派cm4的&#34;&gt;树莓派CM4的&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614212800.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;openwrt-web界面安装中文&#34;&gt;openWrt web界面安装中文&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/da01ce070688&#34;&gt;https://www.jianshu.com/p/da01ce070688&lt;/a&gt;
+更新包目录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;opkg update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4
+改之!!&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614001635.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可能还不行
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230617224422.png&#34;&gt;
+这俩防火墙设置一下&lt;/p&gt;
+&lt;p&gt;如果还不行
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230617231305.png&#34;&gt;
+DNS记得指定一下&lt;/p&gt;
+&lt;p&gt;这下就能通了&lt;/p&gt;
+&lt;p&gt;PS也可以点配置opkg，然后加一条&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;src/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把源换为国内&lt;/p&gt;
+&lt;p&gt;然后&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;opkg install luci-i18n-base-zh-cn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;提示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Configuring luci-i18n-base-zh-cn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;再回来看web界面就已经是中文了
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614001825.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;如果要开启sftp传输服务&#34;&gt;如果要开启sftp传输服务&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/twn39/code/issues/279&#34;&gt;https://github.com/twn39/code/issues/279&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;开启sftp的话可以很方便用WinSCP登录，文件管理神器
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614002052.png&#34;&gt;
+那么如何启用 sftp 服务呢？先安装对应的软件：&lt;/p&gt;
+&lt;p&gt;opkg install vsftpd openssh-sftp-server
+设置系统开启后自动启动 sftp 服务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/vsftpd &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动 sftp 服务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; /etc/init.d/vsftpd start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。&lt;/p&gt;
+&lt;h2 id=&#34;装网卡驱动&#34;&gt;装网卡驱动&lt;/h2&gt;
+&lt;p&gt;我的CM4拓展板子是微雪的这个
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230617234921.png&#34;&gt;
+&lt;a href=&#34;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&#34;&gt;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&lt;/a&gt;
+有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的
+&lt;a href=&#34;https://openwrt.org/packages/pkgdata/kmod-r8169&#34;&gt;https://openwrt.org/packages/pkgdata/kmod-r8169&lt;/a&gt;
+那么就好办了
+安装就行了：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; opkg install kmod-r8169
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成以重启openwrt我们看到这里已经读到了eth1口
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614003210.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置路由器wan口&#34;&gt;设置路由器WAN口&lt;/h2&gt;
+&lt;p&gt;添加新端口，设备选装好驱动以后出现的eth1，协议我选pppoe因为我拿路由拨号&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20230614003850.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;如果要自己加安装包&#34;&gt;如果要自己加安装包：&lt;/h2&gt;
+&lt;p&gt;放到一个tmp目录里
+CD到tmp目录&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>段码屏开发—GPT4o带来的一点点震撼</title>
+      <link>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
+      <description>&lt;h2 id=&#34;硬件简介&#34;&gt;硬件简介&lt;/h2&gt;
+&lt;h3 id=&#34;屏幕&#34;&gt;屏幕&lt;/h3&gt;
+&lt;p&gt;屏幕使用了一块微雪的电子墨水段码屏
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135400.png&#34;&gt;
+文档在这里：
+&lt;a href=&#34;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&#34;&gt;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mcu&#34;&gt;MCU&lt;/h3&gt;
+&lt;p&gt;MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135455.png&#34;&gt;
+&lt;a href=&#34;https://www.waveshare.net/wiki/RP2040-Zero&#34;&gt;https://www.waveshare.net/wiki/RP2040-Zero&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;字节byte和比特bit的对应&#34;&gt;字节(byte)和比特(bit)的对应&lt;/h2&gt;
+&lt;p&gt;最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，
+本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我
+起初这个表对于完全没接触过这块的我完全不动他是什么意思&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185010.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185139.png&#34;&gt;
+*&lt;strong&gt;以下是GPT的回答&lt;/strong&gt;
+在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。&lt;/p&gt;
+&lt;h3 id=&#34;理解图表中的内容&#34;&gt;理解图表中的内容&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。&lt;/li&gt;
+&lt;li&gt;比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。&lt;/li&gt;
+&lt;li&gt;存储的数据: 存储在比特中的数据值（0 或 1）。&lt;/li&gt;
+&lt;li&gt;对应的颜色: 由数据值决定的像素颜色（黑色或白色）。
+5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;字节和比特的对应关系&#34;&gt;字节和比特的对应关系&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个字节有 8 位，每一位可以是 0 或 1。&lt;/li&gt;
+&lt;li&gt;0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。&lt;/li&gt;
+&lt;li&gt;0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解释示例&#34;&gt;解释示例&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;0x00 字节:
+&lt;ul&gt;
+&lt;li&gt;二进制表示：00000000&lt;/li&gt;
+&lt;li&gt;每个比特位都是 0，因此对应的像素颜色是黑色。&lt;/li&gt;
+&lt;li&gt;从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;0xff 字节:
+&lt;ul&gt;
+&lt;li&gt;二进制表示：11111111&lt;/li&gt;
+&lt;li&gt;每个比特位都是 1，因此对应的像素颜色是白色。&lt;/li&gt;
+&lt;li&gt;从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;示例代码解释&#34;&gt;示例代码解释&lt;/h3&gt;
+&lt;p&gt;如果你想用代码来解释字节和比特之间的关系，可以如下示例：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on ExampleSite</title>
+    <link>http://localhost:12371/categories/docker/</link>
+    <description>Recent content in Docker on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>calibre_web的pdf封面提取问题</title>
+      <link>http://localhost:12371/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;&gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;
+作为自己nas上的图书馆时发现pdf文件无法生成封面，
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925124359.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;断断续续排查了两周，百思不得解，尝试过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置imagemagick的&lt;code&gt;policy.xml&lt;/code&gt;文件(&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;使用lscr.io/linuxserver/calibre-web:latest的镜像&lt;/li&gt;
+&lt;li&gt;自己重新构建镜像&lt;/li&gt;
+&lt;li&gt;重新安装calibre-web包和重装imagemagick包
+都解决不了，总之是十分折腾，最后认为可能是&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;可能是里少了一个&lt;code&gt;imagemagick-pdf&lt;/code&gt;包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程&lt;/h2&gt;
+&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123504.png&#34;&gt;
+查看文件：/config/calbre-web/calbre-web.log
+有这么一行：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123738.png&#34;&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[2024-09-25 12:10:22,144]  WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF&amp;#39; @ error/constitute.c/ReadImage/746
+[2024-09-25 12:10:22,145]  WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PDF转就转不出来
+所以找到了：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123303.png&#34;&gt;
+&lt;a href=&#34;https://github.com/ImageMagick/ImageMagick/issues/6148&#34;&gt;https://github.com/ImageMagick/ImageMagick/issues/6148&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925123414.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;johngongcalibre-web的一些设置&#34;&gt;johngong/calibre-web的一些设置&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/gshang2017/docker/issues/133&#34;&gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;
+如果一编辑图书的元数据就卡死，可用尝试：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925134344.png&#34;&gt;
+这两条设置为true,则
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925134613.png&#34;&gt;
+这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
+&lt;h2 id=&#34;弯路&#34;&gt;弯路&lt;/h2&gt;
+&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240925140205.png&#34;&gt;
+&lt;a href=&#34;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&#34;&gt;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&lt;/a&gt;
+所以可以有&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;policymap&amp;gt;
+    &amp;lt;policy domain=&amp;#34;coder&amp;#34; rights=&amp;#34;read | write&amp;#34; pattern=&amp;#34;{MSVG,MVG,PS,PDF,RSVG,SVG,XPS}&amp;#34; /&amp;gt;
+&amp;lt;/policymap&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是最容易找到的一种解法，但我自己试了无用，没有上面的装&lt;code&gt;apk add imagemagick-pdf&lt;/code&gt;好使&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
+      <link>http://localhost:12371/posts/docker01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/docker01/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的&lt;/p&gt;
+&lt;p&gt;了解ECI弹性容器：https://www.aliyun.com/product/eci
+了解阿里云NAS文件存储：https://www.aliyun.com/product/nas&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么要用eci来运行hexo？&lt;/strong&gt;
+因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种
+本博客之前是由树莓派上的hexo生成，部署到github上的
+最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）
+恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的
+最后成品的结构大致如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829140549.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里挂了3个镜像：
+&lt;strong&gt;1.node.js+git+ssh+hexo&lt;/strong&gt;
+主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会&lt;code&gt;hexo g -d&lt;/code&gt;，而运行这套需要一个环境容器
+git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理
+&lt;strong&gt;2.vsftpd&lt;/strong&gt;
+一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！
+&lt;strong&gt;3.ddns&lt;/strong&gt;
+因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像&lt;/p&gt;
+&lt;p&gt;还挂了一个NAS盘：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829142400.png&#34;&gt;
+挂载以后：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829142501.png&#34;&gt;
+可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计&lt;/p&gt;
+&lt;p&gt;文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;vsftpd&lt;/strong&gt;还有&lt;strong&gt;ddns&lt;/strong&gt;可以与主镜像&lt;strong&gt;node.js+hexo&lt;/strong&gt;合并成一个大镜像吗？
+&lt;strong&gt;当然可以&lt;/strong&gt;，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小&lt;/p&gt;
+&lt;p&gt;整套下来有这些部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;docker基本操作&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已经启动的本地容器修改端口，启动容器时即启动服务等&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;打包制作自己的docker镜像(dockerfile)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker镜像打包并上传到阿里云镜像库ARK&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;eci容器创建模板和eci命令行工具使用&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hexo本地编辑环境设置————如何用VSCode舒服的写MD文档&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;附表：
+群晖搭建私有镜像仓库和dockerengine设置
+eci价格计算表&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-docker-基本操作&#34;&gt;1. docker 基本操作&lt;/h2&gt;
+&lt;p&gt;博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶
+——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！
+资料网站：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/cli/&#34;&gt;官方命令大全&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://chunchengwei.github.io/ruan-jian/ji-yu-docker-de-hexo-bo-ke-da-jian/&#34;&gt;基于Docker的Hexo博客搭建&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个基本操作写得还行下次爬一篇下来吧：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://yingclin.github.io/2018/docker-basic.html&#34;&gt;[小抄] Docker 基本命令&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;11-运行容器&#34;&gt;1.1 运行容器&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -it -d --name &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;container-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; -p 8088:80 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;image-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里是将容器内的80端口映射到宿主机的8088端口&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker01.1_eci价格计算表</title>
+      <link>http://localhost:12371/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</guid>
+      <description>&lt;p&gt;计费文档：
+&lt;a href=&#34;https://help.aliyun.com/document_detail/447697.html&#34;&gt;https://help.aliyun.com/document_detail/447697.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;定价标准：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;vCPU单价（vCPU）：0.000049 元/秒
+内存单价（GiB）： 0.00000613 元/秒&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;所以可知：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;规格&lt;/th&gt;
+          &lt;th&gt;秒&lt;/th&gt;
+          &lt;th&gt;分钟&lt;/th&gt;
+          &lt;th&gt;小时&lt;/th&gt;
+          &lt;th&gt;天&lt;/th&gt;
+          &lt;th&gt;月&lt;/th&gt;
+          &lt;th&gt;年&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;每1u&lt;/td&gt;
+          &lt;td&gt;0.00004900&lt;/td&gt;
+          &lt;td&gt;0.00294&lt;/td&gt;
+          &lt;td&gt;0.1764&lt;/td&gt;
+          &lt;td&gt;4.2336&lt;/td&gt;
+          &lt;td&gt;127.008&lt;/td&gt;
+          &lt;td&gt;1545.264&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;每1G内存&lt;/td&gt;
+          &lt;td&gt;0.00000613&lt;/td&gt;
+          &lt;td&gt;0.0003678&lt;/td&gt;
+          &lt;td&gt;0.022068&lt;/td&gt;
+          &lt;td&gt;0.529632&lt;/td&gt;
+          &lt;td&gt;15.88896&lt;/td&gt;
+          &lt;td&gt;193.31568&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;eci价格计算：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;实例规格&lt;/th&gt;
+          &lt;th&gt;秒&lt;/th&gt;
+          &lt;th&gt;分钟&lt;/th&gt;
+          &lt;th&gt;小时&lt;/th&gt;
+          &lt;th&gt;天&lt;/th&gt;
+          &lt;th&gt;月&lt;/th&gt;
+          &lt;th&gt;年&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0.25u	0.5G&lt;/td&gt;
+          &lt;td&gt;0.00001532&lt;/td&gt;
+          &lt;td&gt;0.0009189&lt;/td&gt;
+          &lt;td&gt;0.055134&lt;/td&gt;
+          &lt;td&gt;1.323216&lt;/td&gt;
+          &lt;td&gt;39.69648&lt;/td&gt;
+          &lt;td&gt;482.97384&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0.5u	1G&lt;/td&gt;
+          &lt;td&gt;0.00003063&lt;/td&gt;
+          &lt;td&gt;0.0018378&lt;/td&gt;
+          &lt;td&gt;0.110268&lt;/td&gt;
+          &lt;td&gt;2.646432&lt;/td&gt;
+          &lt;td&gt;79.39296&lt;/td&gt;
+          &lt;td&gt;965.94768&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2u	4G&lt;/td&gt;
+          &lt;td&gt;0.00012252&lt;/td&gt;
+          &lt;td&gt;0.0073512&lt;/td&gt;
+          &lt;td&gt;0.441072&lt;/td&gt;
+          &lt;td&gt;10.585728&lt;/td&gt;
+          &lt;td&gt;317.57184&lt;/td&gt;
+          &lt;td&gt;3863.79072&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2u	8G&lt;/td&gt;
+          &lt;td&gt;0.00014704&lt;/td&gt;
+          &lt;td&gt;0.0088224&lt;/td&gt;
+          &lt;td&gt;0.529344&lt;/td&gt;
+          &lt;td&gt;12.704256&lt;/td&gt;
+          &lt;td&gt;381.12768&lt;/td&gt;
+          &lt;td&gt;4637.05344&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4u	8G&lt;/td&gt;
+          &lt;td&gt;0.00024504&lt;/td&gt;
+          &lt;td&gt;0.0147024&lt;/td&gt;
+          &lt;td&gt;0.882144&lt;/td&gt;
+          &lt;td&gt;21.171456&lt;/td&gt;
+          &lt;td&gt;635.14368&lt;/td&gt;
+          &lt;td&gt;7727.58144&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;64u	256G&lt;/td&gt;
+          &lt;td&gt;0.00470528&lt;/td&gt;
+          &lt;td&gt;0.2823168&lt;/td&gt;
+          &lt;td&gt;16.939008&lt;/td&gt;
+          &lt;td&gt;406.536192&lt;/td&gt;
+          &lt;td&gt;12196.08576&lt;/td&gt;
+          &lt;td&gt;148385.7101&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;一秒0.0047元很便宜吗？一月要1.2w！可以说被安排得明明白白了&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>用容器来运行streamlit</title>
+      <link>http://localhost:12371/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724152543.png&#34;&gt;
+一开始玩这个的时候就在想用docker跑，因为实在不想在本机里搭各种乱七八糟的环境，也懒得用Anaconda那样的中间环境，总感觉本地跑个模型才用得上那种大玩意儿，于是在dockerhub上找了找
+一些已有的可用镜像：
+&lt;a href=&#34;https://hub.docker.com/r/aminehy/docker-streamlit-app&#34;&gt;https://hub.docker.com/r/aminehy/docker-streamlit-app&lt;/a&gt;
+&lt;a href=&#34;https://hub.docker.com/r/samdobson/streamlit&#34;&gt;https://hub.docker.com/r/samdobson/streamlit&lt;/a&gt;
+就是镜像build都好几年前了，实测目前有些新的例程都跑不了，还是自己做个镜像吧&lt;/p&gt;
+&lt;h2 id=&#34;制作dockerfile&#34;&gt;制作dockerfile&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.streamlit.io/deploy/tutorials/docker&#34;&gt;https://docs.streamlit.io/deploy/tutorials/docker&lt;/a&gt;
+好在官网已给出方案
+这是我微改后的：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# app/Dockerfile
+
+FROM python:3.9-slim
+
+WORKDIR /app
+
+RUN apt-get update &amp;amp;&amp;amp; apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/streamlit/streamlit-example.git .
+
+RUN pip3 install -r requirements.txt
+
+EXPOSE 8501
+
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+CMD [&amp;#34;streamlit&amp;#34;, &amp;#34;run&amp;#34;, &amp;#34;main.py&amp;#34;, &amp;#34;--server.port=8501&amp;#34;, &amp;#34;--server.address=0.0.0.0&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;主要就最后一行并没有用&lt;code&gt;ENTRYPOINT&lt;/code&gt;，因为记得这个不是必须，用&lt;code&gt;CMD&lt;/code&gt;的好处是非常方便的就能修改&lt;code&gt;docker run&lt;/code&gt;时要运行的内容&lt;/p&gt;
+&lt;h2 id=&#34;构建和使用镜像&#34;&gt;构建和使用镜像&lt;/h2&gt;
+&lt;p&gt;打开CMD，CD到这个Dockerfile保存的目录下
+&lt;code&gt;docker build -t streamlit_winotmk:latest . &lt;/code&gt;点不要落下&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>给docker容器内配置中文环境(minecraft开服相关)</title>
+      <link>http://localhost:12371/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+      <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs
+&lt;a href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;&gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815141238.png&#34;&gt;
+这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道
+才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！
+服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着&lt;/p&gt;
+&lt;h2 id=&#34;选取docker镜像&#34;&gt;选取docker镜像&lt;/h2&gt;
+&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了
+&lt;a href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;&gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815121544.png&#34;&gt;
+所以直接&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker pull openjdk:8u342-jre-slim
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后直接这样运行就好了&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -it -d \
+-p 25565:25565 \
+-v E:\game\MC\1.12.2mohist_服务端:/mc \
+-w /mc \
+--name MC1122 \
+openjdk:8u342-jre-slim \
+java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！
+出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123217.png&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123240.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;
+确定环境变量生效了：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123341.png&#34;&gt;
+但没解决问题，反而似乎导致启动的时候不认识中文的mod文件名了&lt;/p&gt;
+&lt;p&gt;在查找这个之后：&lt;a href=&#34;https://blog.csdn.net/myli92/article/details/139909499?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22139909499%22%2C%22source%22%3A%22unlogin%22%7D&#34;&gt;docker 容器设置中文环境&lt;/a&gt;
+发现单纯设置&lt;code&gt;LANG&lt;/code&gt;的变量不行，容器里就没有中文字符集的&lt;/p&gt;
+&lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;locale -a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123200.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装中文环境&#34;&gt;安装中文环境&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/star1210644725/article/details/108747049&#34;&gt;使用DockerFile的方式快速构建一个基础镜像，解决中文环境问题&lt;/a&gt;
+所以安装中文环境的命令可以是：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815132128.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看到:&lt;a href=&#34;https://blog.csdn.net/forever_008/article/details/103720389&#34;&gt;Debian系统安装中文包&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dpkg-reconfigure locales
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后再选&lt;code&gt;zh_CN.UTF-8&lt;/code&gt;，可行，但是集成到镜像里没那么好使，还好有别的方法&lt;/p&gt;
+&lt;h2 id=&#34;制作新镜像&#34;&gt;制作新镜像&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/wyazyf/article/details/90676364&#34;&gt;dockerfile文件中给debian设置中文支持&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dockerfile&#34;&gt;dockerfile&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FROM openjdk:8u342-jre-slim
+RUN apt-get clean &amp;amp;&amp;amp; apt-get update &amp;amp;&amp;amp; apt-get install -y locales &amp;amp;&amp;amp;  localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+WORKDIR /mc
+ENV LANG zh_CN.UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>群晖上用容器搭建SVN服务器</title>
+      <link>http://localhost:12371/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214182733.png&#34;&gt;
+事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS
+另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的&lt;/p&gt;
+&lt;p&gt;所用镜像：https://hub.docker.com/r/garethflowers/svn-server
+备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server&lt;/p&gt;
+&lt;p&gt;SVN网站：https://subversion.apache.org/&lt;/p&gt;
+&lt;p&gt;参考：
+&lt;a href=&#34;https://blog.51cto.com/u_12701820/6544028&#34;&gt;https://blog.51cto.com/u_12701820/6544028&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231213184128.png&#34;&gt;
+由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些&lt;/p&gt;
+&lt;p&gt;先在PC上拉个镜像，直接&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker pull garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后把镜像打包成文件&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker save -o svn-server.tar garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就能得到一个&lt;code&gt;svn-server.tar&lt;/code&gt;的文件了，把这个文件上传到ContainerManager里
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214164925.png&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214165029.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后左边的TAG里选容器》新增，选择刚上传的svn-server
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214165249.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置镜像&#34;&gt;配置镜像&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214171830.png&#34;&gt;
+镜像用法说明，基本上配置个端口和映射库就行
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214172511.png&#34;&gt;
+&lt;code&gt;/SVN_library/SVN_Folder&lt;/code&gt;是我专门创建的新的NAS文件夹&lt;/p&gt;
+&lt;p&gt;之后下一步容器就能启动起来了&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/2023121417311214.png&#34;&gt;
+打开终端机》通过命令启动》用&lt;code&gt;/bin/sh&lt;/code&gt; 来开一个交互的shell
+然后我输入&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;svnadmin create WinSVN
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;来建我的第一个SVN仓库名为&lt;code&gt;WinSVN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（以下部分参考: &lt;a href=&#34;https://cloud.tencent.com/developer/article/1650131&#34;&gt;https://cloud.tencent.com/developer/article/1650131&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;然后找到&lt;code&gt;/SVN_library/SVN_Folder/WinSVN/conf&lt;/code&gt;，里面是SVN的配置文件了
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175225.png&#34;&gt;
+编辑&lt;code&gt;svnserve.conf&lt;/code&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175133.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;anon-access = none    #取消匿名访问
+auth-access = write    #授权用户有可写权限
+password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
+&lt;p&gt;编辑&lt;code&gt;passwd&lt;/code&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175701.png&#34;&gt;
+添加了自己的账户，至于分区权限我暂时用不到&lt;/p&gt;
+&lt;p&gt;记得重启容器，服务器部分好像就差不多了&lt;/p&gt;
+&lt;p&gt;最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214180021.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试连接&#34;&gt;测试连接&lt;/h2&gt;
+&lt;p&gt;pc端新建个文件夹，右键SVN CheckOut
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181003.png&#34;&gt;
+地址可以输入&lt;code&gt;svn://DDNS的域名:3690/WinSVN&lt;/code&gt;，输入上面&lt;code&gt;passwd&lt;/code&gt;文件里设置好的用户名和密码就好了！！&lt;/p&gt;
+&lt;p&gt;之后就是svn客户端的基本用法了，随便放一个文件尝试上传
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181456.png&#34;&gt;
+很快就传好了，至此这个SVN仓库宣告可用！
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181617.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>软件和网站收集</title>
+      <link>http://localhost:12371/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619114459.png&#34;&gt;
+收集一些看到的好玩的可能以后会用到的软件/服务，软件类大多可以docker部署
+不定期更新
+24.8.6更新&lt;/p&gt;
+&lt;h2 id=&#34;a网站推荐&#34;&gt;A.网站推荐&lt;/h2&gt;
+&lt;h3 id=&#34;开源大世界&#34;&gt;开源大世界&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开源大世界 专注于应用级的开源软件、开源资料的情报收集汇总整理。
+&lt;a href=&#34;https://kydsj.vip/doku.php?id=wiki:%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BE%85%E5%8A%A9%E8%AE%BE%E8%AE%A1+&#34;&gt;https://kydsj.vip/doku.php?id=wiki:网站目录#计算机辅助设计+&lt;/a&gt;
+&lt;a href=&#34;https://kydsj.vip/doku.php?id=wiki:%E8%87%AA%E6%89%98%E7%AE%A1-%E7%94%B5%E5%AD%90%E4%B9%A6%E5%92%8C%E7%BB%BC%E5%90%88%E5%9B%BE%E4%B9%A6%E9%A6%86%E7%B3%BB%E7%BB%9F&#34;&gt;https://kydsj.vip/doku.php?id=wiki:自托管-电子书和综合图书馆系统&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;很多开源软件项目分享，分类详细品种丰富
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113833.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;linuxserverio&#34;&gt;linuxserver.io&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;LinuxServer.io 文档之家！我们的目标是确保所有镜像都正确记录所有相关信息，以帮助我们的用户入门。除了每个镜像的单独设置指南外，还有与运行 Docker 容器有关的一般信息和最佳实践
+&lt;a href=&#34;https://docs.linuxserver.io/images/docker-calibre-web/&#34;&gt;https://docs.linuxserver.io/images/docker-calibre-web/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619114936.png&#34;&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;webpagetestorg&#34;&gt;webpagetest.org&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.webpagetest.org&#34;&gt;www.webpagetest.org&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;感觉是很强的网站性能分析工具
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806152808.png&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806152822.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;又拍云&#34;&gt;又拍云&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.upyun.com/&#34;&gt;https://www.upyun.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806153828.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;autodl&#34;&gt;autodl&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.autodl.com/market/list&#34;&gt;https://www.autodl.com/market/list&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240806153956.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;b影音文件资料整理&#34;&gt;B.影音/文件/资料整理&lt;/h2&gt;
+&lt;h3 id=&#34;emby&#34;&gt;emby&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619112801.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任何设备上的个人媒体
+将您家里的所有视频、音乐和照片集中到一处从未如此简单。您的个人 Emby 服务器会自动即时转换和流式传输您的媒体，以便在任何设备上播放
+&lt;a href=&#34;https://github.com/MediaBrowser/Emby?tab=readme-ov-file&#34;&gt;https://github.com/MediaBrowser/Emby?tab=readme-ov-file&lt;/a&gt;
+&lt;a href=&#34;https://emby.media/&#34;&gt;https://emby.media/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619112854.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;jellyfin&#34;&gt;jellyfin&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113420.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;jellyfin是一套多媒体应用程序软件套装，旨在组织、管理和共享数字媒体文件
+&lt;a href=&#34;https://github.com/jellyfin/jellyfin&#34;&gt;https://github.com/jellyfin/jellyfin&lt;/a&gt;
+&lt;a href=&#34;https://jellyfin.org/&#34;&gt;https://jellyfin.org/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113518.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;calibre&#34;&gt;calibre&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Calibre-Web 是一款网络应用程序，它使用有效的Calibre数据库提供简洁直观的界面来浏览、阅读和下载电子书
+&lt;a href=&#34;https://github.com/janeczku/calibre-web&#34;&gt;https://github.com/janeczku/calibre-web&lt;/a&gt;
+&lt;a href=&#34;https://calibre-ebook.com/&#34;&gt;https://calibre-ebook.com/&lt;/a&gt;
+目前自用的docker镜像：
+&lt;a href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;&gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619115310.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;nextcloud&#34;&gt;Nextcloud&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113143.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nextcloud是一套用于建立网络硬盘的客户端－服务器软件。其功能与Dropbox相近，但Nextcloud是自由及开放源代码软件，每个人都可以在私人服务器上安装并执行它。
+与Dropbox等专有服务相比，Nextcloud的开放架构让用户可以利用应用程序的方式在服务器上新增额外的功能，并让用户可以完全掌控自己的资料。
+&lt;a href=&#34;https://github.com/nextcloud&#34;&gt;https://github.com/nextcloud&lt;/a&gt;
+&lt;a href=&#34;https://nextcloud.com/&#34;&gt;https://nextcloud.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113206.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;found&#34;&gt;Found&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240719123503.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;高效设计师必备的文件浏览器 Found，一键预览三维模型、序列帧、HDR
+&lt;a href=&#34;https://www.aalab.com.cn/&#34;&gt;https://www.aalab.com.cn/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;c工具类&#34;&gt;C.工具类&lt;/h2&gt;
+&lt;h3 id=&#34;matomo&#34;&gt;matomo&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240619113019.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Matomo 是领先的免费/自由开放分析平台。&lt;/p&gt;
+&lt;p&gt;Matomo 是一款功能齐全的 PHP MySQL 软件程序，您可以下载并安装在自己的网络服务器上。在五分钟的安装过程结束时，您将获得一个 JavaScript 代码。只需将此标签复制并粘贴到您希望跟踪的网站上，即可实时访问您的分析报告。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

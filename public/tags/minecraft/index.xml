@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Minecraft on ExampleSite</title>
+    <link>http://localhost:12371/tags/minecraft/</link>
+    <description>Recent content in Minecraft on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.144.2</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:12371/tags/minecraft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SourceCraft服务器</title>
+      <link>http://localhost:12371/posts/mc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/mc/</guid>
+      <description>&lt;p&gt;{% asset_img 20211107_114809_QQ_20211107114745.png %}&lt;/p&gt;
+&lt;p&gt;Java服务器地址：mc.winotmk.com:25465
+基岩服务器地址：mc.winotmk.com:19132&lt;/p&gt;
+&lt;p&gt;网站：
+Web地图：&lt;a href=&#34;http://mcmap.winotmk.com&#34;&gt;http://mcmap.winotmk.com&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;服务器概况&#34;&gt;服务器概况&lt;/h2&gt;
+&lt;p&gt;目前版本：spigot-1.20.1
+自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界
+使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 &lt;del&gt;（主机也行没测过&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;开服日期：2021-11-07
+容器化上云: 2023-08-25&lt;/p&gt;
+&lt;p&gt;世界结构：
+Lobby
+MainWorld -Nether -TheEnd
+LyhWorld&lt;/p&gt;
+&lt;p&gt;{% asset_img 20211118_131504__Map.jpg %}&lt;/p&gt;
+&lt;p&gt;现有传送门：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lobby去塔顶&lt;/li&gt;
+&lt;li&gt;Lobby去主世界（主传送门）&lt;/li&gt;
+&lt;li&gt;Lobby去lyh存档世界&lt;/li&gt;
+&lt;li&gt;主世界往返湖边村落&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;更新log&#34;&gt;更新log&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2023-08-25&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;版本由spigot-1.17.1更新至spigot-1.20.1&lt;/li&gt;
+&lt;li&gt;运行环境eci内运行，服务器文件nas上存储，环境和数据分离&lt;/li&gt;
+&lt;li&gt;服务器版本更新至1.20.1（顺带更新对应插件版本）
+禁用如下插件：&lt;/li&gt;
+&lt;li&gt;PlaceholderAPI&lt;/li&gt;
+&lt;li&gt;MiaoChat(被曝有后门)&lt;/li&gt;
+&lt;li&gt;wolfyutilities&lt;/li&gt;
+&lt;li&gt;ServerMinimap(似乎没啥用)&lt;/li&gt;
+&lt;li&gt;Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常用玩家命令&#34;&gt;常用玩家命令&lt;/h2&gt;
+&lt;p&gt;按T输入文本&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一次进服务器需要注册&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/reg 密码 密码
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;登录&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/l 密码
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;回主城lobby&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/spawn
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;回家（上次认得床）&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/home
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;回上次移动的地方（或上次死的地方)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/back
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;移动到玩家身边（需要对方确认)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/tpa 玩家名
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;开始&#34;&gt;开始&lt;/h2&gt;
+&lt;p&gt;首先选择一个版本
+如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版
+或者在windows和MAC上玩Java版&lt;/p&gt;
+&lt;p&gt;{% asset_img 20211118132752.png %}&lt;/p&gt;
+&lt;p&gt;附上Windows游戏购买链接
+java：&lt;a href=&#34;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&#34;&gt;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&lt;/a&gt;
+基岩：&lt;a href=&#34;https://www.minecraft.net/zh-hans/store/minecraft-windows10&#34;&gt;https://www.minecraft.net/zh-hans/store/minecraft-windows10&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;java版连接服务器&#34;&gt;Java版连接服务器&lt;/h3&gt;
+&lt;h4 id=&#34;如果购买过正版java版本&#34;&gt;如果购买过正版java版本&lt;/h4&gt;
+&lt;p&gt;直接进多人游戏输入服务器地址&lt;code&gt;mc.winotmk.com:25465&lt;/code&gt;即可&lt;/p&gt;
+&lt;h4 id=&#34;如果没有购买&#34;&gt;如果没有购买&lt;/h4&gt;
+&lt;p&gt;这里提供原版纯净客户端：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>给docker容器内配置中文环境(minecraft开服相关)</title>
+      <link>http://localhost:12371/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:12371/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+      <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs
+&lt;a href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;&gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815141238.png&#34;&gt;
+这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道
+才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！
+服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着&lt;/p&gt;
+&lt;h2 id=&#34;选取docker镜像&#34;&gt;选取docker镜像&lt;/h2&gt;
+&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了
+&lt;a href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;&gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&lt;/a&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815121544.png&#34;&gt;
+所以直接&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker pull openjdk:8u342-jre-slim
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后直接这样运行就好了&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -it -d \
+-p 25565:25565 \
+-v E:\game\MC\1.12.2mohist_服务端:/mc \
+-w /mc \
+--name MC1122 \
+openjdk:8u342-jre-slim \
+java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！
+出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123217.png&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123240.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;
+确定环境变量生效了：
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123341.png&#34;&gt;
+但没解决问题，反而似乎导致启动的时候不认识中文的mod文件名了&lt;/p&gt;
+&lt;p&gt;在查找这个之后：&lt;a href=&#34;https://blog.csdn.net/myli92/article/details/139909499?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22139909499%22%2C%22source%22%3A%22unlogin%22%7D&#34;&gt;docker 容器设置中文环境&lt;/a&gt;
+发现单纯设置&lt;code&gt;LANG&lt;/code&gt;的变量不行，容器里就没有中文字符集的&lt;/p&gt;
+&lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;locale -a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815123200.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装中文环境&#34;&gt;安装中文环境&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/star1210644725/article/details/108747049&#34;&gt;使用DockerFile的方式快速构建一个基础镜像，解决中文环境问题&lt;/a&gt;
+所以安装中文环境的命令可以是：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的
+&lt;img loading=&#34;lazy&#34; src=&#34;images/20240815132128.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看到:&lt;a href=&#34;https://blog.csdn.net/forever_008/article/details/103720389&#34;&gt;Debian系统安装中文包&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dpkg-reconfigure locales
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后再选&lt;code&gt;zh_CN.UTF-8&lt;/code&gt;，可行，但是集成到镜像里没那么好使，还好有别的方法&lt;/p&gt;
+&lt;h2 id=&#34;制作新镜像&#34;&gt;制作新镜像&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/wyazyf/article/details/90676364&#34;&gt;dockerfile文件中给debian设置中文支持&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dockerfile&#34;&gt;dockerfile&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FROM openjdk:8u342-jre-slim
+RUN apt-get clean &amp;amp;&amp;amp; apt-get update &amp;amp;&amp;amp; apt-get install -y locales &amp;amp;&amp;amp;  localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+WORKDIR /mc
+ENV LANG zh_CN.UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
