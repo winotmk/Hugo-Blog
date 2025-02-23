@@ -1,30 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on ExampleSite</title>
-    <link>http://localhost:14127/categories/</link>
-    <description>Recent content in Categories on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:14127/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:14127/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
+    <title>Categories on 演示站点</title>
+    <link>//localhost:7603/categories/</link>
+    <description>Recent content in Categories on 演示站点</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:14127/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:7603/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stable Diffusion</title>
-      <link>http://localhost:14127/categories/stable-diffusion/</link>
+      <link>//localhost:7603/categories/stable-diffusion/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:14127/categories/stable-diffusion/</guid>
+      <guid>//localhost:7603/categories/stable-diffusion/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://localhost:14127/categories/linux/</link>
+      <link>//localhost:7603/categories/linux/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:14127/categories/linux/</guid>
+      <guid>//localhost:7603/categories/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>//localhost:7603/categories/test/</link>
+      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:7603/categories/test/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>测试</title>
+      <link>//localhost:7603/categories/%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:7603/categories/%E6%B5%8B%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Syntax</title>
+      <link>//localhost:7603/categories/syntax/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:7603/categories/syntax/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Themes</title>
+      <link>//localhost:7603/categories/themes/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:7603/categories/themes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test With Whitespaces</title>
+      <link>//localhost:7603/categories/test-with-whitespaces/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:7603/categories/test-with-whitespaces/</guid>
       <description></description>
     </item>
   </channel>

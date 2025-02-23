@@ -1,110 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Stable Diffusion on ExampleSite</title>
-    <link>http://localhost:14127/categories/stable-diffusion/</link>
-    <description>Recent content in Stable Diffusion on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:14127/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:14127/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
+    <title>Stable Diffusion on 演示站点</title>
+    <link>//localhost:7603/categories/stable-diffusion/</link>
+    <description>Recent content in Stable Diffusion on 演示站点</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:14127/categories/stable-diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:7603/categories/stable-diffusion/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
-      <link>http://localhost:14127/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
+      <link>//localhost:7603/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:14127/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
-      <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya&lt;/h2&gt;
-&lt;p&gt;镜像我这里选：
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240110174810.png&#34;&gt;
-&lt;code&gt;dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04&lt;/code&gt;
-我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作&lt;/p&gt;
-&lt;h3 id=&#34;安装kohya_ss&#34;&gt;安装kohya_ss&lt;/h3&gt;
-&lt;p&gt;kohya_ss仓库地址：
-&lt;a href=&#34;https://github.com/bmaltais/kohya_ss&#34;&gt;https://github.com/bmaltais/kohya_ss&lt;/a&gt;
-kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora
-在workspace根目录直接：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/bmaltais/kohya_ss.git
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240110175054.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;很快就能完成，接着依次执行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd ./kohya_ss
-apt update -y &amp;amp;&amp;amp; apt install -y python3-tk
-chmod +x ./setup.sh
-./setup.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk
-之后安装脚本会自动完成，我大概花了5分钟
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240110193312.png&#34;&gt;
-然后运行启动webui&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240111114153.png&#34;&gt;
-点击这个本地的IP即能点开webui了
-&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com&lt;/code&gt;是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章：
-&lt;a href=&#34;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&#34;&gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数&lt;/h2&gt;
-&lt;h3 id=&#34;source-model&#34;&gt;source model&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240111114635.png&#34;&gt;
-我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了&lt;/p&gt;
-&lt;h3 id=&#34;floders&#34;&gt;floders&lt;/h3&gt;
-&lt;p&gt;这个tag里比较简单，没什么好说的
-Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;
-&lt;h3 id=&#34;parameters&#34;&gt;parameters&lt;/h3&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240111115115.png&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;basic&#34;&gt;basic&lt;/h4&gt;
-&lt;p&gt;和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧&lt;/p&gt;
-&lt;h4 id=&#34;samples&#34;&gt;samples&lt;/h4&gt;
-&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用
-都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端
-这样就是开始训练了：
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240111121059.png&#34;&gt;
-不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;/usr/local/nvidia/lib64&amp;#39;), PosixPath(&amp;#39;/usr/local/nvidia/lib&amp;#39;)}
-/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: /usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11 did not contain [&amp;#39;libcudart.so&amp;#39;, &amp;#39;libcudart.so.11.0&amp;#39;, &amp;#39;libcudart.so.12.0&amp;#39;] as expected! Searching further paths...
-  warn(msg)
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;//license-pai.cn-shanghai.data.aliyun.com&amp;#39;), PosixPath(&amp;#39;http&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/cloud-dsw/eas-service&amp;#39;), PosixPath(&amp;#39;aigc-torch113-cu117-ubuntu22.04-v0.2.1&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;http&amp;#39;), PosixPath(&amp;#39;8088/dsw-301739&amp;#39;), PosixPath(&amp;#39;//127.0.0.1&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;Asia/Shanghai&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;tcp&amp;#39;), PosixPath(&amp;#39;443&amp;#39;), PosixPath(&amp;#39;//10.192.0.1&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;https&amp;#39;), PosixPath(&amp;#39;//dsw-cn-shanghai.data.aliyun.com&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;tcp&amp;#39;), PosixPath(&amp;#39;443&amp;#39;), PosixPath(&amp;#39;//10.192.0.1&amp;#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&amp;#39;/home/pai/bin/python&amp;#39;)}
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-DEBUG: Possible options found for libcudart.so: {PosixPath(&amp;#39;/usr/local/cuda/lib64/libcudart.so.11.0&amp;#39;)}
-CUDA SETUP: PyTorch settings found: CUDA_VERSION=118, Highest Compute Capability: 7.0.
-CUDA SETUP: To manually override the PyTorch CUDA version please see:https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md
-/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: WARNING: Compute capability &amp;lt; 7.5 detected! Only slow 8-bit matmul is supported for your GPU!                     If you run into issues with 8-bit matmul, you can try 4-bit quantization: https://huggingface.co/blog/4bit-transformers-bitsandbytes
-  warn(msg)
-CUDA SETUP: Loading binary /usr/local/lib/python3.10/dist-packages/bitsandbytes/libbitsandbytes_cuda118_nocublaslt.so...
-libcusparse.so.11: cannot open shared object file: No such file or directory
-CUDA SETUP: Something unexpected happened. Please compile from source:
-git clone https://github.com/TimDettmers/bitsandbytes.git
-cd bitsandbytes
-CUDA_VERSION=118 make cuda11x_nomatmul
-python setup.py install
-Traceback (most recent call last):
-  File &amp;#34;/usr/lib/python3.10/runpy.py&amp;#34;, line 187, in _run_module_as_main
-    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
-  File &amp;#34;/usr/lib/python3.10/runpy.py&amp;#34;, line 146, in _get_module_details
-    return _get_module_details(pkg_main_name, error)
-  File &amp;#34;/usr/lib/python3.10/runpy.py&amp;#34;, line 110, in _get_module_details
-    __import__(pkg_name)
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/__init__.py&amp;#34;, line 6, in &amp;lt;module&amp;gt;
-    from . import cuda_setup, utils, research
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/__init__.py&amp;#34;, line 1, in &amp;lt;module&amp;gt;
-    from . import nn
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/__init__.py&amp;#34;, line 1, in &amp;lt;module&amp;gt;
-    from .modules import LinearFP8Mixed, LinearFP8Global
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/modules.py&amp;#34;, line 8, in &amp;lt;module&amp;gt;
-    from bitsandbytes.optim import GlobalOptimManager
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/optim/__init__.py&amp;#34;, line 6, in &amp;lt;module&amp;gt;
-    from bitsandbytes.cextension import COMPILED_WITH_CUDA
-  File &amp;#34;/usr/local/lib/python3.10/dist-packages/bitsandbytes/cextension.py&amp;#34;, line 20, in &amp;lt;module&amp;gt;
-    raise RuntimeError(&amp;#39;&amp;#39;&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以及如果遇到类似：&lt;/p&gt;</description>
+      <guid>//localhost:7603/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
+      <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya&lt;/h2&gt;&#xA;&lt;p&gt;镜像我这里选：&#xA;&lt;img src=&#34;images/20240110174810.png&#34; alt=&#34;&#34;&gt;&#xA;&lt;code&gt;dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04&lt;/code&gt;&#xA;我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作&lt;/p&gt;&#xA;&lt;h3 id=&#34;安装kohya_ss&#34;&gt;安装kohya_ss&lt;/h3&gt;&#xA;&lt;p&gt;kohya_ss仓库地址：&#xA;&lt;a href=&#34;https://github.com/bmaltais/kohya_ss&#34;&gt;https://github.com/bmaltais/kohya_ss&lt;/a&gt;&#xA;kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora&#xA;在workspace根目录直接：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/bmaltais/kohya_ss.git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;images/20240110175054.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;!-- more --&gt;&#xD;&#xA;&lt;p&gt;很快就能完成，接着依次执行&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd ./kohya_ss&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update -y &amp;amp;&amp;amp; apt install -y python3-tk&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x ./setup.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./setup.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk&#xA;之后安装脚本会自动完成，我大概花了5分钟&#xA;&lt;img src=&#34;images/20240110193312.png&#34; alt=&#34;&#34;&gt;&#xA;然后运行启动webui&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;images/20240111114153.png&#34; alt=&#34;&#34;&gt;&#xA;点击这个本地的IP即能点开webui了&#xA;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com&lt;/code&gt;是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章：&#xA;&lt;a href=&#34;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&#34;&gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数&lt;/h2&gt;&#xA;&lt;h3 id=&#34;source-model&#34;&gt;source model&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/20240111114635.png&#34; alt=&#34;&#34;&gt;&#xA;我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了&lt;/p&gt;&#xA;&lt;h3 id=&#34;floders&#34;&gt;floders&lt;/h3&gt;&#xA;&lt;p&gt;这个tag里比较简单，没什么好说的&#xA;Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;&#xA;&lt;h3 id=&#34;parameters&#34;&gt;parameters&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/20240111115115.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h4 id=&#34;basic&#34;&gt;basic&lt;/h4&gt;&#xA;&lt;p&gt;和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧&lt;/p&gt;&#xA;&lt;h4 id=&#34;samples&#34;&gt;samples&lt;/h4&gt;&#xA;&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用&#xA;都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端&#xA;这样就是开始训练了：&#xA;&lt;img src=&#34;images/20240111121059.png&#34; alt=&#34;&#34;&gt;&#xA;不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
