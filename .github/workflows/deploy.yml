@@ -13,9 +13,10 @@ jobs:
           submodules: recursive    # 已包含子模块初始化
 
       - name: Install Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.125.7'  # 指定版本更安全
+          hugo-version: '0.144.2'  # 指定版本更安全
+          extended: true
       - name: Build
         run: hugo --minify -D
       
