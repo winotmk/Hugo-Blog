@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO ftp_data_port=12520 listen_port=12521 pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES pasv_min_port=31100 pasv_max_port=31110 我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services #ftp-data 20/tcp #ftp-data 20/udp ftp-data 12520/tcp ftp-data 12520/udp 这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO\rftp_data_port=12520\rlisten_port=12521\rpasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES\rpasv_min_port=31100\rpasv_max_port=31110\r我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services\r#ftp-data 20/tcp\r#ftp-data 20/udp\rftp-data 12520/tcp\rftp-data 12520/udp\r这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n">
 <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
+<link rel='canonical' href='http://localhost:4420/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="令人头疼的vsftpd,ftp端口修改设置配置">
-<meta property='og:description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO ftp_data_port=12520 listen_port=12521 pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES pasv_min_port=31100 pasv_max_port=31110 我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services #ftp-data 20/tcp #ftp-data 20/udp ftp-data 12520/tcp ftp-data 12520/udp 这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n">
-<meta property='og:url' content='http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="令人头疼的vsftpd,ftp端口修改设置配置">
+<meta property='og:description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO\rftp_data_port=12520\rlisten_port=12521\rpasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES\rpasv_min_port=31100\rpasv_max_port=31110\r我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services\r#ftp-data 20/tcp\r#ftp-data 20/udp\rftp-data 12520/tcp\rftp-data 12520/udp\r这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n">
+<meta property='og:url' content='http://localhost:4420/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='ftp' /><meta property='article:published_time' content='2024-06-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-06-17T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="令人头疼的vsftpd,ftp端口修改设置配置">
-<meta name="twitter:description" content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO ftp_data_port=12520 listen_port=12521 pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES pasv_min_port=31100 pasv_max_port=31110 我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services #ftp-data 20/tcp #ftp-data 20/udp ftp-data 12520/tcp ftp-data 12520/udp 这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\nconnect_from_port_20=NO\rftp_data_port=12520\rlisten_port=12521\rpasv模式时的端口范围设置，假如用docker运行这些端口都要转出来\npasv_promiscuous=YES\rpasv_min_port=31100\rpasv_max_port=31110\r我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..\n另外还有系统的services里\nvim /etc/services\r#ftp-data 20/tcp\r#ftp-data 20/udp\rftp-data 12520/tcp\rftp-data 12520/udp\r这个不确定是否必要但还是改了吧\n中文乱码\r一篇不错的配置说明 https://blog.starryvoid.com/archives/1044.html 主要提到了utf8的编码问题\nutf8_filesystem=YES\n如果这样还没解决，考虑是要修改容器本身的LANG 可以直接进入容器然后类似： export LANG=C.UTF-8 或者 export LANG=en_US.UTF-8 输入locale查看结果 当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里 https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/ 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题\n现在高度怀疑是VScode的这个SFTP同步插件的锅\n">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -630,7 +631,7 @@ export LANG=en_US.UTF-8
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -644,6 +645,8 @@ export LANG=en_US.UTF-8
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

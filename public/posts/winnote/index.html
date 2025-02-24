@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt; markdown paste粘图：\nctrl+art+a 本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 ">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt;\rmarkdown paste粘图：\nctrl+art+a\r本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 ">
 <title>WinNote</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/winnote/'>
+<link rel='canonical' href='http://localhost:4420/posts/winnote/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="WinNote">
-<meta property='og:description' content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt; markdown paste粘图：\nctrl+art+a 本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 ">
-<meta property='og:url' content='http://localhost:1313/posts/winnote/'>
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="WinNote">
+<meta property='og:description' content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt;\rmarkdown paste粘图：\nctrl+art+a\r本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 ">
+<meta property='og:url' content='http://localhost:4420/posts/winnote/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='WinNote' /><meta property='article:published_time' content='2023-12-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-13T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="WinNote">
-<meta name="twitter:description" content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt; markdown paste粘图：\nctrl+art+a 本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 "><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="\n一个轻量级MD文档收集博客，不保证阅读性 使用树莓派+hexo构建，定制化next主题，github部署 2023.9.8更新 使用eci容器构建，自制镜像，cdn加速\n一些编辑的Tips: 首页文章预览至：\n&lt;!-- more --&gt;\rmarkdown paste粘图：\nctrl+art+a\r本站加速域名：https://md.winotmk.com/ 正式站：winotmk.com\n点击查看更多该网站更新日志\n2023.12.13更新 为了防止忘记如何写这个博客，特留备忘 NAS上工作台的盘符请设置为T 启动ecistarter容器 然后CD ecistart 进入目录 使用. ./hexo_s 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入 之后通过VSCode的插件SSH FS来接入 md文档的目录是./hexo/Winblog/source/_posts\n关于图片插入：本地目录T:\\博客\\md_for_hexo\\Images将会与FTP上的./hexo/Winblog/source/images自动单向同步\n2024.06.17再更新 因为买了阿里99服务器，改用了容器的形式运行 启动组 docker compose -f hexo_debian_DockerCompose.yml up -d 关闭组 docker compose -f hexo_debian_DockerCompose.yml down -v 同时配置了本地文章目录T:\\博客\\md_for_hexo_workspace和FTP上的./hexo/Winblog/source/_posts自动同步，终于不会存在本地和服务器上两份文章了 在md_for_hexo_workspace写好后直接docker exec hexo hexo g -d即可发布\n2025.02.20再更新\n忽然发现阿里云OSS每个月要扣3块钱，才发现现在同城冗余和本地存储计价分开了，不能使用资源包扣容量了，本地存储的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作 还蛮好用的，绑定了elan upload from clipboard到**ctrl+shift+art+a**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类 vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录 ">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -574,7 +575,7 @@ md文档的目录是<code>./hexo/Winblog/source/_posts</code></p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -588,6 +589,8 @@ md文档的目录是<code>./hexo/Winblog/source/_posts</code></p>
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

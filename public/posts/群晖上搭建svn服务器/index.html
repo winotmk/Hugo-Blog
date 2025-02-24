@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
 <title>群晖上用容器搭建SVN服务器</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
+<link rel='canonical' href='http://localhost:4420/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="群晖上用容器搭建SVN服务器">
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="群晖上用容器搭建SVN服务器">
 <meta property='og:description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
-<meta property='og:url' content='http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
+<meta property='og:url' content='http://localhost:4420/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='NAS' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='SVN' /><meta property='article:published_time' content='2023-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-14T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="群晖上用容器搭建SVN服务器">
-<meta name="twitter:description" content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ "><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -776,7 +777,7 @@ password-db = passwd    #指定用户配置文件，后面会用到</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -790,6 +791,8 @@ password-db = passwd    #指定用户配置文件，后面会用到</p>
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

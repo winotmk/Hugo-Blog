@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下\n改名实现\r如果单只是改名其实很简单，只需要几行即可实现：\n@echo off\rfor /f &quot;delims=&quot; %%a in ('dir /ad/s/b &quot;Mesh&quot;') do ren &quot;%%~a&quot; 01-Mesh\rfor /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Texture&quot;') do ren &quot;%%~b&quot; 00-Texture\rpause\r@echo off打开批处理黑窗口\nfor in do常用在查找匹配，满足条件后执行\ndir /ad/s/b &quot;Mesh&quot;这行可以参考dir命令的用法，/ab在这里是只显示目录（如果是要显示文件是/a-d）/s显示目录和包含子目录，/b不显示日期大小等其他信息，&quot;Mesh&quot;会列出包含Mesh目录\npause这里会暂停一下按任意键继续\n所以连起来就是列出包含Mesh和Texture的目录，然后用ren改名\nSVN Rename批处理\r然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用ren等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：\nlog丢失，历史版本找不回来 如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍） 所以最好是用SVN的命令来进行操作\n然后发现用svn mv oldname newname就能完成\nsvn mv Mesh 00-Mesh\r移动，重命名，对svn来说都是这一个命令\n所以大致思路就是用for in do来找到Mesh和Texture文件夹，然后用变量来做oldname和newname\n">
 <title>批处理实现批量改名以及SVN批量改名</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/bat/'>
+<link rel='canonical' href='http://localhost:4420/posts/bat/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="批处理实现批量改名以及SVN批量改名">
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="批处理实现批量改名以及SVN批量改名">
 <meta property='og:description' content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下\n改名实现\r如果单只是改名其实很简单，只需要几行即可实现：\n@echo off\rfor /f &quot;delims=&quot; %%a in ('dir /ad/s/b &quot;Mesh&quot;') do ren &quot;%%~a&quot; 01-Mesh\rfor /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Texture&quot;') do ren &quot;%%~b&quot; 00-Texture\rpause\r@echo off打开批处理黑窗口\nfor in do常用在查找匹配，满足条件后执行\ndir /ad/s/b &quot;Mesh&quot;这行可以参考dir命令的用法，/ab在这里是只显示目录（如果是要显示文件是/a-d）/s显示目录和包含子目录，/b不显示日期大小等其他信息，&quot;Mesh&quot;会列出包含Mesh目录\npause这里会暂停一下按任意键继续\n所以连起来就是列出包含Mesh和Texture的目录，然后用ren改名\nSVN Rename批处理\r然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用ren等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：\nlog丢失，历史版本找不回来 如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍） 所以最好是用SVN的命令来进行操作\n然后发现用svn mv oldname newname就能完成\nsvn mv Mesh 00-Mesh\r移动，重命名，对svn来说都是这一个命令\n所以大致思路就是用for in do来找到Mesh和Texture文件夹，然后用变量来做oldname和newname\n">
-<meta property='og:url' content='http://localhost:1313/posts/bat/'>
+<meta property='og:url' content='http://localhost:4420/posts/bat/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='bat' /><meta property='article:published_time' content='2021-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-14T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="批处理实现批量改名以及SVN批量改名">
-<meta name="twitter:description" content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下\n改名实现\r如果单只是改名其实很简单，只需要几行即可实现：\n@echo off\rfor /f &quot;delims=&quot; %%a in ('dir /ad/s/b &quot;Mesh&quot;') do ren &quot;%%~a&quot; 01-Mesh\rfor /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Texture&quot;') do ren &quot;%%~b&quot; 00-Texture\rpause\r@echo off打开批处理黑窗口\nfor in do常用在查找匹配，满足条件后执行\ndir /ad/s/b &quot;Mesh&quot;这行可以参考dir命令的用法，/ab在这里是只显示目录（如果是要显示文件是/a-d）/s显示目录和包含子目录，/b不显示日期大小等其他信息，&quot;Mesh&quot;会列出包含Mesh目录\npause这里会暂停一下按任意键继续\n所以连起来就是列出包含Mesh和Texture的目录，然后用ren改名\nSVN Rename批处理\r然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用ren等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：\nlog丢失，历史版本找不回来 如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍） 所以最好是用SVN的命令来进行操作\n然后发现用svn mv oldname newname就能完成\nsvn mv Mesh 00-Mesh\r移动，重命名，对svn来说都是这一个命令\n所以大致思路就是用for in do来找到Mesh和Texture文件夹，然后用变量来做oldname和newname\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下\n改名实现\r如果单只是改名其实很简单，只需要几行即可实现：\n@echo off\rfor /f &quot;delims=&quot; %%a in ('dir /ad/s/b &quot;Mesh&quot;') do ren &quot;%%~a&quot; 01-Mesh\rfor /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Texture&quot;') do ren &quot;%%~b&quot; 00-Texture\rpause\r@echo off打开批处理黑窗口\nfor in do常用在查找匹配，满足条件后执行\ndir /ad/s/b &quot;Mesh&quot;这行可以参考dir命令的用法，/ab在这里是只显示目录（如果是要显示文件是/a-d）/s显示目录和包含子目录，/b不显示日期大小等其他信息，&quot;Mesh&quot;会列出包含Mesh目录\npause这里会暂停一下按任意键继续\n所以连起来就是列出包含Mesh和Texture的目录，然后用ren改名\nSVN Rename批处理\r然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用ren等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：\nlog丢失，历史版本找不回来 如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍） 所以最好是用SVN的命令来进行操作\n然后发现用svn mv oldname newname就能完成\nsvn mv Mesh 00-Mesh\r移动，重命名，对svn来说都是这一个命令\n所以大致思路就是用for in do来找到Mesh和Texture文件夹，然后用变量来做oldname和newname\n">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -650,7 +651,7 @@ goto open
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -664,6 +665,8 @@ goto open
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

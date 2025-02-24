@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="创建阿里云PAI DSW实例跑kohya\r镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04 我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作\n安装kohya_ss\rkohya_ss仓库地址： https://github.com/bmaltais/kohya_ss kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora 在workspace根目录直接：\ngit clone https://github.com/bmaltais/kohya_ss.git\r很快就能完成，接着依次执行\ncd ./kohya_ss\rapt update -y &amp;&amp; apt install -y python3-tk\rchmod +x ./setup.sh\r./setup.sh\r虽然镜像里带py310，但是似乎还是要装一下python3-tk 之后安装脚本会自动完成，我大概花了5分钟 然后运行启动webui\nHF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless\r点击这个本地的IP即能点开webui了 HF_ENDPOINT=https://hf-mirror.com是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章： https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/\nkohya_ss的Dreambooth训练参数\rsource model\r我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了\nfloders\r这个tag里比较简单，没什么好说的 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样\nparameters\rbasic\r和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧\nsamples\r这里能填关键词和每多少轮出个预览图，玩玩用 都准备好了就可以点 start training，但webui不会有任何提示..要看之前启webui的终端 这样就是开始训练了： 不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：\n">
 <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/'>
+<link rel='canonical' href='http://localhost:4420/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本">
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本">
 <meta property='og:description' content="创建阿里云PAI DSW实例跑kohya\r镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04 我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作\n安装kohya_ss\rkohya_ss仓库地址： https://github.com/bmaltais/kohya_ss kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora 在workspace根目录直接：\ngit clone https://github.com/bmaltais/kohya_ss.git\r很快就能完成，接着依次执行\ncd ./kohya_ss\rapt update -y &amp;&amp; apt install -y python3-tk\rchmod +x ./setup.sh\r./setup.sh\r虽然镜像里带py310，但是似乎还是要装一下python3-tk 之后安装脚本会自动完成，我大概花了5分钟 然后运行启动webui\nHF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless\r点击这个本地的IP即能点开webui了 HF_ENDPOINT=https://hf-mirror.com是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章： https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/\nkohya_ss的Dreambooth训练参数\rsource model\r我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了\nfloders\r这个tag里比较简单，没什么好说的 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样\nparameters\rbasic\r和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧\nsamples\r这里能填关键词和每多少轮出个预览图，玩玩用 都准备好了就可以点 start training，但webui不会有任何提示..要看之前启webui的终端 这样就是开始训练了： 不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：\n">
-<meta property='og:url' content='http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/'>
+<meta property='og:url' content='http://localhost:4420/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='AI' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='stable diffusion' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2024-01-11T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-11T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本">
-<meta name="twitter:description" content="创建阿里云PAI DSW实例跑kohya\r镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04 我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作\n安装kohya_ss\rkohya_ss仓库地址： https://github.com/bmaltais/kohya_ss kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora 在workspace根目录直接：\ngit clone https://github.com/bmaltais/kohya_ss.git\r很快就能完成，接着依次执行\ncd ./kohya_ss\rapt update -y &amp;&amp; apt install -y python3-tk\rchmod +x ./setup.sh\r./setup.sh\r虽然镜像里带py310，但是似乎还是要装一下python3-tk 之后安装脚本会自动完成，我大概花了5分钟 然后运行启动webui\nHF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless\r点击这个本地的IP即能点开webui了 HF_ENDPOINT=https://hf-mirror.com是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章： https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/\nkohya_ss的Dreambooth训练参数\rsource model\r我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了\nfloders\r这个tag里比较简单，没什么好说的 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样\nparameters\rbasic\r和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧\nsamples\r这里能填关键词和每多少轮出个预览图，玩玩用 都准备好了就可以点 start training，但webui不会有任何提示..要看之前启webui的终端 这样就是开始训练了： 不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="创建阿里云PAI DSW实例跑kohya\r镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04 我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作\n安装kohya_ss\rkohya_ss仓库地址： https://github.com/bmaltais/kohya_ss kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora 在workspace根目录直接：\ngit clone https://github.com/bmaltais/kohya_ss.git\r很快就能完成，接着依次执行\ncd ./kohya_ss\rapt update -y &amp;&amp; apt install -y python3-tk\rchmod +x ./setup.sh\r./setup.sh\r虽然镜像里带py310，但是似乎还是要装一下python3-tk 之后安装脚本会自动完成，我大概花了5分钟 然后运行启动webui\nHF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless\r点击这个本地的IP即能点开webui了 HF_ENDPOINT=https://hf-mirror.com是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章： https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/\nkohya_ss的Dreambooth训练参数\rsource model\r我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了\nfloders\r这个tag里比较简单，没什么好说的 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样\nparameters\rbasic\r和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧\nsamples\r这里能填关键词和每多少轮出个预览图，玩玩用 都准备好了就可以点 start training，但webui不会有任何提示..要看之前启webui的终端 这样就是开始训练了： 不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：\n">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -787,7 +788,7 @@ export BNB_CUDA_VERSION=117
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -801,6 +802,8 @@ export BNB_CUDA_VERSION=117
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在： https://www.winotmk.com/ 是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择 同时还有一个 https://md.winotmk.com/ (https://winotmk.github.io/) 由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速 似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！\n因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333\n网站生成/框架\rtypecho\rTypecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎 https://github.com/typecho/typecho https://typecho.org/\n这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了\n预览博客： https://xhhdd.cc/index.php/archives/27/ https://cfanlost.com/\nhugo\rhttps://gohugo.io/\n似乎是类hexo生成静态网页，然后可以塞到github托管的\npelican\rPelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站 https://github.com/getpelican/pelican\n听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊\njekyllrb\r将纯文本转换为静态网站和博客 https://jekyllrb.com/\n应该和上面类似，同样是静态文章生成，部署到github\n预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/ 皮肤/主题\rtypecho\rhandsome\rhttps://www.ihewro.com/archives/489/ pelican\rattila\rhttps://github.com/arulrajnet/attila\n预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html hugo\rPaperMod\rhttps://themes.gohugo.io/themes/hugo-papermod/\nDemo:https://adityatelange.github.io/hugo-PaperMod/\n评论系统\rwaline\rhttps://github.com/walinejs/waline\n">
 <title>网站框架收集</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/'>
+<link rel='canonical' href='http://localhost:4420/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="网站框架收集">
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="网站框架收集">
 <meta property='og:description' content="其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在： https://www.winotmk.com/ 是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择 同时还有一个 https://md.winotmk.com/ (https://winotmk.github.io/) 由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速 似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！\n因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333\n网站生成/框架\rtypecho\rTypecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎 https://github.com/typecho/typecho https://typecho.org/\n这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了\n预览博客： https://xhhdd.cc/index.php/archives/27/ https://cfanlost.com/\nhugo\rhttps://gohugo.io/\n似乎是类hexo生成静态网页，然后可以塞到github托管的\npelican\rPelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站 https://github.com/getpelican/pelican\n听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊\njekyllrb\r将纯文本转换为静态网站和博客 https://jekyllrb.com/\n应该和上面类似，同样是静态文章生成，部署到github\n预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/ 皮肤/主题\rtypecho\rhandsome\rhttps://www.ihewro.com/archives/489/ pelican\rattila\rhttps://github.com/arulrajnet/attila\n预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html hugo\rPaperMod\rhttps://themes.gohugo.io/themes/hugo-papermod/\nDemo:https://adityatelange.github.io/hugo-PaperMod/\n评论系统\rwaline\rhttps://github.com/walinejs/waline\n">
-<meta property='og:url' content='http://localhost:1313/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/'>
+<meta property='og:url' content='http://localhost:4420/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='web' /><meta property='article:tag' content='博客' /><meta property='article:published_time' content='2024-08-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-06T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="网站框架收集">
-<meta name="twitter:description" content="其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在： https://www.winotmk.com/ 是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择 同时还有一个 https://md.winotmk.com/ (https://winotmk.github.io/) 由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速 似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！\n因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333\n网站生成/框架\rtypecho\rTypecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎 https://github.com/typecho/typecho https://typecho.org/\n这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了\n预览博客： https://xhhdd.cc/index.php/archives/27/ https://cfanlost.com/\nhugo\rhttps://gohugo.io/\n似乎是类hexo生成静态网页，然后可以塞到github托管的\npelican\rPelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站 https://github.com/getpelican/pelican\n听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊\njekyllrb\r将纯文本转换为静态网站和博客 https://jekyllrb.com/\n应该和上面类似，同样是静态文章生成，部署到github\n预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/ 皮肤/主题\rtypecho\rhandsome\rhttps://www.ihewro.com/archives/489/ pelican\rattila\rhttps://github.com/arulrajnet/attila\n预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html hugo\rPaperMod\rhttps://themes.gohugo.io/themes/hugo-papermod/\nDemo:https://adityatelange.github.io/hugo-PaperMod/\n评论系统\rwaline\rhttps://github.com/walinejs/waline\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在： https://www.winotmk.com/ 是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择 同时还有一个 https://md.winotmk.com/ (https://winotmk.github.io/) 由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速 似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！\n因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333\n网站生成/框架\rtypecho\rTypecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎 https://github.com/typecho/typecho https://typecho.org/\n这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了\n预览博客： https://xhhdd.cc/index.php/archives/27/ https://cfanlost.com/\nhugo\rhttps://gohugo.io/\n似乎是类hexo生成静态网页，然后可以塞到github托管的\npelican\rPelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站 https://github.com/getpelican/pelican\n听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊\njekyllrb\r将纯文本转换为静态网站和博客 https://jekyllrb.com/\n应该和上面类似，同样是静态文章生成，部署到github\n预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/ 皮肤/主题\rtypecho\rhandsome\rhttps://www.ihewro.com/archives/489/ pelican\rattila\rhttps://github.com/arulrajnet/attila\n预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html hugo\rPaperMod\rhttps://themes.gohugo.io/themes/hugo-papermod/\nDemo:https://adityatelange.github.io/hugo-PaperMod/\n评论系统\rwaline\rhttps://github.com/walinejs/waline\n">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -737,7 +738,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -751,6 +752,8 @@
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>

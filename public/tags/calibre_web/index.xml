@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Calibre_web on WinNote</title>
-        <link>http://localhost:1313/tags/calibre_web/</link>
+        <link>http://localhost:4420/tags/calibre_web/</link>
         <description>Recent content in Calibre_web on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/calibre_web/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/calibre_web/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>calibre_web的pdf封面提取问题</title>
-        <link>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
+        <link>http://localhost:4420/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
         <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
+        <guid>http://localhost:4420/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;
 作为自己nas上的图书馆时发现pdf文件无法生成封面，
-&lt;img src=&#34;http://localhost:1313/images/20240925124359.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925124359.png&#34;
 	
 	
 	
@@ -34,7 +34,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程
 &lt;/h2&gt;&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
-&lt;img src=&#34;http://localhost:1313/images/20240925123504.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925123504.png&#34;
 	
 	
 	
@@ -44,7 +44,7 @@
 &gt;
 查看文件：/config/calbre-web/calbre-web.log
 有这么一行：
-&lt;img src=&#34;http://localhost:1313/images/20240925123738.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925123738.png&#34;
 	
 	
 	
@@ -57,7 +57,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;PDF转就转不出来
 所以找到了：
-&lt;img src=&#34;http://localhost:1313/images/20240925123303.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925123303.png&#34;
 	
 	
 	
@@ -70,7 +70,7 @@
 &lt;pre&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
-&lt;img src=&#34;http://localhost:1313/images/20240925123414.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925123414.png&#34;
 	
 	
 	
@@ -83,7 +83,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/gshang2017/docker/issues/133&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;
 如果一编辑图书的元数据就卡死，可用尝试：
-&lt;img src=&#34;http://localhost:1313/images/20240925134344.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925134344.png&#34;
 	
 	
 	
@@ -92,7 +92,7 @@
 	
 &gt;
 这两条设置为true,则
-&lt;img src=&#34;http://localhost:1313/images/20240925134613.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925134613.png&#34;
 	
 	
 	
@@ -103,7 +103,7 @@
 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
 &lt;h2 id=&#34;弯路&#34;&gt;弯路
 &lt;/h2&gt;&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
-&lt;img src=&#34;http://localhost:1313/images/20240925140205.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925140205.png&#34;
 	
 	
 	
@@ -124,7 +124,7 @@
 为了试验，我用&lt;code&gt;FROM ubuntu:latest&lt;/code&gt;作为镜像基底，然后：&lt;/p&gt;
 &lt;h3 id=&#34;装calibre-web&#34;&gt;装calibre-web
 &lt;/h3&gt;&lt;p&gt;安装calibre-web：
-&lt;img src=&#34;http://localhost:1313/images/20240925132535.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20240925132535.png&#34;
 	
 	
 	

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Mac on WinNote</title>
-        <link>http://localhost:1313/categories/mac/</link>
+        <link>http://localhost:4420/categories/mac/</link>
         <description>Recent content in Mac on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/mac/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/categories/mac/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mac的包管理器homebrew环境变量配置</title>
-        <link>http://localhost:1313/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link>
+        <link>http://localhost:4420/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link>
         <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid>
+        <guid>http://localhost:4420/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid>
         <description>&lt;p&gt;按照 &lt;a class=&#34;link&#34; href=&#34;https://brew.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://brew.sh&lt;/a&gt; 这里的提示：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;
@@ -39,12 +39,12 @@ echo export PATH=$PATH:/opt/homebrew/bin &amp;gt;&amp;gt; .zshrc
         </item>
         <item>
         <title>新的macbook air</title>
-        <link>http://localhost:1313/posts/241031_%E6%96%B0mac/</link>
+        <link>http://localhost:4420/posts/241031_%E6%96%B0mac/</link>
         <pubDate>Thu, 31 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/241031_%E6%96%B0mac/</guid>
+        <guid>http://localhost:4420/posts/241031_%E6%96%B0mac/</guid>
         <description>&lt;p&gt;泰香辣，24年10月31，入了垂涎已久的macbook air M3，之前买的m1pro的macbookpro给了女票剪视频用了，自己平常用台式还是想入个轻便的本本，然后补贴价格入的，真香真香
-&lt;img src=&#34;http://localhost:1313/images/20241031133508.png&#34;
+&lt;img src=&#34;http://localhost:4420/images/20241031133508.png&#34;
 	
 	
 	

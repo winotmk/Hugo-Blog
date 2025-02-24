@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>OSS on WinNote</title>
-        <link>http://localhost:1313/tags/oss/</link>
+        <link>http://localhost:4420/tags/oss/</link>
         <description>Recent content in OSS on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/oss/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/oss/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo_GithubAction自动部署到阿里云OSS</title>
-        <link>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
+        <link>http://localhost:4420/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
         <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
+        <guid>http://localhost:4420/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
         <description>&lt;p&gt;整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
 参考文章：
 &lt;a class=&#34;link&#34; href=&#34;https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

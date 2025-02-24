@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource 1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y 2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm 然后设置密码\nsudo passwd wintm 3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default 这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1. :DEFAULT: options:upriv,usedots # By default all users have access to their home directories. ~/\t&quot;Home Directory&quot; 下面加上一行\n">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource\r1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y\r2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm\r然后设置密码\nsudo passwd wintm\r3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default\r这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1.\r:DEFAULT: options:upriv,usedots\r# By default all users have access to their home directories.\r~/\t&quot;Home Directory&quot;\r下面加上一行\n">
 <title>树莓派上架设TimeMachine服务</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/'>
+<link rel='canonical' href='http://localhost:4420/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/'>
 
-<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="树莓派上架设TimeMachine服务">
-<meta property='og:description' content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource 1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y 2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm 然后设置密码\nsudo passwd wintm 3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default 这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1. :DEFAULT: options:upriv,usedots # By default all users have access to their home directories. ~/\t&quot;Home Directory&quot; 下面加上一行\n">
-<meta property='og:url' content='http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/'>
+<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="树莓派上架设TimeMachine服务">
+<meta property='og:description' content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource\r1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y\r2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm\r然后设置密码\nsudo passwd wintm\r3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default\r这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1.\r:DEFAULT: options:upriv,usedots\r# By default all users have access to their home directories.\r~/\t&quot;Home Directory&quot;\r下面加上一行\n">
+<meta property='og:url' content='http://localhost:4420/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='rashbeerypi' />
 <meta name="twitter:title" content="树莓派上架设TimeMachine服务">
-<meta name="twitter:description" content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource 1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y 2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm 然后设置密码\nsudo passwd wintm 3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default 这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1. :DEFAULT: options:upriv,usedots # By default all users have access to their home directories. ~/\t&quot;Home Directory&quot; 下面加上一行\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
-        <script src="/highlight/highlight.js"></script>
+<meta name="twitter:description" content="{% asset_img 20211013_002640.png 800 %}\n命令\r前半参考： 从此Mac上的文件再也不会丟了\n后半参考： 如何自己搭建一个Time Machine服务器\n挂载硬盘目录\nsudo mount /dev/sda2 /mnt/WinSource\r1.安装netatalk和avahi（自己感觉avahi不装也行\nsudo apt install netatalk avahi-daemon -y\r2.创建账户wintm来访问TimeMachine，至少别用root，root访问不能！\nuseradd -c &quot;Time machine&quot; -m -s /bin/bash wintm\r然后设置密码\nsudo passwd wintm\r3.配置netatalk\nsudo nano /etc/netatalk/AppleVolumes.default\r这个文件似乎一行代表一个服务 可以在\n# The line below sets some DEFAULT, starting with Netatalk 2.1.\r:DEFAULT: options:upriv,usedots\r# By default all users have access to their home directories.\r~/\t&quot;Home Directory&quot;\r下面加上一行\n">
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
     <body class="
     article-page
@@ -213,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/" selected>English</option>
+                                    <option value="http://localhost:4420/" selected>English</option>
                                 
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -616,7 +617,7 @@ sudo service avahi-daemon restart
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -630,6 +631,8 @@ sudo service avahi-daemon restart
 </script>
 
         
+        
+        <script src="/highlight/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
-    <script>hljs.initHighlightingOnLoad();</script>
 </html>
