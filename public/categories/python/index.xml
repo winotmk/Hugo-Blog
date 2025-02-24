@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Python on ExampleSite</title>
-    <link>http://localhost:12371/categories/python/</link>
-    <description>Recent content in Python on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:12371/categories/python/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>python格式化字符串的方法</title>
-      <link>http://localhost:12371/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:12371/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;问题:
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Python on WinNote</title>
+        <link>http://localhost:1313/categories/python/</link>
+        <description>Recent content in Python on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>python格式化字符串的方法</title>
+        <link>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+        <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+        <description>&lt;p&gt;问题:
 例如
 &lt;code&gt;print(&amp;quot;位置过期:%-6.0f秒&amp;quot;%cachetime)&lt;/code&gt;的&lt;code&gt;%-6.0f&lt;/code&gt;是什么意思？
 &lt;code&gt;%-6.0f&lt;/code&gt;里的每一个字符都是有意义的&lt;/p&gt;
 &lt;p&gt;在 Python 中，%-6.0f 是一种格式化字符串的方法，用于格式化浮点数 cachetime 的值。让我们来逐部分解释：&lt;/p&gt;
-&lt;h2 id=&#34;解释&#34;&gt;解释&lt;/h2&gt;
-&lt;h3 id=&#34;heading&#34;&gt;%：&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;%&lt;/code&gt; 是格式化操作符，用于将后面指定的变量格式化并插入到字符串中。&lt;/p&gt;
-&lt;h3 id=&#34;-6&#34;&gt;-6：&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;-6&lt;/code&gt; 是一个宽度说明符，它指定了格式化后输出的最小宽度为 6 个字符。
+&lt;h2 id=&#34;解释&#34;&gt;解释
+&lt;/h2&gt;&lt;h3 id=&#34;heading&#34;&gt;%：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;%&lt;/code&gt; 是格式化操作符，用于将后面指定的变量格式化并插入到字符串中。&lt;/p&gt;
+&lt;h3 id=&#34;-6&#34;&gt;-6：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;-6&lt;/code&gt; 是一个宽度说明符，它指定了格式化后输出的最小宽度为 6 个字符。
 &lt;code&gt;-&lt;/code&gt; 表示左对齐。如果没有这个符号（即为默认的右对齐），数字会向右对齐。
 如果数字宽度不足 6 个字符，则会在数字右侧补充空格，以达到 6 个字符的总宽度。&lt;/p&gt;
-&lt;h3 id=&#34;0&#34;&gt;.0：&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;.0&lt;/code&gt; 指定了浮点数的小数部分显示 0 位（即不显示小数部分）。因此，浮点数会被显示为整数形式。&lt;/p&gt;
-&lt;h3 id=&#34;f&#34;&gt;f：&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;f&lt;/code&gt; 表示将变量作为浮点数进行格式化。
+&lt;h3 id=&#34;0&#34;&gt;.0：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;.0&lt;/code&gt; 指定了浮点数的小数部分显示 0 位（即不显示小数部分）。因此，浮点数会被显示为整数形式。&lt;/p&gt;
+&lt;h3 id=&#34;f&#34;&gt;f：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;f&lt;/code&gt; 表示将变量作为浮点数进行格式化。
 ps:如果不用格式化字符串，直接&lt;code&gt;print(cachetime)&lt;/code&gt;会报错，因为不能直接打印浮点数，可以&lt;code&gt;print(str(cachetime))&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;例子&#34;&gt;例子&lt;/h2&gt;
-&lt;p&gt;假设 cachetime 的值是 820.75，则：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cachetime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;820.75&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;formatted_string&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;位置过期:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%-6.0f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;秒&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cachetime&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;formatted_string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;位置过期&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;821   秒
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;输出解释&#34;&gt;输出解释：&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;%-6.0f&lt;/code&gt; 将 &lt;code&gt;820.75&lt;/code&gt; 格式化为 &lt;code&gt;821&lt;/code&gt;（由于 .0 不显示小数部分）。
+&lt;h2 id=&#34;例子&#34;&gt;例子
+&lt;/h2&gt;&lt;p&gt;假设 cachetime 的值是 820.75，则：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cachetime = 820.75
+formatted_string = u&amp;quot;位置过期:%-6.0f秒&amp;quot; % cachetime
+print(formatted_string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-makefile&#34;&gt;位置过期:821   秒
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;输出解释&#34;&gt;输出解释：
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;%-6.0f&lt;/code&gt; 将 &lt;code&gt;820.75&lt;/code&gt; 格式化为 &lt;code&gt;821&lt;/code&gt;（由于 .0 不显示小数部分）。
 &lt;code&gt;821&lt;/code&gt; 左对齐，占用至少 6 个字符的位置。如果 &lt;code&gt;821&lt;/code&gt; 只有 3 个字符，右边会填充 3 个空格，使得总宽度为 6 个字符。
 如果你将数字换成更小的，比如 10：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cachetime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;formatted_string&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;位置过期:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%-6.0f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;秒&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cachetime&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;formatted_string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出：&lt;/p&gt;</description>
-    </item>
-  </channel>
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cachetime = 10
+formatted_string = u&amp;quot;位置过期:%-6.0f秒&amp;quot; % cachetime
+print(formatted_string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-makefile&#34;&gt;位置过期:10    秒
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;10 会左对齐，后面会补充 4 个空格，使总长度达到 6 个字符。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>

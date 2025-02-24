@@ -1,6 +1,6 @@
 ---
 title: WinNote
-date: 2023/12/13
+date: 2023-12-13
 top: 1
 tags:
   - WinNote

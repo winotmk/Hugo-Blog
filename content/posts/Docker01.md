@@ -1,6 +1,6 @@
 ---
 title: Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行
-date: 2023/08/05
+date: 2023-08-05
 categories:
 - docker
 tags:

@@ -1,120 +1,733 @@
-<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=12371&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Hugo_GithubAction自动部署到阿里云OSS | ExampleSite</title>
-<meta name=keywords content="阿里云,Github,OSS"><meta name=description content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
-参考文章：
-https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/
-https://kingtuo123.com/posts/hugo-deploy/
-https://zhuanlan.zhihu.com/p/367426039
-用到的
-action：
-https://github.com/manyuanrong/setup-ossutil
-https://github.com/peaceiris/actions-hugo
-hugo和其主题：
-https://gohugo.io/getting-started/quick-start/
-https://github.com/adityatelange/hugo-PaperMod
-当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039\n参考链接\raction： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo\nhugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod\n当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：\n一、本地准备工作\r1. 项目结构要求\r你的本地 Hugo 博客项目需要包含以下内容：\nyour-blog-repo/\r├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件\r├── content/ # 博客文章\r├── themes/ # Hugo 主题（通常作为 Git 子模块）\r├── config.toml # Hugo 配置文件\r└── (其他 Hugo 相关文件)\r2. 本地环境配置\r安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：\n建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS\r# 或参考 Hugo 官方文档 https://gohugo.io/installation/\r3. 初始化 Git 仓库\rcd your-blog-repo\rgit init\rgit remote add origin https://github.com/你的用户名/你的仓库名.git\r4. 处理子模块（主题）\r如果使用了 Hugo 主题（如通过 Git 子模块添加）：\n">
+<title>Hugo_GithubAction自动部署到阿里云OSS</title>
 
-一、本地准备工作
-1. 项目结构要求
-你的本地 Hugo 博客项目需要包含以下内容：
-your-blog-repo/
+<link rel='canonical' href='http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/'>
+
+<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="Hugo_GithubAction自动部署到阿里云OSS">
+<meta property='og:description' content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039\n参考链接\raction： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo\nhugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod\n当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：\n一、本地准备工作\r1. 项目结构要求\r你的本地 Hugo 博客项目需要包含以下内容：\nyour-blog-repo/\r├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件\r├── content/ # 博客文章\r├── themes/ # Hugo 主题（通常作为 Git 子模块）\r├── config.toml # Hugo 配置文件\r└── (其他 Hugo 相关文件)\r2. 本地环境配置\r安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：\n建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS\r# 或参考 Hugo 官方文档 https://gohugo.io/installation/\r3. 初始化 Git 仓库\rcd your-blog-repo\rgit init\rgit remote add origin https://github.com/你的用户名/你的仓库名.git\r4. 处理子模块（主题）\r如果使用了 Hugo 主题（如通过 Git 子模块添加）：\n">
+<meta property='og:url' content='http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='Github' /><meta property='article:tag' content='OSS' /><meta property='article:published_time' content='2025-02-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-20T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Hugo_GithubAction自动部署到阿里云OSS">
+<meta name="twitter:description" content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039\n参考链接\raction： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo\nhugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod\n当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：\n一、本地准备工作\r1. 项目结构要求\r你的本地 Hugo 博客项目需要包含以下内容：\nyour-blog-repo/\r├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件\r├── content/ # 博客文章\r├── themes/ # Hugo 主题（通常作为 Git 子模块）\r├── config.toml # Hugo 配置文件\r└── (其他 Hugo 相关文件)\r2. 本地环境配置\r安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：\n建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS\r# 或参考 Hugo 官方文档 https://gohugo.io/installation/\r3. 初始化 Git 仓库\rcd your-blog-repo\rgit init\rgit remote add origin https://github.com/你的用户名/你的仓库名.git\r4. 处理子模块（主题）\r如果使用了 Hugo 主题（如通过 Git 子模块添加）：\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
+        <script src="/highlight/highlight.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集 | 生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/" selected>English</option>
+                                
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#参考链接">参考链接</a>
+      <ol>
+        <li><a href="#一本地准备工作"><strong>一、本地准备工作</strong></a>
+          <ol>
+            <li><a href="#1-项目结构要求">1. <strong>项目结构要求</strong></a></li>
+            <li><a href="#2-本地环境配置">2. <strong>本地环境配置</strong></a></li>
+            <li><a href="#3-初始化-git-仓库">3. <strong>初始化 Git 仓库</strong></a></li>
+            <li><a href="#4-处理子模块主题">4. <strong>处理子模块（主题）</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#二触发-actions-的-push-内容"><strong>二、触发 Actions 的 Push 内容</strong></a></li>
+        <li><a href="#三操作流程示例"><strong>三、操作流程示例</strong></a>
+          <ol>
+            <li><a href="#1-本地修改并测试">1. <strong>本地修改并测试</strong></a></li>
+            <li><a href="#2-提交代码">2. <strong>提交代码</strong></a></li>
+            <li><a href="#3-推送到-github">3. <strong>推送到 GitHub</strong></a></li>
+            <li><a href="#4-触发-actions">4. <strong>触发 Actions</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#四关键注意事项"><strong>四、关键注意事项</strong></a></li>
+        <li><a href="#五流程图解"><strong>五、流程图解</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#其他">其他</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/hugo/" >
+                Hugo
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/">Hugo_GithubAction自动部署到阿里云OSS</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 20, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
+参考文章：
+<a class="link" href="https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"  target="_blank" rel="noopener"
+    >https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</a>
+<a class="link" href="https://kingtuo123.com/posts/hugo-deploy/"  target="_blank" rel="noopener"
+    >https://kingtuo123.com/posts/hugo-deploy/</a>
+<a class="link" href="https://zhuanlan.zhihu.com/p/367426039"  target="_blank" rel="noopener"
+    >https://zhuanlan.zhihu.com/p/367426039</a></p>
+<h2 id="参考链接">参考链接
+</h2><p>action：
+<a class="link" href="https://github.com/manyuanrong/setup-ossutil"  target="_blank" rel="noopener"
+    >https://github.com/manyuanrong/setup-ossutil</a>
+<a class="link" href="https://github.com/peaceiris/actions-hugo"  target="_blank" rel="noopener"
+    >https://github.com/peaceiris/actions-hugo</a></p>
+<p>hugo和其主题：
+<a class="link" href="https://gohugo.io/getting-started/quick-start/"  target="_blank" rel="noopener"
+    >https://gohugo.io/getting-started/quick-start/</a>
+<a class="link" href="https://github.com/adityatelange/hugo-PaperMod"  target="_blank" rel="noopener"
+    >https://github.com/adityatelange/hugo-PaperMod</a></p>
+<p>当你通过 <code>git push</code> 触发 GitHub Actions 流程时，需要将 <strong>Hugo 博客的源代码</strong>推送到仓库。以下是具体操作步骤和本地准备：</p>
+<hr>
+<h3 id="一本地准备工作"><strong>一、本地准备工作</strong>
+</h3><h4 id="1-项目结构要求">1. <strong>项目结构要求</strong>
+</h4><p>你的本地 Hugo 博客项目需要包含以下内容：</p>
+<pre><code>your-blog-repo/
 ├── .github/workflows/deploy.yml   # 你的 GitHub Actions 配置文件
 ├── content/                       # 博客文章
 ├── themes/                        # Hugo 主题（通常作为 Git 子模块）
 ├── config.toml                    # Hugo 配置文件
 └── (其他 Hugo 相关文件)
-2. 本地环境配置
-
-安装 Git：确保已安装 Git 并配置好 GitHub 账户。
-安装 Hugo（可选）：
+</code></pre>
+<h4 id="2-本地环境配置">2. <strong>本地环境配置</strong>
+</h4><ul>
+<li><strong>安装 Git</strong>：确保已安装 Git 并配置好 GitHub 账户。</li>
+<li><strong>安装 Hugo</strong>（可选）：<br>
 建议本地安装 Hugo 用于测试（与 Actions 中版本一致）：
-brew install hugo  # macOS
+<pre><code class="language-bash">brew install hugo  # macOS
 # 或参考 Hugo 官方文档 https://gohugo.io/installation/
-
-
-3. 初始化 Git 仓库
-cd your-blog-repo
+</code></pre>
+</li>
+</ul>
+<h4 id="3-初始化-git-仓库">3. <strong>初始化 Git 仓库</strong>
+</h4><pre><code class="language-bash">cd your-blog-repo
 git init
 git remote add origin https://github.com/你的用户名/你的仓库名.git
-4. 处理子模块（主题）
-如果使用了 Hugo 主题（如通过 Git 子模块添加）："><meta name=author content="Me"><link rel=canonical href=http://localhost:12371/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:12371/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:12371/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/"><meta property="og:site_name" content="ExampleSite"><meta property="og:title" content="Hugo_GithubAction自动部署到阿里云OSS"><meta property="og:description" content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039
-用到的 action： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo
-hugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod
-当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：
-一、本地准备工作 1. 项目结构要求 你的本地 Hugo 博客项目需要包含以下内容：
-your-blog-repo/├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件├── content/ # 博客文章├── themes/ # Hugo 主题（通常作为 Git 子模块）├── config.toml # Hugo 配置文件└── (其他 Hugo 相关文件) 2. 本地环境配置 安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：
-建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS # 或参考 Hugo 官方文档 https://gohugo.io/installation/ 3. 初始化 Git 仓库 cd your-blog-repo git init git remote add origin https://github.com/你的用户名/你的仓库名.git 4. 处理子模块（主题） 如果使用了 Hugo 主题（如通过 Git 子模块添加）："><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:tag" content="阿里云"><meta property="article:tag" content="Github"><meta property="article:tag" content="OSS"><meta property="og:image" content="http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Hugo_GithubAction自动部署到阿里云OSS"><meta name=twitter:description content="整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
-参考文章：
-https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/
-https://kingtuo123.com/posts/hugo-deploy/
-https://zhuanlan.zhihu.com/p/367426039
-用到的
-action：
-https://github.com/manyuanrong/setup-ossutil
-https://github.com/peaceiris/actions-hugo
-hugo和其主题：
-https://gohugo.io/getting-started/quick-start/
-https://github.com/adityatelange/hugo-PaperMod
-当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：
-
-一、本地准备工作
-1. 项目结构要求
-你的本地 Hugo 博客项目需要包含以下内容：
-your-blog-repo/
-├── .github/workflows/deploy.yml   # 你的 GitHub Actions 配置文件
-├── content/                       # 博客文章
-├── themes/                        # Hugo 主题（通常作为 Git 子模块）
-├── config.toml                    # Hugo 配置文件
-└── (其他 Hugo 相关文件)
-2. 本地环境配置
-
-安装 Git：确保已安装 Git 并配置好 GitHub 账户。
-安装 Hugo（可选）：
-建议本地安装 Hugo 用于测试（与 Actions 中版本一致）：
-brew install hugo  # macOS
-# 或参考 Hugo 官方文档 https://gohugo.io/installation/
-
-
-3. 初始化 Git 仓库
-cd your-blog-repo
-git init
-git remote add origin https://github.com/你的用户名/你的仓库名.git
-4. 处理子模块（主题）
-如果使用了 Hugo 主题（如通过 Git 子模块添加）："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:12371/posts/"},{"@type":"ListItem","position":2,"name":"Hugo_GithubAction自动部署到阿里云OSS","item":"http://localhost:12371/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hugo_GithubAction自动部署到阿里云OSS","name":"Hugo_GithubAction自动部署到阿里云OSS","description":"整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039\n用到的 action： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo\nhugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod\n当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：\n一、本地准备工作 1. 项目结构要求 你的本地 Hugo 博客项目需要包含以下内容：\nyour-blog-repo/\r├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件\r├── content/ # 博客文章\r├── themes/ # Hugo 主题（通常作为 Git 子模块）\r├── config.toml # Hugo 配置文件\r└── (其他 Hugo 相关文件) 2. 本地环境配置 安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：\n建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS # 或参考 Hugo 官方文档 https://gohugo.io/installation/ 3. 初始化 Git 仓库 cd your-blog-repo git init git remote add origin https://github.com/你的用户名/你的仓库名.git 4. 处理子模块（主题） 如果使用了 Hugo 主题（如通过 Git 子模块添加）：\n","keywords":["阿里云","Github","OSS"],"articleBody":"整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事 参考文章： https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/ https://kingtuo123.com/posts/hugo-deploy/ https://zhuanlan.zhihu.com/p/367426039\n用到的 action： https://github.com/manyuanrong/setup-ossutil https://github.com/peaceiris/actions-hugo\nhugo和其主题： https://gohugo.io/getting-started/quick-start/ https://github.com/adityatelange/hugo-PaperMod\n当你通过 git push 触发 GitHub Actions 流程时，需要将 Hugo 博客的源代码推送到仓库。以下是具体操作步骤和本地准备：\n一、本地准备工作 1. 项目结构要求 你的本地 Hugo 博客项目需要包含以下内容：\nyour-blog-repo/\r├── .github/workflows/deploy.yml # 你的 GitHub Actions 配置文件\r├── content/ # 博客文章\r├── themes/ # Hugo 主题（通常作为 Git 子模块）\r├── config.toml # Hugo 配置文件\r└── (其他 Hugo 相关文件) 2. 本地环境配置 安装 Git：确保已安装 Git 并配置好 GitHub 账户。 安装 Hugo（可选）：\n建议本地安装 Hugo 用于测试（与 Actions 中版本一致）： brew install hugo # macOS # 或参考 Hugo 官方文档 https://gohugo.io/installation/ 3. 初始化 Git 仓库 cd your-blog-repo git init git remote add origin https://github.com/你的用户名/你的仓库名.git 4. 处理子模块（主题） 如果使用了 Hugo 主题（如通过 Git 子模块添加）：\n# 示例：添加主题为子模块 git submodule add https://github.com/主题作者/主题仓库.git themes/主题名 确保 .gitmodules 文件已提交。\n二、触发 Actions 的 Push 内容 你需要将以下内容推送到 GitHub 仓库：\nHugo 源文件\nconfig.toml（Hugo 配置） content/（文章） themes/（主题，通常以子模块形式存在） archetypes/、static/ 等其他 Hugo 所需文件 GitHub Actions 配置文件\n确保 .github/workflows/deploy.yml 文件存在于仓库中。\n不包含生成的文件\n不要推送 public/ 目录（Hugo 生成的静态文件会被 Actions 自动构建）。\n三、操作流程示例 1. 本地修改并测试 # 本地生成静态文件测试（可选） hugo server -D # 启动本地预览 2. 提交代码 git add . git commit -m \"更新博客内容\" 3. 推送到 GitHub git push -u origin main # 假设主分支是 main 4. 触发 Actions 推送后，到 GitHub 仓库的 Actions 标签页查看运行状态。\n若流程成功，阿里云 OSS 的存储桶中会自动出现 public/ 的内容。\n四、关键注意事项 分支匹配\n确保工作流配置中的 push 事件分支（默认所有分支）与你推送的分支一致。\n（若需限制分支，可在配置中指定：on.push.branches: [main]）\n密钥安全\n阿里云的 OSS_KEY_ID 和 OSS_KEY_SECRET 必须通过 GitHub 仓库的 Settings → Secrets 添加，不要明文写在代码中。 子模块更新\n如果主题子模块有更新，需在本地执行：\ngit submodule update --remote --merge git add themes/主题名 git commit -m \"更新主题\" 调试失败问题\n若 Actions 运行失败，检查日志中的报错信息（如 Hugo 版本冲突、OSS 权限不足等）。 本地可通过 hugo --minify 命令预验证构建是否正常。 五、流程图解 本地修改博客内容 → 提交并推送 → GitHub 触发 Actions → 自动构建 Hugo → 上传到 OSS\r（无需手动操作部署） 通过这种方式，你只需专注于内容创作和本地代码修改，部署过程会完全自动化。\n其他 hexo的GithubAction自动部署，用了两个仓库——github.io与hexo项目仓库区分操作 https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC\n另外一种hexo部署 https://cloud.tencent.com/developer/article/2369534\n","wordCount":"249","inLanguage":"en","image":"http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:12371/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/"},"publisher":{"@type":"Organization","name":"ExampleSite","logo":{"@type":"ImageObject","url":"http://localhost:12371/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:12371/ accesskey=h title="Home (Alt + H)"><img src=http://localhost:12371/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:12371/categories/ title=categories><span>categories</span></a></li><li><a href=http://localhost:12371/tags/ title=tags><span>tags</span></a></li><li><a href=https://example.org title=example.org><span>example.org</span>&nbsp;<svg fill="none" shape-rendering="geometricPrecision" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:12371/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:12371/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Hugo_GithubAction自动部署到阿里云OSS</h1><div class=post-meta>2 min&nbsp;·&nbsp;249 words&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/250221_Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><p>整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
-参考文章：
-<a href=https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/>https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</a>
-<a href=https://kingtuo123.com/posts/hugo-deploy/>https://kingtuo123.com/posts/hugo-deploy/</a>
-<a href=https://zhuanlan.zhihu.com/p/367426039>https://zhuanlan.zhihu.com/p/367426039</a></p><h2 id=用到的>用到的<a hidden class=anchor aria-hidden=true href=#用到的>#</a></h2><p>action：
-<a href=https://github.com/manyuanrong/setup-ossutil>https://github.com/manyuanrong/setup-ossutil</a>
-<a href=https://github.com/peaceiris/actions-hugo>https://github.com/peaceiris/actions-hugo</a></p><p>hugo和其主题：
-<a href=https://gohugo.io/getting-started/quick-start/>https://gohugo.io/getting-started/quick-start/</a>
-<a href=https://github.com/adityatelange/hugo-PaperMod>https://github.com/adityatelange/hugo-PaperMod</a></p><p>当你通过 <code>git push</code> 触发 GitHub Actions 流程时，需要将 <strong>Hugo 博客的源代码</strong>推送到仓库。以下是具体操作步骤和本地准备：</p><hr><h3 id=一本地准备工作><strong>一、本地准备工作</strong><a hidden class=anchor aria-hidden=true href=#一本地准备工作>#</a></h3><h4 id=1-项目结构要求>1. <strong>项目结构要求</strong><a hidden class=anchor aria-hidden=true href=#1-项目结构要求>#</a></h4><p>你的本地 Hugo 博客项目需要包含以下内容：</p><pre tabindex=0><code>your-blog-repo/
-├── .github/workflows/deploy.yml   # 你的 GitHub Actions 配置文件
-├── content/                       # 博客文章
-├── themes/                        # Hugo 主题（通常作为 Git 子模块）
-├── config.toml                    # Hugo 配置文件
-└── (其他 Hugo 相关文件)
-</code></pre><h4 id=2-本地环境配置>2. <strong>本地环境配置</strong><a hidden class=anchor aria-hidden=true href=#2-本地环境配置>#</a></h4><ul><li><strong>安装 Git</strong>：确保已安装 Git 并配置好 GitHub 账户。</li><li><strong>安装 Hugo</strong>（可选）：<br>建议本地安装 Hugo 用于测试（与 Actions 中版本一致）：<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>brew install hugo  <span class=c1># macOS</span>
-</span></span><span class=line><span class=cl><span class=c1># 或参考 Hugo 官方文档 https://gohugo.io/installation/</span>
-</span></span></code></pre></div></li></ul><h4 id=3-初始化-git-仓库>3. <strong>初始化 Git 仓库</strong><a hidden class=anchor aria-hidden=true href=#3-初始化-git-仓库>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> your-blog-repo
-</span></span><span class=line><span class=cl>git init
-</span></span><span class=line><span class=cl>git remote add origin https://github.com/你的用户名/你的仓库名.git
-</span></span></code></pre></div><h4 id=4-处理子模块主题>4. <strong>处理子模块（主题）</strong><a hidden class=anchor aria-hidden=true href=#4-处理子模块主题>#</a></h4><p>如果使用了 Hugo 主题（如通过 Git 子模块添加）：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 示例：添加主题为子模块</span>
-</span></span><span class=line><span class=cl>git submodule add https://github.com/主题作者/主题仓库.git themes/主题名
-</span></span></code></pre></div><p>确保 <code>.gitmodules</code> 文件已提交。</p><hr><h3 id=二触发-actions-的-push-内容><strong>二、触发 Actions 的 Push 内容</strong><a hidden class=anchor aria-hidden=true href=#二触发-actions-的-push-内容>#</a></h3><p>你需要将以下内容推送到 GitHub 仓库：</p><ol><li><p><strong>Hugo 源文件</strong></p><ul><li><code>config.toml</code>（Hugo 配置）</li><li><code>content/</code>（文章）</li><li><code>themes/</code>（主题，通常以子模块形式存在）</li><li><code>archetypes/</code>、<code>static/</code> 等其他 Hugo 所需文件</li></ul></li><li><p><strong>GitHub Actions 配置文件</strong><br>确保 <code>.github/workflows/deploy.yml</code> 文件存在于仓库中。</p></li><li><p><strong>不包含生成的文件</strong><br><strong>不要推送</strong> <code>public/</code> 目录（Hugo 生成的静态文件会被 Actions 自动构建）。</p></li></ol><hr><h3 id=三操作流程示例><strong>三、操作流程示例</strong><a hidden class=anchor aria-hidden=true href=#三操作流程示例>#</a></h3><h4 id=1-本地修改并测试>1. <strong>本地修改并测试</strong><a hidden class=anchor aria-hidden=true href=#1-本地修改并测试>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 本地生成静态文件测试（可选）</span>
-</span></span><span class=line><span class=cl>hugo server -D  <span class=c1># 启动本地预览</span>
-</span></span></code></pre></div><h4 id=2-提交代码>2. <strong>提交代码</strong><a hidden class=anchor aria-hidden=true href=#2-提交代码>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add .
-</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;更新博客内容&#34;</span>
-</span></span></code></pre></div><h4 id=3-推送到-github>3. <strong>推送到 GitHub</strong><a hidden class=anchor aria-hidden=true href=#3-推送到-github>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git push -u origin main  <span class=c1># 假设主分支是 main</span>
-</span></span></code></pre></div><h4 id=4-触发-actions>4. <strong>触发 Actions</strong><a hidden class=anchor aria-hidden=true href=#4-触发-actions>#</a></h4><p>推送后，到 GitHub 仓库的 <strong>Actions</strong> 标签页查看运行状态。<br>若流程成功，阿里云 OSS 的存储桶中会自动出现 <code>public/</code> 的内容。</p><hr><h3 id=四关键注意事项><strong>四、关键注意事项</strong><a hidden class=anchor aria-hidden=true href=#四关键注意事项>#</a></h3><ol><li><p><strong>分支匹配</strong><br>确保工作流配置中的 <code>push</code> 事件分支（默认所有分支）与你推送的分支一致。<br>（若需限制分支，可在配置中指定：<code>on.push.branches: [main]</code>）</p></li><li><p><strong>密钥安全</strong></p><ul><li>阿里云的 <code>OSS_KEY_ID</code> 和 <code>OSS_KEY_SECRET</code> 必须通过 GitHub 仓库的 <strong>Settings → Secrets</strong> 添加，<strong>不要明文写在代码中</strong>。</li></ul></li><li><p><strong>子模块更新</strong><br>如果主题子模块有更新，需在本地执行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git submodule update --remote --merge
-</span></span><span class=line><span class=cl>git add themes/主题名
-</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;更新主题&#34;</span>
-</span></span></code></pre></div></li><li><p><strong>调试失败问题</strong></p><ul><li>若 Actions 运行失败，检查日志中的报错信息（如 Hugo 版本冲突、OSS 权限不足等）。</li><li>本地可通过 <code>hugo --minify</code> 命令预验证构建是否正常。</li></ul></li></ol><hr><h3 id=五流程图解><strong>五、流程图解</strong><a hidden class=anchor aria-hidden=true href=#五流程图解>#</a></h3><pre tabindex=0><code>本地修改博客内容 → 提交并推送 → GitHub 触发 Actions → 自动构建 Hugo → 上传到 OSS
+</code></pre>
+<h4 id="4-处理子模块主题">4. <strong>处理子模块（主题）</strong>
+</h4><p>如果使用了 Hugo 主题（如通过 Git 子模块添加）：</p>
+<pre><code class="language-bash"># 示例：添加主题为子模块
+git submodule add https://github.com/主题作者/主题仓库.git themes/主题名
+</code></pre>
+<p>确保 <code>.gitmodules</code> 文件已提交。</p>
+<hr>
+<h3 id="二触发-actions-的-push-内容"><strong>二、触发 Actions 的 Push 内容</strong>
+</h3><p>你需要将以下内容推送到 GitHub 仓库：</p>
+<ol>
+<li>
+<p><strong>Hugo 源文件</strong></p>
+<ul>
+<li><code>config.toml</code>（Hugo 配置）</li>
+<li><code>content/</code>（文章）</li>
+<li><code>themes/</code>（主题，通常以子模块形式存在）</li>
+<li><code>archetypes/</code>、<code>static/</code> 等其他 Hugo 所需文件</li>
+</ul>
+</li>
+<li>
+<p><strong>GitHub Actions 配置文件</strong><br>
+确保 <code>.github/workflows/deploy.yml</code> 文件存在于仓库中。</p>
+</li>
+<li>
+<p><strong>不包含生成的文件</strong><br>
+<strong>不要推送</strong> <code>public/</code> 目录（Hugo 生成的静态文件会被 Actions 自动构建）。</p>
+</li>
+</ol>
+<hr>
+<h3 id="三操作流程示例"><strong>三、操作流程示例</strong>
+</h3><h4 id="1-本地修改并测试">1. <strong>本地修改并测试</strong>
+</h4><pre><code class="language-bash"># 本地生成静态文件测试（可选）
+hugo server -D  # 启动本地预览
+</code></pre>
+<h4 id="2-提交代码">2. <strong>提交代码</strong>
+</h4><pre><code class="language-bash">git add .
+git commit -m &quot;更新博客内容&quot;
+</code></pre>
+<h4 id="3-推送到-github">3. <strong>推送到 GitHub</strong>
+</h4><pre><code class="language-bash">git push -u origin main  # 假设主分支是 main
+</code></pre>
+<h4 id="4-触发-actions">4. <strong>触发 Actions</strong>
+</h4><p>推送后，到 GitHub 仓库的 <strong>Actions</strong> 标签页查看运行状态。<br>
+若流程成功，阿里云 OSS 的存储桶中会自动出现 <code>public/</code> 的内容。</p>
+<hr>
+<h3 id="四关键注意事项"><strong>四、关键注意事项</strong>
+</h3><ol>
+<li>
+<p><strong>分支匹配</strong><br>
+确保工作流配置中的 <code>push</code> 事件分支（默认所有分支）与你推送的分支一致。<br>
+（若需限制分支，可在配置中指定：<code>on.push.branches: [main]</code>）</p>
+</li>
+<li>
+<p><strong>密钥安全</strong></p>
+<ul>
+<li>阿里云的 <code>OSS_KEY_ID</code> 和 <code>OSS_KEY_SECRET</code> 必须通过 GitHub 仓库的 <strong>Settings → Secrets</strong> 添加，<strong>不要明文写在代码中</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>子模块更新</strong><br>
+如果主题子模块有更新，需在本地执行：</p>
+<pre><code class="language-bash">git submodule update --remote --merge
+git add themes/主题名
+git commit -m &quot;更新主题&quot;
+</code></pre>
+</li>
+<li>
+<p><strong>调试失败问题</strong></p>
+<ul>
+<li>若 Actions 运行失败，检查日志中的报错信息（如 Hugo 版本冲突、OSS 权限不足等）。</li>
+<li>本地可通过 <code>hugo --minify</code> 命令预验证构建是否正常。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="五流程图解"><strong>五、流程图解</strong>
+</h3><pre><code>本地修改博客内容 → 提交并推送 → GitHub 触发 Actions → 自动构建 Hugo → 上传到 OSS
                         （无需手动操作部署）
-</code></pre><p>通过这种方式，你只需专注于内容创作和本地代码修改，部署过程会完全自动化。</p><h2 id=其他>其他<a hidden class=anchor aria-hidden=true href=#其他>#</a></h2><p>hexo的GithubAction自动部署，用了两个仓库——github.io与hexo项目仓库区分操作
-<a href=https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC>https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC</a></p><p>另外一种hexo部署
-<a href=https://cloud.tencent.com/developer/article/2369534>https://cloud.tencent.com/developer/article/2369534</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:12371/tags/%E9%98%BF%E9%87%8C%E4%BA%91/>阿里云</a></li><li><a href=http://localhost:12371/tags/github/>Github</a></li><li><a href=http://localhost:12371/tags/oss/>OSS</a></li></ul><nav class=paginav><a class=prev href=http://localhost:12371/posts/hexo+github/><span class=title>« Prev</span><br><span>hexo+github</span>
-</a><a class=next href=http://localhost:12371/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/><span class=title>Next »</span><br><span>Linux上的命令行代理工具</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on x" href="https://x.com/intent/tweet/?text=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f&amp;hashtags=%e9%98%bf%e9%87%8c%e4%ba%91%2cGithub%2cOSS"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f&amp;title=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS&amp;summary=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS&amp;source=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on reddit" href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f&title=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on facebook" href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on whatsapp" href="https://api.whatsapp.com/send?text=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS%20-%20http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on telegram" href="https://telegram.me/share/url?text=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Hugo_GithubAction自动部署到阿里云OSS on ycombinator" href="https://news.ycombinator.com/submitlink?t=Hugo_GithubAction%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e5%88%b0%e9%98%bf%e9%87%8c%e4%ba%91OSS&u=http%3a%2f%2flocalhost%3a12371%2fposts%2f250221_hugo_githubaction%25E8%2587%25AA%25E5%258A%25A8%25E9%2583%25A8%25E7%25BD%25B2%25E5%2588%25B0%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591oss%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=http://localhost:12371/>ExampleSite</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>
+</code></pre>
+<p>通过这种方式，你只需专注于内容创作和本地代码修改，部署过程会完全自动化。</p>
+<h2 id="其他">其他
+</h2><p>hexo的GithubAction自动部署，用了两个仓库——github.io与hexo项目仓库区分操作
+<a class="link" href="https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC"  target="_blank" rel="noopener"
+    >https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC</a></p>
+<p>另外一种hexo部署
+<a class="link" href="https://cloud.tencent.com/developer/article/2369534"  target="_blank" rel="noopener"
+    >https://cloud.tencent.com/developer/article/2369534</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
+        
+            <a href="/tags/github/">Github</a>
+        
+            <a href="/tags/oss/">OSS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/250224_hugo%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo安装和启用Stack主题</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+    </body>
+    <script>hljs.initHighlightingOnLoad();</script>
+</html>

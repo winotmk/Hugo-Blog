@@ -1,6 +1,6 @@
 ---
 title: Hugo_GithubAction自动部署到阿里云OSS
-date: 2025/02/20
+date: 2025-02-20
 categories:
 - Hugo
 tags:
@@ -16,7 +16,7 @@ https://zhuanlan.zhihu.com/p/367426039
 
 
 
-## 用到的
+## 参考链接
 action：
 https://github.com/manyuanrong/setup-ossutil
 https://github.com/peaceiris/actions-hugo

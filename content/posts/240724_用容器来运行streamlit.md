@@ -1,6 +1,6 @@
 ---
 title: 用容器来运行streamlit
-date: 2024/07/24
+date: 2024-07-24
 categories:
 - docker
 tags:

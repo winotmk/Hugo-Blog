@@ -1,96 +1,340 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on 演示站点</title>
-    <link>//localhost:7603/tags/</link>
-    <description>Recent content in Tags on 演示站点</description>
-    <generator>Hugo</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:7603/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI</title>
-      <link>//localhost:7603/tags/ai/</link>
-      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/ai/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>//localhost:7603/tags/linux/</link>
-      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stable Diffusion</title>
-      <link>//localhost:7603/tags/stable-diffusion/</link>
-      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/stable-diffusion/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>阿里云</title>
-      <link>//localhost:7603/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
-      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Proxy</title>
-      <link>//localhost:7603/tags/proxy/</link>
-      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/proxy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Css</title>
-      <link>//localhost:7603/tags/css/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/css/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Html</title>
-      <link>//localhost:7603/tags/html/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/html/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Markdown</title>
-      <link>//localhost:7603/tags/markdown/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/markdown/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Themes</title>
-      <link>//localhost:7603/tags/themes/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/themes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tag With Whitespaces</title>
-      <link>//localhost:7603/tags/tag-with-whitespaces/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/tag-with-whitespaces/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Text</title>
-      <link>//localhost:7603/tags/text/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/text/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Emoji</title>
-      <link>//localhost:7603/tags/emoji/</link>
-      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>//localhost:7603/tags/emoji/</guid>
-      <description></description>
-    </item>
-  </channel>
+    <channel>
+        <title>Tags on WinNote</title>
+        <link>http://localhost:1313/tags/</link>
+        <description>Recent content in Tags on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Mon, 24 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo</title>
+        <link>http://localhost:1313/tags/hugo/</link>
+        <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Stack</title>
+        <link>http://localhost:1313/tags/stack/</link>
+        <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/stack/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Homebrew</title>
+        <link>http://localhost:1313/tags/homebrew/</link>
+        <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/homebrew/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Mac</title>
+        <link>http://localhost:1313/tags/mac/</link>
+        <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/mac/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>PATH</title>
+        <link>http://localhost:1313/tags/path/</link>
+        <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/path/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Git</title>
+        <link>http://localhost:1313/tags/git/</link>
+        <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Github</title>
+        <link>http://localhost:1313/tags/github/</link>
+        <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/github/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>OSS</title>
+        <link>http://localhost:1313/tags/oss/</link>
+        <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/oss/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SSL</title>
+        <link>http://localhost:1313/tags/ssl/</link>
+        <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/ssl/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Web</title>
+        <link>http://localhost:1313/tags/web/</link>
+        <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/web/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>阿里云</title>
+        <link>http://localhost:1313/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+        <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>NAS</title>
+        <link>http://localhost:1313/tags/nas/</link>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/nas/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Calibre_web</title>
+        <link>http://localhost:1313/tags/calibre_web/</link>
+        <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/calibre_web/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Docker</title>
+        <link>http://localhost:1313/tags/docker/</link>
+        <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/docker/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Linux</title>
+        <link>http://localhost:1313/tags/linux/</link>
+        <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/linux/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Minecraft</title>
+        <link>http://localhost:1313/tags/minecraft/</link>
+        <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/minecraft/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Python</title>
+        <link>http://localhost:1313/tags/python/</link>
+        <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/python/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>开发</title>
+        <link>http://localhost:1313/tags/%E5%BC%80%E5%8F%91/</link>
+        <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/%E5%BC%80%E5%8F%91/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>博客</title>
+        <link>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2/</link>
+        <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>C</title>
+        <link>http://localhost:1313/tags/c/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/c/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>PICO</title>
+        <link>http://localhost:1313/tags/pico/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/pico/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Rashbeerypi</title>
+        <link>http://localhost:1313/tags/rashbeerypi/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/rashbeerypi/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Streamlit</title>
+        <link>http://localhost:1313/tags/streamlit/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/streamlit/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>嵌入式开发</title>
+        <link>http://localhost:1313/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Ftp</title>
+        <link>http://localhost:1313/tags/ftp/</link>
+        <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/ftp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>AI</title>
+        <link>http://localhost:1313/tags/ai/</link>
+        <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/ai/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Stable Diffusion</title>
+        <link>http://localhost:1313/tags/stable-diffusion/</link>
+        <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/stable-diffusion/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Proxy</title>
+        <link>http://localhost:1313/tags/proxy/</link>
+        <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/proxy/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SVN</title>
+        <link>http://localhost:1313/tags/svn/</link>
+        <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/svn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>WinNote</title>
+        <link>http://localhost:1313/tags/winnote/</link>
+        <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/winnote/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Css</title>
+        <link>http://localhost:1313/tags/css/</link>
+        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/css/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Html</title>
+        <link>http://localhost:1313/tags/html/</link>
+        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/html/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Markdown</title>
+        <link>http://localhost:1313/tags/markdown/</link>
+        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/markdown/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Themes</title>
+        <link>http://localhost:1313/tags/themes/</link>
+        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/themes/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Eci</title>
+        <link>http://localhost:1313/tags/eci/</link>
+        <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/eci/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Hexo</title>
+        <link>http://localhost:1313/tags/hexo/</link>
+        <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/hexo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Next</title>
+        <link>http://localhost:1313/tags/next/</link>
+        <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/next/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Example Tag</title>
+        <link>http://localhost:1313/tags/example-tag/</link>
+        <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/example-tag/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Bat</title>
+        <link>http://localhost:1313/tags/bat/</link>
+        <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/bat/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Another Tag</title>
+        <link>http://localhost:1313/tags/another-tag/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/another-tag/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Testing</title>
+        <link>http://localhost:1313/tags/testing/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/tags/testing/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
 </rss>

@@ -1,6 +1,6 @@
 ---
 title: Mac的包管理器homebrew环境变量配置
-date: 2025-02-23 14:42:0
+date: 2025-02-23
 categories:
 - mac
 tags:
@@ -34,4 +34,4 @@ echo export PATH=$PATH:/opt/homebrew/bin >> .zshrc
 bres install git
 ```
 安装git
-但是神奇的是当我后面再用`vim ~/ .zshrc`想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删？
+但是神奇的是当我后面再用`vim ~/ .zshrc`想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删

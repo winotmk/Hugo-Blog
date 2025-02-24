@@ -1,171 +1,528 @@
-<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=12371&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>SourceCraft服务器 | ExampleSite</title>
-<meta name=keywords content="Minecraft"><meta name=description content="{% asset_img 20211107_114809_QQ_20211107114745.png %}
-Java服务器地址：mc.winotmk.com:25465
-基岩服务器地址：mc.winotmk.com:19132
-网站：
-Web地图：http://mcmap.winotmk.com
-服务器概况
-目前版本：spigot-1.20.1
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="{% asset_img 20211107_114809_QQ_20211107114745.png %}\nJava服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132\n网站： Web地图：http://mcmap.winotmk.com\n服务器概况\r目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过\n开服日期：2021-11-07 容器化上云: 2023-08-25\n世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld\n{% asset_img 20211118_131504__Map.jpg %}\n现有传送门：\nLobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log\r2023-08-25\n版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令\r按T输入文本\n第一次进服务器需要注册\n/reg 密码 密码\r登录\n/l 密码\r回主城lobby\n/spawn\r回家（上次认得床）\n/home\r回上次移动的地方（或上次死的地方)\n/back\r移动到玩家身边（需要对方确认)\n/tpa 玩家名\r开始\r首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版\n">
+<title>SourceCraft服务器</title>
+
+<link rel='canonical' href='http://localhost:1313/posts/mc/'>
+
+<link rel="stylesheet" href="/scss/style.min.a0e215d83bdb11b342241f17dcc3185cb2aabfe48098849cb81a552f40286e8f.css"><meta property='og:title' content="SourceCraft服务器">
+<meta property='og:description' content="{% asset_img 20211107_114809_QQ_20211107114745.png %}\nJava服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132\n网站： Web地图：http://mcmap.winotmk.com\n服务器概况\r目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过\n开服日期：2021-11-07 容器化上云: 2023-08-25\n世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld\n{% asset_img 20211118_131504__Map.jpg %}\n现有传送门：\nLobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log\r2023-08-25\n版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令\r按T输入文本\n第一次进服务器需要注册\n/reg 密码 密码\r登录\n/l 密码\r回主城lobby\n/spawn\r回家（上次认得床）\n/home\r回上次移动的地方（或上次死的地方)\n/back\r移动到玩家身边（需要对方确认)\n/tpa 玩家名\r开始\r首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版\n">
+<meta property='og:url' content='http://localhost:1313/posts/mc/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Minecraft' /><meta property='article:published_time' content='2021-11-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-11-07T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="SourceCraft服务器">
+<meta name="twitter:description" content="{% asset_img 20211107_114809_QQ_20211107114745.png %}\nJava服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132\n网站： Web地图：http://mcmap.winotmk.com\n服务器概况\r目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过\n开服日期：2021-11-07 容器化上云: 2023-08-25\n世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld\n{% asset_img 20211118_131504__Map.jpg %}\n现有传送门：\nLobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log\r2023-08-25\n版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令\r按T输入文本\n第一次进服务器需要注册\n/reg 密码 密码\r登录\n/l 密码\r回主城lobby\n/spawn\r回家（上次认得床）\n/home\r回上次移动的地方（或上次死的地方)\n/back\r移动到玩家身边（需要对方确认)\n/tpa 玩家名\r开始\r首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版\n"><link rel="stylesheet" href="/highlight/styles/tokyo-night-dark.css">
+        <script src="/highlight/highlight.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集 | 生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/" selected>English</option>
+                                
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#服务器概况">服务器概况</a></li>
+    <li><a href="#更新log">更新log</a></li>
+    <li><a href="#常用玩家命令">常用玩家命令</a></li>
+    <li><a href="#开始">开始</a>
+      <ol>
+        <li><a href="#java版连接服务器">Java版连接服务器</a>
+          <ol>
+            <li><a href="#如果购买过正版java版本">如果购买过正版java版本</a></li>
+            <li><a href="#如果没有购买">如果没有购买</a></li>
+            <li><a href="#下载java运行环境">下载java运行环境</a></li>
+            <li><a href="#下载客户端">下载客户端</a></li>
+          </ol>
+        </li>
+        <li><a href="#基岩版连接服务器">基岩版连接服务器</a></li>
+      </ol>
+    </li>
+    <li><a href="#服务器插件列表">服务器插件列表</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#actionhealth">ActionHealth</a></li>
+            <li><a href="#ancientgates">AncientGates</a></li>
+            <li><a href="#aureliumskills">AureliumSkills</a></li>
+            <li><a href="#blocklocker">BlockLocker</a></li>
+            <li><a href="#bossshoppro"><del>BossShopPro</del></a></li>
+            <li><a href="#catseedlogin">CatSeedLogin</a></li>
+            <li><a href="#dynmap"><del>Dynmap</del></a></li>
+            <li><a href="#essentialsx">EssentialsX</a></li>
+            <li><a href="#geyser-spigot">Geyser-Spigot</a></li>
+            <li><a href="#giftpack"><del>GiftPack</del></a></li>
+            <li><a href="#gsit">GSit</a></li>
+            <li><a href="#luckperms">LuckPerms</a></li>
+            <li><a href="#miaochat"><del>MiaoChat</del></a></li>
+            <li><a href="#nekomaid">NekoMaid</a></li>
+            <li><a href="#pocketgamespo">PocketGamesPo</a></li>
+            <li><a href="#residence">Residence</a></li>
+            <li><a href="#serverminimap"><del>Serverminimap</del></a></li>
+            <li><a href="#tree-feller">Tree Feller</a></li>
+            <li><a href="#multiverse">Multiverse</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/mc/">SourceCraft服务器</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 07, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>{% asset_img 20211107_114809_QQ_20211107114745.png %}</p>
+<p>Java服务器地址：mc.winotmk.com:25465
+基岩服务器地址：mc.winotmk.com:19132</p>
+<p>网站：
+Web地图：<a class="link" href="http://mcmap.winotmk.com"  target="_blank" rel="noopener"
+    >http://mcmap.winotmk.com</a></p>
+<!-- more -->
+<h2 id="服务器概况">服务器概况
+</h2><p>目前版本：spigot-1.20.1
 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界
-使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过
-开服日期：2021-11-07
-容器化上云: 2023-08-25
-世界结构：
+使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 <del>（主机也行没测过</del></p>
+<p>开服日期：2021-11-07
+容器化上云: 2023-08-25</p>
+<p>世界结构：
 Lobby
 MainWorld -Nether -TheEnd
-LyhWorld
-{% asset_img 20211118_131504__Map.jpg %}
-现有传送门：
-
-Lobby去塔顶
-Lobby去主世界（主传送门）
-Lobby去lyh存档世界
-主世界往返湖边村落
-
-更新log
-2023-08-25
-
-版本由spigot-1.17.1更新至spigot-1.20.1
-运行环境eci内运行，服务器文件nas上存储，环境和数据分离
-服务器版本更新至1.20.1（顺带更新对应插件版本）
-禁用如下插件：
-PlaceholderAPI
-MiaoChat(被曝有后门)
-wolfyutilities
-ServerMinimap(似乎没啥用)
-Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)
-
-常用玩家命令
-按T输入文本
-第一次进服务器需要注册
-/reg 密码 密码
-登录
-/l 密码
-回主城lobby
-/spawn
-回家（上次认得床）
-/home
-回上次移动的地方（或上次死的地方)
-/back
-移动到玩家身边（需要对方确认)
-/tpa 玩家名
-开始
-首先选择一个版本
+LyhWorld</p>
+<p>{% asset_img 20211118_131504__Map.jpg %}</p>
+<p>现有传送门：</p>
+<ol>
+<li>Lobby去塔顶</li>
+<li>Lobby去主世界（主传送门）</li>
+<li>Lobby去lyh存档世界</li>
+<li>主世界往返湖边村落</li>
+</ol>
+<h2 id="更新log">更新log
+</h2><p><strong>2023-08-25</strong></p>
+<ul>
+<li>版本由spigot-1.17.1更新至spigot-1.20.1</li>
+<li>运行环境eci内运行，服务器文件nas上存储，环境和数据分离</li>
+<li>服务器版本更新至1.20.1（顺带更新对应插件版本）
+禁用如下插件：</li>
+<li>PlaceholderAPI</li>
+<li>MiaoChat(被曝有后门)</li>
+<li>wolfyutilities</li>
+<li>ServerMinimap(似乎没啥用)</li>
+<li>Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)</li>
+</ul>
+<h2 id="常用玩家命令">常用玩家命令
+</h2><p>按T输入文本</p>
+<p><strong>第一次进服务器需要注册</strong></p>
+<pre><code>/reg 密码 密码
+</code></pre>
+<p>登录</p>
+<pre><code>/l 密码
+</code></pre>
+<p>回主城lobby</p>
+<pre><code>/spawn
+</code></pre>
+<p>回家（上次认得床）</p>
+<pre><code>/home
+</code></pre>
+<p>回上次移动的地方（或上次死的地方)</p>
+<pre><code>/back
+</code></pre>
+<p>移动到玩家身边（需要对方确认)</p>
+<pre><code>/tpa 玩家名
+</code></pre>
+<h2 id="开始">开始
+</h2><p>首先选择一个版本
 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版
-或者在windows和MAC上玩Java版
-{% asset_img 20211118132752.png %}
-附上Windows游戏购买链接
-java：https://www.minecraft.net/zh-hans/store/minecraft-java-edition
-基岩：https://www.minecraft.net/zh-hans/store/minecraft-windows10
-Java版连接服务器
-如果购买过正版java版本
-直接进多人游戏输入服务器地址mc.winotmk.com:25465即可
-如果没有购买
-这里提供原版纯净客户端："><meta name=author content="Me"><link rel=canonical href=http://localhost:12371/posts/mc/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:12371/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:12371/posts/mc/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="http://localhost:12371/posts/mc/"><meta property="og:site_name" content="ExampleSite"><meta property="og:title" content="SourceCraft服务器"><meta property="og:description" content="{% asset_img 20211107_114809_QQ_20211107114745.png %}
-Java服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132
-网站： Web地图：http://mcmap.winotmk.com
-服务器概况 目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过
-开服日期：2021-11-07 容器化上云: 2023-08-25
-世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld
-{% asset_img 20211118_131504__Map.jpg %}
-现有传送门：
-Lobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log 2023-08-25
-版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令 按T输入文本
-第一次进服务器需要注册
-/reg 密码 密码 登录
-/l 密码 回主城lobby
-/spawn 回家（上次认得床）
-/home 回上次移动的地方（或上次死的地方)
-/back 移动到玩家身边（需要对方确认)
-/tpa 玩家名 开始 首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版
-{% asset_img 20211118132752.png %}
-附上Windows游戏购买链接 java：https://www.minecraft.net/zh-hans/store/minecraft-java-edition 基岩：https://www.minecraft.net/zh-hans/store/minecraft-windows10
-Java版连接服务器 如果购买过正版java版本 直接进多人游戏输入服务器地址mc.winotmk.com:25465即可
-如果没有购买 这里提供原版纯净客户端："><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:tag" content="Minecraft"><meta property="og:image" content="http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="SourceCraft服务器"><meta name=twitter:description content="{% asset_img 20211107_114809_QQ_20211107114745.png %}
-Java服务器地址：mc.winotmk.com:25465
-基岩服务器地址：mc.winotmk.com:19132
-网站：
-Web地图：http://mcmap.winotmk.com
-服务器概况
-目前版本：spigot-1.20.1
-自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界
-使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过
-开服日期：2021-11-07
-容器化上云: 2023-08-25
-世界结构：
-Lobby
-MainWorld -Nether -TheEnd
-LyhWorld
-{% asset_img 20211118_131504__Map.jpg %}
-现有传送门：
-
-Lobby去塔顶
-Lobby去主世界（主传送门）
-Lobby去lyh存档世界
-主世界往返湖边村落
-
-更新log
-2023-08-25
-
-版本由spigot-1.17.1更新至spigot-1.20.1
-运行环境eci内运行，服务器文件nas上存储，环境和数据分离
-服务器版本更新至1.20.1（顺带更新对应插件版本）
-禁用如下插件：
-PlaceholderAPI
-MiaoChat(被曝有后门)
-wolfyutilities
-ServerMinimap(似乎没啥用)
-Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)
-
-常用玩家命令
-按T输入文本
-第一次进服务器需要注册
-/reg 密码 密码
-登录
-/l 密码
-回主城lobby
-/spawn
-回家（上次认得床）
-/home
-回上次移动的地方（或上次死的地方)
-/back
-移动到玩家身边（需要对方确认)
-/tpa 玩家名
-开始
-首先选择一个版本
-如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版
-或者在windows和MAC上玩Java版
-{% asset_img 20211118132752.png %}
-附上Windows游戏购买链接
-java：https://www.minecraft.net/zh-hans/store/minecraft-java-edition
-基岩：https://www.minecraft.net/zh-hans/store/minecraft-windows10
-Java版连接服务器
-如果购买过正版java版本
-直接进多人游戏输入服务器地址mc.winotmk.com:25465即可
-如果没有购买
-这里提供原版纯净客户端："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:12371/posts/"},{"@type":"ListItem","position":2,"name":"SourceCraft服务器","item":"http://localhost:12371/posts/mc/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"SourceCraft服务器","name":"SourceCraft服务器","description":"{% asset_img 20211107_114809_QQ_20211107114745.png %}\nJava服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132\n网站： Web地图：http://mcmap.winotmk.com\n服务器概况 目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过\n开服日期：2021-11-07 容器化上云: 2023-08-25\n世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld\n{% asset_img 20211118_131504__Map.jpg %}\n现有传送门：\nLobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log 2023-08-25\n版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令 按T输入文本\n第一次进服务器需要注册\n/reg 密码 密码 登录\n/l 密码 回主城lobby\n/spawn 回家（上次认得床）\n/home 回上次移动的地方（或上次死的地方)\n/back 移动到玩家身边（需要对方确认)\n/tpa 玩家名 开始 首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版\n{% asset_img 20211118132752.png %}\n附上Windows游戏购买链接 java：https://www.minecraft.net/zh-hans/store/minecraft-java-edition 基岩：https://www.minecraft.net/zh-hans/store/minecraft-windows10\nJava版连接服务器 如果购买过正版java版本 直接进多人游戏输入服务器地址mc.winotmk.com:25465即可\n如果没有购买 这里提供原版纯净客户端：\n","keywords":["Minecraft"],"articleBody":"{% asset_img 20211107_114809_QQ_20211107114745.png %}\nJava服务器地址：mc.winotmk.com:25465 基岩服务器地址：mc.winotmk.com:19132\n网站： Web地图：http://mcmap.winotmk.com\n服务器概况 目前版本：spigot-1.20.1 自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界 使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 （主机也行没测过\n开服日期：2021-11-07 容器化上云: 2023-08-25\n世界结构： Lobby MainWorld -Nether -TheEnd LyhWorld\n{% asset_img 20211118_131504__Map.jpg %}\n现有传送门：\nLobby去塔顶 Lobby去主世界（主传送门） Lobby去lyh存档世界 主世界往返湖边村落 更新log 2023-08-25\n版本由spigot-1.17.1更新至spigot-1.20.1 运行环境eci内运行，服务器文件nas上存储，环境和数据分离 服务器版本更新至1.20.1（顺带更新对应插件版本） 禁用如下插件： PlaceholderAPI MiaoChat(被曝有后门) wolfyutilities ServerMinimap(似乎没啥用) Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除) 常用玩家命令 按T输入文本\n第一次进服务器需要注册\n/reg 密码 密码 登录\n/l 密码 回主城lobby\n/spawn 回家（上次认得床）\n/home 回上次移动的地方（或上次死的地方)\n/back 移动到玩家身边（需要对方确认)\n/tpa 玩家名 开始 首先选择一个版本 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版 或者在windows和MAC上玩Java版\n{% asset_img 20211118132752.png %}\n附上Windows游戏购买链接 java：https://www.minecraft.net/zh-hans/store/minecraft-java-edition 基岩：https://www.minecraft.net/zh-hans/store/minecraft-windows10\nJava版连接服务器 如果购买过正版java版本 直接进多人游戏输入服务器地址mc.winotmk.com:25465即可\n如果没有购买 这里提供原版纯净客户端：\n链接：https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw 提取码：lijt\n下载java运行环境 https://www.oracle.com/java/technologies/downloads/#jdk17-windows\n下载客户端 运行HMCL登陆器\n登录方式选离线模即可，写个名字，即游玩服务器时的名字\n{% asset_img 20211107_164216___20211107164202.png %}\nps.如果启动失败请确保使用了java17\n{% asset_img 20211107_165918___20211107164459.png %}\n进游戏选择\n{% asset_img 20211107_164108___20211107164032.png %}\n第一次进服务器需要按T\n然后输入/reg 密码 密码\n注册\nenjoy！\n基岩版连接服务器 启动游戏选服务器，添加服务器\n{% asset_img 20211107_205807_QQ_20211107205503.png %}\n然后输入地址mc.winotmk.com端口19132\n{% asset_img 20211107_205827_QQ_20211107205427.png %}\n服务器插件列表 以下部分玩家有兴趣可看\n插件有功能类和玩法类多种，简单记录一下目前所有的插件\nActionHealth AncientGates AureliumSkills-Beta1.1.4 BlockLocker BossShopPro CatSeedLogin-1.3.9 Dynmap-3.2.1-spigot EssentialsX-2.19.0 EssentialsXChat-2.19.0 EssentialsXSpawn-2.19.0 Geyser-Spigot_基岩转发 GiftPack GSit LuckPerms-Bukkit-5.3.47 MiaoChat NekoMaid PocketGames Residence5.0.0.4 ServerMinimap Tree Feller-V2.2 Multiverse API前置类\nCMILib1.0.4.2_圈地前置 PlaceholderAPI-2.10.10 SmartInvs-1.2.7 Vault Uniporter-1.3.2_Web管理前置 wolfyutilities-1.7.2.0 ActionHealth {% asset_img 20211107_103036_77a753a3753ee2059b26bcd92b4c7a7d435c2a3e.png %} 在物品栏上显示血量 https://www.spigotmc.org/resources/action-bar-health.2661/\nAncientGates 传送门\n基础用法： 本插件可以传送一切实体，包括玩家、运输工具、实体都能进入传送门 这个插件不仅能跨服务器传送实体和输入指令，而且可以在进入另一个服务器时输入指令 指令非常简单 首先，需要输入指令打开功能：/gate setconf bungeeCordSupport true 接下来你就可以使用任何关于BC的指令，创建传送门方法与普通的方法几乎无异 /gate setto [id] [服务器] - 设置传送到的目的地 /gate setbungeetype [id] [LOCATION/SERVER] - 在本地服务器上设置传送类型 /gate addto [id] [服务器] - 添加传送到的服务器 /gate remto [id] [服务器] - 删除可以传送到的服务器\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=584063\nAureliumSkills 技能系统\n15 种独特的技能 (耕作Farming, 锻造Foraging, 挖矿Mining, 钓鱼Fishing, 采掘(旧版本翻译为掘土)Excavation, 箭术Archery, 防御Defense, 战斗Fighting, 耐力Endurance, 敏捷Agility, 炼金Alchemy, 附魔Enchanting, 巫术Sorcery, 治愈Healing, 以及锻造Forging) 6 种玩家属性 (生命Health, 力量Strength, 再生Regeneration, 幸运Luck, 智慧Wisdom, 以及韧性Toughness) 简洁明了, 能显示详细信息的 GUI 能够自定义物品和盔甲上的特殊属性 自定义打怪, 采集和钓鱼获得的特殊物品(掉落表/道具池, 原文为 Loot Table) 经验值来源及大小均可修改,Beta 1.1.1以后不再支持 MythicMobs 自定义怪物作为经验来源 多语言支持 ActionBar 与 BossBar 位置显示 可供开发者使用的 API 支持 MySQL /skills 或 /skill 或 /sk - 打开技能菜单,详见MCBBS MCbbs搬运：https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1094927 https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/\nBlockLocker {% asset_img 20211107_111619_41f1202f45cd6bc7d4f8574c9e32ec12d9b92aef.png %}\n上锁插件\n使用方法\n1. 放置木牌 对于容器类: 只需放置木牌即可,[私有]和玩家名会被自动生成. 对于门类: 放置木牌在门上或周围的方块上即可,内容会自动生成.\n其他:你也可以自己添加锁定信息,按照生成木牌的格式填写即可~\n2.编辑木牌 右击木牌,输入\"/blocklocker \u003c行数\u003e \u003c文本\u003e“来编辑木牌. 指令简写: “/bl” = “/blocklocker”,方法为: “/bl \u003c行数\u003e \u003c文本\u003e”. 可添加其他字符来避免被识别为玩家名,例如 “~”.\n3.信任其他玩家 在第二步的 \u003c文本\u003e 内容中添加你要信任的玩家名即可. 如果想添加两个以上的玩家名,再放置一个木牌即可,内容会自动添加. 第二个木牌添加内容 “‘[更多使用者]’ ‘[所有人]’”. “[所有人]“标签将允许所有人访问容器.请更改.\nMCbbs搬运：https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1173296 https://www.spigotmc.org/resources/blocklocker.3268/\nBossShopPro 已移除 商店系统\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=829068 商店页面编辑器：https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1273221\nCatSeedLogin {% asset_img 20211107_112829_171910d8x8aft4h64fczc7.png %}\n种子猫登录插件 基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe\n登录 /login 密码 /l 密码 注册密码 /register 密码 重复密码 /reg 密码 重复密码 修改密码 /changepassword 旧密码 新密码 重复新密码 /changepw 旧密码 新密码 重复新密码\n绑定邮箱 /bindemail set 邮箱 /bdmail set 邮箱 用邮箱收到的验证码完成绑定 /bindemail verify 验证码 /bdmail verify 验证码 忘记密码，请求服务器给自己绑定的邮箱发送重置密码的验证码 /resetpassword forget /repw forget 用邮箱收到的验证码重置密码 /resetpassword re 验证码 新密码 /repw re 验证码 新密码\nMCBBS:https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=847859\nDynmap {% asset_img 20211107_120618_QQ_20211107120538.png %}\n20230825更新：会消耗过多云服务资源暂移除\nWeb端卫星地图，还可3d显示，实时显示在线玩家位置，上帝视角\nMcbbs:https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=990539 https://dynmap.us/builds/dynmap/\nEssentialsX 系列管理插件\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=619883\nGeyser-Spigot {% asset_img 20211107_122221_171511lt5zn1n8hash1d8z.png.thumb.jpg %}\n该插件让基岩版玩家可以进入本服务器\nhttps://geysermc.org/ https://www.mcbbs.net/thread-973002-1-1.html\nGiftPack 已移除 礼包插件\nhttps://www.mcbbs.net/thread-1141658-1-1.html\nGSit {% asset_img 20211107_124600_032148vqs1sp8y86p8k6pk.jpg.thumb.jpg %}\n座椅子插件\n/gsit(/sit) 坐在方块上 /glgy(/lay) 躺在方块上 /gcrawl(/crawl) 趴在方块上 /gsittoggle(/sittoggle) 开关右键坐下 /gsitreload(/gsitrl) 重载插件配置\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1107053 https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/\nLuckPerms {% asset_img 20211107_124934_534e2167e153aa1cbba149484e5d84fe15ab431a.png %}\n权限管理 https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=676818 https://www.spigotmc.org/resources/luckperms.28140/\nMiaoChat {% asset_img 20211107_130410_player.png %} 聊天功能增加\n20230825更新：移除，被曝有后台\n聊天的时候输出%数字，代表展示手上物品 %1-9 代表快捷物品栏1-9号格子的物品\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=631240\nNekoMaid {% asset_img 20211107_130817_005546dtz88n1h8s3fff2h.png %}\nWed后台管理插件\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1230139\nPocketGamesPo {% asset_img 20211107_132118_101703t8dh21764rt0tj2a.png.thumb.jpg %}\n34+口袋游戏|随时随地想玩就玩\n玩家命令:\n/pocketgames|/pocket|/pg - 打开游戏菜单 /pg help - 打开插件帮助 /pg menu [玩家名] - 为指定玩家打开游戏菜单 /pg multiplayer [玩家名] - 为指定玩家打开多人游戏菜单 /pg spectate [玩家名] - 为指定玩家打开观战菜单 /pg play \u003c游戏ID\u003e [玩家名] - 让指定的玩家玩指定的游戏 /pg highscore \u003c游戏ID\u003e [玩家名] - 为指定玩家打开指定游戏的高分榜 /pg duel [游戏ID] - 接受邀请/拒绝邀请/邀请玩家进行多人游戏 /pg check \u003c玩家名\u003e - 检查玩家是否在玩游戏以及玩的什么游戏 /pg list - 插件的游戏列表 管理员命令:\n/pocketgamesadmin|/pga - 管理员帮助信息 /pga reset file \u003c文件名\u003e [只可填highscores.yml] /pga reset database [表] - 刷新数据库指定的表 /pga info - 插件信息 /pga reload - 重载插件 https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=913753\nResidence {% asset_img 20211107_132529_114058j3twwd0zpthmq8op.png %}\n圈地插件\n/res ? —— 查看帮助\nhttps://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=631343\nServerminimap 小地图\n20230825更新：似乎没啥用，移除\n/minimap - 为您提供小地图项目 /waypoint help [command] - 为您提供有关此命令的信息 /waypoint add [x] [z] - 在您当前的位置或指定的 x 和 z 坐标上添加一个航点。 /waypoint list - 列出所有航点及其索引 /waypoint remove - 删除索引为 的航点。注意：删除航点时，索引会发生变化。 /waypoint hide [true|false] - 切换航点的可见性，或将其设置为给定的布尔值。\n/lp group admin permission set minimap.fastupdate /lp group admin permission set minimap.command.minimap /lp group admin permission set minimap.command.waypoint.help /lp group admin permission set minimap.command.waypoint.list /lp group admin permission set minimap.command.waypoint.add /lp group admin permission set minimap.command.waypoint.remove /lp group admin permission set minimap.command.waypoint.hide\nhttps://dev.bukkit.org/projects/serverminimap\nTree Feller 一键砍树插件\nhttps://www.spigotmc.org/resources/tree-feller.92998/\nMultiverse 多世界插件\n#命令语法\nmv [FILTER] [PAGE #] #发送版本信息至控制台\nmv version -[pbg] #列出所有世界名称\nmv list #列出综合信息\nmv info [WORLD] [PAGE] */mv info [世界名称] [页码]\n#创建世界 mv create {名字} {环境} -s [种子] -g [生成器[:ID]] -t [生成器] [-n] -a [true|false]\n#复制某个世界 mv clone {目标} {名字} -g [生成器[:ID]]\n#转换某个世界的类型 mv import {名字} {环境} -g [生成器[:ID]] [-n]\n#重新加载配置文件 mv reload\n#重置当前世界的默认出生点为脚下 mv setspawn\nmcbbs:https://www.mcbbs.net/forum.php?mod=viewthread\u0026tid=1016455\nhttps://www.spigotmc.org/resources/multiverse-core.390/\n","wordCount":"648","inLanguage":"en","image":"http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:12371/posts/mc/"},"publisher":{"@type":"Organization","name":"ExampleSite","logo":{"@type":"ImageObject","url":"http://localhost:12371/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:12371/ accesskey=h title="Home (Alt + H)"><img src=http://localhost:12371/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:12371/categories/ title=categories><span>categories</span></a></li><li><a href=http://localhost:12371/tags/ title=tags><span>tags</span></a></li><li><a href=https://example.org title=example.org><span>example.org</span>&nbsp;<svg fill="none" shape-rendering="geometricPrecision" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:12371/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:12371/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">SourceCraft服务器</h1><div class=post-meta>4 min&nbsp;·&nbsp;648 words&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/MC.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><p>{% asset_img 20211107_114809_QQ_20211107114745.png %}</p><p>Java服务器地址：mc.winotmk.com:25465
-基岩服务器地址：mc.winotmk.com:19132</p><p>网站：
-Web地图：<a href=http://mcmap.winotmk.com>http://mcmap.winotmk.com</a></p><h2 id=服务器概况>服务器概况<a hidden class=anchor aria-hidden=true href=#服务器概况>#</a></h2><p>目前版本：spigot-1.20.1
-自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界
-使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 <del>（主机也行没测过</del></p><p>开服日期：2021-11-07
-容器化上云: 2023-08-25</p><p>世界结构：
-Lobby
-MainWorld -Nether -TheEnd
-LyhWorld</p><p>{% asset_img 20211118_131504__Map.jpg %}</p><p>现有传送门：</p><ol><li>Lobby去塔顶</li><li>Lobby去主世界（主传送门）</li><li>Lobby去lyh存档世界</li><li>主世界往返湖边村落</li></ol><h2 id=更新log>更新log<a hidden class=anchor aria-hidden=true href=#更新log>#</a></h2><p><strong>2023-08-25</strong></p><ul><li>版本由spigot-1.17.1更新至spigot-1.20.1</li><li>运行环境eci内运行，服务器文件nas上存储，环境和数据分离</li><li>服务器版本更新至1.20.1（顺带更新对应插件版本）
-禁用如下插件：</li><li>PlaceholderAPI</li><li>MiaoChat(被曝有后门)</li><li>wolfyutilities</li><li>ServerMinimap(似乎没啥用)</li><li>Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)</li></ul><h2 id=常用玩家命令>常用玩家命令<a hidden class=anchor aria-hidden=true href=#常用玩家命令>#</a></h2><p>按T输入文本</p><p><strong>第一次进服务器需要注册</strong></p><pre tabindex=0><code>/reg 密码 密码
-</code></pre><p>登录</p><pre tabindex=0><code>/l 密码
-</code></pre><p>回主城lobby</p><pre tabindex=0><code>/spawn
-</code></pre><p>回家（上次认得床）</p><pre tabindex=0><code>/home
-</code></pre><p>回上次移动的地方（或上次死的地方)</p><pre tabindex=0><code>/back
-</code></pre><p>移动到玩家身边（需要对方确认)</p><pre tabindex=0><code>/tpa 玩家名
-</code></pre><h2 id=开始>开始<a hidden class=anchor aria-hidden=true href=#开始>#</a></h2><p>首先选择一个版本
-如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版
-或者在windows和MAC上玩Java版</p><p>{% asset_img 20211118132752.png %}</p><p>附上Windows游戏购买链接
-java：<a href=https://www.minecraft.net/zh-hans/store/minecraft-java-edition>https://www.minecraft.net/zh-hans/store/minecraft-java-edition</a>
-基岩：<a href=https://www.minecraft.net/zh-hans/store/minecraft-windows10>https://www.minecraft.net/zh-hans/store/minecraft-windows10</a></p><h3 id=java版连接服务器>Java版连接服务器<a hidden class=anchor aria-hidden=true href=#java版连接服务器>#</a></h3><h4 id=如果购买过正版java版本>如果购买过正版java版本<a hidden class=anchor aria-hidden=true href=#如果购买过正版java版本>#</a></h4><p>直接进多人游戏输入服务器地址<code>mc.winotmk.com:25465</code>即可</p><h4 id=如果没有购买>如果没有购买<a hidden class=anchor aria-hidden=true href=#如果没有购买>#</a></h4><p>这里提供原版纯净客户端：</p><p>链接：<a href=https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw>https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw</a>
-提取码：lijt</p><h4 id=下载java运行环境>下载java运行环境<a hidden class=anchor aria-hidden=true href=#下载java运行环境>#</a></h4><p><a href=https://www.oracle.com/java/technologies/downloads/#jdk17-windows>https://www.oracle.com/java/technologies/downloads/#jdk17-windows</a></p><h4 id=下载客户端>下载客户端<a hidden class=anchor aria-hidden=true href=#下载客户端>#</a></h4><p>运行HMCL登陆器</p><p>登录方式选离线模即可，写个名字，即游玩服务器时的名字</p><p>{% asset_img 20211107_164216___20211107164202.png %}</p><p>ps.如果启动失败请确保使用了java17</p><p>{% asset_img 20211107_165918___20211107164459.png %}</p><p>进游戏选择</p><p>{% asset_img 20211107_164108___20211107164032.png %}</p><p><strong>第一次进服务器需要按T</strong></p><p><strong>然后输入/reg 密码 密码</strong></p><p>注册</p><p>enjoy！</p><h3 id=基岩版连接服务器>基岩版连接服务器<a hidden class=anchor aria-hidden=true href=#基岩版连接服务器>#</a></h3><p>启动游戏选服务器，添加服务器</p><p>{% asset_img 20211107_205807_QQ_20211107205503.png %}</p><p>然后输入地址mc.winotmk.com端口19132</p><p>{% asset_img 20211107_205827_QQ_20211107205427.png %}</p><h2 id=服务器插件列表>服务器插件列表<a hidden class=anchor aria-hidden=true href=#服务器插件列表>#</a></h2><p>以下部分玩家有兴趣可看</p><p>插件有功能类和玩法类多种，简单记录一下目前所有的插件</p><ol><li>ActionHealth</li><li>AncientGates</li><li>AureliumSkills-Beta1.1.4</li><li>BlockLocker</li><li><del>BossShopPro</del></li><li>CatSeedLogin-1.3.9</li><li><del>Dynmap-3.2.1-spigot</del></li><li>EssentialsX-2.19.0</li><li>EssentialsXChat-2.19.0</li><li>EssentialsXSpawn-2.19.0</li><li>Geyser-Spigot_基岩转发</li><li><del>GiftPack</del></li><li>GSit</li><li>LuckPerms-Bukkit-5.3.47</li><li><del>MiaoChat</del></li><li>NekoMaid</li><li>PocketGames</li><li>Residence5.0.0.4</li><li><del>ServerMinimap</del></li><li>Tree Feller-V2.2</li><li>Multiverse</li></ol><p>API前置类</p><ol><li>CMILib1.0.4.2_圈地前置</li><li><del>PlaceholderAPI-2.10.10</del></li><li>SmartInvs-1.2.7</li><li>Vault</li><li>Uniporter-1.3.2_Web管理前置</li><li><del>wolfyutilities-1.7.2.0</del></li></ol><h4 id=actionhealth>ActionHealth<a hidden class=anchor aria-hidden=true href=#actionhealth>#</a></h4><p>{% asset_img 20211107_103036_77a753a3753ee2059b26bcd92b4c7a7d435c2a3e.png %}
+或者在windows和MAC上玩Java版</p>
+<p>{% asset_img 20211118132752.png %}</p>
+<p>附上Windows游戏购买链接
+java：<a class="link" href="https://www.minecraft.net/zh-hans/store/minecraft-java-edition"  target="_blank" rel="noopener"
+    >https://www.minecraft.net/zh-hans/store/minecraft-java-edition</a>
+基岩：<a class="link" href="https://www.minecraft.net/zh-hans/store/minecraft-windows10"  target="_blank" rel="noopener"
+    >https://www.minecraft.net/zh-hans/store/minecraft-windows10</a></p>
+<h3 id="java版连接服务器">Java版连接服务器
+</h3><h4 id="如果购买过正版java版本">如果购买过正版java版本
+</h4><p>直接进多人游戏输入服务器地址<code>mc.winotmk.com:25465</code>即可</p>
+<h4 id="如果没有购买">如果没有购买
+</h4><p>这里提供原版纯净客户端：</p>
+<p>链接：<a class="link" href="https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw"  target="_blank" rel="noopener"
+    >https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw</a>
+提取码：lijt</p>
+<h4 id="下载java运行环境">下载java运行环境
+</h4><p><a class="link" href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows"  target="_blank" rel="noopener"
+    >https://www.oracle.com/java/technologies/downloads/#jdk17-windows</a></p>
+<h4 id="下载客户端">下载客户端
+</h4><p>运行HMCL登陆器</p>
+<p>登录方式选离线模即可，写个名字，即游玩服务器时的名字</p>
+<p>{% asset_img 20211107_164216___20211107164202.png %}</p>
+<p>ps.如果启动失败请确保使用了java17</p>
+<p>{% asset_img 20211107_165918___20211107164459.png %}</p>
+<p>进游戏选择</p>
+<p>{% asset_img 20211107_164108___20211107164032.png %}</p>
+<p><strong>第一次进服务器需要按T</strong></p>
+<p><strong>然后输入/reg 密码 密码</strong></p>
+<p>注册</p>
+<p>enjoy！</p>
+<h3 id="基岩版连接服务器">基岩版连接服务器
+</h3><p>启动游戏选服务器，添加服务器</p>
+<p>{% asset_img 20211107_205807_QQ_20211107205503.png %}</p>
+<p>然后输入地址mc.winotmk.com端口19132</p>
+<p>{% asset_img 20211107_205827_QQ_20211107205427.png %}</p>
+<h2 id="服务器插件列表">服务器插件列表
+</h2><p>以下部分玩家有兴趣可看</p>
+<p>插件有功能类和玩法类多种，简单记录一下目前所有的插件</p>
+<ol>
+<li>ActionHealth</li>
+<li>AncientGates</li>
+<li>AureliumSkills-Beta1.1.4</li>
+<li>BlockLocker</li>
+<li><del>BossShopPro</del></li>
+<li>CatSeedLogin-1.3.9</li>
+<li><del>Dynmap-3.2.1-spigot</del></li>
+<li>EssentialsX-2.19.0</li>
+<li>EssentialsXChat-2.19.0</li>
+<li>EssentialsXSpawn-2.19.0</li>
+<li>Geyser-Spigot_基岩转发</li>
+<li><del>GiftPack</del></li>
+<li>GSit</li>
+<li>LuckPerms-Bukkit-5.3.47</li>
+<li><del>MiaoChat</del></li>
+<li>NekoMaid</li>
+<li>PocketGames</li>
+<li>Residence5.0.0.4</li>
+<li><del>ServerMinimap</del></li>
+<li>Tree Feller-V2.2</li>
+<li>Multiverse</li>
+</ol>
+<p>API前置类</p>
+<ol>
+<li>CMILib1.0.4.2_圈地前置</li>
+<li><del>PlaceholderAPI-2.10.10</del></li>
+<li>SmartInvs-1.2.7</li>
+<li>Vault</li>
+<li>Uniporter-1.3.2_Web管理前置</li>
+<li><del>wolfyutilities-1.7.2.0</del></li>
+</ol>
+<h4 id="actionhealth">ActionHealth
+</h4><p>{% asset_img 20211107_103036_77a753a3753ee2059b26bcd92b4c7a7d435c2a3e.png %}
 在物品栏上显示血量
-<a href=https://www.spigotmc.org/resources/action-bar-health.2661/>https://www.spigotmc.org/resources/action-bar-health.2661/</a></p><h4 id=ancientgates>AncientGates<a hidden class=anchor aria-hidden=true href=#ancientgates>#</a></h4><p>传送门</p><p>基础用法：
+<a class="link" href="https://www.spigotmc.org/resources/action-bar-health.2661/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/action-bar-health.2661/</a></p>
+<h4 id="ancientgates">AncientGates
+</h4><p>传送门</p>
+<p>基础用法：
 本插件可以传送一切实体，包括玩家、运输工具、实体都能进入传送门
 这个插件不仅能跨服务器传送实体和输入指令，而且可以在进入另一个服务器时输入指令
 指令非常简单
@@ -174,22 +531,63 @@ java：<a href=https://www.minecraft.net/zh-hans/store/minecraft-java-edition>ht
 /gate setto [id] [服务器] - 设置传送到的目的地
 /gate setbungeetype [id] [LOCATION/SERVER] - 在本地服务器上设置传送类型
 /gate addto [id] [服务器] - 添加传送到的服务器
-/gate remto [id] [服务器] - 删除可以传送到的服务器</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=584063">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=584063</a></p><h4 id=aureliumskills>AureliumSkills<a hidden class=anchor aria-hidden=true href=#aureliumskills>#</a></h4><p>技能系统</p><blockquote><ul><li>15 种独特的技能 (耕作Farming, 锻造Foraging, 挖矿Mining, 钓鱼Fishing, 采掘(旧版本翻译为掘土)Excavation, 箭术Archery, 防御Defense, 战斗Fighting, 耐力Endurance, 敏捷Agility, 炼金Alchemy, 附魔Enchanting, 巫术Sorcery, 治愈Healing, 以及锻造Forging)</li><li>6 种玩家属性 (生命Health, 力量Strength, 再生Regeneration, 幸运Luck, 智慧Wisdom, 以及韧性Toughness)</li><li>简洁明了, 能显示详细信息的 GUI</li><li>能够自定义物品和盔甲上的特殊属性</li><li>自定义打怪, 采集和钓鱼获得的特殊物品(掉落表/道具池, 原文为 Loot Table)</li><li>经验值来源及大小均可修改,Beta 1.1.1以后不再支持 MythicMobs 自定义怪物作为经验来源</li><li>多语言支持</li><li>ActionBar 与 BossBar 位置显示</li><li>可供开发者使用的 API</li><li>支持 MySQL</li></ul></blockquote><p>/skills 或 /skill 或 /sk - 打开技能菜单,详见MCBBS
-MCbbs搬运：<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1094927">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1094927</a>
-<a href=https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/>https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/</a></p><h4 id=blocklocker>BlockLocker<a hidden class=anchor aria-hidden=true href=#blocklocker>#</a></h4><p>{% asset_img 20211107_111619_41f1202f45cd6bc7d4f8574c9e32ec12d9b92aef.png %}</p><p>上锁插件</p><p><strong>使用方法</strong></p><p><strong>1. 放置木牌</strong>
+/gate remto [id] [服务器] - 删除可以传送到的服务器</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=584063"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=584063</a></p>
+<h4 id="aureliumskills">AureliumSkills
+</h4><p>技能系统</p>
+<blockquote>
+<ul>
+<li>15 种独特的技能 (耕作Farming, 锻造Foraging, 挖矿Mining, 钓鱼Fishing, 采掘(旧版本翻译为掘土)Excavation, 箭术Archery, 防御Defense, 战斗Fighting, 耐力Endurance, 敏捷Agility, 炼金Alchemy, 附魔Enchanting, 巫术Sorcery, 治愈Healing, 以及锻造Forging)</li>
+<li>6 种玩家属性 (生命Health, 力量Strength, 再生Regeneration, 幸运Luck, 智慧Wisdom, 以及韧性Toughness)</li>
+<li>简洁明了, 能显示详细信息的 GUI</li>
+<li>能够自定义物品和盔甲上的特殊属性</li>
+<li>自定义打怪, 采集和钓鱼获得的特殊物品(掉落表/道具池, 原文为 Loot Table)</li>
+<li>经验值来源及大小均可修改,Beta 1.1.1以后不再支持 MythicMobs 自定义怪物作为经验来源</li>
+<li>多语言支持</li>
+<li>ActionBar 与 BossBar 位置显示</li>
+<li>可供开发者使用的 API</li>
+<li>支持 MySQL</li>
+</ul></blockquote>
+<p>/skills 或 /skill 或 /sk - 打开技能菜单,详见MCBBS
+MCbbs搬运：<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1094927"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1094927</a>
+<a class="link" href="https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/</a></p>
+<h4 id="blocklocker">BlockLocker
+</h4><p>{% asset_img 20211107_111619_41f1202f45cd6bc7d4f8574c9e32ec12d9b92aef.png %}</p>
+<p>上锁插件</p>
+<p><strong>使用方法</strong></p>
+<p><strong>1. 放置木牌</strong>
 对于容器类: 只需放置木牌即可,[私有]和玩家名会被自动生成.
-对于门类: 放置木牌在门上或周围的方块上即可,内容会自动生成.</p><p>其他:你也可以自己添加锁定信息,按照生成木牌的格式填写即可~</p><p><strong>2.编辑木牌</strong>
-右击木牌,输入"/blocklocker &lt;行数> &lt;文本>&ldquo;来编辑木牌.
-指令简写: &ldquo;/bl&rdquo; = &ldquo;/blocklocker&rdquo;,方法为: &ldquo;/bl &lt;行数> &lt;文本>&rdquo;.
-可添加其他字符来避免被识别为玩家名,例如 &ldquo;~&rdquo;.</p><p><strong>3.信任其他玩家</strong>
-在第二步的 &lt;文本> 内容中添加你要信任的玩家名即可.
+对于门类: 放置木牌在门上或周围的方块上即可,内容会自动生成.</p>
+<p>其他:你也可以自己添加锁定信息,按照生成木牌的格式填写即可~</p>
+<p><strong>2.编辑木牌</strong>
+右击木牌,输入&quot;/blocklocker &lt;行数&gt; &lt;文本&gt;&ldquo;来编辑木牌.
+指令简写: &ldquo;/bl&rdquo; = &ldquo;/blocklocker&rdquo;,方法为: &ldquo;/bl &lt;行数&gt; &lt;文本&gt;&rdquo;.
+可添加其他字符来避免被识别为玩家名,例如 &ldquo;~&rdquo;.</p>
+<p><strong>3.信任其他玩家</strong>
+在第二步的 &lt;文本&gt; 内容中添加你要信任的玩家名即可.
 如果想添加两个以上的玩家名,再放置一个木牌即可,内容会自动添加.
 第二个木牌添加内容 &ldquo;‘[更多使用者]’ ‘[所有人]’&rdquo;.
-&ldquo;[所有人]&ldquo;标签将允许所有人访问容器.请更改.</p><p>MCbbs搬运：<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1173296">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1173296</a>
-<a href=https://www.spigotmc.org/resources/blocklocker.3268/>https://www.spigotmc.org/resources/blocklocker.3268/</a></p><h4 id=bossshoppro><del>BossShopPro</del><a hidden class=anchor aria-hidden=true href=#bossshoppro>#</a></h4><p>已移除
-商店系统</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=829068">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=829068</a>
-商店页面编辑器：<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1273221">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1273221</a></p><h4 id=catseedlogin>CatSeedLogin<a hidden class=anchor aria-hidden=true href=#catseedlogin>#</a></h4><p>{% asset_img 20211107_112829_171910d8x8aft4h64fczc7.png %}</p><p>种子猫登录插件
-基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe</p><blockquote><p>登录
+&ldquo;[所有人]&ldquo;标签将允许所有人访问容器.请更改.</p>
+<p>MCbbs搬运：<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1173296"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1173296</a>
+<a class="link" href="https://www.spigotmc.org/resources/blocklocker.3268/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/blocklocker.3268/</a></p>
+<h4 id="bossshoppro"><del>BossShopPro</del>
+</h4><p>已移除
+商店系统</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=829068"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=829068</a>
+商店页面编辑器：<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1273221"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1273221</a></p>
+<h4 id="catseedlogin">CatSeedLogin
+</h4><p>{% asset_img 20211107_112829_171910d8x8aft4h64fczc7.png %}</p>
+<p>种子猫登录插件
+基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe</p>
+<blockquote>
+<p>登录
     /login 密码
     /l 密码
 注册密码
@@ -197,7 +595,8 @@ MCbbs搬运：<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=10
   /reg 密码 重复密码
 修改密码
   /changepassword 旧密码 新密码 重复新密码
-  /changepw 旧密码 新密码 重复新密码</p><p>绑定邮箱  
+  /changepw 旧密码 新密码 重复新密码</p>
+<p>绑定邮箱  
 /bindemail set 邮箱  
 /bdmail set 邮箱
 用邮箱收到的验证码完成绑定  
@@ -207,41 +606,342 @@ MCbbs搬运：<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=10
   /resetpassword forget  /repw forget
 用邮箱收到的验证码重置密码
   /resetpassword re 验证码 新密码
-  /repw re 验证码 新密码</p></blockquote><p>MCBBS:<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=847859">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=847859</a></p><h4 id=dynmap><del>Dynmap</del><a hidden class=anchor aria-hidden=true href=#dynmap>#</a></h4><p>{% asset_img 20211107_120618_QQ_20211107120538.png %}</p><p>20230825更新：会消耗过多云服务资源暂移除</p><p>Web端卫星地图，还可3d显示，实时显示在线玩家位置，上帝视角</p><p>Mcbbs:<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=990539">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=990539</a>
-<a href=https://dynmap.us/builds/dynmap/>https://dynmap.us/builds/dynmap/</a></p><h4 id=essentialsx>EssentialsX<a hidden class=anchor aria-hidden=true href=#essentialsx>#</a></h4><p>系列管理插件</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=619883">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=619883</a></p><h4 id=geyser-spigot>Geyser-Spigot<a hidden class=anchor aria-hidden=true href=#geyser-spigot>#</a></h4><p>{% asset_img 20211107_122221_171511lt5zn1n8hash1d8z.png.thumb.jpg %}</p><p>该插件让基岩版玩家可以进入本服务器</p><p><a href=https://geysermc.org/>https://geysermc.org/</a>
-<a href=https://www.mcbbs.net/thread-973002-1-1.html>https://www.mcbbs.net/thread-973002-1-1.html</a></p><h4 id=giftpack><del>GiftPack</del><a hidden class=anchor aria-hidden=true href=#giftpack>#</a></h4><p>已移除
-礼包插件</p><p><a href=https://www.mcbbs.net/thread-1141658-1-1.html>https://www.mcbbs.net/thread-1141658-1-1.html</a></p><h4 id=gsit>GSit<a hidden class=anchor aria-hidden=true href=#gsit>#</a></h4><p>{% asset_img 20211107_124600_032148vqs1sp8y86p8k6pk.jpg.thumb.jpg %}</p><p>座椅子插件</p><p>/gsit(/sit) 坐在方块上
+  /repw re 验证码 新密码</p></blockquote>
+<p>MCBBS:<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=847859"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=847859</a></p>
+<h4 id="dynmap"><del>Dynmap</del>
+</h4><p>{% asset_img 20211107_120618_QQ_20211107120538.png %}</p>
+<p>20230825更新：会消耗过多云服务资源暂移除</p>
+<p>Web端卫星地图，还可3d显示，实时显示在线玩家位置，上帝视角</p>
+<p>Mcbbs:<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=990539"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=990539</a>
+<a class="link" href="https://dynmap.us/builds/dynmap/"  target="_blank" rel="noopener"
+    >https://dynmap.us/builds/dynmap/</a></p>
+<h4 id="essentialsx">EssentialsX
+</h4><p>系列管理插件</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=619883"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=619883</a></p>
+<h4 id="geyser-spigot">Geyser-Spigot
+</h4><p>{% asset_img 20211107_122221_171511lt5zn1n8hash1d8z.png.thumb.jpg %}</p>
+<p>该插件让基岩版玩家可以进入本服务器</p>
+<p><a class="link" href="https://geysermc.org/"  target="_blank" rel="noopener"
+    >https://geysermc.org/</a>
+<a class="link" href="https://www.mcbbs.net/thread-973002-1-1.html"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/thread-973002-1-1.html</a></p>
+<h4 id="giftpack"><del>GiftPack</del>
+</h4><p>已移除
+礼包插件</p>
+<p><a class="link" href="https://www.mcbbs.net/thread-1141658-1-1.html"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/thread-1141658-1-1.html</a></p>
+<h4 id="gsit">GSit
+</h4><p>{% asset_img 20211107_124600_032148vqs1sp8y86p8k6pk.jpg.thumb.jpg %}</p>
+<p>座椅子插件</p>
+<p>/gsit(/sit) 坐在方块上
 /glgy(/lay) 躺在方块上
 /gcrawl(/crawl) 趴在方块上
 /gsittoggle(/sittoggle) 开关右键坐下
-/gsitreload(/gsitrl) 重载插件配置</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1107053">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1107053</a>
-<a href=https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/>https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/</a></p><h4 id=luckperms>LuckPerms<a hidden class=anchor aria-hidden=true href=#luckperms>#</a></h4><p>{% asset_img 20211107_124934_534e2167e153aa1cbba149484e5d84fe15ab431a.png %}</p><p>权限管理
-<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=676818">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=676818</a>
-<a href=https://www.spigotmc.org/resources/luckperms.28140/>https://www.spigotmc.org/resources/luckperms.28140/</a></p><h4 id=miaochat><del>MiaoChat</del><a hidden class=anchor aria-hidden=true href=#miaochat>#</a></h4><p>{% asset_img 20211107_130410_player.png %}
-聊天功能增加</p><p>20230825更新：移除，被曝有后台</p><p>聊天的时候输出%数字，代表展示手上物品
-%1-9 代表快捷物品栏1-9号格子的物品</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631240">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631240</a></p><h4 id=nekomaid>NekoMaid<a hidden class=anchor aria-hidden=true href=#nekomaid>#</a></h4><p>{% asset_img 20211107_130817_005546dtz88n1h8s3fff2h.png %}</p><p>Wed后台管理插件</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1230139">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1230139</a></p><h4 id=pocketgamespo>PocketGamesPo<a hidden class=anchor aria-hidden=true href=#pocketgamespo>#</a></h4><p>{% asset_img 20211107_132118_101703t8dh21764rt0tj2a.png.thumb.jpg %}</p><p>34+口袋游戏|随时随地想玩就玩</p><p><strong>玩家命令:</strong></p><ul><li><strong>/pocketgames|/pocket|/pg - 打开游戏菜单</strong></li><li><strong>/pg help - 打开插件帮助</strong></li><li>/pg menu [玩家名] - 为指定玩家打开游戏菜单</li><li>/pg multiplayer [玩家名] - 为指定玩家打开多人游戏菜单</li><li>/pg spectate [玩家名] - 为指定玩家打开观战菜单</li><li>/pg play &lt;游戏ID> [玩家名] - 让指定的玩家玩指定的游戏</li><li>/pg highscore &lt;游戏ID> [玩家名] - 为指定玩家打开指定游戏的高分榜</li><li>/pg duel &lt;a/d/玩家名> [游戏ID] - 接受邀请/拒绝邀请/邀请玩家进行多人游戏</li><li>/pg check &lt;玩家名> - 检查玩家是否在玩游戏以及玩的什么游戏</li><li>/pg list - 插件的游戏列表</li></ul><p><strong>管理员命令:</strong></p><ul><li><strong>/pocketgamesadmin|/pga - 管理员帮助信息</strong></li><li>/pga reset file &lt;文件名> [只可填highscores.yml]</li><li>/pga reset database [表] - 刷新数据库指定的表</li><li>/pga info - 插件信息</li><li>/pga reload - 重载插件</li></ul><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=913753">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=913753</a></p><h4 id=residence>Residence<a hidden class=anchor aria-hidden=true href=#residence>#</a></h4><p>{% asset_img 20211107_132529_114058j3twwd0zpthmq8op.png %}</p><p>圈地插件</p><p>/res ? —— 查看帮助</p><p><a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631343">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631343</a></p><h4 id=serverminimap><del>Serverminimap</del><a hidden class=anchor aria-hidden=true href=#serverminimap>#</a></h4><p>小地图</p><p>20230825更新：似乎没啥用，移除</p><p>/minimap - 为您提供小地图项目
+/gsitreload(/gsitrl) 重载插件配置</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1107053"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1107053</a>
+<a class="link" href="https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/</a></p>
+<h4 id="luckperms">LuckPerms
+</h4><p>{% asset_img 20211107_124934_534e2167e153aa1cbba149484e5d84fe15ab431a.png %}</p>
+<p>权限管理
+<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=676818"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=676818</a>
+<a class="link" href="https://www.spigotmc.org/resources/luckperms.28140/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/luckperms.28140/</a></p>
+<h4 id="miaochat"><del>MiaoChat</del>
+</h4><p>{% asset_img 20211107_130410_player.png %}
+聊天功能增加</p>
+<p>20230825更新：移除，被曝有后台</p>
+<p>聊天的时候输出%数字，代表展示手上物品
+%1-9 代表快捷物品栏1-9号格子的物品</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631240"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631240</a></p>
+<h4 id="nekomaid">NekoMaid
+</h4><p>{% asset_img 20211107_130817_005546dtz88n1h8s3fff2h.png %}</p>
+<p>Wed后台管理插件</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1230139"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1230139</a></p>
+<h4 id="pocketgamespo">PocketGamesPo
+</h4><p>{% asset_img 20211107_132118_101703t8dh21764rt0tj2a.png.thumb.jpg %}</p>
+<p>34+口袋游戏|随时随地想玩就玩</p>
+<p><strong>玩家命令:</strong></p>
+<ul>
+<li><strong>/pocketgames|/pocket|/pg - 打开游戏菜单</strong></li>
+<li><strong>/pg help - 打开插件帮助</strong></li>
+<li>/pg menu [玩家名] - 为指定玩家打开游戏菜单</li>
+<li>/pg multiplayer [玩家名] - 为指定玩家打开多人游戏菜单</li>
+<li>/pg spectate [玩家名] - 为指定玩家打开观战菜单</li>
+<li>/pg play &lt;游戏ID&gt; [玩家名] - 让指定的玩家玩指定的游戏</li>
+<li>/pg highscore &lt;游戏ID&gt; [玩家名] - 为指定玩家打开指定游戏的高分榜</li>
+<li>/pg duel &lt;a/d/玩家名&gt; [游戏ID] - 接受邀请/拒绝邀请/邀请玩家进行多人游戏</li>
+<li>/pg check &lt;玩家名&gt; - 检查玩家是否在玩游戏以及玩的什么游戏</li>
+<li>/pg list - 插件的游戏列表</li>
+</ul>
+<p><strong>管理员命令:</strong></p>
+<ul>
+<li><strong>/pocketgamesadmin|/pga - 管理员帮助信息</strong></li>
+<li>/pga reset file &lt;文件名&gt; [只可填highscores.yml]</li>
+<li>/pga reset database [表] - 刷新数据库指定的表</li>
+<li>/pga info - 插件信息</li>
+<li>/pga reload - 重载插件</li>
+</ul>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=913753"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=913753</a></p>
+<h4 id="residence">Residence
+</h4><p>{% asset_img 20211107_132529_114058j3twwd0zpthmq8op.png %}</p>
+<p>圈地插件</p>
+<p>/res ? —— 查看帮助</p>
+<p><a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631343"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=631343</a></p>
+<h4 id="serverminimap"><del>Serverminimap</del>
+</h4><p>小地图</p>
+<p>20230825更新：似乎没啥用，移除</p>
+<p>/minimap - 为您提供小地图项目
 /waypoint help [command] - 为您提供有关此命令的信息
 /waypoint add [x] [z] - 在您当前的位置或指定的 x 和 z 坐标上添加一个航点。
 /waypoint list - 列出所有航点及其索引
-/waypoint remove - 删除索引为 的航点。注意：删除航点时，索引会发生变化。
-/waypoint hide [true|false] - 切换航点的可见性，或将其设置为给定的布尔值。</p><blockquote><p>/lp group admin permission set minimap.fastupdate
+/waypoint remove <index> - 删除索引为 <index> 的航点。注意：删除航点时，索引会发生变化。
+/waypoint hide <index> [true|false] - 切换航点的可见性，或将其设置为给定的布尔值。</p>
+<blockquote>
+<p>/lp group admin permission set minimap.fastupdate
 /lp group admin permission set minimap.command.minimap
 /lp group admin permission set minimap.command.waypoint.help
 /lp group admin permission set minimap.command.waypoint.list
 /lp group admin permission set minimap.command.waypoint.add
 /lp group admin permission set minimap.command.waypoint.remove
-/lp group admin permission set minimap.command.waypoint.hide</p></blockquote><p><a href=https://dev.bukkit.org/projects/serverminimap>https://dev.bukkit.org/projects/serverminimap</a></p><h4 id=tree-feller>Tree Feller<a hidden class=anchor aria-hidden=true href=#tree-feller>#</a></h4><p>一键砍树插件</p><p><a href=https://www.spigotmc.org/resources/tree-feller.92998/>https://www.spigotmc.org/resources/tree-feller.92998/</a></p><h4 id=multiverse>Multiverse<a hidden class=anchor aria-hidden=true href=#multiverse>#</a></h4><p>多世界插件</p><p>#命令语法</p><blockquote><p>mv [FILTER] [PAGE #]
-#发送版本信息至控制台</p><p>mv version -[pbg]
-#列出所有世界名称</p><p>mv list
-#列出综合信息</p><p>mv info [WORLD] [PAGE]
-*/mv info [世界名称] [页码]</p><p>#创建世界
-mv create {名字} {环境} -s [种子] -g [生成器[:ID]] -t [生成器] [-n] -a [true|false]</p><p>#复制某个世界
-mv clone {目标} {名字} -g [生成器[:ID]]</p><p>#转换某个世界的类型
-mv import {名字} {环境} -g [生成器[:ID]] [-n]</p><p>#重新加载配置文件
-mv reload</p><p>#重置当前世界的默认出生点为脚下
-mv setspawn</p></blockquote><p>mcbbs:<a href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1016455">https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1016455</a></p><p><a href=https://www.spigotmc.org/resources/multiverse-core.390/>https://www.spigotmc.org/resources/multiverse-core.390/</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:12371/tags/minecraft/>Minecraft</a></li></ul><nav class=paginav><a class=prev href=http://localhost:12371/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/><span class=title>« Prev</span><br><span>python格式化字符串的方法</span>
-</a><a class=next href=http://localhost:12371/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/><span class=title>Next »</span><br><span>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on x" href="https://x.com/intent/tweet/?text=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f&amp;hashtags=Minecraft"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f&amp;title=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8&amp;summary=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8&amp;source=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on reddit" href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f&title=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on facebook" href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on whatsapp" href="https://api.whatsapp.com/send?text=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8%20-%20http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on telegram" href="https://telegram.me/share/url?text=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8&amp;url=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share SourceCraft服务器 on ycombinator" href="https://news.ycombinator.com/submitlink?t=SourceCraft%e6%9c%8d%e5%8a%a1%e5%99%a8&u=http%3a%2f%2flocalhost%3a12371%2fposts%2fmc%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=http://localhost:12371/>ExampleSite</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>
+/lp group admin permission set minimap.command.waypoint.hide</p></blockquote>
+<p><a class="link" href="https://dev.bukkit.org/projects/serverminimap"  target="_blank" rel="noopener"
+    >https://dev.bukkit.org/projects/serverminimap</a></p>
+<h4 id="tree-feller">Tree Feller
+</h4><p>一键砍树插件</p>
+<p><a class="link" href="https://www.spigotmc.org/resources/tree-feller.92998/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/tree-feller.92998/</a></p>
+<h4 id="multiverse">Multiverse
+</h4><p>多世界插件</p>
+<p>#命令语法</p>
+<blockquote>
+<p>mv [FILTER] [PAGE #]
+#发送版本信息至控制台</p>
+<p>mv version -[pbg]
+#列出所有世界名称</p>
+<p>mv list
+#列出综合信息</p>
+<p>mv info [WORLD] [PAGE]
+*/mv info [世界名称] [页码]</p>
+<p>#创建世界
+mv create {名字} {环境} -s [种子] -g [生成器[:ID]] -t [生成器] [-n] -a [true|false]</p>
+<p>#复制某个世界
+mv clone {目标} {名字} -g [生成器[:ID]]</p>
+<p>#转换某个世界的类型
+mv import {名字} {环境} -g [生成器[:ID]] [-n]</p>
+<p>#重新加载配置文件
+mv reload</p>
+<p>#重置当前世界的默认出生点为脚下
+mv setspawn</p></blockquote>
+<p>mcbbs:<a class="link" href="https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1016455"  target="_blank" rel="noopener"
+    >https://www.mcbbs.net/forum.php?mod=viewthread&amp;tid=1016455</a></p>
+<p><a class="link" href="https://www.spigotmc.org/resources/multiverse-core.390/"  target="_blank" rel="noopener"
+    >https://www.spigotmc.org/resources/multiverse-core.390/</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/minecraft/">Minecraft</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+    </body>
+    <script>hljs.initHighlightingOnLoad();</script>
+</html>

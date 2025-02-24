@@ -1,6 +1,6 @@
 ---
 title: 群晖上用容器搭建SVN服务器
-date: 2023/12/14
+date: 2023-12-14
 categories:
 - docker
 tags:

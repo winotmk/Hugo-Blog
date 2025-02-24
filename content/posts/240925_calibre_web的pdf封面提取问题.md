@@ -1,6 +1,6 @@
 ---
 title: calibre_web的pdf封面提取问题
-date: 2024/09/25
+date: 2024-09-25
 categories:
 - docker
 tags:

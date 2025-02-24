@@ -1,6 +1,6 @@
 ---
 title: next主题增加近期文章侧边栏
-date: 2023/07/27
+date: 2023-07-27
 tags:
 - hexo
 - next

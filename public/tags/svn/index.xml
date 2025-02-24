@@ -1,75 +1,184 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>SVN on ExampleSite</title>
-    <link>http://localhost:12371/tags/svn/</link>
-    <description>Recent content in SVN on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:12371/tags/svn/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>群晖上用容器搭建SVN服务器</title>
-      <link>http://localhost:12371/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:12371/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214182733.png&#34;&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SVN on WinNote</title>
+        <link>http://localhost:1313/tags/svn/</link>
+        <description>Recent content in SVN on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/svn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>群晖上用容器搭建SVN服务器</title>
+        <link>http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231214182733.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS
 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的&lt;/p&gt;
 &lt;p&gt;所用镜像：https://hub.docker.com/r/garethflowers/svn-server
 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server&lt;/p&gt;
 &lt;p&gt;SVN网站：https://subversion.apache.org/&lt;/p&gt;
 &lt;p&gt;参考：
-&lt;a href=&#34;https://blog.51cto.com/u_12701820/6544028&#34;&gt;https://blog.51cto.com/u_12701820/6544028&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像&lt;/h2&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231213184128.png&#34;&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_12701820/6544028&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.51cto.com/u_12701820/6544028&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231213184128.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些&lt;/p&gt;
 &lt;p&gt;先在PC上拉个镜像，直接&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker pull garethflowers/svn-server:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后把镜像打包成文件&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker save -o svn-server.tar garethflowers/svn-server:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就能得到一个&lt;code&gt;svn-server.tar&lt;/code&gt;的文件了，把这个文件上传到ContainerManager里
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214164925.png&#34;&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214165029.png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker pull garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后把镜像打包成文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker save -o svn-server.tar garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;就能得到一个&lt;code&gt;svn-server.tar&lt;/code&gt;的文件了，把这个文件上传到ContainerManager里
+&lt;img src=&#34;http://localhost:1313/images/20231214164925.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214165029.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;然后左边的TAG里选容器》新增，选择刚上传的svn-server
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214165249.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;配置镜像&#34;&gt;配置镜像&lt;/h2&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214171830.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214165249.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置镜像&#34;&gt;配置镜像
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231214171830.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 镜像用法说明，基本上配置个端口和映射库就行
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214172511.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214172511.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 &lt;code&gt;/SVN_library/SVN_Folder&lt;/code&gt;是我专门创建的新的NAS文件夹&lt;/p&gt;
 &lt;p&gt;之后下一步容器就能启动起来了&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/2023121417311214.png&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/2023121417311214.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 打开终端机》通过命令启动》用&lt;code&gt;/bin/sh&lt;/code&gt; 来开一个交互的shell
 然后我输入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;svnadmin create WinSVN
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;来建我的第一个SVN仓库名为&lt;code&gt;WinSVN&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;（以下部分参考: &lt;a href=&#34;https://cloud.tencent.com/developer/article/1650131&#34;&gt;https://cloud.tencent.com/developer/article/1650131&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;svnadmin create WinSVN
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来建我的第一个SVN仓库名为&lt;code&gt;WinSVN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（以下部分参考: &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1650131&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cloud.tencent.com/developer/article/1650131&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;然后找到&lt;code&gt;/SVN_library/SVN_Folder/WinSVN/conf&lt;/code&gt;，里面是SVN的配置文件了
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175225.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214175225.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 编辑&lt;code&gt;svnserve.conf&lt;/code&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175133.png&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214175133.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;anon-access = none    #取消匿名访问
 auth-access = write    #授权用户有可写权限
 password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
 &lt;p&gt;编辑&lt;code&gt;passwd&lt;/code&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214175701.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214175701.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 添加了自己的账户，至于分区权限我暂时用不到&lt;/p&gt;
 &lt;p&gt;记得重启容器，服务器部分好像就差不多了&lt;/p&gt;
 &lt;p&gt;最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214180021.png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;测试连接&#34;&gt;测试连接&lt;/h2&gt;
-&lt;p&gt;pc端新建个文件夹，右键SVN CheckOut
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181003.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214180021.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试连接&#34;&gt;测试连接
+&lt;/h2&gt;&lt;p&gt;pc端新建个文件夹，右键SVN CheckOut
+&lt;img src=&#34;http://localhost:1313/images/20231214181003.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 地址可以输入&lt;code&gt;svn://DDNS的域名:3690/WinSVN&lt;/code&gt;，输入上面&lt;code&gt;passwd&lt;/code&gt;文件里设置好的用户名和密码就好了！！&lt;/p&gt;
 &lt;p&gt;之后就是svn客户端的基本用法了，随便放一个文件尝试上传
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181456.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20231214181456.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 很快就传好了，至此这个SVN仓库宣告可用！
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20231214181617.png&#34;&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
+&lt;img src=&#34;http://localhost:1313/images/20231214181617.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>

@@ -1,58 +1,84 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>C on ExampleSite</title>
-    <link>http://localhost:12371/tags/c/</link>
-    <description>Recent content in C on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:12371/tags/c/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>段码屏开发—GPT4o带来的一点点震撼</title>
-      <link>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:12371/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
-      <description>&lt;h2 id=&#34;硬件简介&#34;&gt;硬件简介&lt;/h2&gt;
-&lt;h3 id=&#34;屏幕&#34;&gt;屏幕&lt;/h3&gt;
-&lt;p&gt;屏幕使用了一块微雪的电子墨水段码屏
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135400.png&#34;&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>C on WinNote</title>
+        <link>http://localhost:1313/tags/c/</link>
+        <description>Recent content in C on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>段码屏开发—GPT4o带来的一点点震撼</title>
+        <link>http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
+        <description>&lt;h2 id=&#34;硬件简介&#34;&gt;硬件简介
+&lt;/h2&gt;&lt;h3 id=&#34;屏幕&#34;&gt;屏幕
+&lt;/h3&gt;&lt;p&gt;屏幕使用了一块微雪的电子墨水段码屏
+&lt;img src=&#34;http://localhost:1313/images/20240726135400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 文档在这里：
-&lt;a href=&#34;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&#34;&gt;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;mcu&#34;&gt;MCU&lt;/h3&gt;
-&lt;p&gt;MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240726135455.png&#34;&gt;
-&lt;a href=&#34;https://www.waveshare.net/wiki/RP2040-Zero&#34;&gt;https://www.waveshare.net/wiki/RP2040-Zero&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;字节byte和比特bit的对应&#34;&gt;字节(byte)和比特(bit)的对应&lt;/h2&gt;
-&lt;p&gt;最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，
+&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mcu&#34;&gt;MCU
+&lt;/h3&gt;&lt;p&gt;MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的
+&lt;img src=&#34;http://localhost:1313/images/20240726135455.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/RP2040-Zero&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.waveshare.net/wiki/RP2040-Zero&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;字节byte和比特bit的对应&#34;&gt;字节(byte)和比特(bit)的对应
+&lt;/h2&gt;&lt;p&gt;最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，
 本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我
 起初这个表对于完全没接触过这块的我完全不动他是什么意思&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185010.png&#34;&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724185010.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20240724185139.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20240724185139.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 *&lt;strong&gt;以下是GPT的回答&lt;/strong&gt;
 在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。&lt;/p&gt;
-&lt;h3 id=&#34;理解图表中的内容&#34;&gt;理解图表中的内容&lt;/h3&gt;
-&lt;ol&gt;
+&lt;h3 id=&#34;理解图表中的内容&#34;&gt;理解图表中的内容
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。&lt;/li&gt;
 &lt;li&gt;比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。&lt;/li&gt;
 &lt;li&gt;存储的数据: 存储在比特中的数据值（0 或 1）。&lt;/li&gt;
 &lt;li&gt;对应的颜色: 由数据值决定的像素颜色（黑色或白色）。
 5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;字节和比特的对应关系&#34;&gt;字节和比特的对应关系&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;字节和比特的对应关系&#34;&gt;字节和比特的对应关系
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;一个字节有 8 位，每一位可以是 0 或 1。&lt;/li&gt;
 &lt;li&gt;0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。&lt;/li&gt;
 &lt;li&gt;0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;解释示例&#34;&gt;解释示例&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;解释示例&#34;&gt;解释示例
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;0x00 字节:
 &lt;ul&gt;
 &lt;li&gt;二进制表示：00000000&lt;/li&gt;
@@ -68,8 +94,366 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;示例代码解释&#34;&gt;示例代码解释&lt;/h3&gt;
-&lt;p&gt;如果你想用代码来解释字节和比特之间的关系，可以如下示例：&lt;/p&gt;</description>
-    </item>
-  </channel>
+&lt;h3 id=&#34;示例代码解释&#34;&gt;示例代码解释
+&lt;/h3&gt;&lt;p&gt;如果你想用代码来解释字节和比特之间的关系，可以如下示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# 示例字节
+byte_00 = 0x00  # 所有比特位都是 0
+byte_ff = 0xff  # 所有比特位都是 1
+
+# 打印二进制表示
+print(f&amp;quot;0x00 的二进制表示: {bin(byte_00)[2:].zfill(8)}&amp;quot;)
+print(f&amp;quot;0xff 的二进制表示: {bin(byte_ff)[2:].zfill(8)}&amp;quot;)
+
+# 转换为像素颜色
+pixels_00 = [&amp;quot;■&amp;quot; if bit == &#39;0&#39; else &amp;quot;□&amp;quot; for bit in bin(byte_00)[2:].zfill(8)]
+pixels_ff = [&amp;quot;■&amp;quot; if bit == &#39;0&#39; else &amp;quot;□&amp;quot; for bit in bin(byte_ff)[2:].zfill(8)]
+
+print(f&amp;quot;0x00 对应的像素颜色: {&#39;&#39;.join(pixels_00)}&amp;quot;)
+print(f&amp;quot;0xff 对应的像素颜色: {&#39;&#39;.join(pixels_ff)}&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;输出&#34;&gt;输出
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-plaintext&#34;&gt;复制代码
+0x00 的二进制表示: 00000000
+0xff 的二进制表示: 11111111
+0x00 对应的像素颜色: ■■■■■■■■
+0xff 对应的像素颜色: □□□□□□□□
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这里，■ 表示黑色像素，□ 表示白色像素。这个代码示例展示了如何根据字节中的比特值确定像素颜色。&lt;/p&gt;
+ &lt;!-- more --&gt;
+&lt;p&gt;天呐！有理有据条例清晰，秒懂了，原来byte是十六进制要转为二进制的！而8位二进制就可以表示8个数码管的开与关了！&lt;/p&gt;
+&lt;h2 id=&#34;数字显示与byte的对应&#34;&gt;数字显示与byte的对应
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724190425.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;*&lt;strong&gt;GPT回答：&lt;/strong&gt;
+为了将数字 23.8 和 54.9 表示为 DSPNUM_1in9_off 数组中的十六进制值，我们需要将每一位数字对应的十六进制编码放入数组的正确位置。根据你提供的映射：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;0 ：0xbf, 0x1f&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;1 ：0x00, 0x1f&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2 ：0xfd, 0x17&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3 ：0xf5, 0x1f&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4 ：0x47, 0x1f&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5 ：0xf7, 0x1d&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;6 ：0xff, 0x1d&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;7 ：0x21, 0x1f&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;8 ：0xff, 0x1f
+-9 ：0xf7, 0x1f
+根据你的要求：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数字 A 为 23.8&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;十位 2 对应 DSPNUM_1in9_off[1] 和 DSPNUM_1in9_off[2]&lt;/li&gt;
+&lt;li&gt;个位 3 对应 DSPNUM_1in9_off[3] 和 DSPNUM_1in9_off[4]&lt;/li&gt;
+&lt;li&gt;小数点后一位 8 对应 DSPNUM_1in9_off[11] 和 DSPNUM_1in9_off[12]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数字 B 为 54.9&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;十位 5 对应 DSPNUM_1in9_off[5] 和 DSPNUM_1in9_off[6]&lt;/li&gt;
+&lt;li&gt;个位 4 对应 DSPNUM_1in9_off[7] 和 DSPNUM_1in9_off[8]&lt;/li&gt;
+&lt;li&gt;小数点后一位 9 对应 DSPNUM_1in9_off[9] 和 DSPNUM_1in9_off[10]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;替换数组&#34;&gt;替换数组
+&lt;/h3&gt;&lt;p&gt;将这些值替换到数组 DSPNUM_1in9_off 中：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned char DSPNUM_1in9_off[] = {
+    0x00,  // [0]  保持为 0x00
+    0xfd,  // [1]  数字 A 的十位 2 对应
+    0x17,  // [2]  数字 A 的十位 2 对应
+    0xf5,  // [3]  数字 A 的个位 3 对应
+    0x1f,  // [4]  数字 A 的个位 3 对应
+    0xf7,  // [5]  数字 B 的十位 5 对应
+    0x1d,  // [6]  数字 B 的十位 5 对应
+    0x47,  // [7]  数字 B 的个位 4 对应
+    0x1f,  // [8]  数字 B 的个位 4 对应
+    0xf7,  // [9]  数字 B 的小数点后一位 9 对应
+    0x1f,  // [10] 数字 B 的小数点后一位 9 对应
+    0xff,  // [11] 数字 A 的小数点后一位 8 对应
+    0x1f,  // [12] 数字 A 的小数点后一位 8 对应
+    0x00,  // [13] 保持为 0x00
+    0x00,  // [14] 保持为 0x00
+    0x00   // [15] 保持为 0x00
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;最终数组&#34;&gt;最终数组
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned char DSPNUM_1in9_off[] = {
+    0x00, 0xfd, 0x17, 0xf5, 0x1f, 0xf7, 0x1d, 0x47, 0x1f, 0xf7, 0x1f, 0xff, 0x1f, 0x00, 0x00, 0x00
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个数组 DSPNUM_1in9_off 现在包含了你要求的数字 A 和 B 的十六进制表示形式。&lt;/p&gt;
+&lt;p&gt;GPT准确无误的理解了我的意思，这是这段代码直接得到的结果！！：
+&lt;img src=&#34;http://localhost:1313/images/20240726134530.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;动态将数字转换为对应的段码&#34;&gt;动态将数字转换为对应的段码
+&lt;/h2&gt;&lt;p&gt;上面一段只是实现了数字到段码的转换，作为一个温度计肯定需要每隔一段时间就将读取的温度传到这个数组里，所以我继续问
+&lt;img src=&#34;http://localhost:1313/images/20240726134819.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+GPT又准确无误的给了我方案：&lt;/p&gt;
+&lt;h3 id=&#34;动态调整数组的代码&#34;&gt;动态调整数组的代码
+&lt;/h3&gt;&lt;p&gt;为了动态调整 DSPNUM_1in9_off 数组，你可以编写一个函数，根据给定的 A 和 B 数值，动态设置数组的值。这个函数可以使用一个查找表来将数字映射到相应的字节值。&lt;/p&gt;
+&lt;p&gt;以下是一个实现示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+// 定义数字对应的字节数组
+unsigned char digit_bytes[10][2] = {
+    {0xbf, 0x1f},  // 0
+    {0x00, 0x1f},  // 1
+    {0xfd, 0x17},  // 2
+    {0xf5, 0x1f},  // 3
+    {0x47, 0x1f},  // 4
+    {0xf7, 0x1d},  // 5
+    {0xff, 0x1d},  // 6
+    {0x21, 0x1f},  // 7
+    {0xff, 0x1f},  // 8
+    {0xf7, 0x1f}   // 9
+};
+
+// 定义DSPNUM_1in9_off数组
+unsigned char DSPNUM_1in9_off[16] = {0};
+
+// 更新数组的函数
+void update_display(double A, double B) {
+    // 提取 A 和 B 的各位数字
+    int A_tens = (int)(A / 10) % 10;
+    int A_units = (int)A % 10;
+    int A_decimal = (int)(A * 10) % 10;
+    
+    int B_tens = (int)(B / 10) % 10;
+    int B_units = (int)B % 10;
+    int B_decimal = (int)(B * 10) % 10;
+    
+    // 设置数字 A
+    DSPNUM_1in9_off[1] = digit_bytes[A_tens][0];
+    DSPNUM_1in9_off[2] = digit_bytes[A_tens][1];
+    DSPNUM_1in9_off[3] = digit_bytes[A_units][0];
+    DSPNUM_1in9_off[4] = digit_bytes[A_units][1];
+    DSPNUM_1in9_off[11] = digit_bytes[A_decimal][0];
+    DSPNUM_1in9_off[12] = digit_bytes[A_decimal][1];
+    
+    // 设置数字 B
+    DSPNUM_1in9_off[5] = digit_bytes[B_tens][0];
+    DSPNUM_1in9_off[6] = digit_bytes[B_tens][1];
+    DSPNUM_1in9_off[7] = digit_bytes[B_units][0];
+    DSPNUM_1in9_off[8] = digit_bytes[B_units][1];
+    DSPNUM_1in9_off[9] = digit_bytes[B_decimal][0];
+    DSPNUM_1in9_off[10] = digit_bytes[B_decimal][1];
+}
+
+int main() {
+    double A = 23.8;
+    double B = 54.9;
+
+    // 更新显示
+    update_display(A, B);
+
+    // 打印数组内容以验证
+    for (int i = 0; i &amp;lt; 16; i++) {
+        printf(&amp;quot;0x%02x &amp;quot;, DSPNUM_1in9_off[i]);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;解释&#34;&gt;解释
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;数字到字节的映射表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;digit_bytes 数组包含了每个数字（0 到 9）对应的两个字节的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提取数字位：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用整数除法和取模运算提取 A 和 B 的十位、个位和小数点后一位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新显示数组：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用提取到的数字位将 DSPNUM_1in9_off 数组的相应位置更新为查找表中的字节值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定义 A 和 B 的值，调用 update_display 函数更新显示数组，并打印数组内容以验证。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这样，DSPNUM_1in9_off 数组将根据传入的 A 和 B 值动态更新。&lt;/p&gt;
+&lt;h2 id=&#34;小数点的处理&#34;&gt;小数点的处理
+&lt;/h2&gt;&lt;p&gt;上面已经完整实现了两个数字到数组内的转换，但是转出来没有小数点，根据文档：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240726135629.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;所以要在数组的第4，8，10位做些处理&lt;/p&gt;
+&lt;p&gt;我继续对GPT说&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240726135810.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;GPT回答：&lt;/p&gt;
+&lt;p&gt;为了实现这个功能，我们需要将特定数组位置的十六进制数转换为二进制，修改二进制数中的特定位，然后将其转换回十六进制并存储在数组中。&lt;/p&gt;
+&lt;p&gt;以下是修改后的代码，包括处理 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10]：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+// 定义数字对应的字节数组
+unsigned char digit_bytes[10][2] = {
+    {0xbf, 0x1f},  // 0
+    {0x00, 0x1f},  // 1
+    {0xfd, 0x17},  // 2
+    {0xf5, 0x1f},  // 3
+    {0x47, 0x1f},  // 4
+    {0xf7, 0x1d},  // 5
+    {0xff, 0x1d},  // 6
+    {0x21, 0x1f},  // 7
+    {0xff, 0x1f},  // 8
+    {0xf7, 0x1f}   // 9
+};
+
+// 定义DSPNUM_1in9_off数组
+unsigned char DSPNUM_1in9_off[16] = {0};
+
+// 将第六位从右往左数改成1的函数
+unsigned char set_sixth_bit_to_one(unsigned char value) {
+    return value | (1 &amp;lt;&amp;lt; 5);  // 第六位对应的二进制位是 5，从0开始计数
+}
+
+// 更新数组的函数
+void update_display(double A, double B) {
+    // 提取 A 和 B 的各位数字
+    int A_tens = (int)(A / 10) % 10;
+    int A_units = (int)A % 10;
+    int A_decimal = (int)(A * 10) % 10;
+    
+    int B_tens = (int)(B / 10) % 10;
+    int B_units = (int)B % 10;
+    int B_decimal = (int)(B * 10) % 10;
+    
+    // 设置数字 A
+    DSPNUM_1in9_off[1] = digit_bytes[A_tens][0];
+    DSPNUM_1in9_off[2] = digit_bytes[A_tens][1];
+    DSPNUM_1in9_off[3] = digit_bytes[A_units][0];
+    DSPNUM_1in9_off[4] = set_sixth_bit_to_one(digit_bytes[A_units][1]);  // 修改第六位
+    DSPNUM_1in9_off[11] = digit_bytes[A_decimal][0];
+    DSPNUM_1in9_off[12] = digit_bytes[A_decimal][1];
+    
+    // 设置数字 B
+    DSPNUM_1in9_off[5] = digit_bytes[B_tens][0];
+    DSPNUM_1in9_off[6] = digit_bytes[B_tens][1];
+    DSPNUM_1in9_off[7] = digit_bytes[B_units][0];
+    DSPNUM_1in9_off[8] = set_sixth_bit_to_one(digit_bytes[B_units][1]);  // 修改第六位
+    DSPNUM_1in9_off[9] = digit_bytes[B_decimal][0];
+    DSPNUM_1in9_off[10] = set_sixth_bit_to_one(digit_bytes[B_decimal][1]);  // 修改第六位
+}
+
+int main() {
+    double A = 23.8;
+    double B = 54.9;
+
+    // 更新显示
+    update_display(A, B);
+
+    // 打印数组内容以验证
+    for (int i = 0; i &amp;lt; 16; i++) {
+        printf(&amp;quot;0x%02x &amp;quot;, DSPNUM_1in9_off[i]);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;解释-1&#34;&gt;解释
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;函数 set_sixth_bit_to_one:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用位运算将一个字节的第六位（从右数）设置为 1。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新 DSPNUM_1in9_off 数组:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;按照你的要求更新数字 A 和 B 的各个位数字。&lt;/li&gt;
+&lt;li&gt;在设置 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 时，调用 set_sixth_bit_to_one 函数将其第六位设置为 1。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;结果&#34;&gt;结果
+&lt;/h3&gt;&lt;p&gt;运行代码后，DSPNUM_1in9_off 数组将根据 A 和 B 的值动态更新，并且 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 的第六位将被设置为 1。&lt;/p&gt;
+&lt;p&gt;然后我就得到了：
+&lt;img src=&#34;http://localhost:1313/images/20240726142601.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+这里数字是我手动指定的&lt;code&gt;A=73.6&lt;/code&gt;,&lt;code&gt;B=84.9&lt;/code&gt;，可以看到小数点，百分号都已经显示出来了&lt;/p&gt;
+&lt;p&gt;再接入传感器读到的数值，温度计就差不多完工啦：
+&lt;img src=&#34;http://localhost:1313/images/20240726142737.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;顺便一提这里的传感器驱动代码也是GPT帮调整的，真是神奇&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>

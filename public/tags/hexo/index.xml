@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Hexo on ExampleSite</title>
-    <link>http://localhost:12371/tags/hexo/</link>
-    <description>Recent content in Hexo on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:12371/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.144.2</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:12371/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
-      <link>http://localhost:12371/posts/docker01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:12371/posts/docker01/</guid>
-      <description>&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Hexo on WinNote</title>
+        <link>http://localhost:1313/tags/hexo/</link>
+        <description>Recent content in Hexo on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Sat, 05 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hexo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
+        <link>http://localhost:1313/posts/docker01/</link>
+        <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/docker01/</guid>
+        <description>&lt;style type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;
+.nav-number { 
+    display:none !important;
+}
+.post-toc .nav-item {
+    white-space: normal !important;
+}
+&lt;/style&gt;
 &lt;p&gt;一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的&lt;/p&gt;
 &lt;p&gt;了解ECI弹性容器：https://www.aliyun.com/product/eci
 了解阿里云NAS文件存储：https://www.aliyun.com/product/nas&lt;/p&gt;
@@ -28,7 +30,14 @@
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的
 最后成品的结构大致如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829140549.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829140549.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;这里挂了3个镜像：
 &lt;strong&gt;1.node.js+git+ssh+hexo&lt;/strong&gt;
 主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会&lt;code&gt;hexo g -d&lt;/code&gt;，而运行这套需要一个环境容器
@@ -38,11 +47,26 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 &lt;strong&gt;3.ddns&lt;/strong&gt;
 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像&lt;/p&gt;
 &lt;p&gt;还挂了一个NAS盘：
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829142400.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20230829142400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 挂载以后：
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20230829142501.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计&lt;/p&gt;
 &lt;p&gt;文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用&lt;/p&gt;
+&lt;!-- more --&gt;
 &lt;p&gt;&lt;strong&gt;vsftpd&lt;/strong&gt;还有&lt;strong&gt;ddns&lt;/strong&gt;可以与主镜像&lt;strong&gt;node.js+hexo&lt;/strong&gt;合并成一个大镜像吗？
 &lt;strong&gt;当然可以&lt;/strong&gt;，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小&lt;/p&gt;
 &lt;p&gt;整套下来有这些部分：&lt;/p&gt;
@@ -58,51 +82,1248 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 群晖搭建私有镜像仓库和dockerengine设置
 eci价格计算表&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;1-docker-基本操作&#34;&gt;1. docker 基本操作&lt;/h2&gt;
-&lt;p&gt;博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶
+&lt;h2 id=&#34;1-docker-基本操作&#34;&gt;1. docker 基本操作
+&lt;/h2&gt;&lt;p&gt;博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶
 ——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！
 资料网站：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/cli/&#34;&gt;官方命令大全&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://chunchengwei.github.io/ruan-jian/ji-yu-docker-de-hexo-bo-ke-da-jian/&#34;&gt;基于Docker的Hexo博客搭建&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/engine/reference/commandline/cli/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方命令大全&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://chunchengwei.github.io/ruan-jian/ji-yu-docker-de-hexo-bo-ke-da-jian/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基于Docker的Hexo博客搭建&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这个基本操作写得还行下次爬一篇下来吧：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://yingclin.github.io/2018/docker-basic.html&#34;&gt;[小抄] Docker 基本命令&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;11-运行容器&#34;&gt;1.1 运行容器&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -it -d --name &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;container-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; -p 8088:80 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;image-name&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里是将容器内的80端口映射到宿主机的8088端口&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>next主题增加近期文章侧边栏</title>
-      <link>http://localhost:12371/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:12371/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</guid>
-      <description>&lt;h2 id=&#34;边栏显示文章列表效果&#34;&gt;边栏显示文章列表效果&lt;/h2&gt;
-&lt;p&gt;我还奇怪next没用提供这样的功能，文章一多一篇篇翻实在是累，还好找到了有人实现最近文章的功能，那么做文章列表也就同理了
-&lt;img loading=&#34;lazy&#34; src=&#34;images/20230727113321.png&#34;&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yingclin.github.io/2018/docker-basic.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;[小抄] Docker 基本命令&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;11-运行容器&#34;&gt;1.1 运行容器
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -it -d --name [container-name] -p 8088:80 [image-name]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里是将容器内的80端口映射到宿主机的8088端口&lt;/p&gt;
+&lt;p&gt;参数说明&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-d&lt;/code&gt; 表示后台运行容器
+&lt;code&gt;-t&lt;/code&gt; 为docker分配一个伪终端并绑定到容器的标准输入上
+&lt;code&gt;-i&lt;/code&gt; 是让容器的标准输入保持打开状态
+&lt;code&gt;-p&lt;/code&gt; 指定映射端口&lt;/p&gt;
+&lt;p&gt;还能这么写：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run --name mssql -e &#39;ACCEPT_EULA=Y&#39; -e &#39;SA_PASSWORD=xxxx&#39; \
+     -p 1433:1433  \
+     -d mssql-2019-with-cimb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;\&lt;/code&gt;应该是可以换行表述
+&lt;code&gt;-e&lt;/code&gt; 定义环境变量（通常制作镜像的时候应该已经写好了，或者在容器内做好自动脚本，run时候再写毕竟是不方便的）&lt;/p&gt;
+&lt;h3 id=&#34;12-将此容器-commit-保存为新镜像&#34;&gt;1.2 将此容器 commit 保存为新镜像：
+&lt;/h3&gt;&lt;p&gt;格式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker commit container-id new-name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;container-id也可以是已有容器的名字，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker commit node-test nodehexo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;nodehexo这里是新镜像名&lt;/p&gt;
+&lt;h3 id=&#34;13-启动docker引擎时自动运行docker容器&#34;&gt;1.3 启动docker引擎时自动运行docker容器：
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/londa/article/details/97611947&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/londa/article/details/97611947&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ps:上面链接文章还有:修改docker容器的挂载路径，修改docker默认的存储位置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run --restart=always
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有时候，我们创建容器时忘了添加参数 &lt;code&gt;--restart=always&lt;/code&gt; ，当 Docker 重启时，容器未能自动启动，&lt;/p&gt;
+&lt;p&gt;现在要添加该参数怎么办呢，方法有二：&lt;/p&gt;
+&lt;p&gt;1、Docker 命令修改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker container update --restart=always 容器名字
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我实际运行时，可以支持同时配置多个容器id，比如（其中container关键字可以忽略不写）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker update 87cd61ad7f7c f488b0479f24 2109903220ce 1fb346ea1a46 --restart=no
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2、直接改配置文件&lt;/p&gt;
+&lt;p&gt;首先停止容器，不然无法修改配置文件&lt;/p&gt;
+&lt;p&gt;配置文件路径为：&lt;code&gt;/var/lib/docker/containers/&lt;/code&gt; 容器ID&lt;/p&gt;
+&lt;p&gt;在该目录下找到一个文件 hostconfig.json ，找到该文件中关键字 RestartPolicy&lt;/p&gt;
+&lt;p&gt;修改前配置：&lt;code&gt;&amp;quot;RestartPolicy&amp;quot;:{&amp;quot;Name&amp;quot;:&amp;quot;no&amp;quot;,&amp;quot;MaximumRetryCount&amp;quot;:0}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修改后配置：&lt;code&gt;&amp;quot;RestartPolicy&amp;quot;:{&amp;quot;Name&amp;quot;:&amp;quot;always&amp;quot;,&amp;quot;MaximumRetryCount&amp;quot;:0}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;最后启动容器。&lt;/p&gt;
+&lt;h3 id=&#34;14-有关dockerfile&#34;&gt;1.4 有关dockerfile
+&lt;/h3&gt;&lt;p&gt;dockerfile是用来构建镜像的脚本
+主要参考这几篇：
+&lt;a class=&#34;link&#34; href=&#34;https://www.runoob.com/docker/docker-dockerfile.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.runoob.com/docker/docker-dockerfile.html&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://developer.aliyun.com/article/484262&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://developer.aliyun.com/article/484262&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://juejin.cn/s/docker%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;docker容器启动时自动启动脚本&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;编写dockerfile&#34;&gt;编写dockerfile
+&lt;/h4&gt;&lt;p&gt;我的第一个dockerfile：
+简单做个测试，在之前做的镜像上加了条启动命令
+&lt;strong&gt;Dockerfile&lt;/strong&gt; （文件没有后缀)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Set the base image to CentOS  基于nodehexo
+FROM nodehexo:V4
+COPY ddnsstart.sh /ddnsstart.sh
+ENTRYPOINT [&amp;quot;/bin/bash&amp;quot;, &amp;quot;/ddnsstart.sh&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;很简单:
+&lt;code&gt;FROM&lt;/code&gt;基于&lt;code&gt;nodehexo:V4&lt;/code&gt;镜像构建
+&lt;code&gt;COPY&lt;/code&gt;就是拷贝构建目录下的&lt;code&gt;ddnsstart.sh&lt;/code&gt;到之后构建好的镜像根目录下
+&lt;code&gt;ENTRYPOINT&lt;/code&gt;会在用新镜像开启容器时再执行，这里会在执行&lt;code&gt;/bin/bash&lt;/code&gt;里执行&lt;code&gt;/ddnsstart.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;一个dockerfile只能有一条&lt;code&gt;ENTRYPOINT&lt;/code&gt;，多个也只执行最后一个,&lt;code&gt;CMD&lt;/code&gt;也是如此
+如果 Dockerfile 中如果存在多个 &lt;code&gt;CMD&lt;/code&gt; 指令，仅最后一个生效。&lt;/p&gt;
+&lt;p&gt;关于&lt;code&gt;CMD&lt;/code&gt;还有些写法，比如还可以
+&lt;code&gt;CMD service ssh start &amp;amp;&amp;amp; service XXX start &amp;amp;&amp;amp; tail -f /etc/passwd&lt;/code&gt;一起执行多道指令
+这在构建镜像的时候会被自动转换为类似：
+&lt;code&gt;CMD [&amp;quot;/bin/sh&amp;quot;, &amp;quot;service ssh start&amp;quot;,&amp;quot;service XXX start&amp;quot;,&amp;quot;tail -f /etc/passwd&amp;quot;]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tail -f /etc/passwd&lt;/code&gt;作用在于防止docker容器开启后立即关闭见下面段落&lt;/p&gt;
+&lt;p&gt;CMD格式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CMD &amp;lt;shell 命令&amp;gt; 
+CMD [&amp;quot;&amp;lt;可执行文件或命令&amp;gt;&amp;quot;,&amp;quot;&amp;lt;param1&amp;gt;&amp;quot;,&amp;quot;&amp;lt;param2&amp;gt;&amp;quot;,...] 
+CMD [&amp;quot;&amp;lt;param1&amp;gt;&amp;quot;,&amp;quot;&amp;lt;param2&amp;gt;&amp;quot;,...]  # 该写法是为 ENTRYPOINT 指令指定的程序提供默认参数
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;推荐使用第二种格式，执行过程比较明确。第一种格式实际上在运行的过程中也会自动转换成第二种格式运行，并且默认是 &lt;code&gt;bin/sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ddnsstart.sh文件&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+root/ddnsAPP/ddns -c root/ddnsAPP/config.json
+echo &amp;quot;更新mcwrite.winotmk.com解析&amp;quot;
+service ssh start
+tail -f /etc/passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里都是简单的shell命令了
+&lt;code&gt;root/ddnsAPP/ddns -c root/ddnsAPP/config.json&lt;/code&gt;是执行ddns更新，解析新的ip到域名上，因为我这个镜像打算放到阿里云ECI里跑，每次新拉的IP当然都不一样（一直占着一个IP会产生费用，没必要）&lt;/p&gt;
+&lt;p&gt;同时我还执行了启动ssh服务，有的时候会用上ssh，因为我把网盘挂载到了容器内
+&lt;code&gt;tail -f /etc/passwd&lt;/code&gt;这里起到的比较重要的占着进程的作用，详见下面：&lt;/p&gt;
+&lt;p&gt;*关于 &lt;code&gt;CMD&lt;/code&gt; 或 &lt;code&gt;entrypoint&lt;/code&gt; 构建后 &lt;code&gt;docker run -dit&lt;/code&gt; 为何容器依然秒退
+&lt;a class=&#34;link&#34; href=&#34;https://www.zhihu.com/question/344939968&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.zhihu.com/question/344939968&lt;/a&gt;
+是因为使用了CMD或者entrypoint去service *** start命令作为容器启动命令，主进程执行完结束了，容器也就结束了&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;dockerfile 写清楚 entrypoint 和 cmd，启动脚本如果立刻会退出，那么在最后添加 tail -f 某个日志文件。或者 监听某个端口或者进程。
+方法1: 设置容器启动时就启动服务ENTRYPOINT [&amp;ldquo;flask&amp;rdquo;, &amp;ldquo;run&amp;rdquo;, &amp;ldquo;-h&amp;rdquo;, &amp;ldquo;0.0.0.0&amp;rdquo;, &amp;ldquo;-p&amp;rdquo;, &amp;ldquo;80&amp;rdquo;]
+方法2:CMD service apache2 start &amp;amp;&amp;amp; tail -F /var/log/apache2/error.log再极端点 sleep infinite&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h4 id=&#34;用dockerfile构建镜像&#34;&gt;用dockerfile构建镜像
+&lt;/h4&gt;&lt;p&gt;&lt;code&gt;docker build -t &amp;lt;新镜像名字:标签&amp;gt; .&lt;/code&gt;
+比如&lt;code&gt;docker build -t nodehexo:V5 .&lt;/code&gt;
+请不要忘记最后一个&lt;code&gt;.&lt;/code&gt;，这表示在当前目录下构建
+用这条指令前先&lt;code&gt;CD&lt;/code&gt;到dockerfile文件所放置的目录
+比如我先&lt;code&gt;CD ./dockerbuild&lt;/code&gt;，因为我的文件放在&lt;code&gt;用户/dockerbuild&lt;/code&gt;目录下面
+然后就拥有了属于构建的镜像！&lt;/p&gt;
+&lt;h4 id=&#34;141-entrypoint与cmd的区别&#34;&gt;1.4.1 ENTRYPOINT与CMD的区别
+&lt;/h4&gt;&lt;p&gt;Docker 的 ENTRYPOINT 和 CMD 参数探秘
+&lt;a class=&#34;link&#34; href=&#34;https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;142-dockerfile构建镜像时如何选择from镜像以减小镜像体积&#34;&gt;1.4.2 dockerfile构建镜像时如何选择FROM镜像以减小镜像体积
+&lt;/h4&gt;&lt;p&gt;busybox：
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/hknaruto/article/details/70229896&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/hknaruto/article/details/70229896&lt;/a&gt;
+alpine：
+&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/alpine&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hub.docker.com/_/alpine&lt;/a&gt;
+alpine包管理器APK：
+&lt;a class=&#34;link&#34; href=&#34;https://wangchujiang.com/linux-command/c/apk.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://wangchujiang.com/linux-command/c/apk.html&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;15-将已有镜像打包带走使用将打包来的镜像&#34;&gt;1.5 将已有镜像打包带走/使用将打包来的镜像
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/348849578&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/348849578&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;将镜像保存为本地文件&#34;&gt;将镜像保存为本地文件
+&lt;/h4&gt;&lt;p&gt;可以使用Docker save命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker save -o mssql-2019-with-cimb.tar mssql-2019-with-cimb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;会得到一个&lt;code&gt;mssql-2019-with-cimb.tar&lt;/code&gt;文件，就可以随身携带啦&lt;/p&gt;
+&lt;p&gt;从文件载入镜像&lt;/p&gt;
+&lt;h4 id=&#34;从文件载入镜像&#34;&gt;从文件载入镜像
+&lt;/h4&gt;&lt;p&gt;使用Docker load命令:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker load --input mssql-2019-with-cimb.tar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;16-docker挂载本地目录&#34;&gt;1.6 docker挂载本地目录
+&lt;/h3&gt;&lt;p&gt;有关volume:https://docs.docker.com/storage/volumes/
+&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/get-started/05_persisting_data/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.docker.com/get-started/05_persisting_data/&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zz00008888/article/details/131924286&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/zz00008888/article/details/131924286&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在Docker中，可以使用“-v”选项来挂载本地目录。该选项需要两个参数，分别是本地目录路径和容器内目录路径。例如，以下命令将本地目录“/home/user/app”挂载到容器内的“/app”目录中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -v /home/user/app:/app my_image
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这将使得容器可以访问本地目录中的文件，并且任何对该目录的更改也会反映在容器中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Docker挂载本地目录到已有容器&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除了在容器启动时挂载本地目录外，还可以在运行时将本地目录挂载到正在运行的容器中。要实现这一点，可以使用“docker cp”命令将本地目录复制到容器中，并使用“docker exec”命令在容器中执行命令。例如，以下命令将本地目录“/home/user/data”挂载到正在运行的容器中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker cp /home/user/data my_container:/data
+docker exec -it my_container bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在容器中，可以访问挂载的目录“/data”，并且任何对该目录的更改也会反映在本地文件系统中。&lt;/p&gt;
+&lt;h3 id=&#34;17-其他一些操作&#34;&gt;1.7 其他一些操作
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# ****************************** 容器 ****************************** #
+# 查看正在运行的容器
+$ docker ps
+# 查看所有容器
+$ docker ps -a
+# 启动/停止某个容器
+$ docker start/stop id/name
+# 以交互方式启动一个容器
+$ docker start -i id/name
+# 进入某个容器(使用exit退出后容器也跟着停止运行)
+$ docker attach id/name
+# 启动一个伪终端以交互式的方式进入某个运行的容器（使用exit退出后容器不停止运行）
+$ docker exec -it id/name
+# 删除某个容器
+$ docker rm id/name
+# 复制ubuntu容器并且重命名为test且运行，然后以伪终端交互式方式进入容器，运行bash
+$ docker run --name test -ti ubuntu /bin/bash
+
+# ****************************** 镜像 ****************************** #
+# 查看本地镜像
+$ docker images
+# 删除某个镜像
+$ docker rmi id/name
+# 基于当前目录下的Dockerfile，创建一个名为name:flag的镜像
+$ docker build -t name:flag .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;2-已启动容器操作&#34;&gt;2. 已启动容器操作
+&lt;/h2&gt;&lt;h3 id=&#34;21-win10下docker给已存在的容器添加端口映射的方法&#34;&gt;2.1 win10下docker给已存在的容器添加端口映射的方法
+&lt;/h3&gt;&lt;p&gt;博主再吐槽一下，这个调试阶段如此常用的修改容我端口，改起来却像游戏作弊，不觉得这个要做简单很难，怕只是没做
+&lt;a class=&#34;link&#34; href=&#34;https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/Taysuesue/article/details/126706394&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/Taysuesue/article/details/126706394&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/kingsonfu/p/11578073.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/kingsonfu/p/11578073.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;查看容器已映射的端口（dockerdeskUI内也可看见）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker port 容器ID/容器名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先停止容器&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker stop {容器的名称或者 id }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查看容器完整的 &lt;code&gt;hash_of_the_container&lt;/code&gt; 数值：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker inspect {容器的名称或者 id } | grep Id
+
+# 比如：
+docker inspect cbe26510c276 | grep Id
+# 会得到如下结果：
+# &amp;quot;Id&amp;quot;: &amp;quot;cbe26510c276fa9a4487a8c2af8cbb49410f2a5305149d2b26eb8ce37c777d00&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;如果主机是linux（mac应该也行没测）&lt;/strong&gt;
+打开 hostconfig.json 配置文件:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /var/lib/docker/containers/{hash_of_the_container}/hostconfig.json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;记得还要改 config.v2.json，改法同下面的win10
+&lt;strong&gt;如果是win10&lt;/strong&gt;
+1.先找到容器的配置文件，首先我的电脑地址栏输\wsl$\进入到网络文件夹上,在一步一步找到容器目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;\\wsl$\docker-desktop-data\data\docker\containers
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.点击进入相应容器ID文件夹，打开后修改其中的 &lt;code&gt;config.v2.json&lt;/code&gt; 和 &lt;code&gt;hostconfig.json&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;hostconfig.json&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;PortBindings&amp;quot;:{&amp;quot;22/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;50022&amp;quot;}],&amp;quot;3306/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;53306&amp;quot;}],&amp;quot;6379/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;56379&amp;quot;}]}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里的&lt;code&gt;HostPort&lt;/code&gt;字面意思就是宿主机的端口，所以即：
+容器内22&amp;gt;外部5022访问
+容器内3306&amp;gt;外部53306访问
+容器内6379&amp;gt;外部56379访问&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;config.v2.json&lt;/strong&gt; 有两处需要添加，只修改一处不生效&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;ExposedPorts&amp;quot;:{&amp;quot;22/tcp&amp;quot;:{},&amp;quot;3306/tcp&amp;quot;:{},&amp;quot;6379/tcp&amp;quot;:{}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;Ports&amp;quot;:{&amp;quot;22/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;0.0.0.0&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;50022&amp;quot;}],&amp;quot;3306/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;0.0.0.0&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;53306&amp;quot;}],&amp;quot;6379/tcp&amp;quot;:[{&amp;quot;HostIp&amp;quot;:&amp;quot;0.0.0.0&amp;quot;,&amp;quot;HostPort&amp;quot;:&amp;quot;56379&amp;quot;}]}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不过我实际只改了这里的&lt;code&gt;&amp;quot;ExposedPorts&amp;quot;&lt;/code&gt;貌似就行了&lt;/p&gt;
+&lt;p&gt;然后重启&lt;strong&gt;docker&lt;/strong&gt;，注意不只是重启容器，我一开始只重启容器发现白改了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 重启 docker
+service docker restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者在系统右下角，点击Restart重启整个 Docker 服务，然后再重启 Container 即可正常使用&lt;/p&gt;
+&lt;h3 id=&#34;22-docker容器内服务开机自启动实现方案以ssh服务为例&#34;&gt;2.2 docker容器内服务开机自启动实现方案（以ssh服务为例）
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;font color=red&gt;注意，2.2这段内容随着对docker和linux了解的深入觉得有不妥，但是作为学习的过程还是保留&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_38603541/article/details/124028994&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/qq_38603541/article/details/124028994&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;因为我后续打算用类似vscode里的remote-ssh来管理容器内，也想用winscp等好用的工具可以接进来，还是有必要开个ssh
+&lt;strong&gt;解决方案&lt;/strong&gt;
+1、正常我们在linux操作系统内设置服务自启动的方法一般都是使用systemctl。&lt;/p&gt;
+&lt;p&gt;systemctl enable ssh
+2、但是，一般在docker容器内我们一般不这么干，因为容器内没有systemctl权限……&lt;/p&gt;
+&lt;p&gt;3、我们依然还是使用脚本的形式将ssh设为自启，只不过这个的这个脚本和我们使用Dockerfile的脚本不一样。&lt;/p&gt;
+&lt;p&gt;4、在 /root 目录下新建一个 start_ssh.sh文件，并给予该文件可执行权限。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch /root/start_ssh.sh
+ 
+vim /root/start_ssh.sh
+ 
+chmod +x /root/start_ssh.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;5、start_ssh.sh 脚本的内容，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+ 
+LOGTIME=$(date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;)
+echo &amp;quot;[$LOGTIME] startup run...&amp;quot; &amp;gt;&amp;gt;/root/start_ssh.log
+service ssh start &amp;gt;&amp;gt;/root/start_ssh.log
+#service mysql start &amp;gt;&amp;gt;/root/star_mysql.log   //其他服务也可这么实现
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;6、将start_ssh.sh脚本添加到启动文件中&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /root/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;7、在 .bashrc 文件末尾加入如下内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# startup run
+if [ -f /root/start_ssh.sh ]; then
+      . /root/start_ssh.sh
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;8、保存后，等下次重启容器的时候，添加的服务也就跟着重启了。&lt;/p&gt;
+&lt;p&gt;docker容器在启动的时候，会自动执行的是~/.bashrc文件，所以，环境变量需要配置在该文件内，这样镜像启动时，可自动执行该文件，使环境变量生效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font color=red&gt;正确的理解是：&lt;/font&gt;&lt;/strong&gt;
+/root/.bashrc会在容器启动的时候自动执行这句十分欠妥，
+准确的来讲是&lt;strong&gt;root用户登录bash的时候会执行，每次开新的bash shell也会执行一遍&lt;/strong&gt;
+如果dockerfile内定义了ENTRYPOINT或者CMD执行类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ENTRYPOINT [ &amp;quot;/bin/bash&amp;quot;,&amp;quot;-c&amp;quot;,&amp;quot;service apache2 start&amp;quot; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么对于容器来说PID 1号进程就是bash（apache是bash的子进程），也确实会跑一遍.bashrc内的内容，但是这不代表所有容器启动时一定会启动bash shell，也可能直接是个java进程，也可能是dumb-int，更多时候可能是sh shell，这应该都不会触发.bashrc
+所以如果想要在容器启动时自动启动一个服务，推荐写在dockerfile里，比如&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;COPY start.sh /
+ENTRYPOINT [ &amp;quot;sh&amp;quot;,&amp;quot;/start.sh&amp;quot; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后再在start.sh里写上你需要启动的服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+service ssh restart
+service apache2 restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以及如果确实有很多个服务需要启，考虑使用类似docker compose启多个镜像，每个镜像跑单个服务&lt;/p&gt;
+&lt;h4 id=&#34;221-拓展bashrc-etcbashrc-etcprofile三个文件的区别&#34;&gt;2.2.1 拓展：~/.bashrc /etc/bashrc /etc/profile三个文件的区别
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://segmentfault.com/q/1010000003793341&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://segmentfault.com/q/1010000003793341&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-打包制作自己的docker镜像dockerfile&#34;&gt;3 打包制作自己的docker镜像(dockerfile)
+&lt;/h2&gt;&lt;p&gt;dockerfile是告诉docker engine如何构建镜像的脚本&lt;/p&gt;
+&lt;h3 id=&#34;31-nodejsgithexo镜像&#34;&gt;3.1 node.js+git+hexo镜像
+&lt;/h3&gt;&lt;p&gt;其实这部分镜像做了两遍，第一遍直接拉的官方node镜像，然后发现ssh不好装，走了很多弯路，随着对docker了解的加深，最后我自己做了dockerfile重构了这部分镜像&lt;/p&gt;
+&lt;h4 id=&#34;311-dockerfile&#34;&gt;3.1.1 Dockerfile
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;dockerfileV02（可以没有后缀）&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#这个包将包含：node-v29.5.0  git ssh hexo
+#hexo环境目录/hexo/Winblog
+FROM debian:stable-slim
+LABEL maintainer=&amp;quot;winotmk&amp;quot; web=&amp;quot;md.winotmk.com&amp;quot; Ver=&amp;quot;02&amp;quot;
+#ADD有自动解压功能
+ADD node-v20.5.0-linux-x64.tar.xz /
+    #移动node二进制文件到目录
+RUN mkdir -p /usr/local/nodejs &amp;amp;&amp;amp;\
+    mv node-v20.5.0-linux-x64 /usr/local/nodejs &amp;amp;&amp;amp;\
+    #mk hexo目录
+    mkdir -p /hexo/Winblog &amp;amp;&amp;amp;\
+    apt-get update &amp;amp;&amp;amp;\
+    #安装SSH 安装GIT
+    apt-get install -y --no-install-recommends openssh-server git-core &amp;amp;&amp;amp;\
+    apt-get autoremove -y &amp;amp;&amp;amp;\
+    apt-get clean
+#node和npm环境变量
+ENV PATH=&amp;quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&amp;quot;
+#安装hexo
+WORKDIR /hexo/Winblog
+RUN npm install -g hexo-cli
+#hexo环境变量
+ENV PATH=&amp;quot;$PATH:/hexo/Winblog/node_modules/.bin&amp;quot;
+#更新ssh设置
+COPY sshd_config /etc/ssh/
+#环境变量设置
+COPY .profile /root/
+#设置启动脚本
+COPY hexo_debian_service_start.sh /service_start.sh
+CMD [&amp;quot;/bin/bash&amp;quot;,&amp;quot;/service_start.sh&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基本上都是些安装命令以及配置环境变量
+安装了&lt;code&gt;hexo&lt;/code&gt;,&lt;code&gt;git&lt;/code&gt;,&lt;code&gt;ssh&lt;/code&gt;,&lt;code&gt;node&lt;/code&gt;
+这是优化过了的第二版，主要是第二版使用了&lt;code&gt;ADD&lt;/code&gt;，它基本和&lt;code&gt;COPY&lt;/code&gt;一样，都可以把某个构建目录下的文件打入正在生成的镜像里，但当用ADD在执行 &amp;lt;源文件&amp;gt; 为 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，会自动复制并解压到 &amp;lt;目标路径&amp;gt;。说白了ADD会帮我自动解压
+在这里我还设置了ssh（但是没有配置root密码）&lt;/p&gt;
+&lt;p&gt;而我的第一版开头：
+&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;dockerfileV01&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM debian:stable-slim
+
+COPY node-v20.5.0-linux-x64.tar.xz /node-v20.5.0-linux-x64.tar.xz
+RUN apt-get update &amp;amp;&amp;amp;\
+    apt-get install -y xz-utils --no-install-recommends &amp;amp;&amp;amp;\
+    tar -xvf node-v20.5.0-linux-x64.tar.xz &amp;amp;&amp;amp;\
+    mkdir -p /usr/local/nodejs &amp;amp;&amp;amp;\
+    mv node-v20.5.0-linux-x64 /usr/local/nodejs &amp;amp;&amp;amp;\
+    #删除xz包
+    apt-get purge -y xz-utils &amp;amp;&amp;amp; \
+    apt-get autoremove -y &amp;amp;&amp;amp; \
+    apt-get clean &amp;amp;&amp;amp; \
+    #删除node-v20.5.0-linux-x64.tar.xz包
+    rm node-v20.5.0-linux-x64.tar.xz
+
+#node和npm环境变量
+ENV PATH=&amp;quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当时不知道&lt;code&gt;ADD&lt;/code&gt;的功能，使用 &lt;code&gt;COPY&lt;/code&gt;拷贝整个.tar.xz包结果debian还没有.xz包解压功能，需要安装&lt;code&gt;xz-utils&lt;/code&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/weixin_43502175/article/details/129547250&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;详见&lt;/a&gt;，凭空多出好几行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么要用二进制包安装呢node.js呢？&lt;/strong&gt;
+因为实测如果用&lt;code&gt;apt-get install nodejs&lt;/code&gt;安装，
+或者&lt;code&gt;curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &amp;amp;&amp;amp;\ apt-get install -y nodejs&lt;/code&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/nodesource/distributions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;命令出处&lt;/a&gt;，
+安装出来镜像体积就是会楞大出好几百MB&lt;/p&gt;
+&lt;h4 id=&#34;312-nodejsgithexo镜像copy的文件&#34;&gt;3.1.2 node.js+git+hexo镜像COPY的文件
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;.profile&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ &amp;quot;$BASH&amp;quot; ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n 2&amp;gt; /dev/null || true
+
+export PATH=&amp;quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&amp;quot;
+export PATH=&amp;quot;$PATH:/hexo/Winblog/node_modules/.bin&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;为了防止镜像上云后莫名其妙的原因导致环境变量出问题，脚本里再跑一遍，这俩&lt;code&gt;export PATH&lt;/code&gt;其实dockerfile里设置过&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sshd_config是什么&lt;/strong&gt;
+ssh的设置
+参考：https://blog.csdn.net/weixin_34910922/article/details/125193597
+主要改了两条&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#vim /etc/ssh/sshd_config
+PermitRootLogin yes #root登陆权限
+PasswordAuthentication yes #密码权限
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;等于我们预先改好了配置文件，在构建的时候再把配置放入容器里面&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;hexo_debian_service_start.sh&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+. ~/.profile
+LOGTIME=$(date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;)
+echo &amp;quot;[$LOGTIME] startup run...&amp;quot; &amp;gt;&amp;gt;/start_ssh.log
+service ssh start &amp;gt;&amp;gt;/start_ssh.log
+tail -f /start_ssh.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动脚本，主要启动了ssh服务，并且用&lt;code&gt;tail -f&lt;/code&gt;让这个容器一直运行以方便我们来连接&lt;/p&gt;
+&lt;h4 id=&#34;313-开始构建镜像&#34;&gt;3.1.3 开始构建镜像
+&lt;/h4&gt;&lt;p&gt;先&lt;code&gt;CD&lt;/code&gt;到Dockerfile所在的目录
+&lt;img src=&#34;http://localhost:1313/images/20230829135356.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker build -t hexo_debian:V02 -f dockerfileV02 .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;格式是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker build -t 镜像名:tag -f Dockerfile文件名 .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意&lt;code&gt;.&lt;/code&gt;不要落下！&lt;/p&gt;
+&lt;p&gt;这样我们的镜像就做好了！&lt;/p&gt;
+&lt;p&gt;本节参考资料：
+二进制手动安装node参考：
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/nodejs/help/wiki/Installation&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/nodejs/help/wiki/Installation&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_13460811/4901015&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.51cto.com/u_13460811/4901015&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一些关于dockerfile指令的说明：
+较详细： &lt;a class=&#34;link&#34; href=&#34;https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_35528657/article/details/127244194&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/qq_35528657/article/details/127244194&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.runoob.com/docker/docker-dockerfile.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.runoob.com/docker/docker-dockerfile.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在dockerfile里用apt-get包管理的建议：
+&lt;a class=&#34;link&#34; href=&#34;https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.metricfire.com/blog/how-to-build-optimal-docker-images/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.metricfire.com/blog/how-to-build-optimal-docker-images/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;hexo所需环境安装说明：
+&lt;a class=&#34;link&#34; href=&#34;https://hexo.io/zh-cn/docs/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hexo.io/zh-cn/docs/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;314-测试镜像功能&#34;&gt;3.1.4 测试镜像功能
+&lt;/h4&gt;&lt;p&gt;来启个容器试试！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -it -d -p 22:22 --name hexo_debian hexo_debian:V02
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里开放了22端口来方便验证ssh服务和登录ssh没有问题
+启动成功！
+容器内执行来验证服务状态都正常：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh
+node -v
+git -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出：
+&lt;img src=&#34;http://localhost:1313/images/20230829124045.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+可以看见一切正常！&lt;/p&gt;
+&lt;h4 id=&#34;315-设置和再打包镜像&#34;&gt;3.1.5 设置和再打包镜像
+&lt;/h4&gt;&lt;h5 id=&#34;设置&#34;&gt;设置
+&lt;/h5&gt;&lt;p&gt;毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再&lt;code&gt;commit&lt;/code&gt;为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢
+接下来设置root密码和重启ssh服务
+&lt;img src=&#34;http://localhost:1313/images/20230829124114.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;passwd root
+#然后敲自己设置的密码
+service ssh restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;尝试使用PuTTY进行SSH &lt;a class=&#34;link&#34; href=&#34;mailto:root@127.0.0.1&#34; &gt;root@127.0.0.1&lt;/a&gt;登录：
+&lt;img src=&#34;http://localhost:1313/images/20230829123658.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+成功!!!
+接下来配置git和ssh，要生成新的ssh公钥
+详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+&lt;img src=&#34;http://localhost:1313/images/20230829124332.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;github邮箱@qq.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到密钥默认在&lt;code&gt;/root/.ssh/id_ed25519.pub&lt;/code&gt;
+&lt;img src=&#34;http://localhost:1313/images/20230829124753.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+在Github的头像点Setting然后点右上角击&lt;strong&gt;New SSH key&lt;/strong&gt;，把id_ed25519.pub内容粘贴进即可！
+测试SSH连接：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829125208.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+这样就连上了！
+需要进行一个小设置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global user.email &amp;quot;you@example.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样以后使用&lt;code&gt;hexo d&lt;/code&gt;的时候就能无脑部署了&lt;/p&gt;
+&lt;h5 id=&#34;再打包&#34;&gt;再打包
+&lt;/h5&gt;&lt;p&gt;为了存下我们配置好的连接，制作成最终镜像方便eci云上调用，把现有容器再commit一次&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker commit hexo_debian hexo_debian:V02-configured
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;成了！得到了&lt;code&gt;hexo_debian:V02-configured&lt;/code&gt;作为我最后准备上传至ECI云的镜像&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;316-附一些命令参考&#34;&gt;3.1.6 附一些命令参考
+&lt;/h4&gt;&lt;h5 id=&#34;如何用ssh连接-docker-容器&#34;&gt;如何用ssh连接 docker 容器
+&lt;/h5&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/weixin_34910922/article/details/125193597&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/weixin_34910922/article/details/125193597&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1.修改root密码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ passwd root
+输入密码：123456(自己决定)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.安装Openssh&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get update # 更新源
+sudo apt-get upgrade # 更新系统软件
+apt-get install -y openssh-server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3.修改ssh配置,允许root登录
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/weixin_43343144/article/details/102494830&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/weixin_43343144/article/details/102494830&lt;/a&gt;
+&lt;strong&gt;【非常重要】在/etc/ssh/ssh_config中没有PermitRootLogin yes选项的话，就要在sshd_config文件中寻找！&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/ssh/sshd_config
+PermitRootLogin yes #root登陆权限
+PasswordAuthentication yes #密码权限
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;4.启动ssh服务/重启服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;service ssh start
+service ssh restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;安装hexo&#34;&gt;安装hexo
+&lt;/h5&gt;&lt;pre&gt;&lt;code&gt;npm install hexo-cli -g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;ssh远程登录这个镜像&#34;&gt;SSH远程登录这个镜像
+&lt;/h5&gt;&lt;p&gt;之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧
+打开Workbench远程连接，启动ssh
+由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录
+&lt;img src=&#34;http://localhost:1313/images/20230811153438.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+使用PuTTY工具登录成功！！
+&lt;img src=&#34;http://localhost:1313/images/20230811153400.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+多么令人振奋的一刻&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;32-vsftpd镜像&#34;&gt;3.2 vsftpd镜像
+&lt;/h3&gt;&lt;p&gt;这个镜像比较简单，只跑ftp服务，主要在写作的时候方便上传图片&lt;/p&gt;
+&lt;h4 id=&#34;321-dockerfile&#34;&gt;3.2.1 Dockerfile
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;vsftpd_dockerfileV01&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#这个包将包含：vsftp（root登录）
+FROM debian:stable-slim
+LABEL maintainer=&amp;quot;winotmk&amp;quot; web=&amp;quot;md.winotmk.com&amp;quot; Ver=&amp;quot;01&amp;quot;
+RUN apt-get update &amp;amp;&amp;amp;\
+    apt-get install -y vsftpd --no-install-recommends &amp;amp;&amp;amp;\
+    apt-get autoremove -y &amp;amp;&amp;amp;\
+    apt-get clean &amp;amp;&amp;amp;\
+    echo &amp;quot;root:yourpasswd&amp;quot; | chpasswd
+COPY ftpusers /etc/
+COPY vsftpd.conf /etc/
+COPY service_start.sh /service_start.sh
+CMD [&amp;quot;/bin/bash&amp;quot;,&amp;quot;/service_start.sh&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;比较简单的dockerfile，就装了个vsftpd服务，然后拷贝了一些设置文件
+如果要在dockerfile里配置用户密码可以这么写：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;root:yourpasswd&amp;quot; | chpasswd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;322-vsftpd镜像copy的文件&#34;&gt;3.2.2 vsftpd镜像COPY的文件
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;service_start.sh&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+LOGTIME=$(date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;)
+echo &amp;quot;[$LOGTIME] startup run...&amp;quot; &amp;gt;&amp;gt;/start_vsftpd.log
+service vsftpd start &amp;gt;&amp;gt;/start_vsftpd.log
+tail -f /start_vsftpd.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;简单的服务启动脚本，使用&lt;code&gt;tail -f&lt;/code&gt;来维持住进程&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;ftpusers&lt;/strong&gt;
+&lt;code&gt;root&lt;/code&gt;前加个&lt;code&gt;#&lt;/code&gt;以启用root登录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# /etc/ftpusers: list of users disallowed FTP access. See ftpusers(5).
+
+#root
+daemon
+bin
+sys
+sync
+games
+man
+lp
+mail
+news
+uucp
+nobody
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;vsftpd.conf&lt;/strong&gt;
+ftp设置文件，这个文件内容很多只些下修改的部分&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;listen=NO
+listen_ipv6=YES
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+dirmessage_enable=YES
+use_localtime=YES
+connect_from_port_20=YES
+pam_service_name=vsftpd
+utf8_filesystem=YES
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;*关于修改vsftpd的端口
+&lt;a class=&#34;link&#34; href=&#34;https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port&lt;/a&gt;
+&lt;code&gt;vsftpd.conf&lt;/code&gt;里的设置不是完全设置，可以自己增加字段&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;listen_port=234
+ftp_data_port=235
+pasv_min_port=30000
+pasv_max_port=31000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来设置端口
+注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧&lt;/p&gt;
+&lt;p&gt;*这里遇到过一个小坑坑
+&lt;img src=&#34;http://localhost:1313/images/20230829155702.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+构建器报错，一直卡在&lt;code&gt;Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).&lt;/code&gt;
+&lt;img src=&#34;http://localhost:1313/images/20230829155358.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+自己在容器内运行&lt;code&gt;service vsftpd start&lt;/code&gt;的时候同样如此，一般这样是因为&lt;code&gt;vsftpd.conf&lt;/code&gt;文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把&lt;code&gt;vsftpd.conf&lt;/code&gt;打开再保存一下就可以成功运行&lt;code&gt;service vsftpd start&lt;/code&gt;
+我发现这个文件的格式是UTF-8 CRLF
+&lt;img src=&#34;http://localhost:1313/images/20230829155602.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+修改为LF
+&lt;img src=&#34;http://localhost:1313/images/20230829155623.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+即可顺利启动vsftpd服务&lt;/p&gt;
+&lt;p&gt;参考：
+&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/Dreamcho/p/10805690.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/Dreamcho/p/10805690.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果要在dockerfile里加用户：
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/u010275850/article/details/120587850&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/u010275850/article/details/120587850&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;33-ddns镜像&#34;&gt;3.3 ddns镜像
+&lt;/h3&gt;&lt;p&gt;这个镜像更简单？只在启动的时候跑一个ddns
+但是我却在这里卡了很久
+原因之一是因为一开始选用的ddns软件本地跑得好好的，在阿里云上总是报错，log显示已经修改了a记录但是自己去一看啥也没有，很是困惑，所以换了个软件实现
+最开始使用的是这个软件，配置方便
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/NewFuture/DDNS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/NewFuture/DDNS&lt;/a&gt;
+参考：
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/biao0309/article/details/117202951&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/biao0309/article/details/117202951&lt;/a&gt;
+无奈阿里云上即便是用官方提供的镜像&lt;code&gt;newfuture/ddns&lt;/code&gt;也会报错（恼&lt;/p&gt;
+&lt;p&gt;所以我改用ddns-go:
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/jeessy2/ddns-go&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/jeessy2/ddns-go&lt;/a&gt;
+先贴上官方镜像的层：
+&lt;strong&gt;jeessy/ddns-go&lt;/strong&gt;
+&lt;img src=&#34;http://localhost:1313/images/20230904184205.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+我们的新镜像将基于官方镜像来做&lt;/p&gt;
+&lt;h4 id=&#34;331-dockerfile&#34;&gt;3.3.1 dockerfile
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;ddns-go_dockerfileV01&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM jeessy/ddns-go
+LABEL maintainer=&amp;quot;winotmk&amp;quot; web=&amp;quot;md.winotmk.com&amp;quot; Ver=&amp;quot;01&amp;quot;
+COPY ddns_start.sh /
+COPY ddns_go_config.yaml /
+ENV DDNS_URL=
+ENTRYPOINT [ &amp;quot;sh&amp;quot;,&amp;quot;/ddns_start.sh&amp;quot; ]
+CMD [ &amp;quot;&amp;quot; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里做了一个变量&lt;code&gt;$DDNS_URL&lt;/code&gt;来定义我想要dns的域名(当然这个域名我得拥有)
+ENTRYPOINT和CMD的设置会覆盖掉的之前镜像内的设置
+我不确定CMD [ &amp;quot;&amp;quot; ]是否有必要，但总之我想使官方镜像里的CMD失效，从结果上来看管用&lt;/p&gt;
+&lt;h4 id=&#34;332-ddns镜像copy的文件&#34;&gt;3.3.2 ddns镜像COPY的文件
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;ddns_go_config.yaml&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dnsconf:
+    - ipv4:
+        enable: true
+        gettype: url
+        url: https://myip4.ipip.net,https://ddns.oray.com/checkip,https://ip.3322.net,https://4.ipw.cn
+        netinterface: &amp;quot;&amp;quot;
+        cmd: &amp;quot;&amp;quot;
+        domains:
+            - null.winotmk.com
+      ipv6:
+        enable: false
+        gettype: netInterface
+        url: https://speed.neu6.edu.cn/getIP.php,https://v6.ident.me,https://6.ipw.cn
+        netinterface: &amp;quot;&amp;quot;
+        cmd: &amp;quot;&amp;quot;
+        ipv6reg: &amp;quot;&amp;quot;
+        domains:
+            - &amp;quot;&amp;quot;
+      dns:
+        name: alidns
+        id: 阿里云的AccessKey ID
+        secret: 阿里云的AccessKey secret
+      ttl: &amp;quot;&amp;quot;
+user:
+    username: &amp;quot;&amp;quot;
+    password: &amp;quot;&amp;quot;
+webhook:
+    webhookurl: &amp;quot;&amp;quot;
+    webhookrequestbody: &amp;quot;&amp;quot;
+    webhookheaders: &amp;quot;&amp;quot;
+notallowwanaccess: true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个是ddns-go的配置文件，第一次启动会在本地:9876打开个web界面，保存设置后会在root中生成这个文件，这里我直接引入这个文件是希望后面能用&lt;code&gt;sed&lt;/code&gt;命令对文件的&lt;code&gt;domains&lt;/code&gt;字段进行修改&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;ddns_start.sh&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+LOGTIME=$(date &amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;)
+echo &amp;quot;[$LOGTIME] startup run...&amp;quot; &amp;gt;&amp;gt;/start_ddns.log
+cd /
+if [ &amp;quot;$DDNS_URL&amp;quot; = &amp;quot;&amp;quot; ]  
+then  
+    echo &amp;quot;DDNS_URL is not set!&amp;quot; &amp;gt;&amp;gt;/start_ddns.log 
+    tail -f /start_ddns.log 
+else    
+    sed -i &amp;quot;s/null.winotmk.com/$DDNS_URL/g&amp;quot; ddns_go_config.yaml
+    #chmod 777 ddns_go_config.yaml
+    sleep 3
+    /app/ddns-go -l :9876 -f 300 -c /ddns_go_config.yaml
+    echo &amp;quot;已执行更新[$DDNS_URL]解析&amp;quot; &amp;gt;&amp;gt;/start_ddns.log
+    tail -f /start_ddns.log
+fi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这个脚本里会判断&lt;code&gt;$DDNS_URL&lt;/code&gt;是否为空，空的话直接输出需要&lt;code&gt;$DDNS_URL&lt;/code&gt;设置
+如果不为空的话会通过&lt;code&gt;sed&lt;/code&gt;替换字符，这里设置文件内默认写得是&lt;code&gt;null.winotmk.com&lt;/code&gt;
+用这种方式去直接修改设置文件，是因为我没找到这个软件是否能直接用环境变量来定义解析到的域名&lt;/p&gt;
+&lt;p&gt;关于用sed替换congif.json设置内的字段：
+如何使用sed:
+&lt;a class=&#34;link&#34; href=&#34;https://linux.cn/article-11367-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://linux.cn/article-11367-1.html&lt;/a&gt;
+如何在sed命令内使用变量
+&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/muahao/p/6874412.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/muahao/p/6874412.html&lt;/a&gt;
+判断变量是否为空的方法：
+&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1721905&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cloud.tencent.com/developer/article/1721905&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-docker镜像打包并上传到阿里云镜像库ark&#34;&gt;4 docker镜像打包并上传到阿里云镜像库ARK
+&lt;/h2&gt;&lt;p&gt;将自己的镜像上传至阿里云：
+阿里云提供容器镜像服务，我自己玩开通个人实例即可
+&lt;a class=&#34;link&#34; href=&#34;https://cr.console.aliyun.com/cn-shanghai/instances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cr.console.aliyun.com/cn-shanghai/instances&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811150239.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;建立一个自己的仓库，然后就能看到示例说明，我们就能把自己的镜像上传了&lt;/p&gt;
+&lt;h3 id=&#34;41-将镜像推送到registry&#34;&gt;4.1 将镜像推送到Registry
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ docker login --username=*****@qq.com registry.cn-shanghai.aliyuncs.com
+$ docker tag [ImageId] registry.cn-shanghai.aliyuncs.com/******:[镜像版本号]
+$ docker push registry.cn-shanghai.aliyuncs.com/******:[镜像版本号]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;tag&lt;/code&gt;是类似复制一份且重命名镜像，&lt;code&gt;push&lt;/code&gt;是上传（不知道为什么要重命名&lt;/p&gt;
+&lt;p&gt;针对上面的3个镜像，分别是：&lt;code&gt;node.js+git+hexo&lt;/code&gt;,&lt;code&gt;vsftpd&lt;/code&gt;,&lt;code&gt;ddns-go&lt;/code&gt;
+我分别tag成了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;registry-vpc.cn-shanghai.aliyuncs.com/******:debian_V02_configured #应该写成:hexo_debian_V02_configured的，漏了。。算了
+registry-vpc.cn-shanghai.aliyuncs.com/******:vsftpd_debian_V01
+registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再分别&lt;code&gt;push&lt;/code&gt;即可&lt;/p&gt;
+&lt;h3 id=&#34;42-在阿里云上使用容器实例eci运行镜像&#34;&gt;4.2 在阿里云上使用容器实例（ECI）运行镜像
+&lt;/h3&gt;&lt;p&gt;阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&amp;gt;生成&amp;gt;部署&amp;gt;关闭的服务来说，花不了几毛钱&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811151948.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后就能看到我们上传的镜像
+&lt;img src=&#34;http://localhost:1313/images/20230811152250.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5-eci容器创建模板和eci命令行工具使用&#34;&gt;5 eci容器创建模板和eci命令行工具使用
+&lt;/h2&gt;&lt;p&gt;参考文章这两篇足够:
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md&lt;/a&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://help.aliyun.com/document_detail/186961.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://help.aliyun.com/document_detail/186961.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;51-eci简介&#34;&gt;5.1 eci简介
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.aliyun.com/product/eci&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.aliyun.com/product/eci&lt;/a&gt;
+ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 服务器，只需要提供打包好的镜像，即可运行容器，与阿里云容器服务无缝对接并仅为容器实际运行消耗的资源付费。&lt;/p&gt;
+&lt;p&gt;博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECI价格计算附表&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;52-用模板创建eci&#34;&gt;5.2 用模板创建eci
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230907171351.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+询问过阿里云客服，说在web控制面版里的这个功能已经下线了
+不过没关系，我们还有命令行工具！
+安装：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo bash -c &amp;quot;$(curl -s https://eci-docs.oss-cn-beijing.aliyuncs.com/eci-client/1.0/install.sh)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后配置你的阿里云信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eci config set-context \
+--access-key-id **** \
+--access-secret **** \
+--region-id cn-shanghai \
+--security-group-id sg-**** \
+--v-switch-id vsw-****
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要指定自己的&lt;code&gt;access-key-id&lt;/code&gt;和&lt;code&gt;access-secret&lt;/code&gt;，地区以及安全组和虚拟交换机
+建议这些东西在web上的控制台里准备好，会直观很多&lt;/p&gt;
+&lt;p&gt;然后就可以直接创建一个容器了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eci run -n myeci centos:7 sleep 3600
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;指令很像&lt;code&gt;docker run&lt;/code&gt;喝！很好，很有精神&lt;/p&gt;
+&lt;p&gt;我们还可以编写yaml模板文件
+然后执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eci run -f eci.yaml -w 20
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要注意的事，如果使用了&lt;code&gt;-f xxxx.yaml&lt;/code&gt;模板文件，除了-f和-w选项以外，其他选项都将被忽略，因为这些选项都是针对实例中某个容器的，如果模板中定义了多个容器，ECI将不知道这些选项应该作用于哪个容器
+那么我自己的启动模板是这样的：
+&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;hexo_debian_eci.yaml&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ContainerGroupName: eci-hexo
+Cpu: &amp;quot;0.5&amp;quot;
+Memory: &amp;quot;1&amp;quot;
+Container:
+- Name: hexo
+  Image: registry-vpc.cn-shanghai.aliyuncs.com/****:debian_V02_configured
+  Command: [&amp;quot;/bin/bash&amp;quot;,&amp;quot;/service_start.sh&amp;quot;]
+  ImagePullPolicy: IfNotPresent
+  Cpu: &amp;quot;0.5&amp;quot;
+  Memory: &amp;quot;1&amp;quot;
+  VolumeMount:
+  - Name: hexo
+    MountPath: /hexo
+    ReadOnly: false
+- Name: vsftpd
+  Image: registry-vpc.cn-shanghai.aliyuncs.com/****:vsftpd_debian_V01
+  Command: [&amp;quot;/bin/bash&amp;quot;,&amp;quot;/service_start.sh&amp;quot;]
+  ImagePullPolicy: IfNotPresent
+  VolumeMount:
+  - Name: hexo
+    MountPath: /hexo
+    ReadOnly: false
+- Name: ddns
+  Image: registry-vpc.cn-shanghai.aliyuncs.com/****:ddns_go_V01
+  ImagePullPolicy: IfNotPresent
+  EnvironmentVar:
+  - FieldRefFieldPath: &amp;quot;&amp;quot;
+    Key: DDNS_URL
+    Value: mdwrite.winotmk.com
+Volume:
+- Name: hexo
+  Type: NFSVolume
+  NFSVolume:
+    Server: ****.cn-shanghai.nas.aliyuncs.com
+    Path: /
+    ReadOnly: false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;是不是挺像&lt;code&gt;docker compose&lt;/code&gt;~&lt;/p&gt;
+&lt;p&gt;cpu只给了0.5,Memory 1G，足够了，之前这套可是在树莓派3B上跑得溜溜得呢
+对于阿里云ECI，CPU和Memory直接和成本挂钩，能少就少吧&lt;/p&gt;
+&lt;p&gt;这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns
+&lt;code&gt;Command:&lt;/code&gt;写法目测类似dockerfile里的&lt;code&gt;CMD&lt;/code&gt;，我习惯做好启动sh脚本就是为了方便这里再调用
+最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录
+&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+然后把它挂到hexo和ftp镜像上就好了&lt;/p&gt;
+&lt;p&gt;值得一提的是ddns镜像还写了个环境变量&lt;code&gt;DDNS_URL&lt;/code&gt;值为&lt;code&gt;mdwrite.winotmk.com&lt;/code&gt;，这会修改&lt;code&gt;ddns-go&lt;/code&gt;的解析配置&lt;/p&gt;
+&lt;p&gt;然后执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eci run -f hexo_debian_eci.yaml -w 20
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！
+&lt;img src=&#34;http://localhost:1313/images/20230907174209.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;6-hexo本地编辑环境设置如何用vscode舒服的写md文档&#34;&gt;6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
+&lt;/h2&gt;&lt;h3 id=&#34;61-vscodessh-fs插件配置&#34;&gt;6.1 VSCodeSSH FS插件配置
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908113634.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便
+&lt;img src=&#34;http://localhost:1313/images/20230908113824.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+这里可以看到&lt;code&gt;/root/hexo/Winblog&lt;/code&gt;目录下是我挂载的阿里云NAS网盘了&lt;/p&gt;
+&lt;h3 id=&#34;62-markdown-paste插件配置&#34;&gt;6.2 Markdown Paste插件配置
+&lt;/h3&gt;&lt;p&gt;一个很方便的在VScode里直接粘图的插件&lt;/p&gt;
+&lt;h4 id=&#34;配置&#34;&gt;配置：
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908114845.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+会用时间来命名图片
+然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908115038.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后文件》首选项》键盘快捷方式
+&lt;img src=&#34;http://localhost:1313/images/20230908115303.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+我将快捷键设置为&lt;code&gt;ctrl+alt+a&lt;/code&gt;
+配置完成！&lt;/p&gt;
+&lt;h4 id=&#34;使用&#34;&gt;使用：
+&lt;/h4&gt;&lt;p&gt;截图我习惯用Sinpaste，按F1就能截图
+&lt;img src=&#34;http://localhost:1313/images/20230908115743.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+然后点右下角复制按钮
+在VScode的markdown文档里&lt;code&gt;ctrl+alt+a&lt;/code&gt;就能粘图了！
+&lt;img src=&#34;http://localhost:1313/images/20230908113947.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+图片文件会自动保存!&lt;/p&gt;
+&lt;h3 id=&#34;62-vscode的sftp插件配置&#34;&gt;6.2 VSCode的SFTP插件配置
+&lt;/h3&gt;&lt;p&gt;先把images文件夹单独放到工作区里
+然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令
+sftp.json目录下会出现一个名为的基本配置文件.vscode
+&lt;img src=&#34;http://localhost:1313/images/20230908121346.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+然后编辑
+&lt;strong&gt;&lt;i class=&#34;fas fa-file&#34;&gt;&lt;/i&gt;sftp.json&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;Hexo_images&amp;quot;,
+    &amp;quot;host&amp;quot;: &amp;quot;mdwrite.winotmk.com&amp;quot;,
+    &amp;quot;protocol&amp;quot;: &amp;quot;ftp&amp;quot;,
+    &amp;quot;port&amp;quot;: 21,
+    &amp;quot;username&amp;quot;: &amp;quot;root&amp;quot;,
+    &amp;quot;password&amp;quot;: &amp;quot;****&amp;quot;,
+    &amp;quot;remotePath&amp;quot;: &amp;quot;/hexo/Winblog/source/images&amp;quot;,
+    &amp;quot;useTempFile&amp;quot;: false,
+    &amp;quot;openSsh&amp;quot;: false,
+    &amp;quot;uploadOnSave&amp;quot;: false, 
+    &amp;quot;watcher&amp;quot;: {
+      &amp;quot;files&amp;quot;: &amp;quot;**/*&amp;quot;,
+      &amp;quot;autoUpload&amp;quot;: true,
+      &amp;quot;autoDelete&amp;quot;: true
+    },
+    &amp;quot;syncOption&amp;quot;: {
+      &amp;quot;delete&amp;quot;: true
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;watcher&amp;quot;&lt;/code&gt;是用来设置自动更新的
+这样我们在md里粘了图，就会自动上传到到ftp目录上&lt;/p&gt;
+&lt;p&gt;参考：
+&lt;a class=&#34;link&#34; href=&#34;https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer&lt;/a&gt;
+开启watcher模式，实现增加文件时自动上传目录同步
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>next主题增加近期文章侧边栏</title>
+        <link>http://localhost:1313/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</link>
+        <pubDate>Thu, 27 Jul 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</guid>
+        <description>&lt;h2 id=&#34;边栏显示文章列表效果&#34;&gt;边栏显示文章列表效果
+&lt;/h2&gt;&lt;p&gt;我还奇怪next没用提供这样的功能，文章一多一篇篇翻实在是累，还好找到了有人实现最近文章的功能，那么做文章列表也就同理了
+&lt;img src=&#34;http://localhost:1313/images/20230727113321.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
 我修改过的代码
 首先是：&lt;/p&gt;
-&lt;h3 id=&#34;sidebarnjk&#34;&gt;sidebar.njk&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;/hexo-theme-next/layout/_macro/sidebar.njk&lt;/code&gt;
+&lt;h3 id=&#34;sidebarnjk&#34;&gt;sidebar.njk
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;/hexo-theme-next/layout/_macro/sidebar.njk&lt;/code&gt;
 在最后一个&lt;code&gt;{% endif %}&lt;/code&gt;后面加入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;      {% if theme.recent_posts.enable %}
-          &amp;lt;div class=&amp;#34;links-of-blogroll&amp;#34; style=&amp;#34;margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;&amp;#34;&amp;gt;
-            &amp;lt;div class=&amp;#34;links-of-blogroll-title&amp;#34; style=&amp;#34;padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;&amp;#34;&amp;gt;
+&lt;pre&gt;&lt;code&gt;      {% if theme.recent_posts.enable %}
+          &amp;lt;div class=&amp;quot;links-of-blogroll&amp;quot; style=&amp;quot;margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;quot;links-of-blogroll-title&amp;quot; style=&amp;quot;padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;&amp;quot;&amp;gt;
           &amp;lt;!-- 选择合适的icon --&amp;gt;
-          {%- if theme.recent_posts.icon %}&amp;lt;i class=&amp;#34;{{ theme.recent_posts.icon }}&amp;#34; aria-hidden=&amp;#34;true&amp;#34;&amp;gt;&amp;lt;/i&amp;gt;{%- endif %}
-              &amp;lt;b style=&amp;#34;font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;&amp;#34;&amp;gt;{{ theme.recent_posts.description }}&amp;lt;/b&amp;gt;
+          {%- if theme.recent_posts.icon %}&amp;lt;i class=&amp;quot;{{ theme.recent_posts.icon }}&amp;quot; aria-hidden=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;{%- endif %}
+              &amp;lt;b style=&amp;quot;font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;&amp;quot;&amp;gt;{{ theme.recent_posts.description }}&amp;lt;/b&amp;gt;
             &amp;lt;/div&amp;gt;
-            &amp;lt;ul class=&amp;#34;links-of-blogroll-list&amp;#34;&amp;gt;
+            &amp;lt;ul class=&amp;quot;links-of-blogroll-list&amp;quot;&amp;gt;
           &amp;lt;!-- 文章排序规格,-updated 按照文章更新时间倒排 --&amp;gt;
-              {% set posts = site.posts.sort(&amp;#39;-updated&amp;#39;).toArray() %}
+              {% set posts = site.posts.sort(&#39;-updated&#39;).toArray() %}
           &amp;lt;!-- 显示20数目的文章 --&amp;gt;
-              {% for post in posts.slice(&amp;#39;0&amp;#39;,&amp;#39;20&amp;#39;) %}
-                &amp;lt;li class=&amp;#34;postsSidebarNumb&amp;#34; style=&amp;#34;text-indent: -1em;&amp;#34;&amp;gt;
-                  &amp;lt;a href=&amp;#34;{{ url_for(post.path) }}&amp;#34; title=&amp;#34;{{ post.title }}&amp;#34; target=&amp;#34;_blank&amp;#34;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
+              {% for post in posts.slice(&#39;0&#39;,&#39;20&#39;) %}
+                &amp;lt;li class=&amp;quot;postsSidebarNumb&amp;quot; style=&amp;quot;text-indent: -1em;&amp;quot;&amp;gt;
+                  &amp;lt;a href=&amp;quot;{{ url_for(post.path) }}&amp;quot; title=&amp;quot;{{ post.title }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
                 &amp;lt;/li&amp;gt;
               {% endfor %}
             &amp;lt;/ul&amp;gt;
           &amp;lt;/div&amp;gt;
       {% endif %}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;出于美观我把一些css代码内嵌进去了其实不推荐这样做（寄&lt;/p&gt;</description>
-    </item>
-  </channel>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;出于美观我把一些css代码内嵌进去了其实不推荐这样做（寄&lt;/p&gt;
+&lt;h3 id=&#34;_configyml&#34;&gt;_config.yml
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;/hexo-theme-next/_config.yml&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 近期文章配置  
+recent_posts:
+  enable: true
+  icon: fab fa-markdown
+  description: 文章列表
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;mainstyl&#34;&gt;main.styl
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;/hexo-theme-next/source/css/main.styl&lt;/code&gt;
+是因为我想给文章列表加上计数，直接在css里用伪类做（要不是伪类不能html内嵌写进去我也不写这里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//侧边栏计数伪类
+body {
+counter-reset: postsSidebarNumbsection; 
+}
+
+.postsSidebarNumb::before {
+  counter-increment: postsSidebarNumbsection;
+  content: counter(postsSidebarNumbsection) &amp;quot;: &amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;一些搜集资料&#34;&gt;一些搜集资料
+&lt;/h2&gt;&lt;p&gt;ps在查找的过程中发现提到这些的多半是next主题，而且别人的next主题都挺有意思的啊想搬！（爬&lt;/p&gt;
+&lt;h3 id=&#34;资料01hexo博客7给next主题添加最新文章模块&#34;&gt;资料01：Hexo博客：(7)给NexT主题添加最新文章模块
+&lt;/h3&gt;&lt;p&gt;首先是这篇
+&lt;a class=&#34;link&#34; href=&#34;https://pickear.github.io/2020/04/12/Hexo%E5%8D%9A%E5%AE%A2%EF%BC%9A-7-%E7%BB%99NexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E6%A8%A1%E5%9D%97%20-%20%E5%89%AF%E6%9C%AC/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://pickear.github.io/2020/04/12&lt;/a&gt;
+提到了：
+next/layout/_macro/sidebar.swig ,这个负责渲染侧边栏。在sidebar.swig的if theme.links的end if后面添加以下代码:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% if theme.recent_posts %}
+&amp;lt;div class=&amp;quot;links-of-blogroll motion-element {{ &amp;quot;links-of-blogroll-&amp;quot; + theme.recent_posts_layout  }}&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;links-of-blogroll-title&amp;quot;&amp;gt;
+	&amp;lt;!-- modify icon to fire by szw --&amp;gt;
+	&amp;lt;i class=&amp;quot;fa fa-history fa-{{ theme.recent_posts_icon | lower }}&amp;quot; aria-hidden=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+	{{ theme.recent_posts_title }}
+  &amp;lt;/div&amp;gt;
+  &amp;lt;ul class=&amp;quot;links-of-blogroll-list&amp;quot;&amp;gt;
+	{% set posts = site.posts.sort(&#39;-date&#39;) %}
+	{% for post in posts.slice(&#39;0&#39;, &#39;5&#39;) %}
+	  &amp;lt;li&amp;gt;
+		&amp;lt;a href=&amp;quot;{{ url_for(post.path) }}&amp;quot; title=&amp;quot;{{ post.title }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
+	  &amp;lt;/li&amp;gt;
+	{% endfor %}
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后在NexT主题目录下的_config.yaml配置文件，添加下面配置:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;recent_posts_title: 最新文章
+recent_posts_layout: block
+recent_posts: true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然而实际效果是只会显示“最新文章”几个字
+&lt;img src=&#34;http://localhost:1313/images/20230727111720.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+查了得知&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NexT 的架構檔案格式從 swig 改成 njk，照著舊的文章貼上不會成功&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;资料02day33-hexo-x-next---顯示最新文章導入google-analytics-的坑&#34;&gt;资料02：[Day33] Hexo x NexT - 顯示最新文章、導入Google Analytics 的坑
+&lt;/h3&gt;&lt;p&gt;接着是这篇，感谢提到了next主题架构更变的问题
+&lt;a class=&#34;link&#34; href=&#34;https://ithelp.ithome.com.tw/articles/10283488?sc=iThomeR&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://ithelp.ithome.com.tw/articles/10283488?sc=iThomeR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;左側選單顯示最新文章&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;NexT 已經有 hexo-related-popular-posts 套件來顯示最新文章列表的功能，但是這個套件似乎沒辦法正常運作，網路上有不少教學文章，但是 NexT 的架構檔案格式從 swig 改成 njk，照著舊的文章貼上不會成功，設定步驟如下：&lt;/p&gt;
+&lt;p&gt;在 sidebar.njk 檔案裡面加入下段程式碼（跟 swig 版本就只差了一個 .toArray() ）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{%- if theme.recent_posts %}
+  &amp;lt;div class=&amp;quot;links-of-blogroll motion-element {{ &amp;quot;links-of-blogroll-&amp;quot; + theme.recent_posts_layout  }}&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;links-of-blogroll-title&amp;quot;&amp;gt;
+      &amp;lt;!-- 設定你要的fa fa icon--&amp;gt;
+      &amp;lt;i class=&amp;quot;fa fa-history fa-{{ theme.recent_posts_icon | lower }}&amp;quot; aria-hidden=&amp;quot;true&amp;quot; style=&amp;quot;margin: 1rem 0.25rem 0.5rem 0&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+      {{ theme.recent_posts_title }}
+  &amp;lt;/div&amp;gt;
+  &amp;lt;ul class=&amp;quot;links-of-blogroll-list&amp;quot;&amp;gt;
+      {%- set posts = site.posts.sort(&#39;-date&#39;) %}
+      {%- for post in posts.slice(&#39;0&#39;, &#39;5&#39;).toArray() %}
+      &amp;lt;li&amp;gt;
+          &amp;lt;a href=&amp;quot;{{ url_for(post.path) }}&amp;quot; title=&amp;quot;{{ post.title }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
+      &amp;lt;/li&amp;gt;
+      {%- endfor %}
+  &amp;lt;/ul&amp;gt;
+  &amp;lt;/div&amp;gt;
+  {%- endif %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;资料03-hexo-next-后续优化&#34;&gt;资料03: Hexo-NexT 后续优化
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.yileaf.com/posts/15baca53/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.yileaf.com/posts/15baca53/&lt;/a&gt;
+我最后使用的基本上参考了这篇的代码&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;侧边栏添加近期文章&lt;/em&gt;
+1.打开&lt;code&gt;blog\source\_data\sidebar.njk&lt;/code&gt;文件，加入以下代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% if theme.recent_posts.enable %}
+    &amp;lt;div class=&amp;quot;links-of-blogroll&amp;quot;&amp;gt;
+      &amp;lt;div class=&amp;quot;links-of-blogroll-title&amp;quot;&amp;gt;
+		&amp;lt;!-- 选择合适的icon --&amp;gt;
+		{%- if theme.recent_posts.icon %}&amp;lt;i class=&amp;quot;{{ theme.recent_posts.icon }}&amp;quot; aria-hidden=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;{%- endif %}
+        {{ theme.recent_posts.description }}
+      &amp;lt;/div&amp;gt;
+      &amp;lt;ul class=&amp;quot;links-of-blogroll-list&amp;quot;&amp;gt;
+		&amp;lt;!-- 文章排序规格,-updated 按照文章更新时间倒排 --&amp;gt;
+        {% set posts = site.posts.sort(&#39;-updated&#39;).toArray() %}
+		 &amp;lt;!-- 显示四条近期文章 --&amp;gt;
+        {% for post in posts.slice(&#39;0&#39;, &#39;4&#39;) %}
+          &amp;lt;li&amp;gt;
+            &amp;lt;a href=&amp;quot;{{ url_for(post.path) }}&amp;quot; title=&amp;quot;{{ post.title }}&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
+          &amp;lt;/li&amp;gt;
+        {% endfor %}
+      &amp;lt;/ul&amp;gt;
+    &amp;lt;/div&amp;gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.主题config.yml&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 近期文章配置  
+recent_posts:
+  enable: true
+  icon: fas fa-history
+  description: 近期文章
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+        
+    </channel>
 </rss>
