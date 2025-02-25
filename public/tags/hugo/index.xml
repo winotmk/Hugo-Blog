@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Hugo on WinNote</title>
-        <link>http://localhost:4420/tags/hugo/</link>
+        <link>http://localhost:1313/tags/hugo/</link>
         <description>Recent content in Hugo on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Mon, 24 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 24 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo安装和启用Stack主题</title>
-        <link>http://localhost:4420/posts/250224_hugo%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98/</link>
+        <link>http://localhost:1313/posts/250224_hugo%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98/</link>
         <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/250224_hugo%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98/</guid>
+        <guid>http://localhost:1313/posts/250224_hugo%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98/</guid>
         <description>&lt;h2 id=&#34;hugo安装与建立新网站&#34;&gt;Hugo安装与建立新网站
 &lt;/h2&gt;&lt;h3 id=&#34;配置环境变量&#34;&gt;配置环境变量
 &lt;/h3&gt;&lt;p&gt;在这里下载打包好的二进制文件，单文件很方便

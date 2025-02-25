@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>阿里云 on WinNote</title>
-        <link>http://localhost:4420/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+        <link>http://localhost:1313/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
         <description>Recent content in 阿里云 on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo_GithubAction自动部署到阿里云OSS</title>
-        <link>http://localhost:4420/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
+        <link>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
         <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
+        <guid>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
         <description>&lt;p&gt;整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事
 参考文章：
 &lt;a class=&#34;link&#34; href=&#34;https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -150,13 +150,13 @@ git commit -m &amp;quot;更新主题&amp;quot;
         </item>
         <item>
         <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
-        <link>http://localhost:4420/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
+        <link>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
         <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
+        <guid>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
         <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya
 &lt;/h2&gt;&lt;p&gt;镜像我这里选：
-&lt;img src=&#34;http://localhost:4420/images/20240110174810.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240110174810.png&#34;
 	
 	
 	
@@ -174,7 +174,7 @@ kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件
 在workspace根目录直接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git clone https://github.com/bmaltais/kohya_ss.git
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240110175054.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240110175054.png&#34;
 	
 	
 	
@@ -191,7 +191,7 @@ chmod +x ./setup.sh
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk
 之后安装脚本会自动完成，我大概花了5分钟
-&lt;img src=&#34;http://localhost:4420/images/20240110193312.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240110193312.png&#34;
 	
 	
 	
@@ -202,7 +202,7 @@ chmod +x ./setup.sh
 然后运行启动webui&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240111114153.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114153.png&#34;
 	
 	
 	
@@ -216,7 +216,7 @@ chmod +x ./setup.sh
     &gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数
 &lt;/h2&gt;&lt;h3 id=&#34;source-model&#34;&gt;source model
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240111114635.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114635.png&#34;
 	
 	
 	
@@ -229,7 +229,7 @@ chmod +x ./setup.sh
 &lt;/h3&gt;&lt;p&gt;这个tag里比较简单，没什么好说的
 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;
 &lt;h3 id=&#34;parameters&#34;&gt;parameters
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240111115115.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111115115.png&#34;
 	
 	
 	
@@ -243,7 +243,7 @@ Image folder里写上训练集目录，注意写上的目录底下应该是例�
 &lt;/h4&gt;&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用
 都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端
 这样就是开始训练了：
-&lt;img src=&#34;http://localhost:4420/images/20240111121059.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240111121059.png&#34;
 	
 	
 	
@@ -306,7 +306,7 @@ Traceback (most recent call last):
 cuda下载：https://developer.nvidia.com/cuda-downloads
 但是有时候需要特定版本：https://developer.nvidia.com/cuda-toolkit-archive
 以11.8为例，系统是ubuntu22.04，所以这样选：
-&lt;img src=&#34;http://localhost:4420/images/20240111133431.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240111133431.png&#34;
 	
 	
 	
@@ -320,7 +320,7 @@ wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/
 sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;大约3-4GB左右，运行后需要等一会，会弹出交互界面
-&lt;img src=&#34;http://localhost:4420/images/20240111135108.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240111135108.png&#34;
 	
 	
 	
@@ -333,7 +333,7 @@ sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54928967e417&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.jianshu.com/p/54928967e417&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;装好以后他会提示：
-&lt;img src=&#34;http://localhost:4420/images/20240111135653.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240111135653.png&#34;
 	
 	
 	
@@ -383,10 +383,10 @@ export BNB_CUDA_VERSION=117
         </item>
         <item>
         <title>Docker01.1_eci价格计算表</title>
-        <link>http://localhost:4420/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</link>
+        <link>http://localhost:1313/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</link>
         <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</guid>
+        <guid>http://localhost:1313/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/</guid>
         <description>&lt;p&gt;计费文档：
 &lt;a class=&#34;link&#34; href=&#34;https://help.aliyun.com/document_detail/447697.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://help.aliyun.com/document_detail/447697.html&lt;/a&gt;&lt;/p&gt;
@@ -503,10 +503,10 @@ export BNB_CUDA_VERSION=117
         </item>
         <item>
         <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
-        <link>http://localhost:4420/posts/docker01/</link>
+        <link>http://localhost:1313/posts/docker01/</link>
         <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/docker01/</guid>
+        <guid>http://localhost:1313/posts/docker01/</guid>
         <description>&lt;style type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;
 .nav-number { 
     display:none !important;
@@ -524,7 +524,7 @@ export BNB_CUDA_VERSION=117
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的
 最后成品的结构大致如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230829140549.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829140549.png&#34;
 	
 	
 	
@@ -541,7 +541,7 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 &lt;strong&gt;3.ddns&lt;/strong&gt;
 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像&lt;/p&gt;
 &lt;p&gt;还挂了一个NAS盘：
-&lt;img src=&#34;http://localhost:4420/images/20230829142400.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829142400.png&#34;
 	
 	
 	
@@ -550,7 +550,7 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 	
 &gt;
 挂载以后：
-&lt;img src=&#34;http://localhost:4420/images/20230829142501.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
 	
 	
 	
@@ -937,7 +937,7 @@ ENV PATH=&amp;quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&amp;quot;
     &gt;详见&lt;/a&gt;，凭空多出好几行&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;为什么要用二进制包安装呢node.js呢？&lt;/strong&gt;
 因为实测如果用&lt;code&gt;apt-get install nodejs&lt;/code&gt;安装，
-或者&lt;code&gt;curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &amp;amp;&amp;amp;\ apt-get install -y nodejs&lt;/code&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/nodesource/distributions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+或者&lt;code&gt;curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &amp;amp;&amp;amp;\ apt-get install -y nodejs&lt;/code&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/nodesource/distributions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;命令出处&lt;/a&gt;，
 安装出来镜像体积就是会楞大出好几百MB&lt;/p&gt;
 &lt;h4 id=&#34;312-nodejsgithexo镜像copy的文件&#34;&gt;3.1.2 node.js+git+hexo镜像COPY的文件
@@ -976,7 +976,7 @@ tail -f /start_ssh.log
 &lt;p&gt;启动脚本，主要启动了ssh服务，并且用&lt;code&gt;tail -f&lt;/code&gt;让这个容器一直运行以方便我们来连接&lt;/p&gt;
 &lt;h4 id=&#34;313-开始构建镜像&#34;&gt;3.1.3 开始构建镜像
 &lt;/h4&gt;&lt;p&gt;先&lt;code&gt;CD&lt;/code&gt;到Dockerfile所在的目录
-&lt;img src=&#34;http://localhost:4420/images/20230829135356.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829135356.png&#34;
 	
 	
 	
@@ -1024,7 +1024,7 @@ node -v
 git -v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;输出：
-&lt;img src=&#34;http://localhost:4420/images/20230829124045.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829124045.png&#34;
 	
 	
 	
@@ -1037,7 +1037,7 @@ git -v
 &lt;/h4&gt;&lt;h5 id=&#34;设置&#34;&gt;设置
 &lt;/h5&gt;&lt;p&gt;毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再&lt;code&gt;commit&lt;/code&gt;为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢
 接下来设置root密码和重启ssh服务
-&lt;img src=&#34;http://localhost:4420/images/20230829124114.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829124114.png&#34;
 	
 	
 	
@@ -1050,7 +1050,7 @@ git -v
 service ssh restart
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;尝试使用PuTTY进行SSH &lt;a class=&#34;link&#34; href=&#34;mailto:root@127.0.0.1&#34; &gt;root@127.0.0.1&lt;/a&gt;登录：
-&lt;img src=&#34;http://localhost:4420/images/20230829123658.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829123658.png&#34;
 	
 	
 	
@@ -1061,7 +1061,7 @@ service ssh restart
 成功!!!
 接下来配置git和ssh，要生成新的ssh公钥
 详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-&lt;img src=&#34;http://localhost:4420/images/20230829124332.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829124332.png&#34;
 	
 	
 	
@@ -1072,7 +1072,7 @@ service ssh restart
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;github邮箱@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;得到密钥默认在&lt;code&gt;/root/.ssh/id_ed25519.pub&lt;/code&gt;
-&lt;img src=&#34;http://localhost:4420/images/20230829124753.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829124753.png&#34;
 	
 	
 	
@@ -1084,7 +1084,7 @@ service ssh restart
 测试SSH连接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230829125208.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829125208.png&#34;
 	
 	
 	
@@ -1135,7 +1135,7 @@ service ssh restart
 &lt;/h5&gt;&lt;p&gt;之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧
 打开Workbench远程连接，启动ssh
 由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录
-&lt;img src=&#34;http://localhost:4420/images/20230811153438.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230811153438.png&#34;
 	
 	
 	
@@ -1144,7 +1144,7 @@ service ssh restart
 	
 &gt;
 使用PuTTY工具登录成功！！
-&lt;img src=&#34;http://localhost:4420/images/20230811153400.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230811153400.png&#34;
 	
 	
 	
@@ -1226,7 +1226,7 @@ pasv_max_port=31000
 &lt;p&gt;来设置端口
 注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧&lt;/p&gt;
 &lt;p&gt;*这里遇到过一个小坑坑
-&lt;img src=&#34;http://localhost:4420/images/20230829155702.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829155702.png&#34;
 	
 	
 	
@@ -1235,7 +1235,7 @@ pasv_max_port=31000
 	
 &gt;
 构建器报错，一直卡在&lt;code&gt;Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).&lt;/code&gt;
-&lt;img src=&#34;http://localhost:4420/images/20230829155358.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829155358.png&#34;
 	
 	
 	
@@ -1245,7 +1245,7 @@ pasv_max_port=31000
 &gt;
 自己在容器内运行&lt;code&gt;service vsftpd start&lt;/code&gt;的时候同样如此，一般这样是因为&lt;code&gt;vsftpd.conf&lt;/code&gt;文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把&lt;code&gt;vsftpd.conf&lt;/code&gt;打开再保存一下就可以成功运行&lt;code&gt;service vsftpd start&lt;/code&gt;
 我发现这个文件的格式是UTF-8 CRLF
-&lt;img src=&#34;http://localhost:4420/images/20230829155602.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829155602.png&#34;
 	
 	
 	
@@ -1254,7 +1254,7 @@ pasv_max_port=31000
 	
 &gt;
 修改为LF
-&lt;img src=&#34;http://localhost:4420/images/20230829155623.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829155623.png&#34;
 	
 	
 	
@@ -1285,7 +1285,7 @@ pasv_max_port=31000
     &gt;https://github.com/jeessy2/ddns-go&lt;/a&gt;
 先贴上官方镜像的层：
 &lt;strong&gt;jeessy/ddns-go&lt;/strong&gt;
-&lt;img src=&#34;http://localhost:4420/images/20230904184205.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230904184205.png&#34;
 	
 	
 	
@@ -1378,7 +1378,7 @@ fi
 阿里云提供容器镜像服务，我自己玩开通个人实例即可
 &lt;a class=&#34;link&#34; href=&#34;https://cr.console.aliyun.com/cn-shanghai/instances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://cr.console.aliyun.com/cn-shanghai/instances&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230811150239.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811150239.png&#34;
 	
 	
 	
@@ -1402,7 +1402,7 @@ registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
 &lt;p&gt;再分别&lt;code&gt;push&lt;/code&gt;即可&lt;/p&gt;
 &lt;h3 id=&#34;42-在阿里云上使用容器实例eci运行镜像&#34;&gt;4.2 在阿里云上使用容器实例（ECI）运行镜像
 &lt;/h3&gt;&lt;p&gt;阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&amp;gt;生成&amp;gt;部署&amp;gt;关闭的服务来说，花不了几毛钱&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230811151948.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811151948.png&#34;
 	
 	
 	
@@ -1411,7 +1411,7 @@ registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后就能看到我们上传的镜像
-&lt;img src=&#34;http://localhost:4420/images/20230811152250.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230811152250.png&#34;
 	
 	
 	
@@ -1432,7 +1432,7 @@ ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 
 &lt;p&gt;博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ECI价格计算附表&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;52-用模板创建eci&#34;&gt;5.2 用模板创建eci
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230907171351.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230907171351.png&#34;
 	
 	
 	
@@ -1509,7 +1509,7 @@ Volume:
 &lt;p&gt;这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns
 &lt;code&gt;Command:&lt;/code&gt;写法目测类似dockerfile里的&lt;code&gt;CMD&lt;/code&gt;，我习惯做好启动sh脚本就是为了方便这里再调用
 最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录
-&lt;img src=&#34;http://localhost:4420/images/20230829142501.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
 	
 	
 	
@@ -1523,7 +1523,7 @@ Volume:
 &lt;pre&gt;&lt;code&gt;eci run -f hexo_debian_eci.yaml -w 20
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！
-&lt;img src=&#34;http://localhost:4420/images/20230907174209.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230907174209.png&#34;
 	
 	
 	
@@ -1533,7 +1533,7 @@ Volume:
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;6-hexo本地编辑环境设置如何用vscode舒服的写md文档&#34;&gt;6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
 &lt;/h2&gt;&lt;h3 id=&#34;61-vscodessh-fs插件配置&#34;&gt;6.1 VSCodeSSH FS插件配置
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230908113634.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908113634.png&#34;
 	
 	
 	
@@ -1542,7 +1542,7 @@ Volume:
 	
 &gt;
 简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便
-&lt;img src=&#34;http://localhost:4420/images/20230908113824.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230908113824.png&#34;
 	
 	
 	
@@ -1554,7 +1554,7 @@ Volume:
 &lt;h3 id=&#34;62-markdown-paste插件配置&#34;&gt;6.2 Markdown Paste插件配置
 &lt;/h3&gt;&lt;p&gt;一个很方便的在VScode里直接粘图的插件&lt;/p&gt;
 &lt;h4 id=&#34;配置&#34;&gt;配置：
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230908114845.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908114845.png&#34;
 	
 	
 	
@@ -1564,7 +1564,7 @@ Volume:
 &gt;
 会用时间来命名图片
 然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20230908115038.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908115038.png&#34;
 	
 	
 	
@@ -1573,7 +1573,7 @@ Volume:
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后文件》首选项》键盘快捷方式
-&lt;img src=&#34;http://localhost:4420/images/20230908115303.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230908115303.png&#34;
 	
 	
 	
@@ -1585,7 +1585,7 @@ Volume:
 配置完成！&lt;/p&gt;
 &lt;h4 id=&#34;使用&#34;&gt;使用：
 &lt;/h4&gt;&lt;p&gt;截图我习惯用Sinpaste，按F1就能截图
-&lt;img src=&#34;http://localhost:4420/images/20230908115743.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230908115743.png&#34;
 	
 	
 	
@@ -1595,7 +1595,7 @@ Volume:
 &gt;
 然后点右下角复制按钮
 在VScode的markdown文档里&lt;code&gt;ctrl+alt+a&lt;/code&gt;就能粘图了！
-&lt;img src=&#34;http://localhost:4420/images/20230908113947.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230908113947.png&#34;
 	
 	
 	
@@ -1608,7 +1608,7 @@ Volume:
 &lt;/h3&gt;&lt;p&gt;先把images文件夹单独放到工作区里
 然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令
 sftp.json目录下会出现一个名为的基本配置文件.vscode
-&lt;img src=&#34;http://localhost:4420/images/20230908121346.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230908121346.png&#34;
 	
 	
 	

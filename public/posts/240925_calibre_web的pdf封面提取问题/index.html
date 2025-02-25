@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在用johngong/calibre-web:latest这个镜像 https://hub.docker.com/r/johngong/calibre-web 作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：\n设置imagemagick的policy.xml文件(/etc/Imagemagick/policy.xml) 使用lscr.io/linuxserver/calibre-web:latest的镜像 自己重新构建镜像 重新安装calibre-web包和重装imagemagick包 都解决不了，总之是十分折腾，最后认为可能是johngong/calibre-web:latest可能是里少了一个imagemagick-pdf包 最终有效的解决方法的折腾流程\r我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG） 查看文件：/config/calbre-web/calbre-web.log 有这么一行： [2024-09-25 12:10:22,144] WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF' @ error/constitute.c/ReadImage/746\r[2024-09-25 12:10:22,145] WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript\rPDF转就转不出来 所以找到了： https://github.com/ImageMagick/ImageMagick/issues/6148\napk add --no-cache imagemagick imagemagick-pdf\r安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！ johngong/calibre-web的一些设置\rhttps://github.com/gshang2017/docker/issues/133 如果一编辑图书的元数据就卡死，可用尝试： 这两条设置为true,则 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用\n弯路\r这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改 https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files 所以可以有/etc/Imagemagick/policy.xml:\n">
 <title>calibre_web的pdf封面提取问题</title>
 
-<link rel='canonical' href='http://localhost:4420/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/'>
+<link rel='canonical' href='http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/'>
 
-<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="calibre_web的pdf封面提取问题">
+<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="calibre_web的pdf封面提取问题">
 <meta property='og:description' content="在用johngong/calibre-web:latest这个镜像 https://hub.docker.com/r/johngong/calibre-web 作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：\n设置imagemagick的policy.xml文件(/etc/Imagemagick/policy.xml) 使用lscr.io/linuxserver/calibre-web:latest的镜像 自己重新构建镜像 重新安装calibre-web包和重装imagemagick包 都解决不了，总之是十分折腾，最后认为可能是johngong/calibre-web:latest可能是里少了一个imagemagick-pdf包 最终有效的解决方法的折腾流程\r我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG） 查看文件：/config/calbre-web/calbre-web.log 有这么一行： [2024-09-25 12:10:22,144] WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF' @ error/constitute.c/ReadImage/746\r[2024-09-25 12:10:22,145] WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript\rPDF转就转不出来 所以找到了： https://github.com/ImageMagick/ImageMagick/issues/6148\napk add --no-cache imagemagick imagemagick-pdf\r安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！ johngong/calibre-web的一些设置\rhttps://github.com/gshang2017/docker/issues/133 如果一编辑图书的元数据就卡死，可用尝试： 这两条设置为true,则 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用\n弯路\r这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改 https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files 所以可以有/etc/Imagemagick/policy.xml:\n">
-<meta property='og:url' content='http://localhost:4420/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/'>
+<meta property='og:url' content='http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='calibre_web' /><meta property='article:published_time' content='2024-09-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-09-25T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="calibre_web的pdf封面提取问题">
@@ -214,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:4420/" selected>English</option>
+                                    <option value="http://localhost:1313/" selected>English</option>
                                 
-                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -298,14 +298,31 @@
 
     <div class="article-details">
     
-    <header class="article-category">
-        
-            <a href="/categories/docker/" >
-                Docker
-            </a>
-        
-    </header>
     
+    
+    <header>
+        <div class="Winotmk_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+        
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">Linux</a>
+        
+            <a href="/tags/docker/">Docker</a>
+        
+            <a href="/tags/calibre_web/">Calibre_web</a>
+        
+    </section>
+
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -525,16 +542,20 @@ export LD_LIBRARY_PATH=&quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/l
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/linux/">Linux</a>
-        
-            <a href="/tags/docker/">Docker</a>
-        
-            <a href="/tags/calibre_web/">Calibre_web</a>
-        
-    </section>
 
+    
+    
+    <header class="article-category">
+        <div class="Winotmk_icon">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6h-6z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+        </div>
+        
+            <a href="/categories/docker/" >
+                Docker
+            </a>
+        
+    </header>
+    
 
     
     <section class="article-copyright">
@@ -779,7 +800,7 @@ export LD_LIBRARY_PATH=&quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/l
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

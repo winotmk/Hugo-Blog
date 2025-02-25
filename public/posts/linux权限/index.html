@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/\rdrwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc\r-rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录\r- @ ：表明是到其它文件的符号链接\r- * ：表明是一个可执行文件。\r- 对于权限设置的解释\r- r 是读，w 是写，x 是执行\r- 对应数字如下:\r- r = 4 w = 2 x = 1\r- rwx ：4+2+1 = 7\r- rw- ：4+2 = 6\r- r-x ：4+1 = 5\r- drwxr-xr-x ：755\r- 第 0-1位 文件类型\r- “-” ：表示普通文件；\r- “d” ：表示目录；\r- “l” ：表示链接文件；\r- “p” ：表示管理文件；\r- “b” ：表示块设备文件；\r- “c” ：表示字符设备文件；\r- “s” ：表示套接字文件；\r- 第 2-4位 文件所有者权限 [User]\r- 第 5-7位 文件所有者所在组权限 [Group]\r- 第 8-10位 其他用户权限 [Others]\r- 没有的权限用 “-” 来表示\r————————————————\r版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。\r原文链接：https://blog.csdn.net/u010324331/article/details/88035175/\r{% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
 <title>linux文件和目录权限</title>
 
-<link rel='canonical' href='http://localhost:4420/posts/linux%E6%9D%83%E9%99%90/'>
+<link rel='canonical' href='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
 
-<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="linux文件和目录权限">
-<meta property='og:description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/\rdrwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc\r-rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录\r- @ ：表明是到其它文件的符号链接\r- * ：表明是一个可执行文件。\r- 对于权限设置的解释\r- r 是读，w 是写，x 是执行\r- 对应数字如下:\r- r = 4 w = 2 x = 1\r- rwx ：4+2+1 = 7\r- rw- ：4+2 = 6\r- r-x ：4+1 = 5\r- drwxr-xr-x ：755\r- 第 0-1位 文件类型\r- “-” ：表示普通文件；\r- “d” ：表示目录；\r- “l” ：表示链接文件；\r- “p” ：表示管理文件；\r- “b” ：表示块设备文件；\r- “c” ：表示字符设备文件；\r- “s” ：表示套接字文件；\r- 第 2-4位 文件所有者权限 [User]\r- 第 5-7位 文件所有者所在组权限 [Group]\r- 第 8-10位 其他用户权限 [Others]\r- 没有的权限用 “-” 来表示\r————————————————\r版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。\r原文链接：https://blog.csdn.net/u010324331/article/details/88035175/\r{% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
-<meta property='og:url' content='http://localhost:4420/posts/linux%E6%9D%83%E9%99%90/'>
+<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="linux文件和目录权限">
+<meta property='og:description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
+<meta property='og:url' content='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' />
 <meta name="twitter:title" content="linux文件和目录权限">
-<meta name="twitter:description" content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/\rdrwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc\r-rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录\r- @ ：表明是到其它文件的符号链接\r- * ：表明是一个可执行文件。\r- 对于权限设置的解释\r- r 是读，w 是写，x 是执行\r- 对应数字如下:\r- r = 4 w = 2 x = 1\r- rwx ：4+2+1 = 7\r- rw- ：4+2 = 6\r- r-x ：4+1 = 5\r- drwxr-xr-x ：755\r- 第 0-1位 文件类型\r- “-” ：表示普通文件；\r- “d” ：表示目录；\r- “l” ：表示链接文件；\r- “p” ：表示管理文件；\r- “b” ：表示块设备文件；\r- “c” ：表示字符设备文件；\r- “s” ：表示套接字文件；\r- 第 2-4位 文件所有者权限 [User]\r- 第 5-7位 文件所有者所在组权限 [Group]\r- 第 8-10位 其他用户权限 [Others]\r- 没有的权限用 “-” 来表示\r————————————————\r版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。\r原文链接：https://blog.csdn.net/u010324331/article/details/88035175/\r{% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
+<meta name="twitter:description" content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
         
         <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
     </head>
@@ -214,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:4420/" selected>English</option>
+                                    <option value="http://localhost:1313/" selected>English</option>
                                 
-                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -289,6 +289,27 @@
 
     <div class="article-details">
     
+    
+    
+    <header>
+        <div class="Winotmk_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+        
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">Linux</a>
+        
+    </section>
+
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -532,12 +553,9 @@ u:所有者, g:所属组,o:其他人,a:所有;
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/linux/">Linux</a>
-        
-    </section>
 
+    
+    
 
     
     <section class="article-copyright">
@@ -708,7 +726,7 @@ u:所有者, g:所属组,o:其他人,a:所有;
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>C on WinNote</title>
-        <link>http://localhost:4420/tags/c/</link>
+        <link>http://localhost:1313/tags/c/</link>
         <description>Recent content in C on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/c/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>段码屏开发—GPT4o带来的一点点震撼</title>
-        <link>http://localhost:4420/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
+        <link>http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</link>
         <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
+        <guid>http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/</guid>
         <description>&lt;h2 id=&#34;硬件简介&#34;&gt;硬件简介
 &lt;/h2&gt;&lt;h3 id=&#34;屏幕&#34;&gt;屏幕
 &lt;/h3&gt;&lt;p&gt;屏幕使用了一块微雪的电子墨水段码屏
-&lt;img src=&#34;http://localhost:4420/images/20240726135400.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726135400.png&#34;
 	
 	
 	
@@ -29,7 +29,7 @@
     &gt;https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;mcu&#34;&gt;MCU
 &lt;/h3&gt;&lt;p&gt;MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的
-&lt;img src=&#34;http://localhost:4420/images/20240726135455.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726135455.png&#34;
 	
 	
 	
@@ -44,7 +44,7 @@
 本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我
 起初这个表对于完全没接触过这块的我完全不动他是什么意思&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240724185010.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724185010.png&#34;
 	
 	
 	
@@ -53,7 +53,7 @@
 	
 &gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：
-&lt;img src=&#34;http://localhost:4420/images/20240724185139.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240724185139.png&#34;
 	
 	
 	
@@ -122,7 +122,7 @@ print(f&amp;quot;0xff 对应的像素颜色: {&#39;&#39;.join(pixels_ff)}&amp;qu
  &lt;!-- more --&gt;
 &lt;p&gt;天呐！有理有据条例清晰，秒懂了，原来byte是十六进制要转为二进制的！而8位二进制就可以表示8个数码管的开与关了！&lt;/p&gt;
 &lt;h2 id=&#34;数字显示与byte的对应&#34;&gt;数字显示与byte的对应
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240724190425.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724190425.png&#34;
 	
 	
 	
@@ -207,7 +207,7 @@ print(f&amp;quot;0xff 对应的像素颜色: {&#39;&#39;.join(pixels_ff)}&amp;qu
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这个数组 DSPNUM_1in9_off 现在包含了你要求的数字 A 和 B 的十六进制表示形式。&lt;/p&gt;
 &lt;p&gt;GPT准确无误的理解了我的意思，这是这段代码直接得到的结果！！：
-&lt;img src=&#34;http://localhost:4420/images/20240726134530.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726134530.png&#34;
 	
 	
 	
@@ -217,7 +217,7 @@ print(f&amp;quot;0xff 对应的像素颜色: {&#39;&#39;.join(pixels_ff)}&amp;qu
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;动态将数字转换为对应的段码&#34;&gt;动态将数字转换为对应的段码
 &lt;/h2&gt;&lt;p&gt;上面一段只是实现了数字到段码的转换，作为一个温度计肯定需要每隔一段时间就将读取的温度传到这个数组里，所以我继续问
-&lt;img src=&#34;http://localhost:4420/images/20240726134819.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726134819.png&#34;
 	
 	
 	
@@ -324,7 +324,7 @@ int main() {
 &lt;h2 id=&#34;小数点的处理&#34;&gt;小数点的处理
 &lt;/h2&gt;&lt;p&gt;上面已经完整实现了两个数字到数组内的转换，但是转出来没有小数点，根据文档：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240726135629.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240726135629.png&#34;
 	
 	
 	
@@ -334,7 +334,7 @@ int main() {
 &gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;所以要在数组的第4，8，10位做些处理&lt;/p&gt;
 &lt;p&gt;我继续对GPT说&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/20240726135810.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240726135810.png&#34;
 	
 	
 	
@@ -433,7 +433,7 @@ int main() {
 &lt;h3 id=&#34;结果&#34;&gt;结果
 &lt;/h3&gt;&lt;p&gt;运行代码后，DSPNUM_1in9_off 数组将根据 A 和 B 的值动态更新，并且 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 的第六位将被设置为 1。&lt;/p&gt;
 &lt;p&gt;然后我就得到了：
-&lt;img src=&#34;http://localhost:4420/images/20240726142601.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726142601.png&#34;
 	
 	
 	
@@ -443,7 +443,7 @@ int main() {
 &gt;
 这里数字是我手动指定的&lt;code&gt;A=73.6&lt;/code&gt;,&lt;code&gt;B=84.9&lt;/code&gt;，可以看到小数点，百分号都已经显示出来了&lt;/p&gt;
 &lt;p&gt;再接入传感器读到的数值，温度计就差不多完工啦：
-&lt;img src=&#34;http://localhost:4420/images/20240726142737.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240726142737.png&#34;
 	
 	
 	

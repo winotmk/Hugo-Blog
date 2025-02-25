@@ -1,4 +1,5 @@
 <div class="article-details">
+    <!--
     {{ if .Params.categories }}
     <header class="article-category">
         {{ range (.GetTerms "categories") }}
@@ -8,6 +9,15 @@
         {{ end }}
     </header>
     {{ end }}
+    -->
+    <!--原分类替换为标签 winotmk 25.02.25-->
+    <!--下载新SVG图标请看https://tabler.io/icons，然后放到/assets/icons-->
+    <header>
+        <div class="Winotmk_icon">
+        {{ partial "helper/icon" "tag" }}
+        </div>
+        {{ partial "article/components/tags" . }}
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">

@@ -1,5 +1,21 @@
 <footer class="article-footer">
+    <!--
     {{ partial "article/components/tags" . }}
+    -->
+
+    <!--原标签替换为分类 winotmk 25.02.25-->
+    {{ if .Params.categories }}
+    <header class="article-category">
+        <div class="Winotmk_icon">
+        {{ partial "helper/icon" "category" }}
+        </div>
+        {{ range (.GetTerms "categories") }}
+            <a href="{{ .RelPermalink }}" {{ with .Params.style }}style="background-color: {{ .background }}; color: {{ .color }};"{{ end }}>
+                {{ .LinkTitle }}
+            </a>
+        {{ end }}
+    </header>
+    {{ end }}
 
     {{ if and (.Site.Params.article.license.enabled) (not (eq .Params.license false)) }}
     <section class="article-copyright">

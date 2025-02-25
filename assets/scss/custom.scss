@@ -1,1 +1,43 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+/*自定义CSS 20250225 winotmk*/
+.article-tags{
+    display: inline-block;
+}
+//文章头尾的tag和分类的小图标
+.Winotmk_icon{
+    display: inline-block;
+    position: relative;
+    top: 7px; /* 向下偏移5px */
+    left: -3px;
+    color: #8a8a8a;
+}
+//代码框
+pre code{
+    border-radius: 4px;
+    padding: 0.75em;
+    line-height: 1.5;
+}
+//行内代码
+code {
+    margin-right:2px;
+    margin-left:2px;
+    border-radius: 5px;
+    font-size: 0.875em;
+    padding: 2px 4px;
+    overflow-wrap: break-word;
+    background:#ebebeb;
+    color:#434343
+}
+//hr横杠
+.article-content hr {
+    width: auto;
+}
+//文章目录
+.widget--toc #TableOfContents li {
+    margin: 15px 0 15px 12px;
+}
+.widget--toc #TableOfContents li>ol,.widget--toc #TableOfContents li>ul {
+    margin-top: -5px;
+    padding-left: 10px;
+    margin-bottom: -5px
+}

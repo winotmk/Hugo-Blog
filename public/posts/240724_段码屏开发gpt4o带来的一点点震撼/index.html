@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏 文档在这里： https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的 https://www.waveshare.net/wiki/RP2040-Zero\n字节(byte)和比特(bit)的对应\r最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题， 本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我 起初这个表对于完全没接触过这块的我完全不动他是什么意思\n疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT： *以下是GPT的回答 在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。\n理解图表中的内容\r像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。 比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。 存储的数据: 存储在比特中的数据值（0 或 1）。 对应的颜色: 由数据值决定的像素颜色（黑色或白色）。 5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。 字节和比特的对应关系\r一个字节有 8 位，每一位可以是 0 或 1。 0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。 0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。 解释示例\r0x00 字节: 二进制表示：00000000 每个比特位都是 0，因此对应的像素颜色是黑色。 从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。 0xff 字节: 二进制表示：11111111 每个比特位都是 1，因此对应的像素颜色是白色。 从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。 示例代码解释\r如果你想用代码来解释字节和比特之间的关系，可以如下示例：\n">
 <title>段码屏开发—GPT4o带来的一点点震撼</title>
 
-<link rel='canonical' href='http://localhost:4420/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
+<link rel='canonical' href='http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
 
-<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="段码屏开发—GPT4o带来的一点点震撼">
+<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="段码屏开发—GPT4o带来的一点点震撼">
 <meta property='og:description' content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏 文档在这里： https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的 https://www.waveshare.net/wiki/RP2040-Zero\n字节(byte)和比特(bit)的对应\r最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题， 本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我 起初这个表对于完全没接触过这块的我完全不动他是什么意思\n疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT： *以下是GPT的回答 在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。\n理解图表中的内容\r像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。 比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。 存储的数据: 存储在比特中的数据值（0 或 1）。 对应的颜色: 由数据值决定的像素颜色（黑色或白色）。 5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。 字节和比特的对应关系\r一个字节有 8 位，每一位可以是 0 或 1。 0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。 0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。 解释示例\r0x00 字节: 二进制表示：00000000 每个比特位都是 0，因此对应的像素颜色是黑色。 从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。 0xff 字节: 二进制表示：11111111 每个比特位都是 1，因此对应的像素颜色是白色。 从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。 示例代码解释\r如果你想用代码来解释字节和比特之间的关系，可以如下示例：\n">
-<meta property='og:url' content='http://localhost:4420/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
+<meta property='og:url' content='http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='C' /><meta property='article:tag' content='rashbeerypi' /><meta property='article:tag' content='PICO' /><meta property='article:tag' content='嵌入式开发' /><meta property='article:published_time' content='2024-07-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-07-24T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="段码屏开发—GPT4o带来的一点点震撼">
@@ -214,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:4420/" selected>English</option>
+                                    <option value="http://localhost:1313/" selected>English</option>
                                 
-                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -320,14 +320,33 @@
 
     <div class="article-details">
     
-    <header class="article-category">
-        
-            <a href="/categories/%E5%B0%8F%E6%9D%BF%E5%AD%90/" >
-                小板子
-            </a>
-        
-    </header>
     
+    
+    <header>
+        <div class="Winotmk_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+        
+    <section class="article-tags">
+        
+            <a href="/tags/c/">C</a>
+        
+            <a href="/tags/rashbeerypi/">Rashbeerypi</a>
+        
+            <a href="/tags/pico/">PICO</a>
+        
+            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a>
+        
+    </section>
+
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -828,18 +847,20 @@ int main() {
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/c/">C</a>
-        
-            <a href="/tags/rashbeerypi/">Rashbeerypi</a>
-        
-            <a href="/tags/pico/">PICO</a>
-        
-            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a>
-        
-    </section>
 
+    
+    
+    <header class="article-category">
+        <div class="Winotmk_icon">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6h-6z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+        </div>
+        
+            <a href="/categories/%E5%B0%8F%E6%9D%BF%E5%AD%90/" >
+                小板子
+            </a>
+        
+    </header>
+    
 
     
     <section class="article-copyright">
@@ -1032,7 +1053,7 @@ int main() {
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

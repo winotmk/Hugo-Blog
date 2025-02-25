@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>WinNote</title>
-        <link>http://localhost:4420/tags/winnote/</link>
+        <link>http://localhost:1313/tags/winnote/</link>
         <description>Recent content on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:4420/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>WinNote</title>
-        <link>http://localhost:4420/posts/winnote/</link>
+        <link>http://localhost:1313/posts/winnote/</link>
         <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:4420/posts/winnote/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:4420/images/catcat.png&#34;
+        <guid>http://localhost:1313/posts/winnote/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/catcat.png&#34;
 	
 	
 	
@@ -56,7 +56,7 @@ NAS上工作台的盘符请设置为T
 启动ecistarter容器
 然后&lt;code&gt;CD ecistart&lt;/code&gt; 进入目录
 使用&lt;code&gt;. ./hexo_s&lt;/code&gt; 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入
-&lt;img src=&#34;http://localhost:4420/images/20231213183015.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20231213183015.png&#34;
 	
 	
 	

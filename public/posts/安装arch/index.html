@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热， 这里是彻底格式化硬盘新安装，而不需要多系统引导\n我的环境有：\n2核 Intel(R) Pentium(R) CPU 997 @ 1.60GHz 4GB 1600内存 UEFI启动（不能为BIOS） Samsang 850 EVO 250G 2.5寸SATA接口 无线网卡拆掉了，用得是网线 路由器上全局梯子（所以我没有换源，用官方源速度足够了） 准备镜像\rhttps://archlinux.org/download/ 下载发行版的Linux的ISO 然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便\n{% asset_img 20211024_224012.png 800 %}\n然后重启电脑从U盘启动\n硬盘准备\r进入U盘系统后先连pacman试试\npacman -Syyy\r{% asset_img 20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png 800 %}\n检查硬盘\rlsblk\r{% asset_img 20211024_231805.png 500 %}\n建立分区\rcfdisk /dev/sda\r选择New 回车，然后 选择Write 回车 输入 yes 回车 写入完成 选择Quit 回车退出\n">
 <title>安装ArchLinux系统（详细过程）</title>
 
-<link rel='canonical' href='http://localhost:4420/posts/%E5%AE%89%E8%A3%85arch/'>
+<link rel='canonical' href='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
 
-<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="安装ArchLinux系统（详细过程）">
+<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="安装ArchLinux系统（详细过程）">
 <meta property='og:description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热， 这里是彻底格式化硬盘新安装，而不需要多系统引导\n我的环境有：\n2核 Intel(R) Pentium(R) CPU 997 @ 1.60GHz 4GB 1600内存 UEFI启动（不能为BIOS） Samsang 850 EVO 250G 2.5寸SATA接口 无线网卡拆掉了，用得是网线 路由器上全局梯子（所以我没有换源，用官方源速度足够了） 准备镜像\rhttps://archlinux.org/download/ 下载发行版的Linux的ISO 然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便\n{% asset_img 20211024_224012.png 800 %}\n然后重启电脑从U盘启动\n硬盘准备\r进入U盘系统后先连pacman试试\npacman -Syyy\r{% asset_img 20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png 800 %}\n检查硬盘\rlsblk\r{% asset_img 20211024_231805.png 500 %}\n建立分区\rcfdisk /dev/sda\r选择New 回车，然后 选择Write 回车 输入 yes 回车 写入完成 选择Quit 回车退出\n">
-<meta property='og:url' content='http://localhost:4420/posts/%E5%AE%89%E8%A3%85arch/'>
+<meta property='og:url' content='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' />
 <meta name="twitter:title" content="安装ArchLinux系统（详细过程）">
@@ -214,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:4420/" selected>English</option>
+                                    <option value="http://localhost:1313/" selected>English</option>
                                 
-                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -313,6 +313,27 @@
 
     <div class="article-details">
     
+    
+    
+    <header>
+        <div class="Winotmk_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+        
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">Linux</a>
+        
+    </section>
+
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -508,12 +529,9 @@ reboot
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/linux/">Linux</a>
-        
-    </section>
 
+    
+    
 
     
     <section class="article-copyright">
@@ -684,7 +702,7 @@ reboot
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

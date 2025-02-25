@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4420&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="树莓派CM4的\ropenWrt web界面安装中文\rhttps://www.jianshu.com/p/da01ce070688 更新包目录：\nopkg update\r这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4 改之!!\n可能还不行 这俩防火墙设置一下\n如果还不行 DNS记得指定一下\n这下就能通了\nPS也可以点配置opkg，然后加一条\nsrc/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/\r把源换为国内\n然后\nopkg install luci-i18n-base-zh-cn\r提示\nConfiguring luci-i18n-base-zh-cn\r再回来看web界面就已经是中文了 如果要开启sftp传输服务\rhttps://github.com/twn39/code/issues/279\n开启sftp的话可以很方便用WinSCP登录，文件管理神器 那么如何启用 sftp 服务呢？先安装对应的软件：\nopkg install vsftpd openssh-sftp-server 设置系统开启后自动启动 sftp 服务：\n/etc/init.d/vsftpd enable\r启动 sftp 服务：\n/etc/init.d/vsftpd start\r这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。\n装网卡驱动\r我的CM4拓展板子是微雪的这个 https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI 有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的 https://openwrt.org/packages/pkgdata/kmod-r8169 那么就好办了 安装就行了：\n">
 <title>树莓派路由器</title>
 
-<link rel='canonical' href='http://localhost:4420/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/'>
+<link rel='canonical' href='http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/'>
 
-<link rel="stylesheet" href="/scss/style.min.efaa106878194526e3af0ae16901342180f99b18cd5c41fb7464d09fcbffd651.css"><meta property='og:title' content="树莓派路由器">
+<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="树莓派路由器">
 <meta property='og:description' content="树莓派CM4的\ropenWrt web界面安装中文\rhttps://www.jianshu.com/p/da01ce070688 更新包目录：\nopkg update\r这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4 改之!!\n可能还不行 这俩防火墙设置一下\n如果还不行 DNS记得指定一下\n这下就能通了\nPS也可以点配置opkg，然后加一条\nsrc/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/\r把源换为国内\n然后\nopkg install luci-i18n-base-zh-cn\r提示\nConfiguring luci-i18n-base-zh-cn\r再回来看web界面就已经是中文了 如果要开启sftp传输服务\rhttps://github.com/twn39/code/issues/279\n开启sftp的话可以很方便用WinSCP登录，文件管理神器 那么如何启用 sftp 服务呢？先安装对应的软件：\nopkg install vsftpd openssh-sftp-server 设置系统开启后自动启动 sftp 服务：\n/etc/init.d/vsftpd enable\r启动 sftp 服务：\n/etc/init.d/vsftpd start\r这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。\n装网卡驱动\r我的CM4拓展板子是微雪的这个 https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI 有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的 https://openwrt.org/packages/pkgdata/kmod-r8169 那么就好办了 安装就行了：\n">
-<meta property='og:url' content='http://localhost:4420/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/'>
+<meta property='og:url' content='http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='rashbeerypi' />
 <meta name="twitter:title" content="树莓派路由器">
@@ -214,9 +214,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:4420/" selected>English</option>
+                                    <option value="http://localhost:1313/" selected>English</option>
                                 
-                                    <option value="http://localhost:4420/zh-cn/" >中文</option>
+                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
                                 
                             </select>
                         </li>
@@ -294,6 +294,29 @@
 
     <div class="article-details">
     
+    
+    
+    <header>
+        <div class="Winotmk_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+        
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">Linux</a>
+        
+            <a href="/tags/rashbeerypi/">Rashbeerypi</a>
+        
+    </section>
+
+    </header>
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -561,14 +584,9 @@ umount /tmp/extroot
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/linux/">Linux</a>
-        
-            <a href="/tags/rashbeerypi/">Rashbeerypi</a>
-        
-    </section>
 
+    
+    
 
     
     <section class="article-copyright">
@@ -774,7 +792,7 @@ umount /tmp/extroot
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
