@@ -34,9 +34,22 @@
     {{ partialCached "article/components/details" . .RelPermalink }}
     <!--winotmk 2025.2.25 加入首页预览-->
     <!--https://gohugo.io/methods/page/summary/#article-->
+    <div class="summary" onclick="window.open('{{ .RelPermalink }}')">
     {{ .Summary }}
+    <!--
+        {{ .Content | strings.Truncate 42 }}
+    -->
+
+    <!--
     {{ if .Truncated }}
-        <a href="{{ .RelPermalink }}">Read more...</a>
+        <div class="readmore">
+            <a href="{{ .RelPermalink }}">Read more...</a>
+        </div>
+    </div>
     {{ end }}
-    
+    -->
+        <div class="readmore">
+        {{ partial "helper/icon" "dots" }}
+        </div>
+    </div>
 </header>

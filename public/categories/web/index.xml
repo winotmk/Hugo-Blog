@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Web on WinNote</title>
-        <link>http://localhost:1313/categories/web/</link>
+        <link>http://localhost:5325/categories/web/</link>
         <description>Recent content in Web on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/web/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:5325/categories/web/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>SSL证书手动更新</title>
-        <link>http://localhost:1313/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</link>
+        <link>http://localhost:5325/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</link>
         <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</guid>
+        <guid>http://localhost:5325/posts/250220_ssl%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/</guid>
         <description>&lt;p&gt;我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏&lt;/p&gt;
 &lt;h2 id=&#34;获取新的证书&#34;&gt;获取新的证书
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yundun.console.aliyun.com/?spm=5176.12818093_47.console-base_product-drawer-left.dcas.3be916d0TsU2HG&amp;amp;p=cas#/certExtend/free/cn-hangzhou?currentPage=1&amp;amp;pageSize=10&amp;amp;keyword=&amp;amp;statusCode=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -83,10 +83,10 @@
         </item>
         <item>
         <title>网站框架收集</title>
-        <link>http://localhost:1313/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</link>
+        <link>http://localhost:5325/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</link>
         <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</guid>
+        <guid>http://localhost:5325/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</guid>
         <description>&lt;p&gt;其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在：
 &lt;a class=&#34;link&#34; href=&#34;https://www.winotmk.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.winotmk.com/&lt;/a&gt;
@@ -101,7 +101,7 @@
 &lt;p&gt;因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333&lt;/p&gt;
 &lt;h2 id=&#34;网站生成框架&#34;&gt;网站生成/框架
 &lt;/h2&gt;&lt;h3 id=&#34;typecho&#34;&gt;typecho
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619132246.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240619132246.png&#34;
 	
 	
 	
@@ -115,7 +115,7 @@
     &gt;https://github.com/typecho/typecho&lt;/a&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://typecho.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://typecho.org/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806150559.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240806150559.png&#34;
 	
 	
 	
@@ -133,7 +133,7 @@
 &lt;h3 id=&#34;hugo&#34;&gt;hugo
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://gohugo.io/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806151141.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240806151141.png&#34;
 	
 	
 	
@@ -155,7 +155,7 @@
     &gt;https://jekyllrb.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;应该和上面类似，同样是静态文章生成，部署到github&lt;/p&gt;
 &lt;p&gt;预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/
-&lt;img src=&#34;http://localhost:1313/images/20240814160206.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240814160206.png&#34;
 	
 	
 	
@@ -168,7 +168,7 @@
 &lt;/h3&gt;&lt;h4 id=&#34;handsome&#34;&gt;handsome
 &lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.ihewro.com/archives/489/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.ihewro.com/archives/489/&lt;/a&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240806150942.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240806150942.png&#34;
 	
 	
 	
@@ -180,7 +180,7 @@
 &lt;/h3&gt;&lt;h4 id=&#34;attila&#34;&gt;attila
 &lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/arulrajnet/attila&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/arulrajnet/attila&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806152032.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240806152032.png&#34;
 	
 	
 	
@@ -189,7 +189,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html
-&lt;img src=&#34;http://localhost:1313/images/20240806152133.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240806152133.png&#34;
 	
 	
 	
@@ -202,7 +202,7 @@
 &lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/themes/hugo-papermod/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://themes.gohugo.io/themes/hugo-papermod/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Demo:https://adityatelange.github.io/hugo-PaperMod/&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20241226162048.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20241226162048.png&#34;
 	
 	
 	
@@ -214,7 +214,7 @@
 &lt;/h2&gt;&lt;h3 id=&#34;waline&#34;&gt;waline
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/walinejs/waline&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/walinejs/waline&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806152451.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240806152451.png&#34;
 	
 	
 	

@@ -25,6 +25,10 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --scrollbar-thumb: hsl(0, 0%, 85%);
     --scrollbar-track: var(--body-background);
 
+    --summary-bg: #ededed;
+    --summary-border: #c5c5c5;
+    --summary-color:#3e4f4e;
+
     &[data-scheme="dark"] {
         --body-background: #303030;
         --accent-color: #ecf0f1;
@@ -33,6 +37,10 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
         --body-text-color: rgba(255, 255, 255, 0.7);
         --scrollbar-thumb: hsl(0, 0%, 40%);
         --scrollbar-track: var(--body-background);
+        
+        --summary-bg:#555555;
+        --summary-border:#272727;
+        --summary-color:#ced9d9;
     }
 }
 
@@ -54,7 +62,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --card-background: #fff;
     --card-background-selected: #eaeaea;
 
-    --card-text-color-main: #000;
+    --card-text-color-main: #202020;
     --card-text-color-secondary: #747474;
     --card-text-color-tertiary: #767676;
     --card-separator-color: rgba(218, 218, 218, 0.5);
@@ -117,8 +125,10 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --pre-background-color: #272822;
     --pre-text-color: #f8f8f2;
 
+    /*
     --code-background-color: rgba(0, 0, 0, 0.12);
     --code-text-color: #808080;
+    */
 
     --table-border-color: #dadada;
     --tr-even-background-color: #efefee;
@@ -126,9 +136,10 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --kbd-border-color: #dadada;
 
     &[data-scheme="dark"] {
+        /*
         --code-background-color: #272822;
         --code-text-color: rgba(255, 255, 255, 0.9);
-
+        */
         --table-border-color: #717171;
         --tr-even-background-color: #545454;
 

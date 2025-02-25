@@ -1,10 +1,14 @@
 ---
 title: Links
 links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
+  - title: GitHub winotmk/Hugo-Blog
+    description: 本博客在github上的托管库位置
+    website: https://github.com/winotmk/Hugo-Blog
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: Bilibili
+    description: 博主B站
+    website: https://space.bilibili.com/193498
+
 menu:
     main: 
         weight: 4

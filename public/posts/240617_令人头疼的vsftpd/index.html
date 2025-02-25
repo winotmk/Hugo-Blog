@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=5325&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n">
 <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
+<link rel='canonical' href='http://localhost:5325/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
 
-<link rel="stylesheet" href="/scss/style.min.05cf114d6a08e28c87024355cb05fe2ddbe9e6b96bb1c46d7ccb252ddafd2099.css"><meta property='og:title' content="令人头疼的vsftpd,ftp端口修改设置配置">
-<meta property='og:description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n">
-<meta property='og:url' content='http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
+<link rel="stylesheet" href="/scss/style.min.7b1786e2ea62104ea73479ac41af01cea42f8f8848572a1ab75f3b6f3feddb38.css"><meta property='og:title' content="令人头疼的vsftpd,ftp端口修改设置配置">
+<meta property='og:description' content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n">
+<meta property='og:url' content='http://localhost:5325/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='ftp' /><meta property='article:published_time' content='2024-06-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-06-17T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="令人头疼的vsftpd,ftp端口修改设置配置">
-<meta name="twitter:description" content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf vsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置\nvim /etc/vsftpd.conf\rvsftpd 配置文件： https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html\n修改ftp的端口\rftp的监听和实际数据传输是两个端口，如果要改最好都改\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
         
         <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
@@ -653,7 +653,7 @@ export LANG=en_US.UTF-8
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

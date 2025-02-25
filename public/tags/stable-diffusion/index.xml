@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Stable Diffusion on WinNote</title>
-        <link>http://localhost:1313/tags/stable-diffusion/</link>
+        <link>http://localhost:5325/tags/stable-diffusion/</link>
         <description>Recent content in Stable Diffusion on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/stable-diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:5325/tags/stable-diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
-        <link>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
+        <link>http://localhost:5325/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
         <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
+        <guid>http://localhost:5325/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
         <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya
 &lt;/h2&gt;&lt;p&gt;镜像我这里选：
-&lt;img src=&#34;http://localhost:1313/images/20240110174810.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240110174810.png&#34;
 	
 	
 	
@@ -33,7 +33,7 @@ kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件
 在workspace根目录直接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git clone https://github.com/bmaltais/kohya_ss.git
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240110175054.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240110175054.png&#34;
 	
 	
 	
@@ -50,7 +50,7 @@ chmod +x ./setup.sh
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk
 之后安装脚本会自动完成，我大概花了5分钟
-&lt;img src=&#34;http://localhost:1313/images/20240110193312.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240110193312.png&#34;
 	
 	
 	
@@ -61,7 +61,7 @@ chmod +x ./setup.sh
 然后运行启动webui&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114153.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240111114153.png&#34;
 	
 	
 	
@@ -75,7 +75,7 @@ chmod +x ./setup.sh
     &gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数
 &lt;/h2&gt;&lt;h3 id=&#34;source-model&#34;&gt;source model
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114635.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240111114635.png&#34;
 	
 	
 	
@@ -88,7 +88,7 @@ chmod +x ./setup.sh
 &lt;/h3&gt;&lt;p&gt;这个tag里比较简单，没什么好说的
 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;
 &lt;h3 id=&#34;parameters&#34;&gt;parameters
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111115115.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:5325/images/20240111115115.png&#34;
 	
 	
 	
@@ -102,7 +102,7 @@ Image folder里写上训练集目录，注意写上的目录底下应该是例�
 &lt;/h4&gt;&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用
 都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端
 这样就是开始训练了：
-&lt;img src=&#34;http://localhost:1313/images/20240111121059.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240111121059.png&#34;
 	
 	
 	
@@ -165,7 +165,7 @@ Traceback (most recent call last):
 cuda下载：https://developer.nvidia.com/cuda-downloads
 但是有时候需要特定版本：https://developer.nvidia.com/cuda-toolkit-archive
 以11.8为例，系统是ubuntu22.04，所以这样选：
-&lt;img src=&#34;http://localhost:1313/images/20240111133431.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240111133431.png&#34;
 	
 	
 	
@@ -179,7 +179,7 @@ wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/
 sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;大约3-4GB左右，运行后需要等一会，会弹出交互界面
-&lt;img src=&#34;http://localhost:1313/images/20240111135108.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240111135108.png&#34;
 	
 	
 	
@@ -192,7 +192,7 @@ sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54928967e417&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.jianshu.com/p/54928967e417&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;装好以后他会提示：
-&lt;img src=&#34;http://localhost:1313/images/20240111135653.png&#34;
+&lt;img src=&#34;http://localhost:5325/images/20240111135653.png&#34;
 	
 	
 	
