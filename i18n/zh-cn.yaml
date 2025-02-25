@@ -64,4 +64,4 @@ footer:
         other: Built with {{ .Generator }}
 
     designedBy:
-        other: Theme {{ .Theme }} designed by {{ .DesignedBy }}
+        other: Theme {{ .Theme }} designed by {{ .DesignedBy }} Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>

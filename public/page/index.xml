@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on WinNote</title>
-        <link>http://localhost:5325/page/</link>
+        <link>http://localhost:12619/page/</link>
         <description>Recent content in Pages on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Sun, 06 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:5325/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 06 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:12619/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Archives</title>
-        <link>http://localhost:5325/archives/</link>
+        <link>http://localhost:12619/archives/</link>
         <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:5325/archives/</guid>
+        <guid>http://localhost:12619/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>http://localhost:5325/links/</link>
+        <link>http://localhost:12619/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:5325/links/</guid>
+        <guid>http://localhost:12619/links/</guid>
         <description>&lt;!--
 To use this feature, add `links` section to frontmatter.
 
@@ -43,10 +43,10 @@ links:
         </item>
         <item>
         <title>Search</title>
-        <link>http://localhost:5325/search/</link>
+        <link>http://localhost:12619/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:5325/search/</guid>
+        <guid>http://localhost:12619/search/</guid>
         <description></description>
         </item>
         

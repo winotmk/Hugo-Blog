@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Git on WinNote</title>
-        <link>http://localhost:5325/categories/git/</link>
+        <link>http://localhost:12619/categories/git/</link>
         <description>Recent content in Git on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:5325/categories/git/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:12619/categories/git/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Git常用命令</title>
-        <link>http://localhost:5325/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:12619/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:5325/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:12619/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;h3 id=&#34;1-进入本地仓库目录&#34;&gt;&lt;strong&gt;1. 进入本地仓库目录&lt;/strong&gt;
 &lt;/h3&gt;&lt;p&gt;打开终端（或 Git Bash），切换到仓库根目录：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /path/to/your-repo
