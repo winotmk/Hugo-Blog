@@ -4,7 +4,13 @@
         {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
         {{- $terms := $taxonomy.Pages -}}
         {{ if $terms }}
-        <h2 class="section-title">{{ $taxonomy.Title }}</h2>
+
+        <!-- <h2 class="section-title">{{ $taxonomy.Title }}</h2> -->
+        <div class="Winotmk_icon">
+            {{ partial "helper/icon" "category" }}
+            <h2 class="section-title" style="display: inline-block;position: relative;top: -5px;">分类</h2>
+        </div>
+
         <div class="subsection-list">
             <div class="article-list--tile">
                 {{ range $terms }}

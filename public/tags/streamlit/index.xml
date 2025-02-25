@@ -5,7 +5,7 @@
         <link>http://localhost:1313/tags/streamlit/</link>
         <description>Recent content in Streamlit on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>zh-cn</language>
         <copyright>winotmk</copyright>
         <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/streamlit/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>用容器来运行streamlit</title>

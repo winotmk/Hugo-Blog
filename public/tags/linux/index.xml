@@ -5,7 +5,7 @@
         <link>http://localhost:1313/tags/linux/</link>
         <description>Recent content in Linux on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>zh-cn</language>
         <copyright>winotmk</copyright>
         <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>calibre_web的pdf封面提取问题</title>
@@ -547,74 +547,6 @@ screen -r id或窗口名称
 </description>
         </item>
         <item>
-        <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
-        <link>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
-        <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
-        <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;vsftpd 配置文件：
-&lt;a class=&#34;link&#34; href=&#34;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;修改ftp的端口&#34;&gt;修改ftp的端口
-&lt;/h2&gt;&lt;p&gt;ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;connect_from_port_20=NO
-ftp_data_port=12520
-listen_port=12521
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pasv_promiscuous=YES
-pasv_min_port=31100
-pasv_max_port=31110
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p&gt;
-&lt;p&gt;另外还有系统的services里&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vim /etc/services
-
-#ftp-data        20/tcp
-#ftp-data        20/udp
-ftp-data        12520/tcp
-ftp-data        12520/udp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
-&lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240617155755.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;一篇不错的配置说明
-&lt;a class=&#34;link&#34; href=&#34;https://blog.starryvoid.com/archives/1044.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.starryvoid.com/archives/1044.html&lt;/a&gt;
-主要提到了utf8的编码问题&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;utf8_filesystem=YES&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如果这样还没解决，考虑是要修改容器本身的&lt;code&gt;LANG&lt;/code&gt;
-可以直接进入容器然后类似：
-export LANG=C.UTF-8
-或者
-export LANG=en_US.UTF-8
-输入locale查看结果
-当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里
-&lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;
-然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240618170337.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>地理数据采集器计划</title>
         <link>http://localhost:1313/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</link>
         <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
@@ -839,6 +771,74 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表
 	
 	
 &gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
+        <link>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
+        <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
+        <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;vsftpd 配置文件：
+&lt;a class=&#34;link&#34; href=&#34;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改ftp的端口&#34;&gt;修改ftp的端口
+&lt;/h2&gt;&lt;p&gt;ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;connect_from_port_20=NO
+ftp_data_port=12520
+listen_port=12521
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pasv_promiscuous=YES
+pasv_min_port=31100
+pasv_max_port=31110
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p&gt;
+&lt;p&gt;另外还有系统的services里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/services
+
+#ftp-data        20/tcp
+#ftp-data        20/udp
+ftp-data        12520/tcp
+ftp-data        12520/udp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
+&lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240617155755.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一篇不错的配置说明
+&lt;a class=&#34;link&#34; href=&#34;https://blog.starryvoid.com/archives/1044.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.starryvoid.com/archives/1044.html&lt;/a&gt;
+主要提到了utf8的编码问题&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;utf8_filesystem=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果这样还没解决，考虑是要修改容器本身的&lt;code&gt;LANG&lt;/code&gt;
+可以直接进入容器然后类似：
+export LANG=C.UTF-8
+或者
+export LANG=en_US.UTF-8
+输入locale查看结果
+当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里
+&lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;
+然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240618170337.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1742,77 +1742,79 @@ reboot
 </description>
         </item>
         <item>
-        <title>树莓派上架设TimeMachine服务</title>
-        <link>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</link>
+        <title>流量异常排查</title>
+        <link>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</guid>
-        <description>&lt;p&gt;{% asset_img 20211013_002640.png 800 %}&lt;/p&gt;
-&lt;h2 id=&#34;命令&#34;&gt;命令
-&lt;/h2&gt;&lt;p&gt;前半参考：
-&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/335259509&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;从此Mac上的文件再也不会丟了&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;后半参考：
-&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/d9b180f6d397&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;如何自己搭建一个Time Machine服务器&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;挂载硬盘目录&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo mount /dev/sda2 /mnt/WinSource
+        <guid>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618000510.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+挖个坑。。。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>生成秘钥连接至github————用来推hexo</title>
+        <link>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
+        <description>&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;1.安装netatalk和avahi（自己感觉avahi不装也行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo apt install netatalk avahi-daemon -y
+&lt;p&gt;邮箱自然是我的git注册邮箱&lt;/p&gt;
+&lt;h2 id=&#34;如果修改passphrade密码&#34;&gt;如果修改passphrade密码
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -p -f ~/.ssh/id_ed25519
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2.创建账户wintm来访问TimeMachine，&lt;strong&gt;至少别用root，root访问不能！&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;useradd -c &amp;quot;Time machine&amp;quot; -m -s /bin/bash wintm
+&lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
+&lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618002355.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+打开/root/.ssh/id_ed25519.pub
+复制到这里
+&lt;img src=&#34;http://localhost:1313/images/20230618002554.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/settings/ssh/new&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/settings/ssh/new&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PS官方已不推荐用rsa加密&lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后设置密码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo passwd wintm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;3.配置netatalk&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo nano /etc/netatalk/AppleVolumes.default
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个文件似乎一行代表一个服务
-可以在&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# The line below sets some DEFAULT, starting with Netatalk 2.1.
-:DEFAULT: options:upriv,usedots
-
-# By default all users have access to their home directories.
-~/			&amp;quot;Home Directory&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;下面加上一行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/mnt/WinSource/TimeMachine WinMachine allow:wintm options:tm
-#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;4.重启服务&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo service netatalk restart
-sudo service avahi-daemon restart
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;一些坑&#34;&gt;一些坑
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;试图直接使用root账户连接，在这里卡了很久，还尝试在&lt;strong&gt;AppleVolumes.default&lt;/strong&gt;设置里写上例如&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;/mnt/WinSource/TimeMachine WinMachine allow:root rwlist:root  options:tm&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;翻到这篇：&lt;a class=&#34;link&#34; href=&#34;https://www.it610.com/article/1297957643536637952.htm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;[NAS之旅]-基于Centos7搭建Netatalk为Windows增加AFP协议&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;才忽然醒悟，&lt;strong&gt;root用户是禁止登录AFP服务&lt;/strong&gt;的，得嘞，新开个专门的用户吧&lt;/p&gt;
-&lt;p&gt;提到了新建一个用户来跑timemachine：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/d9b180f6d397&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;如何自己搭建一个Time Machine服务器&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;一开始习惯将硬盘挂载到&lt;code&gt;/root/WinSource&lt;/code&gt;，然鹅这似乎导致即便mac上TimeMachine连接上了也报错没法开始备份，想想也是wintm用户没有权限进root。。总结为避免不必要的麻烦以后硬盘不挂&lt;code&gt;/root&lt;/code&gt;里，这里我挂进了&lt;code&gt;/mnt&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;ps:当时还试图对&lt;code&gt;/root/WinSource&lt;/code&gt;使用chown&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo chown -R wintm:wintm /root/WinSource
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;见这篇：&lt;a class=&#34;link&#34; href=&#34;https://aaron67.cc/2017/01/14/rpi-as-time-capsule/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;用树莓派实现 Time Capsule&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;无解，chown改不了&lt;code&gt;WinSource&lt;/code&gt;目录的所有者，root强而有力，认输&lt;/p&gt;
-&lt;h2 id=&#34;补充连接&#34;&gt;补充连接
-&lt;/h2&gt;&lt;p&gt;NetaTalk官方文档和下载：&lt;a class=&#34;link&#34; href=&#34;http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://openwrt.org/zh/docs/guide-user/services/nas/netatalk_configuration#afp_netatalk_%e5%88%86%e4%ba%ab%e9%85%8d%e7%bd%ae_%e5%8f%88%e5%90%8d_apple_time_machine&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;AFP Netatalk 分享配置 (又名 Apple Time Machine).&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.maxisvest.com/%e4%bd%bf%e7%94%a8netatalk%e6%89%93%e9%80%a0%e4%b8%80%e6%ac%be%e5%b1%9e%e4%ba%8e%e8%87%aa%e5%b7%b1%e7%9a%84Time-Machine%e5%9c%a8%e7%ba%bf%e5%a4%87%e4%bb%bd%e6%9c%8d%e5%8a%a1%e5%99%a8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;使用netatalk打造一款属于自己的Time-Machine在线备份服务器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618003332.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+这里输入yes
+&lt;img src=&#34;http://localhost:1313/images/20230618003428.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+成功！&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2043,79 +2045,77 @@ umount /tmp/extroot
 </description>
         </item>
         <item>
-        <title>流量异常排查</title>
-        <link>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</link>
+        <title>树莓派上架设TimeMachine服务</title>
+        <link>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618000510.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-挖个坑。。。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>生成秘钥连接至github————用来推hexo</title>
-        <link>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
-        <description>&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
+        <guid>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</guid>
+        <description>&lt;p&gt;{% asset_img 20211013_002640.png 800 %}&lt;/p&gt;
+&lt;h2 id=&#34;命令&#34;&gt;命令
+&lt;/h2&gt;&lt;p&gt;前半参考：
+&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/335259509&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;从此Mac上的文件再也不会丟了&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;后半参考：
+&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/d9b180f6d397&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;如何自己搭建一个Time Machine服务器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;挂载硬盘目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo mount /dev/sda2 /mnt/WinSource
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;邮箱自然是我的git注册邮箱&lt;/p&gt;
-&lt;h2 id=&#34;如果修改passphrade密码&#34;&gt;如果修改passphrade密码
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -p -f ~/.ssh/id_ed25519
+&lt;p&gt;1.安装netatalk和avahi（自己感觉avahi不装也行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install netatalk avahi-daemon -y
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
-&lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618002355.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-打开/root/.ssh/id_ed25519.pub
-复制到这里
-&lt;img src=&#34;http://localhost:1313/images/20230618002554.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/settings/ssh/new&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/settings/ssh/new&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;PS官方已不推荐用rsa加密&lt;/p&gt;
-&lt;h2 id=&#34;测试&#34;&gt;测试
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+&lt;p&gt;2.创建账户wintm来访问TimeMachine，&lt;strong&gt;至少别用root，root访问不能！&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;useradd -c &amp;quot;Time machine&amp;quot; -m -s /bin/bash wintm
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618003332.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-这里输入yes
-&lt;img src=&#34;http://localhost:1313/images/20230618003428.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-成功！&lt;/p&gt;
+&lt;p&gt;然后设置密码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo passwd wintm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;3.配置netatalk&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/netatalk/AppleVolumes.default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个文件似乎一行代表一个服务
+可以在&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# The line below sets some DEFAULT, starting with Netatalk 2.1.
+:DEFAULT: options:upriv,usedots
+
+# By default all users have access to their home directories.
+~/			&amp;quot;Home Directory&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下面加上一行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/mnt/WinSource/TimeMachine WinMachine allow:wintm options:tm
+#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;4.重启服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo service netatalk restart
+sudo service avahi-daemon restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;一些坑&#34;&gt;一些坑
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;试图直接使用root账户连接，在这里卡了很久，还尝试在&lt;strong&gt;AppleVolumes.default&lt;/strong&gt;设置里写上例如&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;/mnt/WinSource/TimeMachine WinMachine allow:root rwlist:root  options:tm&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;翻到这篇：&lt;a class=&#34;link&#34; href=&#34;https://www.it610.com/article/1297957643536637952.htm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;[NAS之旅]-基于Centos7搭建Netatalk为Windows增加AFP协议&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;才忽然醒悟，&lt;strong&gt;root用户是禁止登录AFP服务&lt;/strong&gt;的，得嘞，新开个专门的用户吧&lt;/p&gt;
+&lt;p&gt;提到了新建一个用户来跑timemachine：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/d9b180f6d397&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;如何自己搭建一个Time Machine服务器&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一开始习惯将硬盘挂载到&lt;code&gt;/root/WinSource&lt;/code&gt;，然鹅这似乎导致即便mac上TimeMachine连接上了也报错没法开始备份，想想也是wintm用户没有权限进root。。总结为避免不必要的麻烦以后硬盘不挂&lt;code&gt;/root&lt;/code&gt;里，这里我挂进了&lt;code&gt;/mnt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ps:当时还试图对&lt;code&gt;/root/WinSource&lt;/code&gt;使用chown&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown -R wintm:wintm /root/WinSource
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;见这篇：&lt;a class=&#34;link&#34; href=&#34;https://aaron67.cc/2017/01/14/rpi-as-time-capsule/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;用树莓派实现 Time Capsule&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;无解，chown改不了&lt;code&gt;WinSource&lt;/code&gt;目录的所有者，root强而有力，认输&lt;/p&gt;
+&lt;h2 id=&#34;补充连接&#34;&gt;补充连接
+&lt;/h2&gt;&lt;p&gt;NetaTalk官方文档和下载：&lt;a class=&#34;link&#34; href=&#34;http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://openwrt.org/zh/docs/guide-user/services/nas/netatalk_configuration#afp_netatalk_%e5%88%86%e4%ba%ab%e9%85%8d%e7%bd%ae_%e5%8f%88%e5%90%8d_apple_time_machine&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AFP Netatalk 分享配置 (又名 Apple Time Machine).&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.maxisvest.com/%e4%bd%bf%e7%94%a8netatalk%e6%89%93%e9%80%a0%e4%b8%80%e6%ac%be%e5%b1%9e%e4%ba%8e%e8%87%aa%e5%b7%b1%e7%9a%84Time-Machine%e5%9c%a8%e7%ba%bf%e5%a4%87%e4%bb%bd%e6%9c%8d%e5%8a%a1%e5%99%a8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;使用netatalk打造一款属于自己的Time-Machine在线备份服务器&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         

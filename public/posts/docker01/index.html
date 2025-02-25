@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n了解ECI弹性容器：https://www.aliyun.com/product/eci 了解阿里云NAS文件存储：https://www.aliyun.com/product/nas\n为什么要用eci来运行hexo？ 因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种 本博客之前是由树莓派上的hexo生成，部署到github上的 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了） 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的 最后成品的结构大致如下图：\n这里挂了3个镜像： 1.node.js+git+ssh+hexo 主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会hexo g -d，而运行这套需要一个环境容器 git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理 2.vsftpd 一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！ 3.ddns 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像\n还挂了一个NAS盘： 挂载以后： 可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计\n文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用\nvsftpd还有ddns可以与主镜像node.js+hexo合并成一个大镜像吗？ 当然可以，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小\n整套下来有这些部分：\ndocker基本操作 已经启动的本地容器修改端口，启动容器时即启动服务等 打包制作自己的docker镜像(dockerfile) docker镜像打包并上传到阿里云镜像库ARK eci容器创建模板和eci命令行工具使用 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档 附表： 群晖搭建私有镜像仓库和dockerengine设置 eci价格计算表\n1. docker 基本操作\r博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶 ——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！ 资料网站：\n官方命令大全\n基于Docker的Hexo博客搭建\n这个基本操作写得还行下次爬一篇下来吧：\n[小抄] Docker 基本命令\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
 <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
 
 <link rel='canonical' href='http://localhost:1313/posts/docker01/'>
 
-<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
-<meta property='og:description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n了解ECI弹性容器：https://www.aliyun.com/product/eci 了解阿里云NAS文件存储：https://www.aliyun.com/product/nas\n为什么要用eci来运行hexo？ 因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种 本博客之前是由树莓派上的hexo生成，部署到github上的 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了） 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的 最后成品的结构大致如下图：\n这里挂了3个镜像： 1.node.js+git+ssh+hexo 主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会hexo g -d，而运行这套需要一个环境容器 git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理 2.vsftpd 一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！ 3.ddns 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像\n还挂了一个NAS盘： 挂载以后： 可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计\n文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用\nvsftpd还有ddns可以与主镜像node.js+hexo合并成一个大镜像吗？ 当然可以，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小\n整套下来有这些部分：\ndocker基本操作 已经启动的本地容器修改端口，启动容器时即启动服务等 打包制作自己的docker镜像(dockerfile) docker镜像打包并上传到阿里云镜像库ARK eci容器创建模板和eci命令行工具使用 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档 附表： 群晖搭建私有镜像仓库和dockerengine设置 eci价格计算表\n1. docker 基本操作\r博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶 ——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！ 资料网站：\n官方命令大全\n基于Docker的Hexo博客搭建\n这个基本操作写得还行下次爬一篇下来吧：\n[小抄] Docker 基本命令\n">
+<link rel="stylesheet" href="/scss/style.min.05cf114d6a08e28c87024355cb05fe2ddbe9e6b96bb1c46d7ccb252ddafd2099.css"><meta property='og:title' content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
+<meta property='og:description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
 <meta property='og:url' content='http://localhost:1313/posts/docker01/'>
 <meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='hexo' /><meta property='article:tag' content='next' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='eci' /><meta property='article:published_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-05T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='hexo' /><meta property='article:tag' content='next' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='eci' /><meta property='article:published_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
-<meta name="twitter:description" content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n了解ECI弹性容器：https://www.aliyun.com/product/eci 了解阿里云NAS文件存储：https://www.aliyun.com/product/nas\n为什么要用eci来运行hexo？ 因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种 本博客之前是由树莓派上的hexo生成，部署到github上的 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了） 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的 最后成品的结构大致如下图：\n这里挂了3个镜像： 1.node.js+git+ssh+hexo 主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会hexo g -d，而运行这套需要一个环境容器 git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理 2.vsftpd 一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！ 3.ddns 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像\n还挂了一个NAS盘： 挂载以后： 可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计\n文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用\nvsftpd还有ddns可以与主镜像node.js+hexo合并成一个大镜像吗？ 当然可以，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小\n整套下来有这些部分：\ndocker基本操作 已经启动的本地容器修改端口，启动容器时即启动服务等 打包制作自己的docker镜像(dockerfile) docker镜像打包并上传到阿里云镜像库ARK eci容器创建模板和eci命令行工具使用 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档 附表： 群晖搭建私有镜像仓库和dockerengine设置 eci价格计算表\n1. docker 基本操作\r博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶 ——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！ 资料网站：\n官方命令大全\n基于Docker的Hexo博客搭建\n这个基本操作写得还行下次爬一篇下来吧：\n[小抄] Docker 基本命令\n">
+<meta name="twitter:description" content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
         
         <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
     </head>
     <body class="
     article-page
@@ -42,7 +44,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -64,7 +66,7 @@
                 
                 </a>
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🪐</span>
                 
             </figure>
             
@@ -72,13 +74,27 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">WinNote</a></h1>
-            <h2 class="site-description">零碎MD文档收集 | 生命在于折腾</h2>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
         </div>
     </header><ol class="menu-social">
             
                 <li>
                     <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
                         target="_blank"
                         title="GitHub"
                         rel="me"
@@ -98,20 +114,14 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com'
+                        href='https://winotmk.com'
                         target="_blank"
-                        title="Twitter"
+                        title="Homepage"
                         rel="me"
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
                         
                     </a>
                 </li>
@@ -135,7 +145,7 @@
 
 
                 
-                <span>Home</span>
+                <span>首页</span>
             </a>
         </li>
         
@@ -155,7 +165,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -174,7 +184,7 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
@@ -193,35 +203,12 @@
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="http://localhost:1313/" selected>English</option>
-                                
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -241,7 +228,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -265,8 +252,9 @@
 
 
 
+            <h2 class="widget-title section-title">目录</h2>
         </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
+        
         
         <div class="widget--toc">
             <nav id="TableOfContents">
@@ -361,6 +349,26 @@
 
             
         
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
     </aside>
 
 
@@ -370,11 +378,15 @@
 
     <div class="article-details">
     
+
     
     
-    <header>
+
+    
+     
+     <header class="article-category">
         <div class="Winotmk_icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
   <circle cx="9" cy="9" r="2" />
@@ -383,22 +395,29 @@
 
 
         </div>
-        
-    <section class="article-tags">
-        
-            <a href="/tags/hexo/">Hexo</a>
-        
-            <a href="/tags/next/">Next</a>
-        
-            <a href="/tags/docker/">Docker</a>
-        
-            <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
-        
-            <a href="/tags/eci/">Eci</a>
-        
-    </section>
-
-    </header>
+         
+             <a href="/tags/hexo/" >
+                 Hexo
+             </a>
+         
+             <a href="/tags/next/" >
+                 Next
+             </a>
+         
+             <a href="/tags/docker/" >
+                 Docker
+             </a>
+         
+             <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" >
+                 阿里云
+             </a>
+         
+             <a href="/tags/eci/" >
+                 Eci
+             </a>
+         
+     </header>
+     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -439,7 +458,7 @@
 
 
                 <time class="article-time--reading">
-                    8 minute read
+                    阅读时长: 24 分钟
                 </time>
             </div>
         
@@ -1615,18 +1634,6 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode
     </header>
     
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 
@@ -1638,7 +1645,7 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode
     
 
 <aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
+    <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
             
@@ -1873,7 +1880,8 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode
 
         
         
-        <script src="/highlight/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+        
+        <script>hljs.highlightAll();</script>
+        
     </body>
 </html>

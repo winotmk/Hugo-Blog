@@ -5,7 +5,7 @@
         <link>http://localhost:1313/tags/docker/</link>
         <description>Recent content in Docker on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>zh-cn</language>
         <copyright>winotmk</copyright>
         <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>calibre_web的pdf封面提取问题</title>

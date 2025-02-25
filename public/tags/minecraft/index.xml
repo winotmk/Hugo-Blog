@@ -5,7 +5,7 @@
         <link>http://localhost:1313/tags/minecraft/</link>
         <description>Recent content in Minecraft on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>zh-cn</language>
         <copyright>winotmk</copyright>
         <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>给docker容器内配置中文环境(minecraft开服相关)</title>

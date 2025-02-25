@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n">
 <title>群晖上用容器搭建SVN服务器</title>
 
 <link rel='canonical' href='http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
 
-<link rel="stylesheet" href="/scss/style.min.acd6b90b36385f8be6b2027c8f24c092fd7d2a6496a66d78620887870161cf23.css"><meta property='og:title' content="群晖上用容器搭建SVN服务器">
-<meta property='og:description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
+<link rel="stylesheet" href="/scss/style.min.05cf114d6a08e28c87024355cb05fe2ddbe9e6b96bb1c46d7ccb252ddafd2099.css"><meta property='og:title' content="群晖上用容器搭建SVN服务器">
+<meta property='og:description' content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n">
 <meta property='og:url' content='http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/'>
 <meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='NAS' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='SVN' /><meta property='article:published_time' content='2023-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-14T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='NAS' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='SVN' /><meta property='article:published_time' content='2023-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="群晖上用容器搭建SVN服务器">
-<meta name="twitter:description" content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n所用镜像：https://hub.docker.com/r/garethflowers/svn-server 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server\nSVN网站：https://subversion.apache.org/\n参考： https://blog.51cto.com/u_12701820/6544028\n准备镜像\r由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些\n先在PC上拉个镜像，直接\ndocker pull garethflowers/svn-server:latest\r然后把镜像打包成文件\ndocker save -o svn-server.tar garethflowers/svn-server:latest\r就能得到一个svn-server.tar的文件了，把这个文件上传到ContainerManager里 然后左边的TAG里选容器》新增，选择刚上传的svn-server 配置镜像\r镜像用法说明，基本上配置个端口和映射库就行 /SVN_library/SVN_Folder是我专门创建的新的NAS文件夹\n之后下一步容器就能启动起来了\n打开终端机》通过命令启动》用/bin/sh 来开一个交互的shell 然后我输入\nsvnadmin create WinSVN\r来建我的第一个SVN仓库名为WinSVN\n（以下部分参考: https://cloud.tencent.com/developer/article/1650131\n然后找到/SVN_library/SVN_Folder/WinSVN/conf，里面是SVN的配置文件了 编辑svnserve.conf anon-access = none #取消匿名访问 auth-access = write #授权用户有可写权限 password-db = passwd #指定用户配置文件，后面会用到\n编辑passwd 添加了自己的账户，至于分区权限我暂时用不到\n记得重启容器，服务器部分好像就差不多了\n最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS 测试连接\rpc端新建个文件夹，右键SVN CheckOut 地址可以输入svn://DDNS的域名:3690/WinSVN，输入上面passwd文件里设置好的用户名和密码就好了！！\n之后就是svn客户端的基本用法了，随便放一个文件尝试上传 很快就传好了，至此这个SVN仓库宣告可用！ ">
+<meta name="twitter:description" content=" 事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
         
         <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
     </head>
     <body class="
     article-page
@@ -42,7 +44,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -64,7 +66,7 @@
                 
                 </a>
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">🪐</span>
                 
             </figure>
             
@@ -72,13 +74,27 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">WinNote</a></h1>
-            <h2 class="site-description">零碎MD文档收集 | 生命在于折腾</h2>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
         </div>
     </header><ol class="menu-social">
             
                 <li>
                     <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
                         target="_blank"
                         title="GitHub"
                         rel="me"
@@ -98,20 +114,14 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com'
+                        href='https://winotmk.com'
                         target="_blank"
-                        title="Twitter"
+                        title="Homepage"
                         rel="me"
                     >
                         
                         
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
                         
                     </a>
                 </li>
@@ -135,7 +145,7 @@
 
 
                 
-                <span>Home</span>
+                <span>首页</span>
             </a>
         </li>
         
@@ -155,7 +165,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -174,7 +184,7 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
@@ -193,35 +203,12 @@
 
 
                 
-                <span>Links</span>
+                <span>链接</span>
             </a>
         </li>
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="http://localhost:1313/" selected>English</option>
-                                
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -241,7 +228,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -265,8 +252,9 @@
 
 
 
+            <h2 class="widget-title section-title">目录</h2>
         </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
+        
         
         <div class="widget--toc">
             <nav id="TableOfContents">
@@ -281,6 +269,26 @@
 
             
         
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
     </aside>
 
 
@@ -290,11 +298,15 @@
 
     <div class="article-details">
     
+
     
     
-    <header>
+
+    
+     
+     <header class="article-category">
         <div class="Winotmk_icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
   <circle cx="9" cy="9" r="2" />
@@ -303,18 +315,21 @@
 
 
         </div>
-        
-    <section class="article-tags">
-        
-            <a href="/tags/nas/">NAS</a>
-        
-            <a href="/tags/docker/">Docker</a>
-        
-            <a href="/tags/svn/">SVN</a>
-        
-    </section>
-
-    </header>
+         
+             <a href="/tags/nas/" >
+                 NAS
+             </a>
+         
+             <a href="/tags/docker/" >
+                 Docker
+             </a>
+         
+             <a href="/tags/svn/" >
+                 SVN
+             </a>
+         
+     </header>
+     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -355,7 +370,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -555,18 +570,6 @@ password-db = passwd    #指定用户配置文件，后面会用到</p>
     </header>
     
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 
@@ -578,7 +581,7 @@ password-db = passwd    #指定用户配置文件，后面会用到</p>
     
 
 <aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
+    <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
             
@@ -813,7 +816,8 @@ password-db = passwd    #指定用户配置文件，后面会用到</p>
 
         
         
-        <script src="/highlight/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+        
+        <script>hljs.highlightAll();</script>
+        
     </body>
 </html>

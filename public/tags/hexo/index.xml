@@ -5,7 +5,7 @@
         <link>http://localhost:1313/tags/hexo/</link>
         <description>Recent content in Hexo on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en</language>
+        <language>zh-cn</language>
         <copyright>winotmk</copyright>
         <lastBuildDate>Sat, 05 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hexo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>

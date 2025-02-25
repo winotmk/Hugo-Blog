@@ -10,14 +10,32 @@
     </header>
     {{ end }}
     -->
+
     <!--原分类替换为标签 winotmk 25.02.25-->
     <!--下载新SVG图标请看https://tabler.io/icons，然后放到/assets/icons-->
+
+    <!-- 这种好像不行，效果不好
+    {{ if .Params.tags }}
     <header>
         <div class="Winotmk_icon">
         {{ partial "helper/icon" "tag" }}
         </div>
         {{ partial "article/components/tags" . }}
     </header>
+    {{ end }}
+     -->
+     {{ if .Params.tags }}
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            {{ partial "helper/icon" "tag" }}
+        </div>
+         {{ range (.GetTerms "tags") }}
+             <a href="{{ .RelPermalink }}" {{ with .Params.style }}style="background-color: {{ .background }}; color: {{ .color }};"{{ end }}>
+                 {{ .LinkTitle }}
+             </a>
+         {{ end }}
+     </header>
+     {{ end }}
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
