@@ -1,137 +1,285 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NAS on WinNote</title><link>https://winotmk.github.io/tags/nas/</link><description>Recent content in NAS on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Tue, 28 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/nas/index.xml" rel="self" type="application/rss+xml"/><item><title>投影仪推nas</title><link>https://winotmk.github.io/posts/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/</link><pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/</guid><description>&lt;h2 id="投影仪侧解码的软件">投影仪侧解码的软件
-&lt;/h2>&lt;p>&lt;a class="link" href="https://www.zhihu.com/tardis/zm/art/408177850" target="_blank" rel="noopener"
->https://www.zhihu.com/tardis/zm/art/408177850&lt;/a>
-KODI软件，可以直接这里
-&lt;a class="link" href="https://kodi.tv/download/android/" target="_blank" rel="noopener"
->https://kodi.tv/download/android/&lt;/a>
-下载到能直接安装的软件，试了极米的投影可直接装，然后要设置nas的文件目录，从而通过局域网读取视频文件，显然这是通过投影里解码的，卡得飞起，很快就出现了音话不同步的问题&lt;/p>
-&lt;h2 id="nas解码的软件">nas解码的软件
-&lt;/h2>&lt;p>群晖自己有video station，有nas内的软件，也提供客户端，还有专为tv提供的软件：
-&lt;a class="link" href="https://www.synology.cn/zh-cn/support/download/DS720&amp;#43;?version=7.2#androids" target="_blank" rel="noopener"
->https://www.synology.cn/zh-cn/support/download/DS720+?version=7.2#androids&lt;/a>&lt;/p>
-&lt;p>但是这里的tv版装会出现装完了但是会有看不到图标的问题，多半是因为极影用的安卓并不是安卓tv而是魔改的安卓，所以要使用群晖的这个客户端，要么自己重新编一下
-&lt;a class="link" href="https://blog.csdn.net/hx7013/article/details/103764083" target="_blank" rel="noopener"
->https://blog.csdn.net/hx7013/article/details/103764083&lt;/a>&lt;/p>
-&lt;p>要么下这个改过入口app的软件——DSVideo GO!，配合群晖官方的客户端即可使用!
-&lt;a class="link" href="http://nasyun.com/thread-63924-1-1.html" target="_blank" rel="noopener"
->http://nasyun.com/thread-63924-1-1.html&lt;/a>&lt;/p></description></item><item><title>外网访问群晖NAS的文件</title><link>https://winotmk.github.io/posts/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96nas%E7%9A%84%E6%96%87%E4%BB%B6/</link><pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96nas%E7%9A%84%E6%96%87%E4%BB%B6/</guid><description>&lt;h2 id="方法一开smb文件服务再映射端口">方法一：开SMB文件服务再映射端口
-&lt;/h2>&lt;p>在这里打开SMB
-&lt;img src="https://winotmk.github.io/images/20241008142104.png"
-loading="lazy"
->&lt;/p>
-&lt;p>然后在路由器里打开端口转发，需要&lt;code>137-139,445&lt;/code>这么几个端口，我是路由拨号已有公网IP
-&lt;img src="https://winotmk.github.io/images/20241008142043.png"
-loading="lazy"
->&lt;/p>
-&lt;p>这样的好处就是相对简单，不需要客户端再装软件windows自带即可连接，当然需要NAS有公网IP（或者再做穿透）&lt;/p>
-&lt;p>缺点：坏处就是，这个几个端口似乎非常&lt;strong>不安全&lt;/strong>，在我转发这几个端口后，可以看到一直有IP尝试钻进来被NAS封，而且如果想要改这几个端口似乎不是那么容易的懒得研究啦
-&lt;img src="https://winotmk.github.io/images/20241008142823.png"
-loading="lazy"
->&lt;/p>
-&lt;p>某天在公司忽然死活连不上后（内网还可以访问，说明SMB服务没问题，也许被运营商封端口了？），尝试另一种访问文件的方法&lt;/p>
-&lt;h2 id="方法二weadavraidrive客户端">方法二：WeaDAV+RaiDrive客户端
-&lt;/h2>&lt;p>首先NAS上装WeaDAV，设置一下：
-&lt;img src="https://winotmk.github.io/images/20241008143718.png"
-loading="lazy"
->
-路由器里转发这俩端口就可以
-然后pc安装RaiDrive这个软件，设置如下：
-&lt;img src="https://winotmk.github.io/images/20241008143914.png"
-loading="lazy"
->
-&lt;img src="https://winotmk.github.io/images/20241008143024.png"
-loading="lazy"
->
-即可成功挂载一个带盘符的网络驱动器，试了下稳定性还是不错的，速度和SMB无异，用起来也没啥区别
-缺点：开机得启动RaiDrive这个软件，而且似乎读不了正确的NAS容量大小（500g是我自己填的)
-&lt;img src="https://winotmk.github.io/images/20241008143359.png"
-loading="lazy"
->&lt;/p></description></item><item><title>群晖上用容器搭建SVN服务器</title><link>https://winotmk.github.io/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid><description>&lt;p>&lt;img src="https://winotmk.github.io/images/20231214182733.png"
-loading="lazy"
->
-事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS
-另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的&lt;/p>
-&lt;p>所用镜像：https://hub.docker.com/r/garethflowers/svn-server
-备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server&lt;/p>
-&lt;p>SVN网站：https://subversion.apache.org/&lt;/p>
-&lt;p>参考：
-&lt;a class="link" href="https://blog.51cto.com/u_12701820/6544028" target="_blank" rel="noopener"
->https://blog.51cto.com/u_12701820/6544028&lt;/a>&lt;/p>
-&lt;h2 id="准备镜像">准备镜像
-&lt;/h2>&lt;p>&lt;img src="https://winotmk.github.io/images/20231213184128.png"
-loading="lazy"
->
-由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些&lt;/p>
-&lt;p>先在PC上拉个镜像，直接&lt;/p>
-&lt;pre>&lt;code>docker pull garethflowers/svn-server:latest
-&lt;/code>&lt;/pre>
-&lt;p>然后把镜像打包成文件&lt;/p>
-&lt;pre>&lt;code>docker save -o svn-server.tar garethflowers/svn-server:latest
-&lt;/code>&lt;/pre>
-&lt;!-- more -->
-&lt;p>就能得到一个&lt;code>svn-server.tar&lt;/code>的文件了，把这个文件上传到ContainerManager里
-&lt;img src="https://winotmk.github.io/images/20231214164925.png"
-loading="lazy"
->
-&lt;img src="https://winotmk.github.io/images/20231214165029.png"
-loading="lazy"
->&lt;/p>
-&lt;p>然后左边的TAG里选容器》新增，选择刚上传的svn-server
-&lt;img src="https://winotmk.github.io/images/20231214165249.png"
-loading="lazy"
->&lt;/p>
-&lt;h2 id="配置镜像">配置镜像
-&lt;/h2>&lt;p>&lt;img src="https://winotmk.github.io/images/20231214171830.png"
-loading="lazy"
->
-镜像用法说明，基本上配置个端口和映射库就行
-&lt;img src="https://winotmk.github.io/images/20231214172511.png"
-loading="lazy"
->
-&lt;code>/SVN_library/SVN_Folder&lt;/code>是我专门创建的新的NAS文件夹&lt;/p>
-&lt;p>之后下一步容器就能启动起来了&lt;/p>
-&lt;p>&lt;img src="https://winotmk.github.io/images/2023121417311214.png"
-loading="lazy"
->
-打开终端机》通过命令启动》用&lt;code>/bin/sh&lt;/code> 来开一个交互的shell
-然后我输入&lt;/p>
-&lt;pre>&lt;code>svnadmin create WinSVN
-&lt;/code>&lt;/pre>
-&lt;p>来建我的第一个SVN仓库名为&lt;code>WinSVN&lt;/code>&lt;/p>
-&lt;p>（以下部分参考: &lt;a class="link" href="https://cloud.tencent.com/developer/article/1650131" target="_blank" rel="noopener"
->https://cloud.tencent.com/developer/article/1650131&lt;/a>&lt;/p>
-&lt;p>然后找到&lt;code>/SVN_library/SVN_Folder/WinSVN/conf&lt;/code>，里面是SVN的配置文件了
-&lt;img src="https://winotmk.github.io/images/20231214175225.png"
-loading="lazy"
->
-编辑&lt;code>svnserve.conf&lt;/code>
-&lt;img src="https://winotmk.github.io/images/20231214175133.png"
-loading="lazy"
->&lt;/p>
-&lt;p>anon-access = none #取消匿名访问
-auth-access = write #授权用户有可写权限
-password-db = passwd #指定用户配置文件，后面会用到&lt;/p>
-&lt;p>编辑&lt;code>passwd&lt;/code>
-&lt;img src="https://winotmk.github.io/images/20231214175701.png"
-loading="lazy"
->
-添加了自己的账户，至于分区权限我暂时用不到&lt;/p>
-&lt;p>记得重启容器，服务器部分好像就差不多了&lt;/p>
-&lt;p>最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS
-&lt;img src="https://winotmk.github.io/images/20231214180021.png"
-loading="lazy"
->&lt;/p>
-&lt;h2 id="测试连接">测试连接
-&lt;/h2>&lt;p>pc端新建个文件夹，右键SVN CheckOut
-&lt;img src="https://winotmk.github.io/images/20231214181003.png"
-loading="lazy"
->
-地址可以输入&lt;code>svn://DDNS的域名:3690/WinSVN&lt;/code>，输入上面&lt;code>passwd&lt;/code>文件里设置好的用户名和密码就好了！！&lt;/p>
-&lt;p>之后就是svn客户端的基本用法了，随便放一个文件尝试上传
-&lt;img src="https://winotmk.github.io/images/20231214181456.png"
-loading="lazy"
->
-很快就传好了，至此这个SVN仓库宣告可用！
-&lt;img src="https://winotmk.github.io/images/20231214181617.png"
-loading="lazy"
->&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>NAS on WinNote</title>
+        <link>http://localhost:8560/tags/nas/</link>
+        <description>Recent content in NAS on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Tue, 28 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/nas/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>投影仪推nas</title>
+        <link>http://localhost:8560/posts/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/</link>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/</guid>
+        <description>&lt;h2 id=&#34;投影仪侧解码的软件&#34;&gt;投影仪侧解码的软件
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.zhihu.com/tardis/zm/art/408177850&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.zhihu.com/tardis/zm/art/408177850&lt;/a&gt;&lt;br&gt;
+KODI软件，可以直接这里&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://kodi.tv/download/android/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://kodi.tv/download/android/&lt;/a&gt;&lt;br&gt;
+下载到能直接安装的软件，试了极米的投影可直接装，然后要设置nas的文件目录，从而通过局域网读取视频文件，显然这是通过投影里解码的，卡得飞起，很快就出现了音话不同步的问题&lt;/p&gt;
+&lt;h2 id=&#34;nas解码的软件&#34;&gt;nas解码的软件
+&lt;/h2&gt;&lt;p&gt;群晖自己有video station，有nas内的软件，也提供客户端，还有专为tv提供的软件：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.synology.cn/zh-cn/support/download/DS720&amp;#43;?version=7.2#androids&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.synology.cn/zh-cn/support/download/DS720+?version=7.2#androids&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但是这里的tv版装会出现装完了但是会有看不到图标的问题，多半是因为极影用的安卓并不是安卓tv而是魔改的安卓，所以要使用群晖的这个客户端，要么自己重新编一下&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/hx7013/article/details/103764083&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/hx7013/article/details/103764083&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;要么下这个改过入口app的软件——DSVideo GO!，配合群晖官方的客户端即可使用!&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;http://nasyun.com/thread-63924-1-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://nasyun.com/thread-63924-1-1.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>外网访问群晖NAS的文件</title>
+        <link>http://localhost:8560/posts/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96nas%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+        <pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96nas%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+        <description>&lt;h2 id=&#34;方法一开smb文件服务再映射端口&#34;&gt;方法一：开SMB文件服务再映射端口
+&lt;/h2&gt;&lt;p&gt;在这里打开SMB&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008142104.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后在路由器里打开端口转发，需要&lt;code&gt;137-139,445&lt;/code&gt;这么几个端口，我是路由拨号已有公网IP&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008142043.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这样的好处就是相对简单，不需要客户端再装软件windows自带即可连接，当然需要NAS有公网IP（或者再做穿透）&lt;/p&gt;
+&lt;p&gt;缺点：坏处就是，这个几个端口似乎非常&lt;strong&gt;不安全&lt;/strong&gt;，在我转发这几个端口后，可以看到一直有IP尝试钻进来被NAS封，而且如果想要改这几个端口似乎不是那么容易的懒得研究啦&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008142823.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;某天在公司忽然死活连不上后（内网还可以访问，说明SMB服务没问题，也许被运营商封端口了？），尝试另一种访问文件的方法&lt;/p&gt;
+&lt;h2 id=&#34;方法二weadavraidrive客户端&#34;&gt;方法二：WeaDAV+RaiDrive客户端
+&lt;/h2&gt;&lt;p&gt;首先NAS上装WeaDAV，设置一下：&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008143718.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+路由器里转发这俩端口就可以&lt;br&gt;
+然后pc安装RaiDrive这个软件，设置如下：&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008143914.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008143024.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+即可成功挂载一个带盘符的网络驱动器，试了下稳定性还是不错的，速度和SMB无异，用起来也没啥区别&lt;br&gt;
+缺点：开机得启动RaiDrive这个软件，而且似乎读不了正确的NAS容量大小（500g是我自己填的)&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20241008143359.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>群晖上用容器搭建SVN服务器</title>
+        <link>http://localhost:8560/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20231214182733.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS&lt;br&gt;
+另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的&lt;/p&gt;
+&lt;p&gt;所用镜像：https://hub.docker.com/r/garethflowers/svn-server&lt;br&gt;
+备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server&lt;/p&gt;
+&lt;p&gt;SVN网站：https://subversion.apache.org/&lt;/p&gt;
+&lt;p&gt;参考：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_12701820/6544028&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.51cto.com/u_12701820/6544028&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20231213184128.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些&lt;/p&gt;
+&lt;p&gt;先在PC上拉个镜像，直接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker pull garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后把镜像打包成文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker save -o svn-server.tar garethflowers/svn-server:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;就能得到一个&lt;code&gt;svn-server.tar&lt;/code&gt;的文件了，把这个文件上传到ContainerManager里&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214164925.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214165029.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后左边的TAG里选容器》新增，选择刚上传的svn-server&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214165249.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置镜像&#34;&gt;配置镜像
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20231214171830.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+镜像用法说明，基本上配置个端口和映射库就行&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214172511.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;code&gt;/SVN_library/SVN_Folder&lt;/code&gt;是我专门创建的新的NAS文件夹&lt;/p&gt;
+&lt;p&gt;之后下一步容器就能启动起来了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/2023121417311214.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+打开终端机》通过命令启动》用&lt;code&gt;/bin/sh&lt;/code&gt; 来开一个交互的shell&lt;br&gt;
+然后我输入&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;svnadmin create WinSVN
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来建我的第一个SVN仓库名为&lt;code&gt;WinSVN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（以下部分参考: &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1650131&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cloud.tencent.com/developer/article/1650131&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;然后找到&lt;code&gt;/SVN_library/SVN_Folder/WinSVN/conf&lt;/code&gt;，里面是SVN的配置文件了&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214175225.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+编辑&lt;code&gt;svnserve.conf&lt;/code&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214175133.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;anon-access = none    #取消匿名访问&lt;br&gt;
+auth-access = write    #授权用户有可写权限&lt;br&gt;
+password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
+&lt;p&gt;编辑&lt;code&gt;passwd&lt;/code&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214175701.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+添加了自己的账户，至于分区权限我暂时用不到&lt;/p&gt;
+&lt;p&gt;记得重启容器，服务器部分好像就差不多了&lt;/p&gt;
+&lt;p&gt;最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214180021.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试连接&#34;&gt;测试连接
+&lt;/h2&gt;&lt;p&gt;pc端新建个文件夹，右键SVN CheckOut&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214181003.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+地址可以输入&lt;code&gt;svn://DDNS的域名:3690/WinSVN&lt;/code&gt;，输入上面&lt;code&gt;passwd&lt;/code&gt;文件里设置好的用户名和密码就好了！！&lt;/p&gt;
+&lt;p&gt;之后就是svn客户端的基本用法了，随便放一个文件尝试上传&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214181456.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+很快就传好了，至此这个SVN仓库宣告可用！&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231214181617.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

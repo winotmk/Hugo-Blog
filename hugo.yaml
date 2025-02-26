@@ -256,6 +256,7 @@ markup:
         renderer:
             ## Set to true if you have HTML content inside Markdown
             unsafe: true
+            hardWraps: true
     tableOfContents:
         endLevel: 4
         ordered: true

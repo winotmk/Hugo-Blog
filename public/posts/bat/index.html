@@ -1,22 +1,419 @@
-<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&mldr;内的Resource目录下的Texture和Mesh目录加编号)\n"><title>批处理实现批量改名以及SVN批量改名</title>
-<link rel=canonical href=https://winotmk.github.io/posts/bat/><link rel=stylesheet href=/scss/style.min.eea3370ed909d956e6cf1eb5e6394f18aaefe515e6517f33ed4cf2d3958e98fc.css><meta property='og:title' content="批处理实现批量改名以及SVN批量改名"><meta property='og:description' content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&mldr;内的Resource目录下的Texture和Mesh目录加编号)\n"><meta property='og:url' content='https://winotmk.github.io/posts/bat/'><meta property='og:site_name' content='WinNote'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='bat'><meta property='article:published_time' content='2021-12-14T00:00:00+00:00'><meta property='article:modified_time' content='2021-12-14T00:00:00+00:00'><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'><meta name=twitter:title content="批处理实现批量改名以及SVN批量改名"><meta name=twitter:description content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&mldr;内的Resource目录下的Texture和Mesh目录加编号)\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'><link rel="shortcut icon" href=/favicon.png><link rel=stylesheet href=/highlight/styles/base16/eighties.css><script src=/highlight/highlight.min.js></script><script src=/clipboard.min.js></script><script src=/copy-to-clipboard.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"light")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_1b0ce47a1c2b08eb.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
-</a><span class=emoji>🪐</span></figure><div class=site-meta><h1 class=site-name><a href=/>WinNote</a></h1><h2 class=site-description>零碎MD文档收集|生命在于折腾</h2></div></header><ol class=menu-social><li><a href=https://space.bilibili.com/193498 target=_blank title=Bilibili rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a></li><li><a href=https://github.com/winotmk/Hugo-Blog target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://winotmk.com target=_blank title=Homepage rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9-9-9 9h2v7a2 2 0 002 2h6"/><path d="M9 21v-6a2 2 0 012-2h2c.39.0.754.112 1.061.304"/><path d="M19 21.5l2.518-2.58a1.74 1.74.0 000-2.413 1.627 1.627.0 00-2.346.0l-.168.172-.168-.172a1.627 1.627.0 00-2.346.0 1.74 1.74.0 000 2.412l2.51 2.59z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
-<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
-<span>搜索</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
-<span>链接</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><h2 class="widget-title section-title">目录</h2></div><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#需求>需求</a></li><li><a href=#改名实现>改名实现</a></li><li><a href=#svn-rename批处理>SVN Rename批处理</a></li><li><a href=#一些tips>一些Tips</a></li></ol></nav></div></section><form action=/search/ class="search-form widget"><p><label>搜索</label>
-<input name=keyword required placeholder=输入关键词...>
-<button title=搜索><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button></p></form></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><div class=Winotmk_icon><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg></div><a href=/tags/bat/>Bat</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/bat/>批处理实现批量改名以及SVN批量改名</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Dec 14, 2021</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 4 分钟</time></div></footer></div></header><section class=article-content><h2 id=需求>需求</h2><p>{% asset_img 20211214_123317_Snipaste.png %}</p><p>注意Mesh和Texture前加了编号</p><p>工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&mldr;内的Resource目录下的Texture和Mesh目录加编号)</p><p>感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下</p><h2 id=改名实现>改名实现</h2><p>如果单只是改名其实很简单，只需要几行即可实现：</p><pre><code class=language-bat>@echo off
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8560&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n">
+<title>批处理实现批量改名以及SVN批量改名</title>
+
+<link rel='canonical' href='http://localhost:8560/posts/bat/'>
+
+<link rel="stylesheet" href="/scss/style.min.eea3370ed909d956e6cf1eb5e6394f18aaefe515e6517f33ed4cf2d3958e98fc.css"><meta property='og:title' content="批处理实现批量改名以及SVN批量改名">
+<meta property='og:description' content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n">
+<meta property='og:url' content='http://localhost:8560/posts/bat/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='bat' /><meta property='article:published_time' content='2021-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+<meta name="twitter:title" content="批处理实现批量改名以及SVN批量改名">
+<meta name="twitter:description" content="需求\r{% asset_img 20211214_123317_Snipaste.png %}\n注意Mesh和Texture前加了编号\n工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
+        
+        <script src="/clipboard.min.js"></script>
+        <script src="/copy-to-clipboard.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://winotmk.com'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+            <h2 class="widget-title section-title">目录</h2>
+        </div>
+        
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#需求">需求</a></li>
+    <li><a href="#改名实现">改名实现</a></li>
+    <li><a href="#svn-rename批处理">SVN Rename批处理</a></li>
+    <li><a href="#一些tips">一些Tips</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    
+    
+
+    
+     
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+         
+             <a href="/tags/bat/" >
+                 Bat
+             </a>
+         
+     </header>
+     
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/bat/">批处理实现批量改名以及SVN批量改名</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 14, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="需求">需求
+</h2><p>{% asset_img 20211214_123317_Snipaste.png %}</p>
+<p>注意Mesh和Texture前加了编号</p>
+<p>工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&hellip;内的Resource目录下的Texture和Mesh目录加编号)</p>
+<p>感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下</p>
+<h2 id="改名实现">改名实现
+</h2><p>如果单只是改名其实很简单，只需要几行即可实现：</p>
+<pre><code class="language-bat">@echo off
 for /f &quot;delims=&quot; %%a in ('dir /ad/s/b &quot;Mesh&quot;') do ren &quot;%%~a&quot; 01-Mesh
 for /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Texture&quot;') do ren &quot;%%~b&quot; 00-Texture
 pause
-</code></pre><p><code>@echo off</code>打开批处理黑窗口</p><p><code>for in do</code>常用在查找匹配，满足条件后执行</p><p><code>dir /ad/s/b "Mesh"</code>这行可以参考<code>dir</code>命令的用法，<code>/ab</code>在这里是只显示目录（如果是要显示文件是<code>/a-d</code>）<code>/s</code>显示目录和包含子目录，<code>/b</code>不显示日期大小等其他信息，<code>"Mesh"</code>会列出包含Mesh目录</p><p><code>pause</code>这里会暂停一下按任意键继续</p><p>所以连起来就是列出包含Mesh和Texture的目录，然后用<code>ren</code>改名</p><h2 id=svn-rename批处理>SVN Rename批处理</h2><p>然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用<code>ren</code>等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：</p><ul><li>log丢失，历史版本找不回来</li><li>如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍）</li></ul><p>所以最好是用SVN的命令来进行操作</p><p>然后发现用<code>svn mv oldname newname</code>就能完成</p><pre><code class=language-bat>svn mv Mesh 00-Mesh
-</code></pre><p>移动，重命名，对svn来说都是这一个命令</p><p>所以大致思路就是用<code>for in do</code>来找到Mesh和Texture文件夹，然后用变量来做oldname和newname</p><pre><code class=language-bat>@echo off
+</code></pre>
+<!-- more -->
+<p><code>@echo off</code>打开批处理黑窗口</p>
+<p><code>for in do</code>常用在查找匹配，满足条件后执行</p>
+<p><code>dir /ad/s/b &quot;Mesh&quot;</code>这行可以参考<code>dir</code>命令的用法，<code>/ab</code>在这里是只显示目录（如果是要显示文件是<code>/a-d</code>）<code>/s</code>显示目录和包含子目录，<code>/b</code>不显示日期大小等其他信息，<code>&quot;Mesh&quot;</code>会列出包含Mesh目录</p>
+<p><code>pause</code>这里会暂停一下按任意键继续</p>
+<p>所以连起来就是列出包含Mesh和Texture的目录，然后用<code>ren</code>改名</p>
+<h2 id="svn-rename批处理">SVN Rename批处理
+</h2><p>然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用<code>ren</code>等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：</p>
+<ul>
+<li>log丢失，历史版本找不回来</li>
+<li>如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍）</li>
+</ul>
+<p>所以最好是用SVN的命令来进行操作</p>
+<p>然后发现用<code>svn mv oldname newname</code>就能完成</p>
+<pre><code class="language-bat">svn mv Mesh 00-Mesh
+</code></pre>
+<p>移动，重命名，对svn来说都是这一个命令</p>
+<p>所以大致思路就是用<code>for in do</code>来找到Mesh和Texture文件夹，然后用变量来做oldname和newname</p>
+<pre><code class="language-bat">@echo off
 setlocal EnableDelayedExpansion
 
 for /f &quot;delims=&quot; %%b in ('dir /ad/s/b &quot;Mesh&quot;') do (
@@ -41,14 +438,29 @@ svn mv !oldt! !newt!
 )
 
 pause
-</code></pre><p>一开始卡在变量这块很久，最后发现一定要有<code>setlocal EnableDelayedExpansion</code>，然后变量才可以在<code>do()</code>里用<code>!oldm!</code>这样，而不能用<code>%oldm%</code></p><p><code>set "newm=!oldm:Mesh=00_Mesh!"</code>这行的操作是字符串替换，举例来说此时<code>!oldm!</code>为<code>C:\Users\winte\Desktop\project\Assets01\Resource\Mesh</code></p><p>会将此段字符串中的<code>Mesh</code>替换为<code>00_Mesh</code>,得到</p><p><code>C:\Users\winte\Desktop\project\Assets01\Resource\00_Mesh</code></p><p>然后是一些交互上的完善，有个用到的结构</p><pre><code class=language-bat>@echo off
+</code></pre>
+<p>一开始卡在变量这块很久，最后发现一定要有<code>setlocal EnableDelayedExpansion</code>，然后变量才可以在<code>do()</code>里用<code>!oldm!</code>这样，而不能用<code>%oldm%</code></p>
+<p><code>set &quot;newm=!oldm:Mesh=00_Mesh!&quot;</code>这行的操作是字符串替换，举例来说此时<code>!oldm!</code>为<code>C:\Users\winte\Desktop\project\Assets01\Resource\Mesh</code></p>
+<p>会将此段字符串中的<code>Mesh</code>替换为<code>00_Mesh</code>,得到</p>
+<p><code>C:\Users\winte\Desktop\project\Assets01\Resource\00_Mesh</code></p>
+<p>然后是一些交互上的完善，有个用到的结构</p>
+<pre><code class="language-bat">@echo off
 echo 如需要撤销操作请按r,按其他任意键退出...
 set /p a=请输入r后回车:
 if &quot;%a%&quot;==&quot;r&quot; Goto abc
 exit /b
 :abc
 ....
-</code></pre><p>这里有个判断，如果按下了r键，会触发<code>Goto abc</code>，然后跳转到<code>:abc</code>以下的脚本，否则会直接走<code>exit /b</code>退出脚本，很实用</p><h2 id=一些tips>一些Tips</h2><ul><li>将变量与批处理中的另一个变量的一部分匹配</li></ul><p><a class=link href=https://www.thinbug.com/q/19056911 target=_blank rel=noopener>https://www.thinbug.com/q/19056911</a></p><p>测试这段是好用的，用来检测一段字符串是否含有一段字符串</p><pre><code class=language-bat>@echo off
+</code></pre>
+<p>这里有个判断，如果按下了r键，会触发<code>Goto abc</code>，然后跳转到<code>:abc</code>以下的脚本，否则会直接走<code>exit /b</code>退出脚本，很实用</p>
+<h2 id="一些tips">一些Tips
+</h2><ul>
+<li>将变量与批处理中的另一个变量的一部分匹配</li>
+</ul>
+<p><a class="link" href="https://www.thinbug.com/q/19056911"  target="_blank" rel="noopener"
+    >https://www.thinbug.com/q/19056911</a></p>
+<p>测试这段是好用的，用来检测一段字符串是否含有一段字符串</p>
+<pre><code class="language-bat">@echo off
 set &quot;h=Hello-World&quot;
 set &quot;f=This is a Hello-World test&quot;
 call set &quot;a=%%f:%h%=%%&quot;
@@ -58,8 +470,13 @@ exit /b
 :done
 echo it matched
 pause
-</code></pre><ul><li>一个ping通隔段时间再ping，ping不通就关机的例子
-<a class=link href=http://www.bathome.net/thread-12490-1-1.html target=_blank rel=noopener>http://www.bathome.net/thread-12490-1-1.html</a></li></ul><pre><code class=language-bat>@echo off
+</code></pre>
+<ul>
+<li>一个ping通隔段时间再ping，ping不通就关机的例子<br>
+<a class="link" href="http://www.bathome.net/thread-12490-1-1.html"  target="_blank" rel="noopener"
+    >http://www.bathome.net/thread-12490-1-1.html</a></li>
+</ul>
+<pre><code class="language-bat">@echo off
 :open
 ping 192.168.1.90
 if %ERRORLEVEL%==0 goto Ok
@@ -77,11 +494,202 @@ cls&amp;echo.通，10分钟后再监测，请勿关闭本窗口
 ping 127.0.1 /n 600 &gt;nul
  ::600秒后执行检测
 goto open
-</code></pre><ul><li>如果要检测的是上段脚本执行以后的返回值，可以用到<code>%ERRORLEVEL%</code></li></ul><p><a class=link href=https://www.jianshu.com/p/5e72aed76b71 target=_blank rel=noopener>https://www.jianshu.com/p/5e72aed76b71</a></p><p>不过<code>%ERRORLEVEL%</code>返回的是个数值，成功执行是0，不成功执行是非0，但是我用作svn命令执行判断的时候发现，有些指令即便不成功执行也返回0？懒得深究</p><ul><li>找到另外一种方法直接判断返回的字符串</li></ul><p><a class=link href=https://blog.csdn.net/hadsdn/article/details/78957361 target=_blank rel=noopener>https://blog.csdn.net/hadsdn/article/details/78957361</a></p></section><footer class=article-footer></footer></article><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
-2020 -
-2025 winotmk</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> Customized and extended by <a href=https://winotmk.com target=_blank rel=noopener>Winotmk</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-<button class="pswp__button pswp__button--share" title=Share></button>
-<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script>hljs.highlightAll()</script></body></html>
+</code></pre>
+<ul>
+<li>如果要检测的是上段脚本执行以后的返回值，可以用到<code>%ERRORLEVEL%</code></li>
+</ul>
+<p><a class="link" href="https://www.jianshu.com/p/5e72aed76b71"  target="_blank" rel="noopener"
+    >https://www.jianshu.com/p/5e72aed76b71</a></p>
+<p>不过<code>%ERRORLEVEL%</code>返回的是个数值，成功执行是0，不成功执行是非0，但是我用作svn命令执行判断的时候发现，有些指令即便不成功执行也返回0？懒得深究</p>
+<ul>
+<li>找到另外一种方法直接判断返回的字符串</li>
+</ul>
+<p><a class="link" href="https://blog.csdn.net/hadsdn/article/details/78957361"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/hadsdn/article/details/78957361</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+        
+        
+        <script>hljs.highlightAll();</script>
+        
+    </body>
+</html>

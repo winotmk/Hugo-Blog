@@ -7,9 +7,10 @@ tags:
 weight: 1
 image: http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif
 ---
-![](images/catcat.png)
+<!--![](images/catcat.png)-->
+![2025-02-26-22-52-55](http://pictures.winotmk.com/catcat_5d2b2bde.png)
 
-![20211101_005742_IMB_3iZZzg](http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif)
+![20211101_005742_IMB_3iZZzg [hugo-no-render]](http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif)
 <!--{% asset_img 20211101_005742_IMB_3iZZzg.gif 800 %}-->
 
 一个轻量级MD文档收集博客，不保证阅读性
@@ -39,7 +40,8 @@ NAS上工作台的盘符请设置为T
 启动ecistarter容器
 然后`CD ecistart` 进入目录
 使用`. ./hexo_s` 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入
-![](images/20231213183015.png)
+![2025-02-26-22-54-02](http://pictures.winotmk.com/WinNote/2025-02-26-22-54-02_c17f1445.png)
+
 之后通过VSCode的插件SSH FS来接入
 md文档的目录是`./hexo/Winblog/source/_posts`
 
@@ -59,5 +61,5 @@ md文档的目录是`./hexo/Winblog/source/_posts`
 1. 忽然发现阿里云OSS每个月要扣3块钱，才发现现在**同城冗余**和**本地存储**计价分开了，不能使用资源包扣容量了，**本地存储**的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱
 那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作
 ![2025-02-20-18-43-03](http://pictures.winotmk.com/WinNote/2025-02-20-18-43-03_f587624d.png)
-还蛮好用的，绑定了`elan upload from clipboard`到**`ctrl+shift+art+a`**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类
-2. vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录
+还蛮好用的，绑定了`elan upload from clipboard`到`ctrl+shift+alt+a`来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类
+1. vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录

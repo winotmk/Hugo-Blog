@@ -1,98 +1,169 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>博客 on WinNote</title><link>https://winotmk.github.io/tags/%E5%8D%9A%E5%AE%A2/</link><description>Recent content in 博客 on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Tue, 06 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml"/><item><title>网站框架收集</title><link>https://winotmk.github.io/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</link><pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</guid><description>&lt;p>其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在：
-&lt;a class="link" href="https://www.winotmk.com/" target="_blank" rel="noopener"
->https://www.winotmk.com/&lt;/a>
-是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择
-同时还有一个
-&lt;a class="link" href="https://md.winotmk.com/" target="_blank" rel="noopener"
->https://md.winotmk.com/&lt;/a>
-(&lt;a class="link" href="https://winotmk.github.io/" target="_blank" rel="noopener"
->https://winotmk.github.io/&lt;/a>)
-由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速
-似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！&lt;/p>
-&lt;p>因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333&lt;/p>
-&lt;h2 id="网站生成框架">网站生成/框架
-&lt;/h2>&lt;h3 id="typecho">typecho
-&lt;/h3>&lt;p>&lt;img src="https://winotmk.github.io/images/20240619132246.png"
-loading="lazy"
->&lt;/p>
-&lt;blockquote>
-&lt;p>Typecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎
-&lt;a class="link" href="https://github.com/typecho/typecho" target="_blank" rel="noopener"
->https://github.com/typecho/typecho&lt;/a>
-&lt;a class="link" href="https://typecho.org/" target="_blank" rel="noopener"
->https://typecho.org/&lt;/a>&lt;/p>&lt;/blockquote>
-&lt;p>&lt;img src="https://winotmk.github.io/images/20240806150559.png"
-loading="lazy"
->
-这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了&lt;/p>
-&lt;!-- more -->
-&lt;p>预览博客：
-&lt;a class="link" href="https://xhhdd.cc/index.php/archives/27/" target="_blank" rel="noopener"
->https://xhhdd.cc/index.php/archives/27/&lt;/a>
-&lt;a class="link" href="https://cfanlost.com/" target="_blank" rel="noopener"
->https://cfanlost.com/&lt;/a>&lt;/p>
-&lt;h3 id="hugo">hugo
-&lt;/h3>&lt;p>&lt;a class="link" href="https://gohugo.io/" target="_blank" rel="noopener"
->https://gohugo.io/&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://winotmk.github.io/images/20240806151141.png"
-loading="lazy"
->
-似乎是类hexo生成静态网页，然后可以塞到github托管的&lt;/p>
-&lt;h3 id="pelican">pelican
-&lt;/h3>&lt;blockquote>
-&lt;p>Pelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站
-&lt;a class="link" href="https://github.com/getpelican/pelican" target="_blank" rel="noopener"
->https://github.com/getpelican/pelican&lt;/a>&lt;/p>&lt;/blockquote>
-&lt;p>听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊&lt;/p>
-&lt;h3 id="jekyllrb">jekyllrb
-&lt;/h3>&lt;blockquote>
-&lt;p>将纯文本转换为静态网站和博客
-&lt;a class="link" href="https://jekyllrb.com/" target="_blank" rel="noopener"
->https://jekyllrb.com/&lt;/a>&lt;/p>&lt;/blockquote>
-&lt;p>应该和上面类似，同样是静态文章生成，部署到github&lt;/p>
-&lt;p>预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/
-&lt;img src="https://winotmk.github.io/images/20240814160206.png"
-loading="lazy"
->&lt;/p>
-&lt;h2 id="皮肤主题">皮肤/主题
-&lt;/h2>&lt;h3 id="typecho-1">typecho
-&lt;/h3>&lt;h4 id="handsome">handsome
-&lt;/h4>&lt;p>&lt;a class="link" href="https://www.ihewro.com/archives/489/" target="_blank" rel="noopener"
->https://www.ihewro.com/archives/489/&lt;/a>
-&lt;img src="https://winotmk.github.io/images/20240806150942.png"
-loading="lazy"
->&lt;/p>
-&lt;h3 id="pelican-1">pelican
-&lt;/h3>&lt;h4 id="attila">attila
-&lt;/h4>&lt;p>&lt;a class="link" href="https://github.com/arulrajnet/attila" target="_blank" rel="noopener"
->https://github.com/arulrajnet/attila&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://winotmk.github.io/images/20240806152032.png"
-loading="lazy"
->&lt;/p>
-&lt;p>预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html
-&lt;img src="https://winotmk.github.io/images/20240806152133.png"
-loading="lazy"
->&lt;/p>
-&lt;h3 id="hugo-1">hugo
-&lt;/h3>&lt;h4 id="papermod">PaperMod
-&lt;/h4>&lt;p>&lt;a class="link" href="https://themes.gohugo.io/themes/hugo-papermod/" target="_blank" rel="noopener"
->https://themes.gohugo.io/themes/hugo-papermod/&lt;/a>&lt;/p>
-&lt;p>Demo:https://adityatelange.github.io/hugo-PaperMod/&lt;/p>
-&lt;p>&lt;img src="https://winotmk.github.io/images/20241226162048.png"
-loading="lazy"
->&lt;/p>
-&lt;h2 id="评论系统">评论系统
-&lt;/h2>&lt;h3 id="waline">waline
-&lt;/h3>&lt;p>&lt;a class="link" href="https://github.com/walinejs/waline" target="_blank" rel="noopener"
->https://github.com/walinejs/waline&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://winotmk.github.io/images/20240806152451.png"
-loading="lazy"
->&lt;/p>
-&lt;h3 id="utterances">utterances
-&lt;/h3>&lt;p>是一个基于GitHub issues的轻量级评论，用github登录
-&lt;a class="link" href="https://utteranc.es/" target="_blank" rel="noopener"
->https://utteranc.es/&lt;/a>&lt;/p>
-&lt;p>&lt;img src="http://pictures.winotmk.com/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/2025-02-21-18-45-31_1781e237.png"
-loading="lazy"
-alt="2025-02-21-18-45-31"
->&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>博客 on WinNote</title>
+        <link>http://localhost:8560/tags/%E5%8D%9A%E5%AE%A2/</link>
+        <description>Recent content in 博客 on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Tue, 06 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网站框架收集</title>
+        <link>http://localhost:8560/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</link>
+        <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;p&gt;其实自己很长一段（接下来将来可能也会）时间内有两个网站，一个是习惯稍微正式点的东西写在：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.winotmk.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.winotmk.com/&lt;/a&gt;&lt;br&gt;
+是我的第一个网站，基于wordpress的，买的包年虚拟服务器，但很多内容年久失修，而且刚架设的时候什么也不知道，一点点摸通服务器，备案，注册域名之类的，那会儿还挺流行wordpress，似乎也没有别的更多的选择&lt;br&gt;
+同时还有一个&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://md.winotmk.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://md.winotmk.com/&lt;/a&gt;&lt;br&gt;
+(&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://winotmk.github.io/&lt;/a&gt;)&lt;br&gt;
+由hexo驱动的纯静态md文档网站，比较随意，想到啥写啥，构建方式也比较特别，是运行在云服务的容器里，静态文章则是在阿里云nas存储里，网站生成后托管在github，同时cdn加速&lt;br&gt;
+似乎md站可以用更放松的心情去记录，慢慢的文章比主站还多了？！&lt;/p&gt;
+&lt;p&gt;因为目前主站的各种小毛病（也不是不能用）所以经常考虑要不要把它换套别的结构，网上一搜确实有比如一键wordpress转hugo的方案，总之先记着，不一定用。因为当初20块买了套便宜的wordpress皮肤，然后在此基础上魔改各种css，已然改成了忒修斯之船，全丢弃了还是挺可惜的（沉没成本2333&lt;/p&gt;
+&lt;h2 id=&#34;网站生成框架&#34;&gt;网站生成/框架
+&lt;/h2&gt;&lt;h3 id=&#34;typecho&#34;&gt;typecho
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240619132246.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Typecho 是一款基于 PHP 的博客软件，旨在成为世界上最强大的博客引擎&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/typecho/typecho&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/typecho/typecho&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://typecho.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://typecho.org/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240806150559.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+这个好在和wordpress一样也是PHP的，想必能很快的迁移过来吧，而且目测更轻量，就是可能还是得租虚拟服务器了&lt;/p&gt;
+ &lt;!-- more --&gt;
+&lt;p&gt;预览博客：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://xhhdd.cc/index.php/archives/27/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://xhhdd.cc/index.php/archives/27/&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://cfanlost.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://cfanlost.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hugo&#34;&gt;hugo
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://gohugo.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240806151141.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+似乎是类hexo生成静态网页，然后可以塞到github托管的&lt;/p&gt;
+&lt;h3 id=&#34;pelican&#34;&gt;pelican
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Pelican 是一个用Python编写的静态站点生成器，允许您通过编写 Markdown、reStructuredText 和 HTML 等格式的文本文件来创建网站&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/getpelican/pelican&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/getpelican/pelican&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;听起来类似hexo和hugo，只是一个nodejs，一个go，这个则是python做的（真好啊&lt;/p&gt;
+&lt;h3 id=&#34;jekyllrb&#34;&gt;jekyllrb
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;将纯文本转换为静态网站和博客&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://jekyllrb.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://jekyllrb.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;应该和上面类似，同样是静态文章生成，部署到github&lt;/p&gt;
+&lt;p&gt;预览博客：https://jaminzhang.github.io/linux/Change-Linux-System-Locale-Envs/&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20240814160206.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;皮肤主题&#34;&gt;皮肤/主题
+&lt;/h2&gt;&lt;h3 id=&#34;typecho-1&#34;&gt;typecho
+&lt;/h3&gt;&lt;h4 id=&#34;handsome&#34;&gt;handsome
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.ihewro.com/archives/489/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.ihewro.com/archives/489/&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20240806150942.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;pelican-1&#34;&gt;pelican
+&lt;/h3&gt;&lt;h4 id=&#34;attila&#34;&gt;attila
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/arulrajnet/attila&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/arulrajnet/attila&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240806152032.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;预览博客：https://leonis.cc/sui-sui-nian/2023-10-31-cloudflare-dns-of-blog.html&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20240806152133.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hugo-1&#34;&gt;hugo
+&lt;/h3&gt;&lt;h4 id=&#34;papermod&#34;&gt;PaperMod
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/themes/hugo-papermod/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://themes.gohugo.io/themes/hugo-papermod/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Demo:https://adityatelange.github.io/hugo-PaperMod/&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20241226162048.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;评论系统&#34;&gt;评论系统
+&lt;/h2&gt;&lt;h3 id=&#34;waline&#34;&gt;waline
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/walinejs/waline&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/walinejs/waline&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240806152451.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;utterances&#34;&gt;utterances
+&lt;/h3&gt;&lt;p&gt;是一个基于GitHub issues的轻量级评论，用github登录&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://utteranc.es/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://utteranc.es/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/2025-02-21-18-45-31_1781e237.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-21-18-45-31&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

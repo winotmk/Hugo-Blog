@@ -1,50 +1,93 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Streamlit on WinNote</title><link>https://winotmk.github.io/tags/streamlit/</link><description>Recent content in Streamlit on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/streamlit/index.xml" rel="self" type="application/rss+xml"/><item><title>用容器来运行streamlit</title><link>https://winotmk.github.io/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link><pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid><description>&lt;p>&lt;img src="https://winotmk.github.io/images/20240724152543.png"
-loading="lazy"
->
-一开始玩这个的时候就在想用docker跑，因为实在不想在本机里搭各种乱七八糟的环境，也懒得用Anaconda那样的中间环境，总感觉本地跑个模型才用得上那种大玩意儿，于是在dockerhub上找了找
-一些已有的可用镜像：
-&lt;a class="link" href="https://hub.docker.com/r/aminehy/docker-streamlit-app" target="_blank" rel="noopener"
->https://hub.docker.com/r/aminehy/docker-streamlit-app&lt;/a>
-&lt;a class="link" href="https://hub.docker.com/r/samdobson/streamlit" target="_blank" rel="noopener"
->https://hub.docker.com/r/samdobson/streamlit&lt;/a>
-就是镜像build都好几年前了，实测目前有些新的例程都跑不了，还是自己做个镜像吧&lt;/p>
-&lt;h2 id="制作dockerfile">制作dockerfile
-&lt;/h2>&lt;p>&lt;a class="link" href="https://docs.streamlit.io/deploy/tutorials/docker" target="_blank" rel="noopener"
->https://docs.streamlit.io/deploy/tutorials/docker&lt;/a>
-好在官网已给出方案
-这是我微改后的：&lt;/p>
-&lt;pre>&lt;code># app/Dockerfile
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Streamlit on WinNote</title>
+        <link>http://localhost:8560/tags/streamlit/</link>
+        <description>Recent content in Streamlit on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/streamlit/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>用容器来运行streamlit</title>
+        <link>http://localhost:8560/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240724152543.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+一开始玩这个的时候就在想用docker跑，因为实在不想在本机里搭各种乱七八糟的环境，也懒得用Anaconda那样的中间环境，总感觉本地跑个模型才用得上那种大玩意儿，于是在dockerhub上找了找&lt;br&gt;
+一些已有的可用镜像：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/aminehy/docker-streamlit-app&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hub.docker.com/r/aminehy/docker-streamlit-app&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/samdobson/streamlit&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hub.docker.com/r/samdobson/streamlit&lt;/a&gt;&lt;br&gt;
+就是镜像build都好几年前了，实测目前有些新的例程都跑不了，还是自己做个镜像吧&lt;/p&gt;
+&lt;h2 id=&#34;制作dockerfile&#34;&gt;制作dockerfile
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.streamlit.io/deploy/tutorials/docker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.streamlit.io/deploy/tutorials/docker&lt;/a&gt;&lt;br&gt;
+好在官网已给出方案&lt;br&gt;
+这是我微改后的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# app/Dockerfile
+
 FROM python:3.9-slim
+
 WORKDIR /app
+
 RUN apt-get update &amp;amp;&amp;amp; apt-get install -y \
-build-essential \
-curl \
-software-properties-common \
-git \
-&amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+
 RUN git clone https://github.com/streamlit/streamlit-example.git .
+
 RUN pip3 install -r requirements.txt
+
 EXPOSE 8501
+
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
 CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&amp;quot;, &amp;quot;--server.port=8501&amp;quot;, &amp;quot;--server.address=0.0.0.0&amp;quot;]
-&lt;/code>&lt;/pre>
-&lt;!-- more -->
-&lt;p>主要就最后一行并没有用&lt;code>ENTRYPOINT&lt;/code>，因为记得这个不是必须，用&lt;code>CMD&lt;/code>的好处是非常方便的就能修改&lt;code>docker run&lt;/code>时要运行的内容&lt;/p>
-&lt;h2 id="构建和使用镜像">构建和使用镜像
-&lt;/h2>&lt;p>打开CMD，CD到这个Dockerfile保存的目录下
-&lt;code>docker build -t streamlit_winotmk:latest . &lt;/code>点不要落下&lt;/p>
-&lt;p>然后就可用来运行任意py的app文件了
-&lt;code>docker run -ti --rm -p 8501:8501 -v $(pwd):/app streamlit_winotmk:latest streamlit run name_main_file.py&lt;/code>
-&lt;code>$(pwd)&lt;/code>换成宿主机的目录，记得暴露8501的默认端口
-我这里目录是&lt;code>C:\Cloud\docker\streamlit\demo3\examples&lt;/code>
-所以直接:
-&lt;code>docker run -ti --rm -p 8501:8501 -v C:\Cloud\docker\streamlit\demo3\examples:/app streamlit_winotmk:latest streamlit run intro.py&lt;/code>
-保持运行并想下次继续用可以
-&lt;code>docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest&lt;/code>
-*用容器跑起来的一些例程APP：
-&lt;img src="https://winotmk.github.io/images/20240724152253.png"
-loading="lazy"
->
-&lt;img src="https://winotmk.github.io/images/20240724152303.png"
-loading="lazy"
->&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+ &lt;!-- more --&gt;
+&lt;p&gt;主要就最后一行并没有用&lt;code&gt;ENTRYPOINT&lt;/code&gt;，因为记得这个不是必须，用&lt;code&gt;CMD&lt;/code&gt;的好处是非常方便的就能修改&lt;code&gt;docker run&lt;/code&gt;时要运行的内容&lt;/p&gt;
+&lt;h2 id=&#34;构建和使用镜像&#34;&gt;构建和使用镜像
+&lt;/h2&gt;&lt;p&gt;打开CMD，CD到这个Dockerfile保存的目录下&lt;br&gt;
+&lt;code&gt;docker build -t streamlit_winotmk:latest . &lt;/code&gt;点不要落下&lt;/p&gt;
+&lt;p&gt;然后就可用来运行任意py的app文件了&lt;br&gt;
+&lt;code&gt;docker run -ti --rm -p 8501:8501 -v $(pwd):/app streamlit_winotmk:latest streamlit run name_main_file.py&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;$(pwd)&lt;/code&gt;换成宿主机的目录，记得暴露8501的默认端口&lt;br&gt;
+我这里目录是&lt;code&gt;C:\Cloud\docker\streamlit\demo3\examples&lt;/code&gt;&lt;br&gt;
+所以直接:&lt;br&gt;
+&lt;code&gt;docker run -ti --rm -p 8501:8501 -v C:\Cloud\docker\streamlit\demo3\examples:/app streamlit_winotmk:latest streamlit run intro.py&lt;/code&gt;&lt;br&gt;
+保持运行并想下次继续用可以&lt;br&gt;
+&lt;code&gt;docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest&lt;/code&gt;&lt;br&gt;
+*用容器跑起来的一些例程APP：&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20240724152253.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20240724152303.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

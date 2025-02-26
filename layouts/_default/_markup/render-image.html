@@ -25,6 +25,10 @@
 	{{- end -}}
 {{- end -}}
 
+<!--图片渲染器-->
+{{- if or (in $alt "[hugo-no-render]") -}}
+  {{/* 跳过指定标记的图片 */}}
+{{- else -}}
 <img src="{{ $Permalink }}"
 	{{ with $Width }}width="{{ . }}"{{ end }}
 	{{ with $Height }}height="{{ . }}"{{ end }}
@@ -39,3 +43,4 @@
 		data-flex-basis="{{ div (mul $image.Width 240) $image.Height }}px"
 	{{ end }}
 >
+{{- end -}}

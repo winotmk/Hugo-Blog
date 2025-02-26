@@ -1,59 +1,101 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WinNote</title><link>https://winotmk.github.io/tags/winnote/</link><description>Recent content on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/winnote/index.xml" rel="self" type="application/rss+xml"/><item><title>WinNote</title><link>https://winotmk.github.io/posts/winnote/</link><pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/winnote/</guid><description>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="Featured image of post WinNote" />&lt;p>&lt;img src="https://winotmk.github.io/images/catcat.png"
-loading="lazy"
->&lt;/p>
-&lt;p>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif"
-loading="lazy"
-alt="20211101_005742_IMB_3iZZzg"
->&lt;/p>
-&lt;!--{% asset_img 20211101_005742_IMB_3iZZzg.gif 800 %}-->
-&lt;p>一个轻量级MD文档收集博客，不保证阅读性
-使用树莓派+hexo构建，定制化next主题，github部署
-2023.9.8更新
-使用eci容器构建，自制镜像，cdn加速&lt;/p>
-&lt;p>一些编辑的Tips:
-首页文章预览至：&lt;/p>
-&lt;pre>&lt;code>&amp;lt;!-- more --&amp;gt;
-&lt;/code>&lt;/pre>
-&lt;p>markdown paste粘图：&lt;/p>
-&lt;pre>&lt;code>ctrl+art+a
-&lt;/code>&lt;/pre>
-&lt;p>本站加速域名：&lt;a class="link" href="https://md.winotmk.com/" target="_blank" rel="noopener"
->https://md.winotmk.com/&lt;/a>
-正式站：&lt;a class="link" href="https://www.winotmk.com" target="_blank" rel="noopener"
->winotmk.com&lt;/a>&lt;/p>
-&lt;p>点击查看更多该网站更新日志&lt;/p>
-&lt;!-- more -->
-&lt;hr>
-&lt;p>2023.12.13更新
-为了防止忘记如何写这个博客，特留备忘
-NAS上工作台的盘符请设置为T
-启动ecistarter容器
-然后&lt;code>CD ecistart&lt;/code> 进入目录
-使用&lt;code>. ./hexo_s&lt;/code> 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入
-&lt;img src="https://winotmk.github.io/images/20231213183015.png"
-loading="lazy"
->
-之后通过VSCode的插件SSH FS来接入
-md文档的目录是&lt;code>./hexo/Winblog/source/_posts&lt;/code>&lt;/p>
-&lt;p>关于图片插入：本地目录&lt;code>T:\博客\md_for_hexo\Images&lt;/code>将会与FTP上的&lt;code>./hexo/Winblog/source/images&lt;/code>自动单向同步&lt;/p>
-&lt;hr>
-&lt;p>2024.06.17再更新
-因为买了阿里99服务器，改用了容器的形式运行
-启动组
-&lt;code>docker compose -f hexo_debian_DockerCompose.yml up -d &lt;/code>
-关闭组
-&lt;code>docker compose -f hexo_debian_DockerCompose.yml down -v&lt;/code>
-同时配置了本地文章目录&lt;code>T:\博客\md_for_hexo_workspace&lt;/code>和FTP上的&lt;code>./hexo/Winblog/source/_posts&lt;/code>自动同步，终于不会存在本地和服务器上两份文章了
-在&lt;code>md_for_hexo_workspace&lt;/code>写好后直接&lt;code>docker exec hexo hexo g -d&lt;/code>即可发布&lt;/p>
-&lt;hr>
-&lt;p>2025.02.20再更新&lt;/p>
-&lt;ol>
-&lt;li>忽然发现阿里云OSS每个月要扣3块钱，才发现现在&lt;strong>同城冗余&lt;/strong>和&lt;strong>本地存储&lt;/strong>计价分开了，不能使用资源包扣容量了，&lt;strong>本地存储&lt;/strong>的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱
-那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作
-&lt;img src="http://pictures.winotmk.com/WinNote/2025-02-20-18-43-03_f587624d.png"
-loading="lazy"
-alt="2025-02-20-18-43-03"
->
-还蛮好用的，绑定了&lt;code>elan upload from clipboard&lt;/code>到**&lt;code>ctrl+shift+art+a&lt;/code>**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类&lt;/li>
-&lt;li>vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录&lt;/li>
-&lt;/ol></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>WinNote</title>
+        <link>http://localhost:8560/tags/winnote/</link>
+        <description>Recent content on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>WinNote</title>
+        <link>http://localhost:8560/posts/winnote/</link>
+        <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:8560/posts/winnote/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="Featured image of post WinNote" /&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/catcat.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;20211101_005742_IMB_3iZZzg&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;!--{% asset_img 20211101_005742_IMB_3iZZzg.gif 800 %}--&gt;
+&lt;p&gt;一个轻量级MD文档收集博客，不保证阅读性&lt;br&gt;
+使用树莓派+hexo构建，定制化next主题，github部署&lt;br&gt;
+2023.9.8更新&lt;br&gt;
+使用eci容器构建，自制镜像，cdn加速&lt;/p&gt;
+&lt;p&gt;一些编辑的Tips:&lt;br&gt;
+首页文章预览至：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- more --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;markdown paste粘图：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ctrl+art+a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;本站加速域名：&lt;a class=&#34;link&#34; href=&#34;https://md.winotmk.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://md.winotmk.com/&lt;/a&gt;&lt;br&gt;
+正式站：&lt;a class=&#34;link&#34; href=&#34;https://www.winotmk.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;winotmk.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击查看更多该网站更新日志&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;hr&gt;
+&lt;p&gt;2023.12.13更新&lt;br&gt;
+为了防止忘记如何写这个博客，特留备忘&lt;br&gt;
+NAS上工作台的盘符请设置为T&lt;br&gt;
+启动ecistarter容器&lt;br&gt;
+然后&lt;code&gt;CD ecistart&lt;/code&gt; 进入目录&lt;br&gt;
+使用&lt;code&gt;. ./hexo_s&lt;/code&gt; 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入&lt;br&gt;
+&lt;img src=&#34;http://localhost:8560/images/20231213183015.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;br&gt;
+之后通过VSCode的插件SSH FS来接入&lt;br&gt;
+md文档的目录是&lt;code&gt;./hexo/Winblog/source/_posts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;关于图片插入：本地目录&lt;code&gt;T:\博客\md_for_hexo\Images&lt;/code&gt;将会与FTP上的&lt;code&gt;./hexo/Winblog/source/images&lt;/code&gt;自动单向同步&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;2024.06.17再更新&lt;br&gt;
+因为买了阿里99服务器，改用了容器的形式运行&lt;br&gt;
+启动组&lt;br&gt;
+&lt;code&gt;docker compose -f hexo_debian_DockerCompose.yml up -d &lt;/code&gt;&lt;br&gt;
+关闭组&lt;br&gt;
+&lt;code&gt;docker compose -f hexo_debian_DockerCompose.yml down -v&lt;/code&gt;&lt;br&gt;
+同时配置了本地文章目录&lt;code&gt;T:\博客\md_for_hexo_workspace&lt;/code&gt;和FTP上的&lt;code&gt;./hexo/Winblog/source/_posts&lt;/code&gt;自动同步，终于不会存在本地和服务器上两份文章了&lt;br&gt;
+在&lt;code&gt;md_for_hexo_workspace&lt;/code&gt;写好后直接&lt;code&gt;docker exec hexo hexo g -d&lt;/code&gt;即可发布&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;2025.02.20再更新&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;忽然发现阿里云OSS每个月要扣3块钱，才发现现在&lt;strong&gt;同城冗余&lt;/strong&gt;和&lt;strong&gt;本地存储&lt;/strong&gt;计价分开了，不能使用资源包扣容量了，&lt;strong&gt;本地存储&lt;/strong&gt;的40G一年才几块钱却不起作用，傻傻交了好几个月的3块钱&lt;br&gt;
+那么我忽然想到，现在是用SFTP插件同步本地目录完成上传图片到远程文件存储的，何不直接使用OSS呢，它不就是用来干这个的嘛，拿来做图床想必轻而易举，所以找到了一个插件来完成oss上传图片的工作&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/WinNote/2025-02-20-18-43-03_f587624d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-20-18-43-03&#34;
+	
+	
+&gt;&lt;br&gt;
+还蛮好用的，绑定了&lt;code&gt;elan upload from clipboard&lt;/code&gt;到**&lt;code&gt;ctrl+shift+art+a&lt;/code&gt;**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类&lt;/li&gt;
+&lt;li&gt;vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
