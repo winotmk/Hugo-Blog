@@ -1,133 +1,83 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Stable Diffusion on WinNote</title>
-        <link>http://localhost:12619/tags/stable-diffusion/</link>
-        <description>Recent content in Stable Diffusion on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:12619/tags/stable-diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
-        <link>http://localhost:12619/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
-        <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:12619/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
-        <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya
-&lt;/h2&gt;&lt;p&gt;镜像我这里选：
-&lt;img src=&#34;http://localhost:12619/images/20240110174810.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-&lt;code&gt;dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04&lt;/code&gt;
-我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作&lt;/p&gt;
-&lt;h3 id=&#34;安装kohya_ss&#34;&gt;安装kohya_ss
-&lt;/h3&gt;&lt;p&gt;kohya_ss仓库地址：
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/bmaltais/kohya_ss&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/bmaltais/kohya_ss&lt;/a&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stable Diffusion on WinNote</title><link>https://winotmk.github.io/tags/stable-diffusion/</link><description>Recent content in Stable Diffusion on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/stable-diffusion/index.xml" rel="self" type="application/rss+xml"/><item><title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title><link>https://winotmk.github.io/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link><pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid><description>&lt;h2 id="创建阿里云pai-dsw实例跑kohya">创建阿里云PAI DSW实例跑kohya
+&lt;/h2>&lt;p>镜像我这里选：
+&lt;img src="https://winotmk.github.io/images/20240110174810.png"
+loading="lazy"
+>
+&lt;code>dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04&lt;/code>
+我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作&lt;/p>
+&lt;h3 id="安装kohya_ss">安装kohya_ss
+&lt;/h3>&lt;p>kohya_ss仓库地址：
+&lt;a class="link" href="https://github.com/bmaltais/kohya_ss" target="_blank" rel="noopener"
+>https://github.com/bmaltais/kohya_ss&lt;/a>
 kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora
-在workspace根目录直接：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/bmaltais/kohya_ss.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:12619/images/20240110175054.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;很快就能完成，接着依次执行&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ./kohya_ss
+在workspace根目录直接：&lt;/p>
+&lt;pre>&lt;code>git clone https://github.com/bmaltais/kohya_ss.git
+&lt;/code>&lt;/pre>
+&lt;p>&lt;img src="https://winotmk.github.io/images/20240110175054.png"
+loading="lazy"
+>&lt;/p>
+&lt;!-- more -->
+&lt;p>很快就能完成，接着依次执行&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd ./kohya_ss
 apt update -y &amp;amp;&amp;amp; apt install -y python3-tk
 chmod +x ./setup.sh
 ./setup.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk
+&lt;/code>&lt;/pre>
+&lt;p>虽然镜像里带py310，但是似乎还是要装一下python3-tk
 之后安装脚本会自动完成，我大概花了5分钟
-&lt;img src=&#34;http://localhost:12619/images/20240110193312.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-然后运行启动webui&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:12619/images/20240111114153.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
+&lt;img src="https://winotmk.github.io/images/20240110193312.png"
+loading="lazy"
+>
+然后运行启动webui&lt;/p>
+&lt;pre>&lt;code>HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
+&lt;/code>&lt;/pre>
+&lt;p>&lt;img src="https://winotmk.github.io/images/20240111114153.png"
+loading="lazy"
+>
 点击这个本地的IP即能点开webui了
-&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com&lt;/code&gt;是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章：
-&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数
-&lt;/h2&gt;&lt;h3 id=&#34;source-model&#34;&gt;source model
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:12619/images/20240111114635.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了&lt;/p&gt;
-&lt;h3 id=&#34;floders&#34;&gt;floders
-&lt;/h3&gt;&lt;p&gt;这个tag里比较简单，没什么好说的
-Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;
-&lt;h3 id=&#34;parameters&#34;&gt;parameters
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:12619/images/20240111115115.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;basic&#34;&gt;basic
-&lt;/h4&gt;&lt;p&gt;和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧&lt;/p&gt;
-&lt;h4 id=&#34;samples&#34;&gt;samples
-&lt;/h4&gt;&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用
-都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端
+&lt;code>HF_ENDPOINT=https://hf-mirror.com&lt;/code>是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章：
+&lt;a class="link" href="https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" target="_blank" rel="noopener"
+>https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a>&lt;/p>
+&lt;h2 id="kohya_ss的dreambooth训练参数">kohya_ss的Dreambooth训练参数
+&lt;/h2>&lt;h3 id="source-model">source model
+&lt;/h3>&lt;p>&lt;img src="https://winotmk.github.io/images/20240111114635.png"
+loading="lazy"
+>
+我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了&lt;/p>
+&lt;h3 id="floders">floders
+&lt;/h3>&lt;p>这个tag里比较简单，没什么好说的
+Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p>
+&lt;h3 id="parameters">parameters
+&lt;/h3>&lt;p>&lt;img src="https://winotmk.github.io/images/20240111115115.png"
+loading="lazy"
+>&lt;/p>
+&lt;h4 id="basic">basic
+&lt;/h4>&lt;p>和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧&lt;/p>
+&lt;h4 id="samples">samples
+&lt;/h4>&lt;p>这里能填关键词和每多少轮出个预览图，玩玩用
+都准备好了就可以点 &lt;code>start training&lt;/code>，但webui不会有任何提示..要看之前启webui的终端
 这样就是开始训练了：
-&lt;img src=&#34;http://localhost:12619/images/20240111121059.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;The following directories listed in your path were found to be non-existent: {PosixPath(&#39;/usr/local/nvidia/lib64&#39;), PosixPath(&#39;/usr/local/nvidia/lib&#39;)}
-/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: /usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11 did not contain [&#39;libcudart.so&#39;, &#39;libcudart.so.11.0&#39;, &#39;libcudart.so.12.0&#39;] as expected! Searching further paths...
-  warn(msg)
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;//license-pai.cn-shanghai.data.aliyun.com&#39;), PosixPath(&#39;http&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/cloud-dsw/eas-service&#39;), PosixPath(&#39;aigc-torch113-cu117-ubuntu22.04-v0.2.1&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;http&#39;), PosixPath(&#39;8088/dsw-301739&#39;), PosixPath(&#39;//127.0.0.1&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;Asia/Shanghai&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;tcp&#39;), PosixPath(&#39;443&#39;), PosixPath(&#39;//10.192.0.1&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;https&#39;), PosixPath(&#39;//dsw-cn-shanghai.data.aliyun.com&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;tcp&#39;), PosixPath(&#39;443&#39;), PosixPath(&#39;//10.192.0.1&#39;)}
-The following directories listed in your path were found to be non-existent: {PosixPath(&#39;/home/pai/bin/python&#39;)}
+&lt;img src="https://winotmk.github.io/images/20240111121059.png"
+loading="lazy"
+>
+不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：&lt;/p>
+&lt;pre>&lt;code>The following directories listed in your path were found to be non-existent: {PosixPath('/usr/local/nvidia/lib64'), PosixPath('/usr/local/nvidia/lib')}
+/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: /usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-11 did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+warn(msg)
+The following directories listed in your path were found to be non-existent: {PosixPath('//license-pai.cn-shanghai.data.aliyun.com'), PosixPath('http')}
+The following directories listed in your path were found to be non-existent: {PosixPath('dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/cloud-dsw/eas-service'), PosixPath('aigc-torch113-cu117-ubuntu22.04-v0.2.1')}
+The following directories listed in your path were found to be non-existent: {PosixPath('http'), PosixPath('8088/dsw-301739'), PosixPath('//127.0.0.1')}
+The following directories listed in your path were found to be non-existent: {PosixPath('Asia/Shanghai')}
+The following directories listed in your path were found to be non-existent: {PosixPath('tcp'), PosixPath('443'), PosixPath('//10.192.0.1')}
+The following directories listed in your path were found to be non-existent: {PosixPath('https'), PosixPath('//dsw-cn-shanghai.data.aliyun.com')}
+The following directories listed in your path were found to be non-existent: {PosixPath('tcp'), PosixPath('443'), PosixPath('//10.192.0.1')}
+The following directories listed in your path were found to be non-existent: {PosixPath('/home/pai/bin/python')}
 CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-DEBUG: Possible options found for libcudart.so: {PosixPath(&#39;/usr/local/cuda/lib64/libcudart.so.11.0&#39;)}
+DEBUG: Possible options found for libcudart.so: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}
 CUDA SETUP: PyTorch settings found: CUDA_VERSION=118, Highest Compute Capability: 7.0.
 CUDA SETUP: To manually override the PyTorch CUDA version please see:https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md
-/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: WARNING: Compute capability &amp;lt; 7.5 detected! Only slow 8-bit matmul is supported for your GPU!                     If you run into issues with 8-bit matmul, you can try 4-bit quantization: https://huggingface.co/blog/4bit-transformers-bitsandbytes
-  warn(msg)
+/usr/local/lib/python3.10/dist-packages/bitsandbytes/cuda_setup/main.py:166: UserWarning: WARNING: Compute capability &amp;lt; 7.5 detected! Only slow 8-bit matmul is supported for your GPU! If you run into issues with 8-bit matmul, you can try 4-bit quantization: https://huggingface.co/blog/4bit-transformers-bitsandbytes
+warn(msg)
 CUDA SETUP: Loading binary /usr/local/lib/python3.10/dist-packages/bitsandbytes/libbitsandbytes_cuda118_nocublaslt.so...
 libcusparse.so.11: cannot open shared object file: No such file or directory
 CUDA SETUP: Something unexpected happened. Please compile from source:
@@ -136,110 +86,90 @@ cd bitsandbytes
 CUDA_VERSION=118 make cuda11x_nomatmul
 python setup.py install
 Traceback (most recent call last):
-  File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 187, in _run_module_as_main
-    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
-  File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 146, in _get_module_details
-    return _get_module_details(pkg_main_name, error)
-  File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 110, in _get_module_details
-    __import__(pkg_name)
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/__init__.py&amp;quot;, line 6, in &amp;lt;module&amp;gt;
-    from . import cuda_setup, utils, research
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/__init__.py&amp;quot;, line 1, in &amp;lt;module&amp;gt;
-    from . import nn
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/__init__.py&amp;quot;, line 1, in &amp;lt;module&amp;gt;
-    from .modules import LinearFP8Mixed, LinearFP8Global
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/modules.py&amp;quot;, line 8, in &amp;lt;module&amp;gt;
-    from bitsandbytes.optim import GlobalOptimManager
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/optim/__init__.py&amp;quot;, line 6, in &amp;lt;module&amp;gt;
-    from bitsandbytes.cextension import COMPILED_WITH_CUDA
-  File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/cextension.py&amp;quot;, line 20, in &amp;lt;module&amp;gt;
-    raise RuntimeError(&#39;&#39;&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;以及如果遇到类似：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Could not load dynamic library &#39;libcudart.so.11.0&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;重新装适合的CUDA版本即可解决，如果要装CUDA：&lt;/p&gt;
-&lt;h2 id=&#34;cuda相关&#34;&gt;CUDA相关
-&lt;/h2&gt;&lt;h3 id=&#34;安装cuda指定版本&#34;&gt;安装CUDA指定版本
-&lt;/h3&gt;&lt;p&gt;遇到过cuda版本不匹配的问题，记一下配置过程
+File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 187, in _run_module_as_main
+mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 146, in _get_module_details
+return _get_module_details(pkg_main_name, error)
+File &amp;quot;/usr/lib/python3.10/runpy.py&amp;quot;, line 110, in _get_module_details
+__import__(pkg_name)
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/__init__.py&amp;quot;, line 6, in &amp;lt;module&amp;gt;
+from . import cuda_setup, utils, research
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/__init__.py&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+from . import nn
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/__init__.py&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+from .modules import LinearFP8Mixed, LinearFP8Global
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/modules.py&amp;quot;, line 8, in &amp;lt;module&amp;gt;
+from bitsandbytes.optim import GlobalOptimManager
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/optim/__init__.py&amp;quot;, line 6, in &amp;lt;module&amp;gt;
+from bitsandbytes.cextension import COMPILED_WITH_CUDA
+File &amp;quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/cextension.py&amp;quot;, line 20, in &amp;lt;module&amp;gt;
+raise RuntimeError('''
+&lt;/code>&lt;/pre>
+&lt;p>以及如果遇到类似：&lt;/p>
+&lt;pre>&lt;code>Could not load dynamic library 'libcudart.so.11.0'
+&lt;/code>&lt;/pre>
+&lt;p>重新装适合的CUDA版本即可解决，如果要装CUDA：&lt;/p>
+&lt;h2 id="cuda相关">CUDA相关
+&lt;/h2>&lt;h3 id="安装cuda指定版本">安装CUDA指定版本
+&lt;/h3>&lt;p>遇到过cuda版本不匹配的问题，记一下配置过程
 cuda下载：https://developer.nvidia.com/cuda-downloads
 但是有时候需要特定版本：https://developer.nvidia.com/cuda-toolkit-archive
 以11.8为例，系统是ubuntu22.04，所以这样选：
-&lt;img src=&#34;http://localhost:12619/images/20240111133431.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-下载安装cuda：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /mnt/workspace
+&lt;img src="https://winotmk.github.io/images/20240111133431.png"
+loading="lazy"
+>
+下载安装cuda：&lt;/p>
+&lt;pre>&lt;code>cd /mnt/workspace
 wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run
 sudo sh cuda_11.8.0_520.61.05_linux.run
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;大约3-4GB左右，运行后需要等一会，会弹出交互界面
-&lt;img src=&#34;http://localhost:12619/images/20240111135108.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-这里去掉安装驱动，因为我们已经有驱动了只是想要不同版本的cuda，然后选安装&lt;/p&gt;
-&lt;p&gt;ps如果遇到装了多份驱动需要卸一个的情况：
-&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54928967e417&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.jianshu.com/p/54928967e417&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;装好以后他会提示：
-&lt;img src=&#34;http://localhost:12619/images/20240111135653.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-需要往 &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt; 和 &lt;code&gt;PATH&lt;/code&gt; 里添加两条环境变量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib64
+&lt;/code>&lt;/pre>
+&lt;p>大约3-4GB左右，运行后需要等一会，会弹出交互界面
+&lt;img src="https://winotmk.github.io/images/20240111135108.png"
+loading="lazy"
+>
+这里去掉安装驱动，因为我们已经有驱动了只是想要不同版本的cuda，然后选安装&lt;/p>
+&lt;p>ps如果遇到装了多份驱动需要卸一个的情况：
+&lt;a class="link" href="https://www.jianshu.com/p/54928967e417" target="_blank" rel="noopener"
+>https://www.jianshu.com/p/54928967e417&lt;/a>&lt;/p>
+&lt;p>装好以后他会提示：
+&lt;img src="https://winotmk.github.io/images/20240111135653.png"
+loading="lazy"
+>
+需要往 &lt;code>LD_LIBRARY_PATH&lt;/code> 和 &lt;code>PATH&lt;/code> 里添加两条环境变量&lt;/p>
+&lt;pre>&lt;code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib64
 export PATH=$PATH:/usr/local/cuda-11.8/bin
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;之后我使用&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;python -m bitsandbytes
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果没有报错应该就是好用的&lt;/p&gt;
-&lt;p&gt;ps如果是windows上的wsl：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export LD_LIBRARY_PATH=/usr/lib/wsl/lib/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;切换cuda版本&#34;&gt;切换cuda版本
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.7
+&lt;/code>&lt;/pre>
+&lt;p>之后我使用&lt;/p>
+&lt;pre>&lt;code>python -m bitsandbytes
+&lt;/code>&lt;/pre>
+&lt;p>如果没有报错应该就是好用的&lt;/p>
+&lt;p>ps如果是windows上的wsl：&lt;/p>
+&lt;pre>&lt;code>export LD_LIBRARY_PATH=/usr/lib/wsl/lib/
+&lt;/code>&lt;/pre>
+&lt;h3 id="切换cuda版本">切换cuda版本
+&lt;/h3>&lt;pre>&lt;code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.7
 export BNB_CUDA_VERSION=117
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;改环境变量可以手动切换版本（当然得已经装了)&lt;/p&gt;
-&lt;h3 id=&#34;查看cuda版本&#34;&gt;查看cuda版本
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;nvidia-smi
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;或者可以：
+&lt;/code>&lt;/pre>
+&lt;p>改环境变量可以手动切换版本（当然得已经装了)&lt;/p>
+&lt;h3 id="查看cuda版本">查看cuda版本
+&lt;/h3>&lt;pre>&lt;code>nvidia-smi
+&lt;/code>&lt;/pre>
+&lt;p>或者可以：
 参考：https://blog.csdn.net/Kefenggewu_/article/details/117675079
-默认cuda会装在&lt;code&gt;/usr/local&lt;/code&gt;,所以查看安装版本可以这样：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ls -l /usr/local | grep cuda
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;或者据说可以&lt;code&gt;nvcc -V # (V大写)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;本节另外的参考：https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md&lt;/p&gt;
-&lt;h2 id=&#34;链接&#34;&gt;链接
-&lt;/h2&gt;&lt;p&gt;kohya_ss:
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/bmaltais/kohya_ss&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/bmaltais/kohya_ss&lt;/a&gt;
+默认cuda会装在&lt;code>/usr/local&lt;/code>,所以查看安装版本可以这样：&lt;/p>
+&lt;pre>&lt;code>ls -l /usr/local | grep cuda
+&lt;/code>&lt;/pre>
+&lt;p>或者据说可以&lt;code>nvcc -V # (V大写)&lt;/code>&lt;/p>
+&lt;p>本节另外的参考：https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md&lt;/p>
+&lt;h2 id="链接">链接
+&lt;/h2>&lt;p>kohya_ss:
+&lt;a class="link" href="https://github.com/bmaltais/kohya_ss" target="_blank" rel="noopener"
+>https://github.com/bmaltais/kohya_ss&lt;/a>
 一个封装好的kohya-docker的镜像
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/ashleykleynhans/kohya-docker&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/ashleykleynhans/kohya-docker&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;dreambooth相关介绍：
-&lt;a class=&#34;link&#34; href=&#34;https://huggingface.co/docs/diffusers/training/dreambooth&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://huggingface.co/docs/diffusers/training/dreambooth&lt;/a&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/google/dreambooth&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/google/dreambooth&lt;/a&gt;&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;a class="link" href="https://github.com/ashleykleynhans/kohya-docker" target="_blank" rel="noopener"
+>https://github.com/ashleykleynhans/kohya-docker&lt;/a>&lt;/p>
+&lt;p>dreambooth相关介绍：
+&lt;a class="link" href="https://huggingface.co/docs/diffusers/training/dreambooth" target="_blank" rel="noopener"
+>https://huggingface.co/docs/diffusers/training/dreambooth&lt;/a>
+&lt;a class="link" href="https://github.com/google/dreambooth" target="_blank" rel="noopener"
+>https://github.com/google/dreambooth&lt;/a>&lt;/p></description></item></channel></rss>

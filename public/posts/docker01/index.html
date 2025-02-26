@@ -1,711 +1,106 @@
-<!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=12619&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\r一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
-<title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
-
-<link rel='canonical' href='http://localhost:12619/posts/docker01/'>
-
-<link rel="stylesheet" href="/scss/style.min.01db7a22cee07cfe189f2f0f69544d77fd7a0c8a318f618c26bbebf4c3438d57.css"><meta property='og:title' content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
-<meta property='og:description' content="\r一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
-<meta property='og:url' content='http://localhost:12619/posts/docker01/'>
-<meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='hexo' /><meta property='article:tag' content='next' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='eci' /><meta property='article:published_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
-<meta name="twitter:title" content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
-<meta name="twitter:description" content="\r一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
-        
-        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
-        <script src="/highlight/highlight.min.js"></script>
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "light");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-                    <span class="emoji">🪐</span>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">WinNote</a></h1>
-            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://space.bilibili.com/193498'
-                        target="_blank"
-                        title="Bilibili"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/winotmk/Hugo-Blog'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://winotmk.com'
-                        target="_blank"
-                        title="Homepage"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>首页</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>归档</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>搜索</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>链接</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>暗色模式</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-            <h2 class="widget-title section-title">目录</h2>
-        </div>
-        
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#1-docker-基本操作">1. docker 基本操作</a>
-      <ol>
-        <li><a href="#11-运行容器">1.1 运行容器</a></li>
-        <li><a href="#12-将此容器-commit-保存为新镜像">1.2 将此容器 commit 保存为新镜像：</a></li>
-        <li><a href="#13-启动docker引擎时自动运行docker容器">1.3 启动docker引擎时自动运行docker容器：</a></li>
-        <li><a href="#14-有关dockerfile">1.4 有关dockerfile</a>
-          <ol>
-            <li><a href="#编写dockerfile">编写dockerfile</a></li>
-            <li><a href="#用dockerfile构建镜像">用dockerfile构建镜像</a></li>
-            <li><a href="#141-entrypoint与cmd的区别">1.4.1 ENTRYPOINT与CMD的区别</a></li>
-            <li><a href="#142-dockerfile构建镜像时如何选择from镜像以减小镜像体积">1.4.2 dockerfile构建镜像时如何选择FROM镜像以减小镜像体积</a></li>
-          </ol>
-        </li>
-        <li><a href="#15-将已有镜像打包带走使用将打包来的镜像">1.5 将已有镜像打包带走/使用将打包来的镜像</a>
-          <ol>
-            <li><a href="#将镜像保存为本地文件">将镜像保存为本地文件</a></li>
-            <li><a href="#从文件载入镜像">从文件载入镜像</a></li>
-          </ol>
-        </li>
-        <li><a href="#16-docker挂载本地目录">1.6 docker挂载本地目录</a></li>
-        <li><a href="#17-其他一些操作">1.7 其他一些操作</a></li>
-      </ol>
-    </li>
-    <li><a href="#2-已启动容器操作">2. 已启动容器操作</a>
-      <ol>
-        <li><a href="#21-win10下docker给已存在的容器添加端口映射的方法">2.1 win10下docker给已存在的容器添加端口映射的方法</a></li>
-        <li><a href="#22-docker容器内服务开机自启动实现方案以ssh服务为例">2.2 docker容器内服务开机自启动实现方案（以ssh服务为例）</a>
-          <ol>
-            <li><a href="#221-拓展bashrc-etcbashrc-etcprofile三个文件的区别">2.2.1 拓展：~/.bashrc /etc/bashrc /etc/profile三个文件的区别</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#3-打包制作自己的docker镜像dockerfile">3 打包制作自己的docker镜像(dockerfile)</a>
-      <ol>
-        <li><a href="#31-nodejsgithexo镜像">3.1 node.js+git+hexo镜像</a>
-          <ol>
-            <li><a href="#311-dockerfile">3.1.1 Dockerfile</a></li>
-            <li><a href="#312-nodejsgithexo镜像copy的文件">3.1.2 node.js+git+hexo镜像COPY的文件</a></li>
-            <li><a href="#313-开始构建镜像">3.1.3 开始构建镜像</a></li>
-            <li><a href="#314-测试镜像功能">3.1.4 测试镜像功能</a></li>
-            <li><a href="#315-设置和再打包镜像">3.1.5 设置和再打包镜像</a></li>
-            <li><a href="#316-附一些命令参考">3.1.6 附一些命令参考</a></li>
-          </ol>
-        </li>
-        <li><a href="#32-vsftpd镜像">3.2 vsftpd镜像</a>
-          <ol>
-            <li><a href="#321-dockerfile">3.2.1 Dockerfile</a></li>
-            <li><a href="#322-vsftpd镜像copy的文件">3.2.2 vsftpd镜像COPY的文件</a></li>
-          </ol>
-        </li>
-        <li><a href="#33-ddns镜像">3.3 ddns镜像</a>
-          <ol>
-            <li><a href="#331-dockerfile">3.3.1 dockerfile</a></li>
-            <li><a href="#332-ddns镜像copy的文件">3.3.2 ddns镜像COPY的文件</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#4-docker镜像打包并上传到阿里云镜像库ark">4 docker镜像打包并上传到阿里云镜像库ARK</a>
-      <ol>
-        <li><a href="#41-将镜像推送到registry">4.1 将镜像推送到Registry</a></li>
-        <li><a href="#42-在阿里云上使用容器实例eci运行镜像">4.2 在阿里云上使用容器实例（ECI）运行镜像</a></li>
-      </ol>
-    </li>
-    <li><a href="#5-eci容器创建模板和eci命令行工具使用">5 eci容器创建模板和eci命令行工具使用</a>
-      <ol>
-        <li><a href="#51-eci简介">5.1 eci简介</a></li>
-        <li><a href="#52-用模板创建eci">5.2 用模板创建eci</a></li>
-      </ol>
-    </li>
-    <li><a href="#6-hexo本地编辑环境设置如何用vscode舒服的写md文档">6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档</a>
-      <ol>
-        <li><a href="#61-vscodessh-fs插件配置">6.1 VSCodeSSH FS插件配置</a></li>
-        <li><a href="#62-markdown-paste插件配置">6.2 Markdown Paste插件配置</a>
-          <ol>
-            <li><a href="#配置">配置：</a></li>
-            <li><a href="#使用">使用：</a></li>
-          </ol>
-        </li>
-        <li><a href="#62-vscode的sftp插件配置">6.2 VSCode的SFTP插件配置</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-            
-                <form action="/search/" class="search-form widget" >
-        <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
-        
-            <button title="搜索">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-            </button>
-        </p>
-    </form>
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="main-article">
-    <header class="article-header">
-
-    <div class="article-details">
-    
-
-    
-    
-
-    
-     
-     <header class="article-category">
-        <div class="Winotmk_icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
-  <circle cx="9" cy="9" r="2" />
-</svg>
-
-
-
-        </div>
-         
-             <a href="/tags/hexo/" >
-                 Hexo
-             </a>
-         
-             <a href="/tags/next/" >
-                 Next
-             </a>
-         
-             <a href="/tags/docker/" >
-                 Docker
-             </a>
-         
-             <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" >
-                 阿里云
-             </a>
-         
-             <a href="/tags/eci/" >
-                 Eci
-             </a>
-         
-     </header>
-     
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/posts/docker01/">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
-        </h2>
-    
-        
-    </div>
-
-    
-    
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">Aug 05, 2023</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    阅读时长: 24 分钟
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-
-</header>
-
-    <section class="article-content">
-    
-    
-    <style type="text/css" rel="stylesheet">
-.nav-number { 
-    display:none !important;
-}
-.post-toc .nav-item {
-    white-space: normal !important;
-}
-</style>
-<p>一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的</p>
-<p>了解ECI弹性容器：https://www.aliyun.com/product/eci
-了解阿里云NAS文件存储：https://www.aliyun.com/product/nas</p>
-<p><strong>为什么要用eci来运行hexo？</strong>
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n"><title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
+<link rel=canonical href=https://winotmk.github.io/posts/docker01/><link rel=stylesheet href=/scss/style.min.eea3370ed909d956e6cf1eb5e6394f18aaefe515e6517f33ed4cf2d3958e98fc.css><meta property='og:title' content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行"><meta property='og:description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n"><meta property='og:url' content='https://winotmk.github.io/posts/docker01/'><meta property='og:site_name' content='WinNote'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='hexo'><meta property='article:tag' content='next'><meta property='article:tag' content='docker'><meta property='article:tag' content='阿里云'><meta property='article:tag' content='eci'><meta property='article:published_time' content='2023-08-05T00:00:00+00:00'><meta property='article:modified_time' content='2023-08-05T00:00:00+00:00'><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'><meta name=twitter:title content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行"><meta name=twitter:description content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'><link rel="shortcut icon" href=/favicon.png><link rel=stylesheet href=/highlight/styles/base16/eighties.css><script src=/highlight/highlight.min.js></script><script src=/clipboard.min.js></script><script src=/copy-to-clipboard.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"light")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_1b0ce47a1c2b08eb.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🪐</span></figure><div class=site-meta><h1 class=site-name><a href=/>WinNote</a></h1><h2 class=site-description>零碎MD文档收集|生命在于折腾</h2></div></header><ol class=menu-social><li><a href=https://space.bilibili.com/193498 target=_blank title=Bilibili rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a></li><li><a href=https://github.com/winotmk/Hugo-Blog target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://winotmk.com target=_blank title=Homepage rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9-9-9 9h2v7a2 2 0 002 2h6"/><path d="M9 21v-6a2 2 0 012-2h2c.39.0.754.112 1.061.304"/><path d="M19 21.5l2.518-2.58a1.74 1.74.0 000-2.413 1.627 1.627.0 00-2.346.0l-.168.172-.168-.172a1.627 1.627.0 00-2.346.0 1.74 1.74.0 000 2.412l2.51 2.59z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><h2 class="widget-title section-title">目录</h2></div><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#1-docker-基本操作>1. docker 基本操作</a><ol><li><a href=#11-运行容器>1.1 运行容器</a></li><li><a href=#12-将此容器-commit-保存为新镜像>1.2 将此容器 commit 保存为新镜像：</a></li><li><a href=#13-启动docker引擎时自动运行docker容器>1.3 启动docker引擎时自动运行docker容器：</a></li><li><a href=#14-有关dockerfile>1.4 有关dockerfile</a><ol><li><a href=#编写dockerfile>编写dockerfile</a></li><li><a href=#用dockerfile构建镜像>用dockerfile构建镜像</a></li><li><a href=#141-entrypoint与cmd的区别>1.4.1 ENTRYPOINT与CMD的区别</a></li><li><a href=#142-dockerfile构建镜像时如何选择from镜像以减小镜像体积>1.4.2 dockerfile构建镜像时如何选择FROM镜像以减小镜像体积</a></li></ol></li><li><a href=#15-将已有镜像打包带走使用将打包来的镜像>1.5 将已有镜像打包带走/使用将打包来的镜像</a><ol><li><a href=#将镜像保存为本地文件>将镜像保存为本地文件</a></li><li><a href=#从文件载入镜像>从文件载入镜像</a></li></ol></li><li><a href=#16-docker挂载本地目录>1.6 docker挂载本地目录</a></li><li><a href=#17-其他一些操作>1.7 其他一些操作</a></li></ol></li><li><a href=#2-已启动容器操作>2. 已启动容器操作</a><ol><li><a href=#21-win10下docker给已存在的容器添加端口映射的方法>2.1 win10下docker给已存在的容器添加端口映射的方法</a></li><li><a href=#22-docker容器内服务开机自启动实现方案以ssh服务为例>2.2 docker容器内服务开机自启动实现方案（以ssh服务为例）</a><ol><li><a href=#221-拓展bashrc-etcbashrc-etcprofile三个文件的区别>2.2.1 拓展：~/.bashrc /etc/bashrc /etc/profile三个文件的区别</a></li></ol></li></ol></li><li><a href=#3-打包制作自己的docker镜像dockerfile>3 打包制作自己的docker镜像(dockerfile)</a><ol><li><a href=#31-nodejsgithexo镜像>3.1 node.js+git+hexo镜像</a><ol><li><a href=#311-dockerfile>3.1.1 Dockerfile</a></li><li><a href=#312-nodejsgithexo镜像copy的文件>3.1.2 node.js+git+hexo镜像COPY的文件</a></li><li><a href=#313-开始构建镜像>3.1.3 开始构建镜像</a></li><li><a href=#314-测试镜像功能>3.1.4 测试镜像功能</a></li><li><a href=#315-设置和再打包镜像>3.1.5 设置和再打包镜像</a></li><li><a href=#316-附一些命令参考>3.1.6 附一些命令参考</a></li></ol></li><li><a href=#32-vsftpd镜像>3.2 vsftpd镜像</a><ol><li><a href=#321-dockerfile>3.2.1 Dockerfile</a></li><li><a href=#322-vsftpd镜像copy的文件>3.2.2 vsftpd镜像COPY的文件</a></li></ol></li><li><a href=#33-ddns镜像>3.3 ddns镜像</a><ol><li><a href=#331-dockerfile>3.3.1 dockerfile</a></li><li><a href=#332-ddns镜像copy的文件>3.3.2 ddns镜像COPY的文件</a></li></ol></li></ol></li><li><a href=#4-docker镜像打包并上传到阿里云镜像库ark>4 docker镜像打包并上传到阿里云镜像库ARK</a><ol><li><a href=#41-将镜像推送到registry>4.1 将镜像推送到Registry</a></li><li><a href=#42-在阿里云上使用容器实例eci运行镜像>4.2 在阿里云上使用容器实例（ECI）运行镜像</a></li></ol></li><li><a href=#5-eci容器创建模板和eci命令行工具使用>5 eci容器创建模板和eci命令行工具使用</a><ol><li><a href=#51-eci简介>5.1 eci简介</a></li><li><a href=#52-用模板创建eci>5.2 用模板创建eci</a></li></ol></li><li><a href=#6-hexo本地编辑环境设置如何用vscode舒服的写md文档>6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档</a><ol><li><a href=#61-vscodessh-fs插件配置>6.1 VSCodeSSH FS插件配置</a></li><li><a href=#62-markdown-paste插件配置>6.2 Markdown Paste插件配置</a><ol><li><a href=#配置>配置：</a></li><li><a href=#使用>使用：</a></li></ol></li><li><a href=#62-vscode的sftp插件配置>6.2 VSCode的SFTP插件配置</a></li></ol></li></ol></nav></div></section><form action=/search/ class="search-form widget"><p><label>搜索</label>
+<input name=keyword required placeholder=输入关键词...>
+<button title=搜索><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button></p></form></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><div class=Winotmk_icon><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg></div><a href=/tags/hexo/>Hexo
+</a><a href=/tags/next/>Next
+</a><a href=/tags/docker/>Docker
+</a><a href=/tags/%E9%98%BF%E9%87%8C%E4%BA%91/>阿里云
+</a><a href=/tags/eci/>Eci</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/docker01/>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Aug 05, 2023</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 24 分钟</time></div></footer></div></header><section class=article-content><style type=text/css rel=stylesheet>.nav-number{display:none!important}.post-toc .nav-item{white-space:normal!important}</style><p>一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的</p><p>了解ECI弹性容器：https://www.aliyun.com/product/eci
+了解阿里云NAS文件存储：https://www.aliyun.com/product/nas</p><p><strong>为什么要用eci来运行hexo？</strong>
 因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种
 本博客之前是由树莓派上的hexo生成，部署到github上的
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的
-最后成品的结构大致如下图：</p>
-<p><img src="/images/20230829140549.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>这里挂了3个镜像：
+最后成品的结构大致如下图：</p><p><img src=/images/20230829140549.png loading=lazy></p><p>这里挂了3个镜像：
 <strong>1.node.js+git+ssh+hexo</strong>
 主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会<code>hexo g -d</code>，而运行这套需要一个环境容器
 git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理
 <strong>2.vsftpd</strong>
 一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！
 <strong>3.ddns</strong>
-因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像</p>
-<p>还挂了一个NAS盘：
-<img src="/images/20230829142400.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像</p><p>还挂了一个NAS盘：
+<img src=/images/20230829142400.png loading=lazy>
 挂载以后：
-<img src="/images/20230829142501.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计</p>
-<p>文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用</p>
-<!-- more -->
-<p><strong>vsftpd</strong>还有<strong>ddns</strong>可以与主镜像<strong>node.js+hexo</strong>合并成一个大镜像吗？
-<strong>当然可以</strong>，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小</p>
-<p>整套下来有这些部分：</p>
-<ol>
-<li><strong>docker基本操作</strong></li>
-<li><strong>已经启动的本地容器修改端口，启动容器时即启动服务等</strong></li>
-<li><strong>打包制作自己的docker镜像(dockerfile)</strong></li>
-<li><strong>docker镜像打包并上传到阿里云镜像库ARK</strong></li>
-<li><strong>eci容器创建模板和eci命令行工具使用</strong></li>
-<li><strong>hexo本地编辑环境设置————如何用VSCode舒服的写MD文档</strong></li>
-</ol>
-<p>附表：
+<img src=/images/20230829142501.png loading=lazy>
+可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计</p><p>文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用</p><p><strong>vsftpd</strong>还有<strong>ddns</strong>可以与主镜像<strong>node.js+hexo</strong>合并成一个大镜像吗？
+<strong>当然可以</strong>，但我实际做了几次以后发现把ftp，ddns这样常用的服务功能单独拿出来会方便得多的多，毕竟我想起别得服务，也可以给他们挂上ftp等常用服务，我也可以选择不挂，这样容器的优势就体现出来了。我可以把单一的服务都做成单独的小镜像，需要哪个挂哪个，性能消耗也很小</p><p>整套下来有这些部分：</p><ol><li><strong>docker基本操作</strong></li><li><strong>已经启动的本地容器修改端口，启动容器时即启动服务等</strong></li><li><strong>打包制作自己的docker镜像(dockerfile)</strong></li><li><strong>docker镜像打包并上传到阿里云镜像库ARK</strong></li><li><strong>eci容器创建模板和eci命令行工具使用</strong></li><li><strong>hexo本地编辑环境设置————如何用VSCode舒服的写MD文档</strong></li></ol><p>附表：
 群晖搭建私有镜像仓库和dockerengine设置
-eci价格计算表</p>
-<hr>
-<h2 id="1-docker-基本操作">1. docker 基本操作
-</h2><p>博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶
+eci价格计算表</p><hr><h2 id=1-docker-基本操作>1. docker 基本操作</h2><p>博主吐槽一下，总觉得一些类似run，commit操作完全可以做成一个美观好用的UI控制软件，但是docker destop就是不做，然后大家都默认敲命令行是方便的，好用的。十分不解，可能需要ui的不会写ui，熟练使用命令行的也不需要什么ui吧，诶
 ——后面随着对docker了解的深入，明白它不是虚拟机，用得还是linux内核，这么一想，处处真是浓浓的linux味，现在能提供一个windows下的Docker Desktop桌面程序，已经非常得不错了！
-资料网站：</p>
-<p><a class="link" href="https://docs.docker.com/engine/reference/commandline/cli/"  target="_blank" rel="noopener"
-    >官方命令大全</a></p>
-<p><a class="link" href="https://chunchengwei.github.io/ruan-jian/ji-yu-docker-de-hexo-bo-ke-da-jian/"  target="_blank" rel="noopener"
-    >基于Docker的Hexo博客搭建</a></p>
-<p>这个基本操作写得还行下次爬一篇下来吧：</p>
-<p><a class="link" href="https://yingclin.github.io/2018/docker-basic.html"  target="_blank" rel="noopener"
-    >[小抄] Docker 基本命令</a></p>
-<h3 id="11-运行容器">1.1 运行容器
-</h3><pre><code class="language-bash">docker run -it -d --name [container-name] -p 8088:80 [image-name]
-</code></pre>
-<p>这里是将容器内的80端口映射到宿主机的8088端口</p>
-<p>参数说明</p>
-<p><code>-d</code> 表示后台运行容器
+资料网站：</p><p><a class=link href=https://docs.docker.com/engine/reference/commandline/cli/ target=_blank rel=noopener>官方命令大全</a></p><p><a class=link href=https://chunchengwei.github.io/ruan-jian/ji-yu-docker-de-hexo-bo-ke-da-jian/ target=_blank rel=noopener>基于Docker的Hexo博客搭建</a></p><p>这个基本操作写得还行下次爬一篇下来吧：</p><p><a class=link href=https://yingclin.github.io/2018/docker-basic.html target=_blank rel=noopener>[小抄] Docker 基本命令</a></p><h3 id=11-运行容器>1.1 运行容器</h3><pre><code class=language-bash>docker run -it -d --name [container-name] -p 8088:80 [image-name]
+</code></pre><p>这里是将容器内的80端口映射到宿主机的8088端口</p><p>参数说明</p><p><code>-d</code> 表示后台运行容器
 <code>-t</code> 为docker分配一个伪终端并绑定到容器的标准输入上
 <code>-i</code> 是让容器的标准输入保持打开状态
-<code>-p</code> 指定映射端口</p>
-<p>还能这么写：</p>
-<pre><code class="language-bash">docker run --name mssql -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=xxxx' \
+<code>-p</code> 指定映射端口</p><p>还能这么写：</p><pre><code class=language-bash>docker run --name mssql -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=xxxx' \
      -p 1433:1433  \
      -d mssql-2019-with-cimb
-</code></pre>
-<p><code>\</code>应该是可以换行表述
-<code>-e</code> 定义环境变量（通常制作镜像的时候应该已经写好了，或者在容器内做好自动脚本，run时候再写毕竟是不方便的）</p>
-<h3 id="12-将此容器-commit-保存为新镜像">1.2 将此容器 commit 保存为新镜像：
-</h3><p>格式：</p>
-<pre><code>docker commit container-id new-name
-</code></pre>
-<p>container-id也可以是已有容器的名字，例如：</p>
-<pre><code>docker commit node-test nodehexo
-</code></pre>
-<p>nodehexo这里是新镜像名</p>
-<h3 id="13-启动docker引擎时自动运行docker容器">1.3 启动docker引擎时自动运行docker容器：
-</h3><p><a class="link" href="https://blog.csdn.net/londa/article/details/97611947"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/londa/article/details/97611947</a></p>
-<p>ps:上面链接文章还有:修改docker容器的挂载路径，修改docker默认的存储位置</p>
-<pre><code>docker run --restart=always
-</code></pre>
-<p>有时候，我们创建容器时忘了添加参数 <code>--restart=always</code> ，当 Docker 重启时，容器未能自动启动，</p>
-<p>现在要添加该参数怎么办呢，方法有二：</p>
-<p>1、Docker 命令修改</p>
-<pre><code>docker container update --restart=always 容器名字
-</code></pre>
-<p>我实际运行时，可以支持同时配置多个容器id，比如（其中container关键字可以忽略不写）</p>
-<pre><code>docker update 87cd61ad7f7c f488b0479f24 2109903220ce 1fb346ea1a46 --restart=no
-</code></pre>
-<p>2、直接改配置文件</p>
-<p>首先停止容器，不然无法修改配置文件</p>
-<p>配置文件路径为：<code>/var/lib/docker/containers/</code> 容器ID</p>
-<p>在该目录下找到一个文件 hostconfig.json ，找到该文件中关键字 RestartPolicy</p>
-<p>修改前配置：<code>&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;no&quot;,&quot;MaximumRetryCount&quot;:0}</code></p>
-<p>修改后配置：<code>&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;always&quot;,&quot;MaximumRetryCount&quot;:0}</code></p>
-<p>最后启动容器。</p>
-<h3 id="14-有关dockerfile">1.4 有关dockerfile
-</h3><p>dockerfile是用来构建镜像的脚本
+</code></pre><p><code>\</code>应该是可以换行表述
+<code>-e</code> 定义环境变量（通常制作镜像的时候应该已经写好了，或者在容器内做好自动脚本，run时候再写毕竟是不方便的）</p><h3 id=12-将此容器-commit-保存为新镜像>1.2 将此容器 commit 保存为新镜像：</h3><p>格式：</p><pre><code>docker commit container-id new-name
+</code></pre><p>container-id也可以是已有容器的名字，例如：</p><pre><code>docker commit node-test nodehexo
+</code></pre><p>nodehexo这里是新镜像名</p><h3 id=13-启动docker引擎时自动运行docker容器>1.3 启动docker引擎时自动运行docker容器：</h3><p><a class=link href=https://blog.csdn.net/londa/article/details/97611947 target=_blank rel=noopener>https://blog.csdn.net/londa/article/details/97611947</a></p><p>ps:上面链接文章还有:修改docker容器的挂载路径，修改docker默认的存储位置</p><pre><code>docker run --restart=always
+</code></pre><p>有时候，我们创建容器时忘了添加参数 <code>--restart=always</code> ，当 Docker 重启时，容器未能自动启动，</p><p>现在要添加该参数怎么办呢，方法有二：</p><p>1、Docker 命令修改</p><pre><code>docker container update --restart=always 容器名字
+</code></pre><p>我实际运行时，可以支持同时配置多个容器id，比如（其中container关键字可以忽略不写）</p><pre><code>docker update 87cd61ad7f7c f488b0479f24 2109903220ce 1fb346ea1a46 --restart=no
+</code></pre><p>2、直接改配置文件</p><p>首先停止容器，不然无法修改配置文件</p><p>配置文件路径为：<code>/var/lib/docker/containers/</code> 容器ID</p><p>在该目录下找到一个文件 hostconfig.json ，找到该文件中关键字 RestartPolicy</p><p>修改前配置：<code>"RestartPolicy":{"Name":"no","MaximumRetryCount":0}</code></p><p>修改后配置：<code>"RestartPolicy":{"Name":"always","MaximumRetryCount":0}</code></p><p>最后启动容器。</p><h3 id=14-有关dockerfile>1.4 有关dockerfile</h3><p>dockerfile是用来构建镜像的脚本
 主要参考这几篇：
-<a class="link" href="https://www.runoob.com/docker/docker-dockerfile.html"  target="_blank" rel="noopener"
-    >https://www.runoob.com/docker/docker-dockerfile.html</a>
-<a class="link" href="https://developer.aliyun.com/article/484262"  target="_blank" rel="noopener"
-    >https://developer.aliyun.com/article/484262</a>
-<a class="link" href="https://juejin.cn/s/docker%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"  target="_blank" rel="noopener"
-    >docker容器启动时自动启动脚本</a></p>
-<h4 id="编写dockerfile">编写dockerfile
-</h4><p>我的第一个dockerfile：
+<a class=link href=https://www.runoob.com/docker/docker-dockerfile.html target=_blank rel=noopener>https://www.runoob.com/docker/docker-dockerfile.html</a>
+<a class=link href=https://developer.aliyun.com/article/484262 target=_blank rel=noopener>https://developer.aliyun.com/article/484262</a>
+<a class=link href=https://juejin.cn/s/docker%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC target=_blank rel=noopener>docker容器启动时自动启动脚本</a></p><h4 id=编写dockerfile>编写dockerfile</h4><p>我的第一个dockerfile：
 简单做个测试，在之前做的镜像上加了条启动命令
-<strong>Dockerfile</strong> （文件没有后缀)</p>
-<pre><code>## Set the base image to CentOS  基于nodehexo
+<strong>Dockerfile</strong> （文件没有后缀)</p><pre><code>## Set the base image to CentOS  基于nodehexo
 FROM nodehexo:V4
 COPY ddnsstart.sh /ddnsstart.sh
 ENTRYPOINT [&quot;/bin/bash&quot;, &quot;/ddnsstart.sh&quot;]
-</code></pre>
-<p>很简单:
+</code></pre><p>很简单:
 <code>FROM</code>基于<code>nodehexo:V4</code>镜像构建
 <code>COPY</code>就是拷贝构建目录下的<code>ddnsstart.sh</code>到之后构建好的镜像根目录下
-<code>ENTRYPOINT</code>会在用新镜像开启容器时再执行，这里会在执行<code>/bin/bash</code>里执行<code>/ddnsstart.sh</code></p>
-<p>一个dockerfile只能有一条<code>ENTRYPOINT</code>，多个也只执行最后一个,<code>CMD</code>也是如此
-如果 Dockerfile 中如果存在多个 <code>CMD</code> 指令，仅最后一个生效。</p>
-<p>关于<code>CMD</code>还有些写法，比如还可以
-<code>CMD service ssh start &amp;&amp; service XXX start &amp;&amp; tail -f /etc/passwd</code>一起执行多道指令
+<code>ENTRYPOINT</code>会在用新镜像开启容器时再执行，这里会在执行<code>/bin/bash</code>里执行<code>/ddnsstart.sh</code></p><p>一个dockerfile只能有一条<code>ENTRYPOINT</code>，多个也只执行最后一个,<code>CMD</code>也是如此
+如果 Dockerfile 中如果存在多个 <code>CMD</code> 指令，仅最后一个生效。</p><p>关于<code>CMD</code>还有些写法，比如还可以
+<code>CMD service ssh start && service XXX start && tail -f /etc/passwd</code>一起执行多道指令
 这在构建镜像的时候会被自动转换为类似：
-<code>CMD [&quot;/bin/sh&quot;, &quot;service ssh start&quot;,&quot;service XXX start&quot;,&quot;tail -f /etc/passwd&quot;]</code></p>
-<p><code>tail -f /etc/passwd</code>作用在于防止docker容器开启后立即关闭见下面段落</p>
-<p>CMD格式：</p>
-<pre><code>CMD &lt;shell 命令&gt; 
+<code>CMD ["/bin/sh", "service ssh start","service XXX start","tail -f /etc/passwd"]</code></p><p><code>tail -f /etc/passwd</code>作用在于防止docker容器开启后立即关闭见下面段落</p><p>CMD格式：</p><pre><code>CMD &lt;shell 命令&gt; 
 CMD [&quot;&lt;可执行文件或命令&gt;&quot;,&quot;&lt;param1&gt;&quot;,&quot;&lt;param2&gt;&quot;,...] 
 CMD [&quot;&lt;param1&gt;&quot;,&quot;&lt;param2&gt;&quot;,...]  # 该写法是为 ENTRYPOINT 指令指定的程序提供默认参数
-</code></pre>
-<p>推荐使用第二种格式，执行过程比较明确。第一种格式实际上在运行的过程中也会自动转换成第二种格式运行，并且默认是 <code>bin/sh</code></p>
-<p><strong>ddnsstart.sh文件</strong></p>
-<pre><code>#!/bin/bash
+</code></pre><p>推荐使用第二种格式，执行过程比较明确。第一种格式实际上在运行的过程中也会自动转换成第二种格式运行，并且默认是 <code>bin/sh</code></p><p><strong>ddnsstart.sh文件</strong></p><pre><code>#!/bin/bash
 root/ddnsAPP/ddns -c root/ddnsAPP/config.json
 echo &quot;更新mcwrite.winotmk.com解析&quot;
 service ssh start
 tail -f /etc/passwd
-</code></pre>
-<p>这里都是简单的shell命令了
-<code>root/ddnsAPP/ddns -c root/ddnsAPP/config.json</code>是执行ddns更新，解析新的ip到域名上，因为我这个镜像打算放到阿里云ECI里跑，每次新拉的IP当然都不一样（一直占着一个IP会产生费用，没必要）</p>
-<p>同时我还执行了启动ssh服务，有的时候会用上ssh，因为我把网盘挂载到了容器内
-<code>tail -f /etc/passwd</code>这里起到的比较重要的占着进程的作用，详见下面：</p>
-<p>*关于 <code>CMD</code> 或 <code>entrypoint</code> 构建后 <code>docker run -dit</code> 为何容器依然秒退
-<a class="link" href="https://www.zhihu.com/question/344939968"  target="_blank" rel="noopener"
-    >https://www.zhihu.com/question/344939968</a>
-是因为使用了CMD或者entrypoint去service *** start命令作为容器启动命令，主进程执行完结束了，容器也就结束了</p>
-<blockquote>
-<p>dockerfile 写清楚 entrypoint 和 cmd，启动脚本如果立刻会退出，那么在最后添加 tail -f 某个日志文件。或者 监听某个端口或者进程。
+</code></pre><p>这里都是简单的shell命令了
+<code>root/ddnsAPP/ddns -c root/ddnsAPP/config.json</code>是执行ddns更新，解析新的ip到域名上，因为我这个镜像打算放到阿里云ECI里跑，每次新拉的IP当然都不一样（一直占着一个IP会产生费用，没必要）</p><p>同时我还执行了启动ssh服务，有的时候会用上ssh，因为我把网盘挂载到了容器内
+<code>tail -f /etc/passwd</code>这里起到的比较重要的占着进程的作用，详见下面：</p><p>*关于 <code>CMD</code> 或 <code>entrypoint</code> 构建后 <code>docker run -dit</code> 为何容器依然秒退
+<a class=link href=https://www.zhihu.com/question/344939968 target=_blank rel=noopener>https://www.zhihu.com/question/344939968</a>
+是因为使用了CMD或者entrypoint去service *** start命令作为容器启动命令，主进程执行完结束了，容器也就结束了</p><blockquote><p>dockerfile 写清楚 entrypoint 和 cmd，启动脚本如果立刻会退出，那么在最后添加 tail -f 某个日志文件。或者 监听某个端口或者进程。
 方法1: 设置容器启动时就启动服务ENTRYPOINT [&ldquo;flask&rdquo;, &ldquo;run&rdquo;, &ldquo;-h&rdquo;, &ldquo;0.0.0.0&rdquo;, &ldquo;-p&rdquo;, &ldquo;80&rdquo;]
-方法2:CMD service apache2 start &amp;&amp; tail -F /var/log/apache2/error.log再极端点 sleep infinite</p></blockquote>
-<h4 id="用dockerfile构建镜像">用dockerfile构建镜像
-</h4><p><code>docker build -t &lt;新镜像名字:标签&gt; .</code>
+方法2:CMD service apache2 start && tail -F /var/log/apache2/error.log再极端点 sleep infinite</p></blockquote><h4 id=用dockerfile构建镜像>用dockerfile构建镜像</h4><p><code>docker build -t &lt;新镜像名字:标签> .</code>
 比如<code>docker build -t nodehexo:V5 .</code>
 请不要忘记最后一个<code>.</code>，这表示在当前目录下构建
 用这条指令前先<code>CD</code>到dockerfile文件所放置的目录
 比如我先<code>CD ./dockerbuild</code>，因为我的文件放在<code>用户/dockerbuild</code>目录下面
-然后就拥有了属于构建的镜像！</p>
-<h4 id="141-entrypoint与cmd的区别">1.4.1 ENTRYPOINT与CMD的区别
-</h4><p>Docker 的 ENTRYPOINT 和 CMD 参数探秘
-<a class="link" href="https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/"  target="_blank" rel="noopener"
-    >https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/</a></p>
-<h4 id="142-dockerfile构建镜像时如何选择from镜像以减小镜像体积">1.4.2 dockerfile构建镜像时如何选择FROM镜像以减小镜像体积
-</h4><p>busybox：
-<a class="link" href="https://blog.csdn.net/hknaruto/article/details/70229896"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/hknaruto/article/details/70229896</a>
+然后就拥有了属于构建的镜像！</p><h4 id=141-entrypoint与cmd的区别>1.4.1 ENTRYPOINT与CMD的区别</h4><p>Docker 的 ENTRYPOINT 和 CMD 参数探秘
+<a class=link href=https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/ target=_blank rel=noopener>https://aws.amazon.com/cn/blogs/china/demystifying-entrypoint-cmd-docker/</a></p><h4 id=142-dockerfile构建镜像时如何选择from镜像以减小镜像体积>1.4.2 dockerfile构建镜像时如何选择FROM镜像以减小镜像体积</h4><p>busybox：
+<a class=link href=https://blog.csdn.net/hknaruto/article/details/70229896 target=_blank rel=noopener>https://blog.csdn.net/hknaruto/article/details/70229896</a>
 alpine：
-<a class="link" href="https://hub.docker.com/_/alpine"  target="_blank" rel="noopener"
-    >https://hub.docker.com/_/alpine</a>
+<a class=link href=https://hub.docker.com/_/alpine target=_blank rel=noopener>https://hub.docker.com/_/alpine</a>
 alpine包管理器APK：
-<a class="link" href="https://wangchujiang.com/linux-command/c/apk.html"  target="_blank" rel="noopener"
-    >https://wangchujiang.com/linux-command/c/apk.html</a>
-<a class="link" href="https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper"  target="_blank" rel="noopener"
-    >https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper</a></p>
-<h3 id="15-将已有镜像打包带走使用将打包来的镜像">1.5 将已有镜像打包带走/使用将打包来的镜像
-</h3><p><a class="link" href="https://zhuanlan.zhihu.com/p/348849578"  target="_blank" rel="noopener"
-    >https://zhuanlan.zhihu.com/p/348849578</a></p>
-<h4 id="将镜像保存为本地文件">将镜像保存为本地文件
-</h4><p>可以使用Docker save命令</p>
-<pre><code>docker save -o mssql-2019-with-cimb.tar mssql-2019-with-cimb
-</code></pre>
-<p>会得到一个<code>mssql-2019-with-cimb.tar</code>文件，就可以随身携带啦</p>
-<p>从文件载入镜像</p>
-<h4 id="从文件载入镜像">从文件载入镜像
-</h4><p>使用Docker load命令:</p>
-<pre><code>docker load --input mssql-2019-with-cimb.tar
-</code></pre>
-<h3 id="16-docker挂载本地目录">1.6 docker挂载本地目录
-</h3><p>有关volume:https://docs.docker.com/storage/volumes/
-<a class="link" href="https://docs.docker.com/get-started/05_persisting_data/"  target="_blank" rel="noopener"
-    >https://docs.docker.com/get-started/05_persisting_data/</a>
-<a class="link" href="https://blog.csdn.net/zz00008888/article/details/131924286"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/zz00008888/article/details/131924286</a></p>
-<p>在Docker中，可以使用“-v”选项来挂载本地目录。该选项需要两个参数，分别是本地目录路径和容器内目录路径。例如，以下命令将本地目录“/home/user/app”挂载到容器内的“/app”目录中：</p>
-<pre><code>docker run -v /home/user/app:/app my_image
-</code></pre>
-<p>这将使得容器可以访问本地目录中的文件，并且任何对该目录的更改也会反映在容器中。</p>
-<p><strong>Docker挂载本地目录到已有容器</strong></p>
-<p>除了在容器启动时挂载本地目录外，还可以在运行时将本地目录挂载到正在运行的容器中。要实现这一点，可以使用“docker cp”命令将本地目录复制到容器中，并使用“docker exec”命令在容器中执行命令。例如，以下命令将本地目录“/home/user/data”挂载到正在运行的容器中：</p>
-<pre><code>docker cp /home/user/data my_container:/data
+<a class=link href=https://wangchujiang.com/linux-command/c/apk.html target=_blank rel=noopener>https://wangchujiang.com/linux-command/c/apk.html</a>
+<a class=link href=https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper target=_blank rel=noopener>https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper</a></p><h3 id=15-将已有镜像打包带走使用将打包来的镜像>1.5 将已有镜像打包带走/使用将打包来的镜像</h3><p><a class=link href=https://zhuanlan.zhihu.com/p/348849578 target=_blank rel=noopener>https://zhuanlan.zhihu.com/p/348849578</a></p><h4 id=将镜像保存为本地文件>将镜像保存为本地文件</h4><p>可以使用Docker save命令</p><pre><code>docker save -o mssql-2019-with-cimb.tar mssql-2019-with-cimb
+</code></pre><p>会得到一个<code>mssql-2019-with-cimb.tar</code>文件，就可以随身携带啦</p><p>从文件载入镜像</p><h4 id=从文件载入镜像>从文件载入镜像</h4><p>使用Docker load命令:</p><pre><code>docker load --input mssql-2019-with-cimb.tar
+</code></pre><h3 id=16-docker挂载本地目录>1.6 docker挂载本地目录</h3><p>有关volume:https://docs.docker.com/storage/volumes/
+<a class=link href=https://docs.docker.com/get-started/05_persisting_data/ target=_blank rel=noopener>https://docs.docker.com/get-started/05_persisting_data/</a>
+<a class=link href=https://blog.csdn.net/zz00008888/article/details/131924286 target=_blank rel=noopener>https://blog.csdn.net/zz00008888/article/details/131924286</a></p><p>在Docker中，可以使用“-v”选项来挂载本地目录。该选项需要两个参数，分别是本地目录路径和容器内目录路径。例如，以下命令将本地目录“/home/user/app”挂载到容器内的“/app”目录中：</p><pre><code>docker run -v /home/user/app:/app my_image
+</code></pre><p>这将使得容器可以访问本地目录中的文件，并且任何对该目录的更改也会反映在容器中。</p><p><strong>Docker挂载本地目录到已有容器</strong></p><p>除了在容器启动时挂载本地目录外，还可以在运行时将本地目录挂载到正在运行的容器中。要实现这一点，可以使用“docker cp”命令将本地目录复制到容器中，并使用“docker exec”命令在容器中执行命令。例如，以下命令将本地目录“/home/user/data”挂载到正在运行的容器中：</p><pre><code>docker cp /home/user/data my_container:/data
 docker exec -it my_container bash
-</code></pre>
-<p>在容器中，可以访问挂载的目录“/data”，并且任何对该目录的更改也会反映在本地文件系统中。</p>
-<h3 id="17-其他一些操作">1.7 其他一些操作
-</h3><pre><code># ****************************** 容器 ****************************** #
+</code></pre><p>在容器中，可以访问挂载的目录“/data”，并且任何对该目录的更改也会反映在本地文件系统中。</p><h3 id=17-其他一些操作>1.7 其他一些操作</h3><pre><code># ****************************** 容器 ****************************** #
 # 查看正在运行的容器
 $ docker ps
 # 查看所有容器
@@ -730,121 +125,60 @@ $ docker images
 $ docker rmi id/name
 # 基于当前目录下的Dockerfile，创建一个名为name:flag的镜像
 $ docker build -t name:flag .
-</code></pre>
-<h2 id="2-已启动容器操作">2. 已启动容器操作
-</h2><h3 id="21-win10下docker给已存在的容器添加端口映射的方法">2.1 win10下docker给已存在的容器添加端口映射的方法
-</h3><p>博主再吐槽一下，这个调试阶段如此常用的修改容我端口，改起来却像游戏作弊，不觉得这个要做简单很难，怕只是没做
-<a class="link" href="https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82"  target="_blank" rel="noopener"
-    >https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82</a>
-<a class="link" href="https://blog.csdn.net/Taysuesue/article/details/126706394"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/Taysuesue/article/details/126706394</a>
-<a class="link" href="https://www.cnblogs.com/kingsonfu/p/11578073.html"  target="_blank" rel="noopener"
-    >https://www.cnblogs.com/kingsonfu/p/11578073.html</a></p>
-<p>查看容器已映射的端口（dockerdeskUI内也可看见）</p>
-<pre><code>docker port 容器ID/容器名
-</code></pre>
-<p>先停止容器</p>
-<pre><code>docker stop {容器的名称或者 id }
-</code></pre>
-<p>查看容器完整的 <code>hash_of_the_container</code> 数值：</p>
-<pre><code>docker inspect {容器的名称或者 id } | grep Id
+</code></pre><h2 id=2-已启动容器操作>2. 已启动容器操作</h2><h3 id=21-win10下docker给已存在的容器添加端口映射的方法>2.1 win10下docker给已存在的容器添加端口映射的方法</h3><p>博主再吐槽一下，这个调试阶段如此常用的修改容我端口，改起来却像游戏作弊，不觉得这个要做简单很难，怕只是没做
+<a class=link href=https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82 target=_blank rel=noopener>https://mdnice.com/writing/25822ca29531424d9b68d7feb8273a82</a>
+<a class=link href=https://blog.csdn.net/Taysuesue/article/details/126706394 target=_blank rel=noopener>https://blog.csdn.net/Taysuesue/article/details/126706394</a>
+<a class=link href=https://www.cnblogs.com/kingsonfu/p/11578073.html target=_blank rel=noopener>https://www.cnblogs.com/kingsonfu/p/11578073.html</a></p><p>查看容器已映射的端口（dockerdeskUI内也可看见）</p><pre><code>docker port 容器ID/容器名
+</code></pre><p>先停止容器</p><pre><code>docker stop {容器的名称或者 id }
+</code></pre><p>查看容器完整的 <code>hash_of_the_container</code> 数值：</p><pre><code>docker inspect {容器的名称或者 id } | grep Id
 
 # 比如：
 docker inspect cbe26510c276 | grep Id
 # 会得到如下结果：
 # &quot;Id&quot;: &quot;cbe26510c276fa9a4487a8c2af8cbb49410f2a5305149d2b26eb8ce37c777d00&quot;
-</code></pre>
-<p><strong>如果主机是linux（mac应该也行没测）</strong>
-打开 hostconfig.json 配置文件:</p>
-<pre><code>vim /var/lib/docker/containers/{hash_of_the_container}/hostconfig.json
-</code></pre>
-<p>记得还要改 config.v2.json，改法同下面的win10
+</code></pre><p><strong>如果主机是linux（mac应该也行没测）</strong>
+打开 hostconfig.json 配置文件:</p><pre><code>vim /var/lib/docker/containers/{hash_of_the_container}/hostconfig.json
+</code></pre><p>记得还要改 config.v2.json，改法同下面的win10
 <strong>如果是win10</strong>
-1.先找到容器的配置文件，首先我的电脑地址栏输\wsl$\进入到网络文件夹上,在一步一步找到容器目录</p>
-<pre><code>\\wsl$\docker-desktop-data\data\docker\containers
-</code></pre>
-<p>2.点击进入相应容器ID文件夹，打开后修改其中的 <code>config.v2.json</code> 和 <code>hostconfig.json</code></p>
-<p><strong>hostconfig.json</strong></p>
-<pre><code>&quot;PortBindings&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;50022&quot;}],&quot;3306/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;53306&quot;}],&quot;6379/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;56379&quot;}]}
-</code></pre>
-<p>这里的<code>HostPort</code>字面意思就是宿主机的端口，所以即：
-容器内22&gt;外部5022访问
-容器内3306&gt;外部53306访问
-容器内6379&gt;外部56379访问</p>
-<p><strong>config.v2.json</strong> 有两处需要添加，只修改一处不生效</p>
-<pre><code>&quot;ExposedPorts&quot;:{&quot;22/tcp&quot;:{},&quot;3306/tcp&quot;:{},&quot;6379/tcp&quot;:{}}
-</code></pre>
-<pre><code>&quot;Ports&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;50022&quot;}],&quot;3306/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;53306&quot;}],&quot;6379/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;56379&quot;}]}
-</code></pre>
-<p>不过我实际只改了这里的<code>&quot;ExposedPorts&quot;</code>貌似就行了</p>
-<p>然后重启<strong>docker</strong>，注意不只是重启容器，我一开始只重启容器发现白改了</p>
-<pre><code># 重启 docker
+1.先找到容器的配置文件，首先我的电脑地址栏输\wsl$\进入到网络文件夹上,在一步一步找到容器目录</p><pre><code>\\wsl$\docker-desktop-data\data\docker\containers
+</code></pre><p>2.点击进入相应容器ID文件夹，打开后修改其中的 <code>config.v2.json</code> 和 <code>hostconfig.json</code></p><p><strong>hostconfig.json</strong></p><pre><code>&quot;PortBindings&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;50022&quot;}],&quot;3306/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;53306&quot;}],&quot;6379/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;56379&quot;}]}
+</code></pre><p>这里的<code>HostPort</code>字面意思就是宿主机的端口，所以即：
+容器内22>外部5022访问
+容器内3306>外部53306访问
+容器内6379>外部56379访问</p><p><strong>config.v2.json</strong> 有两处需要添加，只修改一处不生效</p><pre><code>&quot;ExposedPorts&quot;:{&quot;22/tcp&quot;:{},&quot;3306/tcp&quot;:{},&quot;6379/tcp&quot;:{}}
+</code></pre><pre><code>&quot;Ports&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;50022&quot;}],&quot;3306/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;53306&quot;}],&quot;6379/tcp&quot;:[{&quot;HostIp&quot;:&quot;0.0.0.0&quot;,&quot;HostPort&quot;:&quot;56379&quot;}]}
+</code></pre><p>不过我实际只改了这里的<code>"ExposedPorts"</code>貌似就行了</p><p>然后重启<strong>docker</strong>，注意不只是重启容器，我一开始只重启容器发现白改了</p><pre><code># 重启 docker
 service docker restart
-</code></pre>
-<p>或者在系统右下角，点击Restart重启整个 Docker 服务，然后再重启 Container 即可正常使用</p>
-<h3 id="22-docker容器内服务开机自启动实现方案以ssh服务为例">2.2 docker容器内服务开机自启动实现方案（以ssh服务为例）
-</h3><p><strong><font color=red>注意，2.2这段内容随着对docker和linux了解的深入觉得有不妥，但是作为学习的过程还是保留</font></strong></p>
-<p><a class="link" href="https://blog.csdn.net/qq_38603541/article/details/124028994"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/qq_38603541/article/details/124028994</a></p>
-<p>因为我后续打算用类似vscode里的remote-ssh来管理容器内，也想用winscp等好用的工具可以接进来，还是有必要开个ssh
+</code></pre><p>或者在系统右下角，点击Restart重启整个 Docker 服务，然后再重启 Container 即可正常使用</p><h3 id=22-docker容器内服务开机自启动实现方案以ssh服务为例>2.2 docker容器内服务开机自启动实现方案（以ssh服务为例）</h3><p><strong><font color=red>注意，2.2这段内容随着对docker和linux了解的深入觉得有不妥，但是作为学习的过程还是保留</font></strong></p><p><a class=link href=https://blog.csdn.net/qq_38603541/article/details/124028994 target=_blank rel=noopener>https://blog.csdn.net/qq_38603541/article/details/124028994</a></p><p>因为我后续打算用类似vscode里的remote-ssh来管理容器内，也想用winscp等好用的工具可以接进来，还是有必要开个ssh
 <strong>解决方案</strong>
-1、正常我们在linux操作系统内设置服务自启动的方法一般都是使用systemctl。</p>
-<p>systemctl enable ssh
-2、但是，一般在docker容器内我们一般不这么干，因为容器内没有systemctl权限……</p>
-<p>3、我们依然还是使用脚本的形式将ssh设为自启，只不过这个的这个脚本和我们使用Dockerfile的脚本不一样。</p>
-<p>4、在 /root 目录下新建一个 start_ssh.sh文件，并给予该文件可执行权限。</p>
-<pre><code>touch /root/start_ssh.sh
+1、正常我们在linux操作系统内设置服务自启动的方法一般都是使用systemctl。</p><p>systemctl enable ssh
+2、但是，一般在docker容器内我们一般不这么干，因为容器内没有systemctl权限……</p><p>3、我们依然还是使用脚本的形式将ssh设为自启，只不过这个的这个脚本和我们使用Dockerfile的脚本不一样。</p><p>4、在 /root 目录下新建一个 start_ssh.sh文件，并给予该文件可执行权限。</p><pre><code>touch /root/start_ssh.sh
  
 vim /root/start_ssh.sh
  
 chmod +x /root/start_ssh.sh
-</code></pre>
-<p>5、start_ssh.sh 脚本的内容，如下：</p>
-<pre><code>#!/bin/bash
+</code></pre><p>5、start_ssh.sh 脚本的内容，如下：</p><pre><code>#!/bin/bash
  
 LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)
 echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/root/start_ssh.log
 service ssh start &gt;&gt;/root/start_ssh.log
 #service mysql start &gt;&gt;/root/star_mysql.log   //其他服务也可这么实现
-</code></pre>
-<p>6、将start_ssh.sh脚本添加到启动文件中</p>
-<pre><code>vim /root/.bashrc
-</code></pre>
-<p>7、在 .bashrc 文件末尾加入如下内容：</p>
-<pre><code># startup run
+</code></pre><p>6、将start_ssh.sh脚本添加到启动文件中</p><pre><code>vim /root/.bashrc
+</code></pre><p>7、在 .bashrc 文件末尾加入如下内容：</p><pre><code># startup run
 if [ -f /root/start_ssh.sh ]; then
       . /root/start_ssh.sh
 fi
-</code></pre>
-<p>8、保存后，等下次重启容器的时候，添加的服务也就跟着重启了。</p>
-<p>docker容器在启动的时候，会自动执行的是~/.bashrc文件，所以，环境变量需要配置在该文件内，这样镜像启动时，可自动执行该文件，使环境变量生效。</p>
-<p><strong><font color=red>正确的理解是：</font></strong>
+</code></pre><p>8、保存后，等下次重启容器的时候，添加的服务也就跟着重启了。</p><p>docker容器在启动的时候，会自动执行的是~/.bashrc文件，所以，环境变量需要配置在该文件内，这样镜像启动时，可自动执行该文件，使环境变量生效。</p><p><strong><font color=red>正确的理解是：</font></strong>
 /root/.bashrc会在容器启动的时候自动执行这句十分欠妥，
 准确的来讲是<strong>root用户登录bash的时候会执行，每次开新的bash shell也会执行一遍</strong>
-如果dockerfile内定义了ENTRYPOINT或者CMD执行类似：</p>
-<pre><code>ENTRYPOINT [ &quot;/bin/bash&quot;,&quot;-c&quot;,&quot;service apache2 start&quot; ]
-</code></pre>
-<p>那么对于容器来说PID 1号进程就是bash（apache是bash的子进程），也确实会跑一遍.bashrc内的内容，但是这不代表所有容器启动时一定会启动bash shell，也可能直接是个java进程，也可能是dumb-int，更多时候可能是sh shell，这应该都不会触发.bashrc
-所以如果想要在容器启动时自动启动一个服务，推荐写在dockerfile里，比如</p>
-<pre><code>COPY start.sh /
+如果dockerfile内定义了ENTRYPOINT或者CMD执行类似：</p><pre><code>ENTRYPOINT [ &quot;/bin/bash&quot;,&quot;-c&quot;,&quot;service apache2 start&quot; ]
+</code></pre><p>那么对于容器来说PID 1号进程就是bash（apache是bash的子进程），也确实会跑一遍.bashrc内的内容，但是这不代表所有容器启动时一定会启动bash shell，也可能直接是个java进程，也可能是dumb-int，更多时候可能是sh shell，这应该都不会触发.bashrc
+所以如果想要在容器启动时自动启动一个服务，推荐写在dockerfile里，比如</p><pre><code>COPY start.sh /
 ENTRYPOINT [ &quot;sh&quot;,&quot;/start.sh&quot; ]
-</code></pre>
-<p>然后再在start.sh里写上你需要启动的服务</p>
-<pre><code>#!/bin/sh
+</code></pre><p>然后再在start.sh里写上你需要启动的服务</p><pre><code>#!/bin/sh
 service ssh restart
 service apache2 restart
-</code></pre>
-<p>以及如果确实有很多个服务需要启，考虑使用类似docker compose启多个镜像，每个镜像跑单个服务</p>
-<h4 id="221-拓展bashrc-etcbashrc-etcprofile三个文件的区别">2.2.1 拓展：~/.bashrc /etc/bashrc /etc/profile三个文件的区别
-</h4><p><a class="link" href="https://segmentfault.com/q/1010000003793341"  target="_blank" rel="noopener"
-    >https://segmentfault.com/q/1010000003793341</a></p>
-<h2 id="3-打包制作自己的docker镜像dockerfile">3 打包制作自己的docker镜像(dockerfile)
-</h2><p>dockerfile是告诉docker engine如何构建镜像的脚本</p>
-<h3 id="31-nodejsgithexo镜像">3.1 node.js+git+hexo镜像
-</h3><p>其实这部分镜像做了两遍，第一遍直接拉的官方node镜像，然后发现ssh不好装，走了很多弯路，随着对docker了解的加深，最后我自己做了dockerfile重构了这部分镜像</p>
-<h4 id="311-dockerfile">3.1.1 Dockerfile
-</h4><p><strong><i class="fas fa-file"></i>dockerfileV02（可以没有后缀）</strong></p>
-<pre><code>#这个包将包含：node-v29.5.0  git ssh hexo
+</code></pre><p>以及如果确实有很多个服务需要启，考虑使用类似docker compose启多个镜像，每个镜像跑单个服务</p><h4 id=221-拓展bashrc-etcbashrc-etcprofile三个文件的区别>2.2.1 拓展：~/.bashrc /etc/bashrc /etc/profile三个文件的区别</h4><p><a class=link href=https://segmentfault.com/q/1010000003793341 target=_blank rel=noopener>https://segmentfault.com/q/1010000003793341</a></p><h2 id=3-打包制作自己的docker镜像dockerfile>3 打包制作自己的docker镜像(dockerfile)</h2><p>dockerfile是告诉docker engine如何构建镜像的脚本</p><h3 id=31-nodejsgithexo镜像>3.1 node.js+git+hexo镜像</h3><p>其实这部分镜像做了两遍，第一遍直接拉的官方node镜像，然后发现ssh不好装，走了很多弯路，随着对docker了解的加深，最后我自己做了dockerfile重构了这部分镜像</p><h4 id=311-dockerfile>3.1.1 Dockerfile</h4><p><strong><i class="fas fa-file"></i>dockerfileV02（可以没有后缀）</strong></p><pre><code>#这个包将包含：node-v29.5.0  git ssh hexo
 #hexo环境目录/hexo/Winblog
 FROM debian:stable-slim
 LABEL maintainer=&quot;winotmk&quot; web=&quot;md.winotmk.com&quot; Ver=&quot;02&quot;
@@ -874,14 +208,11 @@ COPY .profile /root/
 #设置启动脚本
 COPY hexo_debian_service_start.sh /service_start.sh
 CMD [&quot;/bin/bash&quot;,&quot;/service_start.sh&quot;]
-</code></pre>
-<p>基本上都是些安装命令以及配置环境变量
+</code></pre><p>基本上都是些安装命令以及配置环境变量
 安装了<code>hexo</code>,<code>git</code>,<code>ssh</code>,<code>node</code>
-这是优化过了的第二版，主要是第二版使用了<code>ADD</code>，它基本和<code>COPY</code>一样，都可以把某个构建目录下的文件打入正在生成的镜像里，但当用ADD在执行 &lt;源文件&gt; 为 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，会自动复制并解压到 &lt;目标路径&gt;。说白了ADD会帮我自动解压
-在这里我还设置了ssh（但是没有配置root密码）</p>
-<p>而我的第一版开头：
-<strong><i class="fas fa-file"></i>dockerfileV01</strong></p>
-<pre><code>FROM debian:stable-slim
+这是优化过了的第二版，主要是第二版使用了<code>ADD</code>，它基本和<code>COPY</code>一样，都可以把某个构建目录下的文件打入正在生成的镜像里，但当用ADD在执行 &lt;源文件> 为 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，会自动复制并解压到 &lt;目标路径>。说白了ADD会帮我自动解压
+在这里我还设置了ssh（但是没有配置root密码）</p><p>而我的第一版开头：
+<strong><i class="fas fa-file"></i>dockerfileV01</strong></p><pre><code>FROM debian:stable-slim
 
 COPY node-v20.5.0-linux-x64.tar.xz /node-v20.5.0-linux-x64.tar.xz
 RUN apt-get update &amp;&amp;\
@@ -898,17 +229,10 @@ RUN apt-get update &amp;&amp;\
 
 #node和npm环境变量
 ENV PATH=&quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&quot;
-</code></pre>
-<p>当时不知道<code>ADD</code>的功能，使用 <code>COPY</code>拷贝整个.tar.xz包结果debian还没有.xz包解压功能，需要安装<code>xz-utils</code><a class="link" href="https://blog.csdn.net/weixin_43502175/article/details/129547250"  target="_blank" rel="noopener"
-    >详见</a>，凭空多出好几行</p>
-<p><strong>为什么要用二进制包安装呢node.js呢？</strong>
+</code></pre><p>当时不知道<code>ADD</code>的功能，使用 <code>COPY</code>拷贝整个.tar.xz包结果debian还没有.xz包解压功能，需要安装<code>xz-utils</code><a class=link href=https://blog.csdn.net/weixin_43502175/article/details/129547250 target=_blank rel=noopener>详见</a>，凭空多出好几行</p><p><strong>为什么要用二进制包安装呢node.js呢？</strong>
 因为实测如果用<code>apt-get install nodejs</code>安装，
-或者<code>curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &amp;&amp;\ apt-get install -y nodejs</code><a class="link" href="https://github.com/nodesource/distributions"  target="_blank" rel="noopener"
-    >命令出处</a>，
-安装出来镜像体积就是会楞大出好几百MB</p>
-<h4 id="312-nodejsgithexo镜像copy的文件">3.1.2 node.js+git+hexo镜像COPY的文件
-</h4><p><strong><i class="fas fa-file"></i>.profile</strong></p>
-<pre><code># ~/.profile: executed by Bourne-compatible login shells.
+或者<code>curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &&\ apt-get install -y nodejs</code><a class=link href=https://github.com/nodesource/distributions target=_blank rel=noopener>命令出处</a>，
+安装出来镜像体积就是会楞大出好几百MB</p><h4 id=312-nodejsgithexo镜像copy的文件>3.1.2 node.js+git+hexo镜像COPY的文件</h4><p><strong><i class="fas fa-file"></i>.profile</strong></p><pre><code># ~/.profile: executed by Bourne-compatible login shells.
 
 if [ &quot;$BASH&quot; ]; then
   if [ -f ~/.bashrc ]; then
@@ -920,211 +244,77 @@ mesg n 2&gt; /dev/null || true
 
 export PATH=&quot;/usr/local/nodejs/node-v20.5.0-linux-x64/bin:$PATH&quot;
 export PATH=&quot;$PATH:/hexo/Winblog/node_modules/.bin&quot;
-</code></pre>
-<p>为了防止镜像上云后莫名其妙的原因导致环境变量出问题，脚本里再跑一遍，这俩<code>export PATH</code>其实dockerfile里设置过</p>
-<p><strong>sshd_config是什么</strong>
+</code></pre><p>为了防止镜像上云后莫名其妙的原因导致环境变量出问题，脚本里再跑一遍，这俩<code>export PATH</code>其实dockerfile里设置过</p><p><strong>sshd_config是什么</strong>
 ssh的设置
 参考：https://blog.csdn.net/weixin_34910922/article/details/125193597
-主要改了两条</p>
-<pre><code class="language-bash">#vim /etc/ssh/sshd_config
+主要改了两条</p><pre><code class=language-bash>#vim /etc/ssh/sshd_config
 PermitRootLogin yes #root登陆权限
 PasswordAuthentication yes #密码权限
-</code></pre>
-<p>等于我们预先改好了配置文件，在构建的时候再把配置放入容器里面</p>
-<p><strong><i class="fas fa-file"></i>hexo_debian_service_start.sh</strong></p>
-<pre><code>#!/bin/bash
+</code></pre><p>等于我们预先改好了配置文件，在构建的时候再把配置放入容器里面</p><p><strong><i class="fas fa-file"></i>hexo_debian_service_start.sh</strong></p><pre><code>#!/bin/bash
 . ~/.profile
 LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)
 echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/start_ssh.log
 service ssh start &gt;&gt;/start_ssh.log
 tail -f /start_ssh.log
-</code></pre>
-<p>启动脚本，主要启动了ssh服务，并且用<code>tail -f</code>让这个容器一直运行以方便我们来连接</p>
-<h4 id="313-开始构建镜像">3.1.3 开始构建镜像
-</h4><p>先<code>CD</code>到Dockerfile所在的目录
-<img src="/images/20230829135356.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<pre><code>docker build -t hexo_debian:V02 -f dockerfileV02 .
-</code></pre>
-<p>格式是</p>
-<pre><code>docker build -t 镜像名:tag -f Dockerfile文件名 .
-</code></pre>
-<p>注意<code>.</code>不要落下！</p>
-<p>这样我们的镜像就做好了！</p>
-<p>本节参考资料：
+</code></pre><p>启动脚本，主要启动了ssh服务，并且用<code>tail -f</code>让这个容器一直运行以方便我们来连接</p><h4 id=313-开始构建镜像>3.1.3 开始构建镜像</h4><p>先<code>CD</code>到Dockerfile所在的目录
+<img src=/images/20230829135356.png loading=lazy></p><pre><code>docker build -t hexo_debian:V02 -f dockerfileV02 .
+</code></pre><p>格式是</p><pre><code>docker build -t 镜像名:tag -f Dockerfile文件名 .
+</code></pre><p>注意<code>.</code>不要落下！</p><p>这样我们的镜像就做好了！</p><p>本节参考资料：
 二进制手动安装node参考：
-<a class="link" href="https://github.com/nodejs/help/wiki/Installation"  target="_blank" rel="noopener"
-    >https://github.com/nodejs/help/wiki/Installation</a>
-<a class="link" href="https://blog.51cto.com/u_13460811/4901015"  target="_blank" rel="noopener"
-    >https://blog.51cto.com/u_13460811/4901015</a></p>
-<p>一些关于dockerfile指令的说明：
-较详细： <a class="link" href="https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy"  target="_blank" rel="noopener"
-    >https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy</a>
-<a class="link" href="https://blog.csdn.net/qq_35528657/article/details/127244194"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/qq_35528657/article/details/127244194</a>
-<a class="link" href="https://www.runoob.com/docker/docker-dockerfile.html"  target="_blank" rel="noopener"
-    >https://www.runoob.com/docker/docker-dockerfile.html</a></p>
-<p>在dockerfile里用apt-get包管理的建议：
-<a class="link" href="https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends"  target="_blank" rel="noopener"
-    >https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends</a>
-<a class="link" href="https://www.metricfire.com/blog/how-to-build-optimal-docker-images/"  target="_blank" rel="noopener"
-    >https://www.metricfire.com/blog/how-to-build-optimal-docker-images/</a></p>
-<p>hexo所需环境安装说明：
-<a class="link" href="https://hexo.io/zh-cn/docs/index.html"  target="_blank" rel="noopener"
-    >https://hexo.io/zh-cn/docs/index.html</a></p>
-<h4 id="314-测试镜像功能">3.1.4 测试镜像功能
-</h4><p>来启个容器试试！</p>
-<pre><code>docker run -it -d -p 22:22 --name hexo_debian hexo_debian:V02
-</code></pre>
-<p>这里开放了22端口来方便验证ssh服务和登录ssh没有问题
+<a class=link href=https://github.com/nodejs/help/wiki/Installation target=_blank rel=noopener>https://github.com/nodejs/help/wiki/Installation</a>
+<a class=link href=https://blog.51cto.com/u_13460811/4901015 target=_blank rel=noopener>https://blog.51cto.com/u_13460811/4901015</a></p><p>一些关于dockerfile指令的说明：
+较详细： <a class=link href=https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy target=_blank rel=noopener>https://yeasy.gitbook.io/docker_practice/image/dockerfile/copy</a>
+<a class=link href=https://blog.csdn.net/qq_35528657/article/details/127244194 target=_blank rel=noopener>https://blog.csdn.net/qq_35528657/article/details/127244194</a>
+<a class=link href=https://www.runoob.com/docker/docker-dockerfile.html target=_blank rel=noopener>https://www.runoob.com/docker/docker-dockerfile.html</a></p><p>在dockerfile里用apt-get包管理的建议：
+<a class=link href=https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends target=_blank rel=noopener>https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends</a>
+<a class=link href=https://www.metricfire.com/blog/how-to-build-optimal-docker-images/ target=_blank rel=noopener>https://www.metricfire.com/blog/how-to-build-optimal-docker-images/</a></p><p>hexo所需环境安装说明：
+<a class=link href=https://hexo.io/zh-cn/docs/index.html target=_blank rel=noopener>https://hexo.io/zh-cn/docs/index.html</a></p><h4 id=314-测试镜像功能>3.1.4 测试镜像功能</h4><p>来启个容器试试！</p><pre><code>docker run -it -d -p 22:22 --name hexo_debian hexo_debian:V02
+</code></pre><p>这里开放了22端口来方便验证ssh服务和登录ssh没有问题
 启动成功！
-容器内执行来验证服务状态都正常：</p>
-<pre><code>ssh
+容器内执行来验证服务状态都正常：</p><pre><code>ssh
 node -v
 git -v
-</code></pre>
-<p>输出：
-<img src="/images/20230829124045.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-可以看见一切正常！</p>
-<h4 id="315-设置和再打包镜像">3.1.5 设置和再打包镜像
-</h4><h5 id="设置">设置
-</h5><p>毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再<code>commit</code>为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢
+</code></pre><p>输出：
+<img src=/images/20230829124045.png loading=lazy>
+可以看见一切正常！</p><h4 id=315-设置和再打包镜像>3.1.5 设置和再打包镜像</h4><h5 id=设置>设置</h5><p>毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再<code>commit</code>为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢
 接下来设置root密码和重启ssh服务
-<img src="/images/20230829124114.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<pre><code>passwd root
+<img src=/images/20230829124114.png loading=lazy></p><pre><code>passwd root
 #然后敲自己设置的密码
 service ssh restart
-</code></pre>
-<p>尝试使用PuTTY进行SSH <a class="link" href="mailto:root@127.0.0.1" >root@127.0.0.1</a>登录：
-<img src="/images/20230829123658.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+</code></pre><p>尝试使用PuTTY进行SSH <a class=link href=mailto:root@127.0.0.1>root@127.0.0.1</a>登录：
+<img src=/images/20230829123658.png loading=lazy>
 成功!!!
 接下来配置git和ssh，要生成新的ssh公钥
 详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-<img src="/images/20230829124332.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<pre><code>ssh-keygen -t ed25519 -C &quot;github邮箱@qq.com&quot;
-</code></pre>
-<p>得到密钥默认在<code>/root/.ssh/id_ed25519.pub</code>
-<img src="/images/20230829124753.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230829124332.png loading=lazy></p><pre><code>ssh-keygen -t ed25519 -C &quot;github邮箱@qq.com&quot;
+</code></pre><p>得到密钥默认在<code>/root/.ssh/id_ed25519.pub</code>
+<img src=/images/20230829124753.png loading=lazy>
 在Github的头像点Setting然后点右上角击<strong>New SSH key</strong>，把id_ed25519.pub内容粘贴进即可！
-测试SSH连接：</p>
-<pre><code>ssh -T git@github.com
-</code></pre>
-<p><img src="/images/20230829125208.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+测试SSH连接：</p><pre><code>ssh -T git@github.com
+</code></pre><p><img src=/images/20230829125208.png loading=lazy>
 这样就连上了！
-需要进行一个小设置：</p>
-<pre><code>git config --global user.email &quot;you@example.com&quot;
-</code></pre>
-<p>这样以后使用<code>hexo d</code>的时候就能无脑部署了</p>
-<h5 id="再打包">再打包
-</h5><p>为了存下我们配置好的连接，制作成最终镜像方便eci云上调用，把现有容器再commit一次</p>
-<pre><code>docker commit hexo_debian hexo_debian:V02-configured
-</code></pre>
-<p>成了！得到了<code>hexo_debian:V02-configured</code>作为我最后准备上传至ECI云的镜像</p>
-<hr>
-<h4 id="316-附一些命令参考">3.1.6 附一些命令参考
-</h4><h5 id="如何用ssh连接-docker-容器">如何用ssh连接 docker 容器
-</h5><p><a class="link" href="https://blog.csdn.net/weixin_34910922/article/details/125193597"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/weixin_34910922/article/details/125193597</a></p>
-<p>1.修改root密码</p>
-<pre><code>$ passwd root
+需要进行一个小设置：</p><pre><code>git config --global user.email &quot;you@example.com&quot;
+</code></pre><p>这样以后使用<code>hexo d</code>的时候就能无脑部署了</p><h5 id=再打包>再打包</h5><p>为了存下我们配置好的连接，制作成最终镜像方便eci云上调用，把现有容器再commit一次</p><pre><code>docker commit hexo_debian hexo_debian:V02-configured
+</code></pre><p>成了！得到了<code>hexo_debian:V02-configured</code>作为我最后准备上传至ECI云的镜像</p><hr><h4 id=316-附一些命令参考>3.1.6 附一些命令参考</h4><h5 id=如何用ssh连接-docker-容器>如何用ssh连接 docker 容器</h5><p><a class=link href=https://blog.csdn.net/weixin_34910922/article/details/125193597 target=_blank rel=noopener>https://blog.csdn.net/weixin_34910922/article/details/125193597</a></p><p>1.修改root密码</p><pre><code>$ passwd root
 输入密码：123456(自己决定)
-</code></pre>
-<p>2.安装Openssh</p>
-<pre><code>sudo apt-get update # 更新源
+</code></pre><p>2.安装Openssh</p><pre><code>sudo apt-get update # 更新源
 sudo apt-get upgrade # 更新系统软件
 apt-get install -y openssh-server
-</code></pre>
-<p>3.修改ssh配置,允许root登录
-<a class="link" href="https://blog.csdn.net/weixin_43343144/article/details/102494830"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/weixin_43343144/article/details/102494830</a>
-<strong>【非常重要】在/etc/ssh/ssh_config中没有PermitRootLogin yes选项的话，就要在sshd_config文件中寻找！</strong></p>
-<pre><code>vim /etc/ssh/sshd_config
+</code></pre><p>3.修改ssh配置,允许root登录
+<a class=link href=https://blog.csdn.net/weixin_43343144/article/details/102494830 target=_blank rel=noopener>https://blog.csdn.net/weixin_43343144/article/details/102494830</a>
+<strong>【非常重要】在/etc/ssh/ssh_config中没有PermitRootLogin yes选项的话，就要在sshd_config文件中寻找！</strong></p><pre><code>vim /etc/ssh/sshd_config
 PermitRootLogin yes #root登陆权限
 PasswordAuthentication yes #密码权限
-</code></pre>
-<p>4.启动ssh服务/重启服务</p>
-<pre><code>service ssh start
+</code></pre><p>4.启动ssh服务/重启服务</p><pre><code>service ssh start
 service ssh restart
-</code></pre>
-<h5 id="安装hexo">安装hexo
-</h5><pre><code>npm install hexo-cli -g
-</code></pre>
-<h5 id="ssh远程登录这个镜像">SSH远程登录这个镜像
-</h5><p>之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧
+</code></pre><h5 id=安装hexo>安装hexo</h5><pre><code>npm install hexo-cli -g
+</code></pre><h5 id=ssh远程登录这个镜像>SSH远程登录这个镜像</h5><p>之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧
 打开Workbench远程连接，启动ssh
 由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录
-<img src="/images/20230811153438.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230811153438.png loading=lazy>
 使用PuTTY工具登录成功！！
-<img src="/images/20230811153400.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-多么令人振奋的一刻</p>
-<hr>
-<h3 id="32-vsftpd镜像">3.2 vsftpd镜像
-</h3><p>这个镜像比较简单，只跑ftp服务，主要在写作的时候方便上传图片</p>
-<h4 id="321-dockerfile">3.2.1 Dockerfile
-</h4><p><strong><i class="fas fa-file"></i>vsftpd_dockerfileV01</strong></p>
-<pre><code>#这个包将包含：vsftp（root登录）
+<img src=/images/20230811153400.png loading=lazy>
+多么令人振奋的一刻</p><hr><h3 id=32-vsftpd镜像>3.2 vsftpd镜像</h3><p>这个镜像比较简单，只跑ftp服务，主要在写作的时候方便上传图片</p><h4 id=321-dockerfile>3.2.1 Dockerfile</h4><p><strong><i class="fas fa-file"></i>vsftpd_dockerfileV01</strong></p><pre><code>#这个包将包含：vsftp（root登录）
 FROM debian:stable-slim
 LABEL maintainer=&quot;winotmk&quot; web=&quot;md.winotmk.com&quot; Ver=&quot;01&quot;
 RUN apt-get update &amp;&amp;\
@@ -1136,23 +326,15 @@ COPY ftpusers /etc/
 COPY vsftpd.conf /etc/
 COPY service_start.sh /service_start.sh
 CMD [&quot;/bin/bash&quot;,&quot;/service_start.sh&quot;]
-</code></pre>
-<p>比较简单的dockerfile，就装了个vsftpd服务，然后拷贝了一些设置文件
-如果要在dockerfile里配置用户密码可以这么写：</p>
-<pre><code>echo &quot;root:yourpasswd&quot; | chpasswd
-</code></pre>
-<h4 id="322-vsftpd镜像copy的文件">3.2.2 vsftpd镜像COPY的文件
-</h4><p><strong><i class="fas fa-file"></i>service_start.sh</strong></p>
-<pre><code>#!/bin/bash
+</code></pre><p>比较简单的dockerfile，就装了个vsftpd服务，然后拷贝了一些设置文件
+如果要在dockerfile里配置用户密码可以这么写：</p><pre><code>echo &quot;root:yourpasswd&quot; | chpasswd
+</code></pre><h4 id=322-vsftpd镜像copy的文件>3.2.2 vsftpd镜像COPY的文件</h4><p><strong><i class="fas fa-file"></i>service_start.sh</strong></p><pre><code>#!/bin/bash
 LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)
 echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/start_vsftpd.log
 service vsftpd start &gt;&gt;/start_vsftpd.log
 tail -f /start_vsftpd.log
-</code></pre>
-<p>简单的服务启动脚本，使用<code>tail -f</code>来维持住进程</p>
-<p><strong><i class="fas fa-file"></i>ftpusers</strong>
-<code>root</code>前加个<code>#</code>以启用root登录</p>
-<pre><code># /etc/ftpusers: list of users disallowed FTP access. See ftpusers(5).
+</code></pre><p>简单的服务启动脚本，使用<code>tail -f</code>来维持住进程</p><p><strong><i class="fas fa-file"></i>ftpusers</strong>
+<code>root</code>前加个<code>#</code>以启用root登录</p><pre><code># /etc/ftpusers: list of users disallowed FTP access. See ftpusers(5).
 
 #root
 daemon
@@ -1166,10 +348,8 @@ mail
 news
 uucp
 nobody
-</code></pre>
-<p><strong><i class="fas fa-file"></i>vsftpd.conf</strong>
-ftp设置文件，这个文件内容很多只些下修改的部分</p>
-<pre><code>listen=NO
+</code></pre><p><strong><i class="fas fa-file"></i>vsftpd.conf</strong>
+ftp设置文件，这个文件内容很多只些下修改的部分</p><pre><code>listen=NO
 listen_ipv6=YES
 anonymous_enable=NO
 local_enable=YES
@@ -1179,103 +359,46 @@ use_localtime=YES
 connect_from_port_20=YES
 pam_service_name=vsftpd
 utf8_filesystem=YES
-</code></pre>
-<p>*关于修改vsftpd的端口
-<a class="link" href="https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port"  target="_blank" rel="noopener"
-    >https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port</a>
-<code>vsftpd.conf</code>里的设置不是完全设置，可以自己增加字段</p>
-<pre><code>listen_port=234
+</code></pre><p>*关于修改vsftpd的端口
+<a class=link href=https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port target=_blank rel=noopener>https://askubuntu.com/questions/37058/how-to-change-vsftpd-default-port</a>
+<code>vsftpd.conf</code>里的设置不是完全设置，可以自己增加字段</p><pre><code>listen_port=234
 ftp_data_port=235
 pasv_min_port=30000
 pasv_max_port=31000
-</code></pre>
-<p>来设置端口
-注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧</p>
-<p>*这里遇到过一个小坑坑
-<img src="/images/20230829155702.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+</code></pre><p>来设置端口
+注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧</p><p>*这里遇到过一个小坑坑
+<img src=/images/20230829155702.png loading=lazy>
 构建器报错，一直卡在<code>Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).</code>
-<img src="/images/20230829155358.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230829155358.png loading=lazy>
 自己在容器内运行<code>service vsftpd start</code>的时候同样如此，一般这样是因为<code>vsftpd.conf</code>文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把<code>vsftpd.conf</code>打开再保存一下就可以成功运行<code>service vsftpd start</code>
 我发现这个文件的格式是UTF-8 CRLF
-<img src="/images/20230829155602.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230829155602.png loading=lazy>
 修改为LF
-<img src="/images/20230829155623.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-即可顺利启动vsftpd服务</p>
-<p>参考：
-<a class="link" href="https://www.cnblogs.com/Dreamcho/p/10805690.html"  target="_blank" rel="noopener"
-    >https://www.cnblogs.com/Dreamcho/p/10805690.html</a></p>
-<p>如果要在dockerfile里加用户：
-<a class="link" href="https://blog.csdn.net/u010275850/article/details/120587850"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/u010275850/article/details/120587850</a></p>
-<h3 id="33-ddns镜像">3.3 ddns镜像
-</h3><p>这个镜像更简单？只在启动的时候跑一个ddns
+<img src=/images/20230829155623.png loading=lazy>
+即可顺利启动vsftpd服务</p><p>参考：
+<a class=link href=https://www.cnblogs.com/Dreamcho/p/10805690.html target=_blank rel=noopener>https://www.cnblogs.com/Dreamcho/p/10805690.html</a></p><p>如果要在dockerfile里加用户：
+<a class=link href=https://blog.csdn.net/u010275850/article/details/120587850 target=_blank rel=noopener>https://blog.csdn.net/u010275850/article/details/120587850</a></p><h3 id=33-ddns镜像>3.3 ddns镜像</h3><p>这个镜像更简单？只在启动的时候跑一个ddns
 但是我却在这里卡了很久
 原因之一是因为一开始选用的ddns软件本地跑得好好的，在阿里云上总是报错，log显示已经修改了a记录但是自己去一看啥也没有，很是困惑，所以换了个软件实现
 最开始使用的是这个软件，配置方便
-<a class="link" href="https://github.com/NewFuture/DDNS"  target="_blank" rel="noopener"
-    >https://github.com/NewFuture/DDNS</a>
+<a class=link href=https://github.com/NewFuture/DDNS target=_blank rel=noopener>https://github.com/NewFuture/DDNS</a>
 参考：
-<a class="link" href="https://blog.csdn.net/biao0309/article/details/117202951"  target="_blank" rel="noopener"
-    >https://blog.csdn.net/biao0309/article/details/117202951</a>
-无奈阿里云上即便是用官方提供的镜像<code>newfuture/ddns</code>也会报错（恼</p>
-<p>所以我改用ddns-go:
-<a class="link" href="https://github.com/jeessy2/ddns-go"  target="_blank" rel="noopener"
-    >https://github.com/jeessy2/ddns-go</a>
+<a class=link href=https://blog.csdn.net/biao0309/article/details/117202951 target=_blank rel=noopener>https://blog.csdn.net/biao0309/article/details/117202951</a>
+无奈阿里云上即便是用官方提供的镜像<code>newfuture/ddns</code>也会报错（恼</p><p>所以我改用ddns-go:
+<a class=link href=https://github.com/jeessy2/ddns-go target=_blank rel=noopener>https://github.com/jeessy2/ddns-go</a>
 先贴上官方镜像的层：
 <strong>jeessy/ddns-go</strong>
-<img src="/images/20230904184205.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-我们的新镜像将基于官方镜像来做</p>
-<h4 id="331-dockerfile">3.3.1 dockerfile
-</h4><p><strong><i class="fas fa-file"></i>ddns-go_dockerfileV01</strong></p>
-<pre><code>FROM jeessy/ddns-go
+<img src=/images/20230904184205.png loading=lazy>
+我们的新镜像将基于官方镜像来做</p><h4 id=331-dockerfile>3.3.1 dockerfile</h4><p><strong><i class="fas fa-file"></i>ddns-go_dockerfileV01</strong></p><pre><code>FROM jeessy/ddns-go
 LABEL maintainer=&quot;winotmk&quot; web=&quot;md.winotmk.com&quot; Ver=&quot;01&quot;
 COPY ddns_start.sh /
 COPY ddns_go_config.yaml /
 ENV DDNS_URL=
 ENTRYPOINT [ &quot;sh&quot;,&quot;/ddns_start.sh&quot; ]
 CMD [ &quot;&quot; ]
-</code></pre>
-<p>这里做了一个变量<code>$DDNS_URL</code>来定义我想要dns的域名(当然这个域名我得拥有)
+</code></pre><p>这里做了一个变量<code>$DDNS_URL</code>来定义我想要dns的域名(当然这个域名我得拥有)
 ENTRYPOINT和CMD的设置会覆盖掉的之前镜像内的设置
-我不确定CMD [ &quot;&quot; ]是否有必要，但总之我想使官方镜像里的CMD失效，从结果上来看管用</p>
-<h4 id="332-ddns镜像copy的文件">3.3.2 ddns镜像COPY的文件
-</h4><p><strong><i class="fas fa-file"></i>ddns_go_config.yaml</strong></p>
-<pre><code>dnsconf:
+我不确定CMD [ "" ]是否有必要，但总之我想使官方镜像里的CMD失效，从结果上来看管用</p><h4 id=332-ddns镜像copy的文件>3.3.2 ddns镜像COPY的文件</h4><p><strong><i class="fas fa-file"></i>ddns_go_config.yaml</strong></p><pre><code>dnsconf:
     - ipv4:
         enable: true
         gettype: url
@@ -1306,10 +429,7 @@ webhook:
     webhookrequestbody: &quot;&quot;
     webhookheaders: &quot;&quot;
 notallowwanaccess: true
-</code></pre>
-<p>这个是ddns-go的配置文件，第一次启动会在本地:9876打开个web界面，保存设置后会在root中生成这个文件，这里我直接引入这个文件是希望后面能用<code>sed</code>命令对文件的<code>domains</code>字段进行修改</p>
-<p><strong><i class="fas fa-file"></i>ddns_start.sh</strong></p>
-<pre><code>#!/bin/sh
+</code></pre><p>这个是ddns-go的配置文件，第一次启动会在本地:9876打开个web界面，保存设置后会在root中生成这个文件，这里我直接引入这个文件是希望后面能用<code>sed</code>命令对文件的<code>domains</code>字段进行修改</p><p><strong><i class="fas fa-file"></i>ddns_start.sh</strong></p><pre><code>#!/bin/sh
 LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)
 echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/start_ddns.log
 cd /
@@ -1325,114 +445,44 @@ else
     echo &quot;已执行更新[$DDNS_URL]解析&quot; &gt;&gt;/start_ddns.log
     tail -f /start_ddns.log
 fi
-</code></pre>
-<p>在这个脚本里会判断<code>$DDNS_URL</code>是否为空，空的话直接输出需要<code>$DDNS_URL</code>设置
+</code></pre><p>在这个脚本里会判断<code>$DDNS_URL</code>是否为空，空的话直接输出需要<code>$DDNS_URL</code>设置
 如果不为空的话会通过<code>sed</code>替换字符，这里设置文件内默认写得是<code>null.winotmk.com</code>
-用这种方式去直接修改设置文件，是因为我没找到这个软件是否能直接用环境变量来定义解析到的域名</p>
-<p>关于用sed替换congif.json设置内的字段：
+用这种方式去直接修改设置文件，是因为我没找到这个软件是否能直接用环境变量来定义解析到的域名</p><p>关于用sed替换congif.json设置内的字段：
 如何使用sed:
-<a class="link" href="https://linux.cn/article-11367-1.html"  target="_blank" rel="noopener"
-    >https://linux.cn/article-11367-1.html</a>
+<a class=link href=https://linux.cn/article-11367-1.html target=_blank rel=noopener>https://linux.cn/article-11367-1.html</a>
 如何在sed命令内使用变量
-<a class="link" href="https://www.cnblogs.com/muahao/p/6874412.html"  target="_blank" rel="noopener"
-    >https://www.cnblogs.com/muahao/p/6874412.html</a>
+<a class=link href=https://www.cnblogs.com/muahao/p/6874412.html target=_blank rel=noopener>https://www.cnblogs.com/muahao/p/6874412.html</a>
 判断变量是否为空的方法：
-<a class="link" href="https://cloud.tencent.com/developer/article/1721905"  target="_blank" rel="noopener"
-    >https://cloud.tencent.com/developer/article/1721905</a></p>
-<h2 id="4-docker镜像打包并上传到阿里云镜像库ark">4 docker镜像打包并上传到阿里云镜像库ARK
-</h2><p>将自己的镜像上传至阿里云：
+<a class=link href=https://cloud.tencent.com/developer/article/1721905 target=_blank rel=noopener>https://cloud.tencent.com/developer/article/1721905</a></p><h2 id=4-docker镜像打包并上传到阿里云镜像库ark>4 docker镜像打包并上传到阿里云镜像库ARK</h2><p>将自己的镜像上传至阿里云：
 阿里云提供容器镜像服务，我自己玩开通个人实例即可
-<a class="link" href="https://cr.console.aliyun.com/cn-shanghai/instances"  target="_blank" rel="noopener"
-    >https://cr.console.aliyun.com/cn-shanghai/instances</a></p>
-<p><img src="/images/20230811150239.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>建立一个自己的仓库，然后就能看到示例说明，我们就能把自己的镜像上传了</p>
-<h3 id="41-将镜像推送到registry">4.1 将镜像推送到Registry
-</h3><pre><code>$ docker login --username=*****@qq.com registry.cn-shanghai.aliyuncs.com
+<a class=link href=https://cr.console.aliyun.com/cn-shanghai/instances target=_blank rel=noopener>https://cr.console.aliyun.com/cn-shanghai/instances</a></p><p><img src=/images/20230811150239.png loading=lazy></p><p>建立一个自己的仓库，然后就能看到示例说明，我们就能把自己的镜像上传了</p><h3 id=41-将镜像推送到registry>4.1 将镜像推送到Registry</h3><pre><code>$ docker login --username=*****@qq.com registry.cn-shanghai.aliyuncs.com
 $ docker tag [ImageId] registry.cn-shanghai.aliyuncs.com/******:[镜像版本号]
 $ docker push registry.cn-shanghai.aliyuncs.com/******:[镜像版本号]
-</code></pre>
-<p><code>tag</code>是类似复制一份且重命名镜像，<code>push</code>是上传（不知道为什么要重命名</p>
-<p>针对上面的3个镜像，分别是：<code>node.js+git+hexo</code>,<code>vsftpd</code>,<code>ddns-go</code>
-我分别tag成了：</p>
-<pre><code>registry-vpc.cn-shanghai.aliyuncs.com/******:debian_V02_configured #应该写成:hexo_debian_V02_configured的，漏了。。算了
+</code></pre><p><code>tag</code>是类似复制一份且重命名镜像，<code>push</code>是上传（不知道为什么要重命名</p><p>针对上面的3个镜像，分别是：<code>node.js+git+hexo</code>,<code>vsftpd</code>,<code>ddns-go</code>
+我分别tag成了：</p><pre><code>registry-vpc.cn-shanghai.aliyuncs.com/******:debian_V02_configured #应该写成:hexo_debian_V02_configured的，漏了。。算了
 registry-vpc.cn-shanghai.aliyuncs.com/******:vsftpd_debian_V01
 registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
-</code></pre>
-<p>再分别<code>push</code>即可</p>
-<h3 id="42-在阿里云上使用容器实例eci运行镜像">4.2 在阿里云上使用容器实例（ECI）运行镜像
-</h3><p>阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&gt;生成&gt;部署&gt;关闭的服务来说，花不了几毛钱</p>
-<p><img src="/images/20230811151948.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>然后就能看到我们上传的镜像
-<img src="/images/20230811152250.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h2 id="5-eci容器创建模板和eci命令行工具使用">5 eci容器创建模板和eci命令行工具使用
-</h2><p>参考文章这两篇足够:
-<a class="link" href="https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md"  target="_blank" rel="noopener"
-    >https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md</a>
-<a class="link" href="https://help.aliyun.com/document_detail/186961.html"  target="_blank" rel="noopener"
-    >https://help.aliyun.com/document_detail/186961.html</a></p>
-<h3 id="51-eci简介">5.1 eci简介
-</h3><p><a class="link" href="https://www.aliyun.com/product/eci"  target="_blank" rel="noopener"
-    >https://www.aliyun.com/product/eci</a>
-ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 服务器，只需要提供打包好的镜像，即可运行容器，与阿里云容器服务无缝对接并仅为容器实际运行消耗的资源付费。</p>
-<p>博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站<a class="link" href="https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/"  target="_blank" rel="noopener"
-    >ECI价格计算附表</a></p>
-<h3 id="52-用模板创建eci">5.2 用模板创建eci
-</h3><p><img src="/images/20230907171351.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+</code></pre><p>再分别<code>push</code>即可</p><h3 id=42-在阿里云上使用容器实例eci运行镜像>4.2 在阿里云上使用容器实例（ECI）运行镜像</h3><p>阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用>生成>部署>关闭的服务来说，花不了几毛钱</p><p><img src=/images/20230811151948.png loading=lazy></p><p>然后就能看到我们上传的镜像
+<img src=/images/20230811152250.png loading=lazy></p><h2 id=5-eci容器创建模板和eci命令行工具使用>5 eci容器创建模板和eci命令行工具使用</h2><p>参考文章这两篇足够:
+<a class=link href=https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md target=_blank rel=noopener>https://github.com/aliyuneci/eci-client-doc/blob/main/eci_run.md</a>
+<a class=link href=https://help.aliyun.com/document_detail/186961.html target=_blank rel=noopener>https://help.aliyun.com/document_detail/186961.html</a></p><h3 id=51-eci简介>5.1 eci简介</h3><p><a class=link href=https://www.aliyun.com/product/eci target=_blank rel=noopener>https://www.aliyun.com/product/eci</a>
+ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 服务器，只需要提供打包好的镜像，即可运行容器，与阿里云容器服务无缝对接并仅为容器实际运行消耗的资源付费。</p><p>博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站<a class=link href=https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/ target=_blank rel=noopener>ECI价格计算附表</a></p><h3 id=52-用模板创建eci>5.2 用模板创建eci</h3><p><img src=/images/20230907171351.png loading=lazy>
 询问过阿里云客服，说在web控制面版里的这个功能已经下线了
 不过没关系，我们还有命令行工具！
-安装：</p>
-<pre><code>sudo bash -c &quot;$(curl -s https://eci-docs.oss-cn-beijing.aliyuncs.com/eci-client/1.0/install.sh)&quot;
-</code></pre>
-<p>然后配置你的阿里云信息</p>
-<pre><code>eci config set-context \
+安装：</p><pre><code>sudo bash -c &quot;$(curl -s https://eci-docs.oss-cn-beijing.aliyuncs.com/eci-client/1.0/install.sh)&quot;
+</code></pre><p>然后配置你的阿里云信息</p><pre><code>eci config set-context \
 --access-key-id **** \
 --access-secret **** \
 --region-id cn-shanghai \
 --security-group-id sg-**** \
 --v-switch-id vsw-****
-</code></pre>
-<p>要指定自己的<code>access-key-id</code>和<code>access-secret</code>，地区以及安全组和虚拟交换机
-建议这些东西在web上的控制台里准备好，会直观很多</p>
-<p>然后就可以直接创建一个容器了</p>
-<pre><code>eci run -n myeci centos:7 sleep 3600
-</code></pre>
-<p>指令很像<code>docker run</code>喝！很好，很有精神</p>
-<p>我们还可以编写yaml模板文件
-然后执行</p>
-<pre><code>eci run -f eci.yaml -w 20
-</code></pre>
-<p>需要注意的事，如果使用了<code>-f xxxx.yaml</code>模板文件，除了-f和-w选项以外，其他选项都将被忽略，因为这些选项都是针对实例中某个容器的，如果模板中定义了多个容器，ECI将不知道这些选项应该作用于哪个容器
+</code></pre><p>要指定自己的<code>access-key-id</code>和<code>access-secret</code>，地区以及安全组和虚拟交换机
+建议这些东西在web上的控制台里准备好，会直观很多</p><p>然后就可以直接创建一个容器了</p><pre><code>eci run -n myeci centos:7 sleep 3600
+</code></pre><p>指令很像<code>docker run</code>喝！很好，很有精神</p><p>我们还可以编写yaml模板文件
+然后执行</p><pre><code>eci run -f eci.yaml -w 20
+</code></pre><p>需要注意的事，如果使用了<code>-f xxxx.yaml</code>模板文件，除了-f和-w选项以外，其他选项都将被忽略，因为这些选项都是针对实例中某个容器的，如果模板中定义了多个容器，ECI将不知道这些选项应该作用于哪个容器
 那么我自己的启动模板是这样的：
-<strong><i class="fas fa-file"></i>hexo_debian_eci.yaml</strong></p>
-<pre><code>ContainerGroupName: eci-hexo
+<strong><i class="fas fa-file"></i>hexo_debian_eci.yaml</strong></p><pre><code>ContainerGroupName: eci-hexo
 Cpu: &quot;0.5&quot;
 Memory: &quot;1&quot;
 Container:
@@ -1468,123 +518,32 @@ Volume:
     Server: ****.cn-shanghai.nas.aliyuncs.com
     Path: /
     ReadOnly: false
-</code></pre>
-<p>是不是挺像<code>docker compose</code>~</p>
-<p>cpu只给了0.5,Memory 1G，足够了，之前这套可是在树莓派3B上跑得溜溜得呢
-对于阿里云ECI，CPU和Memory直接和成本挂钩，能少就少吧</p>
-<p>这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns
+</code></pre><p>是不是挺像<code>docker compose</code>~</p><p>cpu只给了0.5,Memory 1G，足够了，之前这套可是在树莓派3B上跑得溜溜得呢
+对于阿里云ECI，CPU和Memory直接和成本挂钩，能少就少吧</p><p>这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns
 <code>Command:</code>写法目测类似dockerfile里的<code>CMD</code>，我习惯做好启动sh脚本就是为了方便这里再调用
 最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录
-<img src="/images/20230829142501.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-然后把它挂到hexo和ftp镜像上就好了</p>
-<p>值得一提的是ddns镜像还写了个环境变量<code>DDNS_URL</code>值为<code>mdwrite.winotmk.com</code>，这会修改<code>ddns-go</code>的解析配置</p>
-<p>然后执行</p>
-<pre><code>eci run -f hexo_debian_eci.yaml -w 20
-</code></pre>
-<p>不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！
-<img src="/images/20230907174209.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h2 id="6-hexo本地编辑环境设置如何用vscode舒服的写md文档">6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
-</h2><h3 id="61-vscodessh-fs插件配置">6.1 VSCodeSSH FS插件配置
-</h3><p><img src="/images/20230908113634.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230829142501.png loading=lazy>
+然后把它挂到hexo和ftp镜像上就好了</p><p>值得一提的是ddns镜像还写了个环境变量<code>DDNS_URL</code>值为<code>mdwrite.winotmk.com</code>，这会修改<code>ddns-go</code>的解析配置</p><p>然后执行</p><pre><code>eci run -f hexo_debian_eci.yaml -w 20
+</code></pre><p>不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！
+<img src=/images/20230907174209.png loading=lazy></p><h2 id=6-hexo本地编辑环境设置如何用vscode舒服的写md文档>6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档</h2><h3 id=61-vscodessh-fs插件配置>6.1 VSCodeSSH FS插件配置</h3><p><img src=/images/20230908113634.png loading=lazy>
 简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便
-<img src="/images/20230908113824.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-这里可以看到<code>/root/hexo/Winblog</code>目录下是我挂载的阿里云NAS网盘了</p>
-<h3 id="62-markdown-paste插件配置">6.2 Markdown Paste插件配置
-</h3><p>一个很方便的在VScode里直接粘图的插件</p>
-<h4 id="配置">配置：
-</h4><p><img src="/images/20230908114845.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230908113824.png loading=lazy>
+这里可以看到<code>/root/hexo/Winblog</code>目录下是我挂载的阿里云NAS网盘了</p><h3 id=62-markdown-paste插件配置>6.2 Markdown Paste插件配置</h3><p>一个很方便的在VScode里直接粘图的插件</p><h4 id=配置>配置：</h4><p><img src=/images/20230908114845.png loading=lazy>
 会用时间来命名图片
-然后会将图片放入MD文件目录下的<code>images</code>下</p>
-<p><img src="/images/20230908115038.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>然后文件》首选项》键盘快捷方式
-<img src="/images/20230908115303.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+然后会将图片放入MD文件目录下的<code>images</code>下</p><p><img src=/images/20230908115038.png loading=lazy></p><p>然后文件》首选项》键盘快捷方式
+<img src=/images/20230908115303.png loading=lazy>
 我将快捷键设置为<code>ctrl+alt+a</code>
-配置完成！</p>
-<h4 id="使用">使用：
-</h4><p>截图我习惯用Sinpaste，按F1就能截图
-<img src="/images/20230908115743.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+配置完成！</p><h4 id=使用>使用：</h4><p>截图我习惯用Sinpaste，按F1就能截图
+<img src=/images/20230908115743.png loading=lazy>
 然后点右下角复制按钮
 在VScode的markdown文档里<code>ctrl+alt+a</code>就能粘图了！
-<img src="/images/20230908113947.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-图片文件会自动保存!</p>
-<h3 id="62-vscode的sftp插件配置">6.2 VSCode的SFTP插件配置
-</h3><p>先把images文件夹单独放到工作区里
+<img src=/images/20230908113947.png loading=lazy>
+图片文件会自动保存!</p><h3 id=62-vscode的sftp插件配置>6.2 VSCode的SFTP插件配置</h3><p>先把images文件夹单独放到工作区里
 然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令
 sftp.json目录下会出现一个名为的基本配置文件.vscode
-<img src="/images/20230908121346.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
+<img src=/images/20230908121346.png loading=lazy>
 然后编辑
-<strong><i class="fas fa-file"></i>sftp.json</strong></p>
-<pre><code>{
+<strong><i class="fas fa-file"></i>sftp.json</strong></p><pre><code>{
     &quot;name&quot;: &quot;Hexo_images&quot;,
     &quot;host&quot;: &quot;mdwrite.winotmk.com&quot;,
     &quot;protocol&quot;: &quot;ftp&quot;,
@@ -1604,284 +563,15 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode
       &quot;delete&quot;: true
     }
 }
-</code></pre>
-<p><code>&quot;watcher&quot;</code>是用来设置自动更新的
-这样我们在md里粘了图，就会自动上传到到ftp目录上</p>
-<p>参考：
-<a class="link" href="https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer"  target="_blank" rel="noopener"
-    >https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer</a>
+</code></pre><p><code>"watcher"</code>是用来设置自动更新的
+这样我们在md里粘了图，就会自动上传到到ftp目录上</p><p>参考：
+<a class=link href="https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer" target=_blank rel=noopener>https://marketplace.visualstudio.com/items?itemName=Natizyskunk.sftp#remote-explorer</a>
 开启watcher模式，实现增加文件时自动上传目录同步
-<a class="link" href="https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction"  target="_blank" rel="noopener"
-    >https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction</a></p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-
-    
-    
-    <header class="article-category">
-        <div class="Winotmk_icon">
-        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6h-6z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-        </div>
-        
-            <a href="/categories/docker/" >
-                Docker
-            </a>
-        
-    </header>
-    
-
-    </footer>
-
-
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Docker01.1_eci价格计算表</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">calibre_web的pdf封面提取问题</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">给docker容器内配置中文环境(minecraft开服相关)</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">用容器来运行streamlit</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">软件和网站收集</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    <div class="disqus-container">
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
-</script>
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2025 winotmk
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-        
-        
-        
-        <script>hljs.highlightAll();</script>
-        
-    </body>
-</html>
+<a class=link href=https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction target=_blank rel=noopener>https://github.com/Natizyskunk/vscode-sftp/blob/master/FAQ.md#automatically-sync-both-ways-without-user-interaction</a></p></section><footer class=article-footer><header class=article-category><div class=Winotmk_icon><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><path d="M17 17m-3 0a3 3 0 106 0 3 3 0 10-6 0"/></svg></div><a href=/categories/docker/>Docker</a></header></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/><div class=article-details><h2 class=article-title>Docker01.1_eci价格计算表</h2></div></a></article><article><a href=/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/><div class=article-details><h2 class=article-title>calibre_web的pdf封面提取问题</h2></div></a></article><article><a href=/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/><div class=article-details><h2 class=article-title>给docker容器内配置中文环境(minecraft开服相关)</h2></div></a></article><article><a href=/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/><div class=article-details><h2 class=article-title>用容器来运行streamlit</h2></div></a></article><article><a href=/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/><div class=article-details><h2 class=article-title>软件和网站收集</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 winotmk</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> Customized and extended by <a href=https://winotmk.com target=_blank rel=noopener>Winotmk</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script>hljs.highlightAll()</script></body></html>

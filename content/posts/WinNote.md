@@ -4,6 +4,8 @@ date: 2023-12-13
 top: 1
 tags:
   - WinNote
+weight: 1
+image: http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif
 ---
 ![](images/catcat.png)
 

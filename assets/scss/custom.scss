@@ -17,6 +17,10 @@ pre code{
     padding: 0.75em;
     line-height: 1.5;
 }
+pre{
+    //为拷贝按钮提供相对定位
+    position: relative;
+}
 //行内代码
 code {
     margin-right:2px;
@@ -28,6 +32,20 @@ code {
     background:#ebebeb;
     color:#434343
 }
+//代码行计数暂不可用
+/*
+pre {
+    counter-reset: line; 
+}
+
+code::before {
+    counter-increment: line; 
+    content: counter(line) ". "; 
+    margin-right: 12px;
+    color: #666;
+}
+*/
+
 //hr横杠
 .article-content hr {
     width: auto;
@@ -72,6 +90,7 @@ code {
     width: 100%;
 }
 */
+//阅读更多
 .readmore{
     margin: 0 auto;
     text-align: center;
@@ -100,4 +119,34 @@ code {
 }
 .summary:hover {
     opacity: 1; /* 0-1之间调节透明度 */
+}
+
+.copy-button {
+    position: absolute; /* 使用绝对定位，相对于最近的非 static 父级 */
+    top: 14px;          /* 距离父容器顶部 20px */
+    right: 10px;        /* 距离父容器右侧 20px */
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0.15;
+    transition: opacity 0.15s;
+    color:#ebebeb;
+}
+
+.copy-button:hover {
+    opacity: 0.8;
+}
+
+.notification {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 10px;
+	color: #373535;
+	opacity: 1;
+	transition: opacity 0.5s;
+
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    border: 1px solid #000;
 }

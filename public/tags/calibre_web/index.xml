@@ -1,178 +1,113 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Calibre_web on WinNote</title>
-        <link>http://localhost:12619/tags/calibre_web/</link>
-        <description>Recent content in Calibre_web on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:12619/tags/calibre_web/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>calibre_web的pdf封面提取问题</title>
-        <link>http://localhost:12619/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
-        <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:12619/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
-        <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Calibre_web on WinNote</title><link>https://winotmk.github.io/tags/calibre_web/</link><description>Recent content in Calibre_web on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/calibre_web/index.xml" rel="self" type="application/rss+xml"/><item><title>calibre_web的pdf封面提取问题</title><link>https://winotmk.github.io/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link><pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid><description>&lt;p>在用&lt;code>johngong/calibre-web:latest&lt;/code>这个镜像 &lt;a class="link" href="https://hub.docker.com/r/johngong/calibre-web" target="_blank" rel="noopener"
+>https://hub.docker.com/r/johngong/calibre-web&lt;/a>
 作为自己nas上的图书馆时发现pdf文件无法生成封面，
-&lt;img src=&#34;http://localhost:12619/images/20240925124359.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;断断续续排查了两周，百思不得解，尝试过：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;设置imagemagick的&lt;code&gt;policy.xml&lt;/code&gt;文件(&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;使用lscr.io/linuxserver/calibre-web:latest的镜像&lt;/li&gt;
-&lt;li&gt;自己重新构建镜像&lt;/li&gt;
-&lt;li&gt;重新安装calibre-web包和重装imagemagick包
-都解决不了，总之是十分折腾，最后认为可能是&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;可能是里少了一个&lt;code&gt;imagemagick-pdf&lt;/code&gt;包&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程
-&lt;/h2&gt;&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
-&lt;img src=&#34;http://localhost:12619/images/20240925123504.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
+&lt;img src="https://winotmk.github.io/images/20240925124359.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>断断续续排查了两周，百思不得解，尝试过：&lt;/p>
+&lt;ul>
+&lt;li>设置imagemagick的&lt;code>policy.xml&lt;/code>文件(&lt;code>/etc/Imagemagick/policy.xml&lt;/code>)&lt;/li>
+&lt;li>使用lscr.io/linuxserver/calibre-web:latest的镜像&lt;/li>
+&lt;li>自己重新构建镜像&lt;/li>
+&lt;li>重新安装calibre-web包和重装imagemagick包
+都解决不了，总之是十分折腾，最后认为可能是&lt;code>johngong/calibre-web:latest&lt;/code>可能是里少了一个&lt;code>imagemagick-pdf&lt;/code>包&lt;/li>
+&lt;/ul>
+&lt;h2 id="最终有效的解决方法的折腾流程">最终有效的解决方法的折腾流程
+&lt;/h2>&lt;p>我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
+&lt;img src="https://winotmk.github.io/images/20240925123504.png"
+loading="lazy"
+>
 查看文件：/config/calbre-web/calbre-web.log
 有这么一行：
-&lt;img src=&#34;http://localhost:12619/images/20240925123738.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[2024-09-25 12:10:22,144]  WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF&#39; @ error/constitute.c/ReadImage/746
-[2024-09-25 12:10:22,145]  WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;PDF转就转不出来
+&lt;img src="https://winotmk.github.io/images/20240925123738.png"
+loading="lazy"
+>&lt;/p>
+&lt;pre>&lt;code>[2024-09-25 12:10:22,144] WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF' @ error/constitute.c/ReadImage/746
+[2024-09-25 12:10:22,145] WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript
+&lt;/code>&lt;/pre>
+&lt;p>PDF转就转不出来
 所以找到了：
-&lt;img src=&#34;http://localhost:12619/images/20240925123303.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/ImageMagick/ImageMagick/issues/6148&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/ImageMagick/ImageMagick/issues/6148&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
-&lt;img src=&#34;http://localhost:12619/images/20240925123414.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;johngongcalibre-web的一些设置&#34;&gt;johngong/calibre-web的一些设置
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/gshang2017/docker/issues/133&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;
+&lt;img src="https://winotmk.github.io/images/20240925123303.png"
+loading="lazy"
+>
+&lt;a class="link" href="https://github.com/ImageMagick/ImageMagick/issues/6148" target="_blank" rel="noopener"
+>https://github.com/ImageMagick/ImageMagick/issues/6148&lt;/a>&lt;/p>
+&lt;pre>&lt;code>apk add --no-cache imagemagick imagemagick-pdf
+&lt;/code>&lt;/pre>
+&lt;p>安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
+&lt;img src="https://winotmk.github.io/images/20240925123414.png"
+loading="lazy"
+>&lt;/p>
+&lt;!-- more -->
+&lt;h2 id="johngongcalibre-web的一些设置">johngong/calibre-web的一些设置
+&lt;/h2>&lt;p>&lt;a class="link" href="https://github.com/gshang2017/docker/issues/133" target="_blank" rel="noopener"
+>https://github.com/gshang2017/docker/issues/133&lt;/a>
 如果一编辑图书的元数据就卡死，可用尝试：
-&lt;img src=&#34;http://localhost:12619/images/20240925134344.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
+&lt;img src="https://winotmk.github.io/images/20240925134344.png"
+loading="lazy"
+>
 这两条设置为true,则
-&lt;img src=&#34;http://localhost:12619/images/20240925134613.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
-&lt;h2 id=&#34;弯路&#34;&gt;弯路
-&lt;/h2&gt;&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
-&lt;img src=&#34;http://localhost:12619/images/20240925140205.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&lt;/a&gt;
-所以可以有&lt;code&gt;/etc/Imagemagick/policy.xml&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;policymap&amp;gt;
-    &amp;lt;policy domain=&amp;quot;coder&amp;quot; rights=&amp;quot;read | write&amp;quot; pattern=&amp;quot;{MSVG,MVG,PS,PDF,RSVG,SVG,XPS}&amp;quot; /&amp;gt;
+&lt;img src="https://winotmk.github.io/images/20240925134613.png"
+loading="lazy"
+>
+这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p>
+&lt;h2 id="弯路">弯路
+&lt;/h2>&lt;p>这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
+&lt;img src="https://winotmk.github.io/images/20240925140205.png"
+loading="lazy"
+>
+&lt;a class="link" href="https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files" target="_blank" rel="noopener"
+>https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files&lt;/a>
+所以可以有&lt;code>/etc/Imagemagick/policy.xml&lt;/code>:&lt;/p>
+&lt;pre>&lt;code>&amp;lt;policymap&amp;gt;
+&amp;lt;policy domain=&amp;quot;coder&amp;quot; rights=&amp;quot;read | write&amp;quot; pattern=&amp;quot;{MSVG,MVG,PS,PDF,RSVG,SVG,XPS}&amp;quot; /&amp;gt;
 &amp;lt;/policymap&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这是最容易找到的一种解法，但我自己试了无用，没有上面的装&lt;code&gt;apk add imagemagick-pdf&lt;/code&gt;好使&lt;/p&gt;
-&lt;h2 id=&#34;尝试出来的另一种pdf封面提取可行方法&#34;&gt;尝试出来的另一种PDF封面提取可行方法
-&lt;/h2&gt;&lt;p&gt;这样做出来的calibre-web镜像可以实现PDF转换，但是没有电子书格式转换，没有禁用google元数据搜索，没有中文环境，懒得自己做了，还是修修用&lt;code&gt;johngong/calibre-web&lt;/code&gt;包吧
-为了试验，我用&lt;code&gt;FROM ubuntu:latest&lt;/code&gt;作为镜像基底，然后：&lt;/p&gt;
-&lt;h3 id=&#34;装calibre-web&#34;&gt;装calibre-web
-&lt;/h3&gt;&lt;p&gt;安装calibre-web：
-&lt;img src=&#34;http://localhost:12619/images/20240925132535.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation&lt;/a&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows&lt;/a&gt;
+&lt;/code>&lt;/pre>
+&lt;p>这是最容易找到的一种解法，但我自己试了无用，没有上面的装&lt;code>apk add imagemagick-pdf&lt;/code>好使&lt;/p>
+&lt;h2 id="尝试出来的另一种pdf封面提取可行方法">尝试出来的另一种PDF封面提取可行方法
+&lt;/h2>&lt;p>这样做出来的calibre-web镜像可以实现PDF转换，但是没有电子书格式转换，没有禁用google元数据搜索，没有中文环境，懒得自己做了，还是修修用&lt;code>johngong/calibre-web&lt;/code>包吧
+为了试验，我用&lt;code>FROM ubuntu:latest&lt;/code>作为镜像基底，然后：&lt;/p>
+&lt;h3 id="装calibre-web">装calibre-web
+&lt;/h3>&lt;p>安装calibre-web：
+&lt;img src="https://winotmk.github.io/images/20240925132535.png"
+loading="lazy"
+>
+&lt;a class="link" href="https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation" target="_blank" rel="noopener"
+>https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation&lt;/a>
+&lt;a class="link" href="https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows" target="_blank" rel="noopener"
+>https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows&lt;/a>
 这里也有提到
-&lt;a class=&#34;link&#34; href=&#34;https://chenjiehua.me/others/calibre-web-personal-book-store.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://chenjiehua.me/others/calibre-web-personal-book-store.html&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pip install calibreweb
+&lt;a class="link" href="https://chenjiehua.me/others/calibre-web-personal-book-store.html" target="_blank" rel="noopener"
+>https://chenjiehua.me/others/calibre-web-personal-book-store.html&lt;/a>&lt;/p>
+&lt;pre>&lt;code>pip install calibreweb
 pip install calibreweb[metadata]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;装imagemagick&#34;&gt;装imagemagick
-&lt;/h3&gt;&lt;p&gt;然后安装imagemagick
+&lt;/code>&lt;/pre>
+&lt;h3 id="装imagemagick">装imagemagick
+&lt;/h3>&lt;p>然后安装imagemagick
 官方：
-&lt;a class=&#34;link&#34; href=&#34;https://imagemagick.org/script/download.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://imagemagick.org/script/download.php&lt;/a&gt;
+&lt;a class="link" href="https://imagemagick.org/script/download.php" target="_blank" rel="noopener"
+>https://imagemagick.org/script/download.php&lt;/a>
 也有提到：
-&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/echohye/p/17727865.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.cnblogs.com/echohye/p/17727865.html&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;apt install imagemagick
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;装完后&lt;code&gt;convert&lt;/code&gt;和&lt;code&gt;magick&lt;/code&gt;命令应当是可用的&lt;/p&gt;
-&lt;h3 id=&#34;手动装imagemagick&#34;&gt;手动装imagemagick
-&lt;/h3&gt;&lt;p&gt;或者我用上面官方的magick文件手动配貌似也行：
-先把magick文件放入根目录&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;./magick --appimage-extract
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.appimage.org/user-guide/troubleshooting/fuse.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://docs.appimage.org/user-guide/troubleshooting/fuse.html&lt;/a&gt;
-提到了可以用&lt;code&gt;--appimage-extract&lt;/code&gt;直接释放出软件包来
-会发现释放出来文件在&lt;code&gt;/squashfs-root&lt;/code&gt;目录里
-设置环境变量：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export MAGICK_HOME=&amp;quot;/squashfs-root/usr&amp;quot;
+&lt;a class="link" href="https://www.cnblogs.com/echohye/p/17727865.html" target="_blank" rel="noopener"
+>https://www.cnblogs.com/echohye/p/17727865.html&lt;/a>&lt;/p>
+&lt;pre>&lt;code>apt install imagemagick
+&lt;/code>&lt;/pre>
+&lt;p>装完后&lt;code>convert&lt;/code>和&lt;code>magick&lt;/code>命令应当是可用的&lt;/p>
+&lt;h3 id="手动装imagemagick">手动装imagemagick
+&lt;/h3>&lt;p>或者我用上面官方的magick文件手动配貌似也行：
+先把magick文件放入根目录&lt;/p>
+&lt;pre>&lt;code>./magick --appimage-extract
+&lt;/code>&lt;/pre>
+&lt;p>&lt;a class="link" href="https://docs.appimage.org/user-guide/troubleshooting/fuse.html" target="_blank" rel="noopener"
+>https://docs.appimage.org/user-guide/troubleshooting/fuse.html&lt;/a>
+提到了可以用&lt;code>--appimage-extract&lt;/code>直接释放出软件包来
+会发现释放出来文件在&lt;code>/squashfs-root&lt;/code>目录里
+设置环境变量：&lt;/p>
+&lt;pre>&lt;code>export MAGICK_HOME=&amp;quot;/squashfs-root/usr&amp;quot;
 export PATH=&amp;quot;$MAGICK_HOME/bin:$PATH&amp;quot;
 export LD_LIBRARY_PATH=&amp;quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后imagemagick应该就能用了。。&lt;/p&gt;
-&lt;h3 id=&#34;其他&#34;&gt;其他
-&lt;/h3&gt;&lt;p&gt;&lt;code&gt;lscr.io/linuxserver/calibre-web:latest&lt;/code&gt;
-这个镜像也不小，但功能还算完整，上传pdf可直接显示封面，但不是中文环境，而且部署到我的nas上后死活传不了新书说什么无法写入，懒得深究了，弃之&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;/code>&lt;/pre>
+&lt;p>然后imagemagick应该就能用了。。&lt;/p>
+&lt;h3 id="其他">其他
+&lt;/h3>&lt;p>&lt;code>lscr.io/linuxserver/calibre-web:latest&lt;/code>
+这个镜像也不小，但功能还算完整，上传pdf可直接显示封面，但不是中文环境，而且部署到我的nas上后死活传不了新书说什么无法写入，懒得深究了，弃之&lt;/p></description></item></channel></rss>

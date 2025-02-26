@@ -1,42 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Homebrew on WinNote</title>
-        <link>http://localhost:12619/tags/homebrew/</link>
-        <description>Recent content in Homebrew on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:12619/tags/homebrew/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Mac的包管理器homebrew环境变量配置</title>
-        <link>http://localhost:12619/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link>
-        <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:12619/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid>
-        <description>&lt;p&gt;按照 &lt;a class=&#34;link&#34; href=&#34;https://brew.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://brew.sh&lt;/a&gt; 这里的提示：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;装完brew后，敲brew居然不认得，还得我自己配一下
-所以：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /opt/homebrew/bin/
-
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Homebrew on WinNote</title><link>https://winotmk.github.io/tags/homebrew/</link><description>Recent content in Homebrew on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/homebrew/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac的包管理器homebrew环境变量配置</title><link>https://winotmk.github.io/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link><pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid><description>&lt;p>按照 &lt;a class="link" href="https://brew.sh" target="_blank" rel="noopener"
+>https://brew.sh&lt;/a> 这里的提示：&lt;/p>
+&lt;pre>&lt;code class="language-bash">/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>装完brew后，敲brew居然不认得，还得我自己配一下
+所以：&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd /opt/homebrew/bin/
 PATH=$PATH:/opt/homebrew/bin
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后再&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/
-
+&lt;/code>&lt;/pre>
+&lt;p>然后再&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd ~/
 touch .zshrc
-
 echo export PATH=$PATH:/opt/homebrew/bin &amp;gt;&amp;gt; .zshrc
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这下就可以用brew啦，我主要是拿来&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bres install git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装git
-但是神奇的是当我后面再用&lt;code&gt;vim ~/ .zshrc&lt;/code&gt;想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;/code>&lt;/pre>
+&lt;p>这下就可以用brew啦，我主要是拿来&lt;/p>
+&lt;pre>&lt;code class="language-bash">bres install git
+&lt;/code>&lt;/pre>
+&lt;p>安装git
+但是神奇的是当我后面再用&lt;code>vim ~/ .zshrc&lt;/code>想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删&lt;/p></description></item></channel></rss>

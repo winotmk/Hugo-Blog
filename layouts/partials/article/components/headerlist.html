@@ -34,7 +34,7 @@
     {{ partialCached "article/components/details" . .RelPermalink }}
     <!--winotmk 2025.2.25 加入首页预览-->
     <!--https://gohugo.io/methods/page/summary/#article-->
-    <div class="summary" onclick="window.open('{{ .RelPermalink }}')">
+    <div class="summary" onclick="window.location.href='{{ .RelPermalink }}'">
     {{ .Summary }}
     <!--
         {{ .Content | strings.Truncate 42 }}
