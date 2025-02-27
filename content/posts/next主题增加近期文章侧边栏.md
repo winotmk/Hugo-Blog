@@ -7,7 +7,8 @@ tags:
 ---
 ## 边栏显示文章列表效果
 我还奇怪next没用提供这样的功能，文章一多一篇篇翻实在是累，还好找到了有人实现最近文章的功能，那么做文章列表也就同理了
-![](images/20230727113321.png)
+![2025-02-28-00-06-56](http://pictures.winotmk.com/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/2025-02-28-00-06-56_9999a2e7.png)
+
 我修改过的代码
 首先是：
 ### sidebar.njk
@@ -97,7 +98,8 @@ recent_posts_layout: block
 recent_posts: true
 ```
 然而实际效果是只会显示“最新文章”几个字
-![](images/20230727111720.png)
+![2025-02-28-00-07-34](http://pictures.winotmk.com/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/2025-02-28-00-07-34_09b50eb8.png)
+
 查了得知 
 > NexT 的架構檔案格式從 swig 改成 njk，照著舊的文章貼上不會成功
 

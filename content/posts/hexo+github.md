@@ -1,5 +1,9 @@
 ---
 title: hexo+github
+date: 2021-10-13
+tags:
+  - hexo
+  - github
 ---
 
 [https://winotmk.github.io/](https://winotmk.github.io/)

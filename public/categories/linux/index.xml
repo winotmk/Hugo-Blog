@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Linux on WinNote</title>
-        <link>http://localhost:1313/categories/linux/</link>
+        <link>http://localhost:10354/categories/linux/</link>
         <description>Recent content in Linux on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 19 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 19 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux和docker常用命令</title>
-        <link>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;p&gt;还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考&lt;/p&gt;
 &lt;h2 id=&#34;文件操作相关&#34;&gt;文件操作相关
 &lt;/h2&gt;&lt;h3 id=&#34;复制目录&#34;&gt;复制目录
@@ -29,7 +29,7 @@ xz 上传Zmodem
 &lt;h3 id=&#34;挂载u盘&#34;&gt;挂载U盘
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;fdisk -l
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619152526.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619152526.png&#34;
 	
 	
 	
@@ -42,7 +42,7 @@ xz 上传Zmodem
 &lt;pre&gt;&lt;code&gt;mount -t vfat /dev/sda1 /mnt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;来挂载U盘&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619152710.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619152710.png&#34;
 	
 	
 	
@@ -134,10 +134,10 @@ screen -r id或窗口名称
         </item>
         <item>
         <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
-        <link>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
+        <link>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
         <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
+        <guid>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
         <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
 &lt;/code&gt;&lt;/pre&gt;
@@ -166,7 +166,7 @@ ftp-data        12520/udp
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
 &lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240617155755.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240617155755.png&#34;
 	
 	
 	
@@ -189,7 +189,7 @@ export LANG=en_US.UTF-8&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;&lt;br&gt;
 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240618170337.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240618170337.png&#34;
 	
 	
 	
@@ -202,11 +202,11 @@ export LANG=en_US.UTF-8&lt;br&gt;
         </item>
         <item>
         <title>Linux上的命令行代理工具</title>
-        <link>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:10354/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240109144331.png&#34;
+        <guid>http://localhost:10354/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240109144331.png&#34;
 	
 	
 	
@@ -264,7 +264,7 @@ sudo vim /etc/shadowsocks-libev/config.json
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;即可做为客户端启动&lt;br&gt;
 这里我启动成功以后显示：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240109150557.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240109150557.png&#34;
 	
 	
 	
@@ -311,7 +311,7 @@ socks5  127.0.0.1 1080
 &lt;pre&gt;&lt;code&gt;curl cip.cc
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;得到&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240109152134.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240109152134.png&#34;
 	
 	
 	
@@ -322,7 +322,7 @@ socks5  127.0.0.1 1080
 &lt;p&gt;我们加上proxychains以后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;proxychains curl cip.cc
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240109152400.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240109152400.png&#34;
 	
 	
 	

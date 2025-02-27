@@ -4,8 +4,9 @@ date: 2021-11-07
 tags:
 
 - Minecraft
+image: http://pictures.winotmk.com/MC/2025-02-27-23-58-20_41d3fcaa.png
 ---
-{% asset_img 20211107_114809_QQ_20211107114745.png %}
+![2025-02-27-23-58-20 [hugo-no-render]](http://pictures.winotmk.com/MC/2025-02-27-23-58-20_41d3fcaa.png)
 
 Java服务器地址：mc.winotmk.com:25465
 基岩服务器地址：mc.winotmk.com:19132
@@ -29,7 +30,7 @@ Lobby
 MainWorld -Nether -TheEnd
 LyhWorld
 
-{% asset_img 20211118_131504__Map.jpg %}
+![2025-02-27-23-58-52](http://pictures.winotmk.com/MC/2025-02-27-23-58-52_69aad3ef.png)
 
 现有传送门：
 
@@ -92,8 +93,7 @@ LyhWorld
 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版
 或者在windows和MAC上玩Java版
 
-{% asset_img 20211118132752.png %}
-
+![2025-02-27-23-59-11](http://pictures.winotmk.com/MC/2025-02-27-23-59-11_9e56d9af.png)
 
 附上Windows游戏购买链接
 java：[https://www.minecraft.net/zh-hans/store/minecraft-java-edition](https://www.minecraft.net/zh-hans/store/minecraft-java-edition)
@@ -122,15 +122,15 @@ java：[https://www.minecraft.net/zh-hans/store/minecraft-java-edition](https://
 
 登录方式选离线模即可，写个名字，即游玩服务器时的名字
 
-{% asset_img 20211107_164216___20211107164202.png %}
+![2025-02-27-23-59-23](http://pictures.winotmk.com/MC/2025-02-27-23-59-23_b3cad586.png)
 
 ps.如果启动失败请确保使用了java17
 
-{% asset_img 20211107_165918___20211107164459.png %}
+![2025-02-27-23-59-32](http://pictures.winotmk.com/MC/2025-02-27-23-59-32_c5b58d87.png)
 
 进游戏选择
 
-{% asset_img 20211107_164108___20211107164032.png %}
+![2025-02-27-23-59-41](http://pictures.winotmk.com/MC/2025-02-27-23-59-41_39df0b39.png)
 
 **第一次进服务器需要按T**
 
@@ -144,11 +144,11 @@ enjoy！
 
 启动游戏选服务器，添加服务器
 
-{% asset_img 20211107_205807_QQ_20211107205503.png %}
+![2025-02-27-23-59-51](http://pictures.winotmk.com/MC/2025-02-27-23-59-51_9e2d5ea9.png)
 
 然后输入地址mc.winotmk.com端口19132
 
-{% asset_img 20211107_205827_QQ_20211107205427.png %}
+![2025-02-27-23-59-59](http://pictures.winotmk.com/MC/2025-02-27-23-59-59_8d4c333a.png)
 
 ## 服务器插件列表
 
@@ -189,7 +189,8 @@ API前置类
 
 #### ActionHealth
 
-{% asset_img 20211107_103036_77a753a3753ee2059b26bcd92b4c7a7d435c2a3e.png %}
+![2025-02-28-00-00-21](http://pictures.winotmk.com/MC/2025-02-28-00-00-21_f74c2081.png)
+
 在物品栏上显示血量
 [https://www.spigotmc.org/resources/action-bar-health.2661/](https://www.spigotmc.org/resources/action-bar-health.2661/)
 
@@ -231,7 +232,7 @@ MCbbs搬运：[https://www.mcbbs.net/forum.php?mod=viewthread&tid=1094927](https
 
 #### BlockLocker
 
-{% asset_img 20211107_111619_41f1202f45cd6bc7d4f8574c9e32ec12d9b92aef.png %}
+![2025-02-28-00-00-32](http://pictures.winotmk.com/MC/2025-02-28-00-00-32_48cd7dd1.png)
 
 上锁插件
 
@@ -267,7 +268,7 @@ MCbbs搬运：[https://www.mcbbs.net/forum.php?mod=viewthread&tid=1173296](https
 
 #### CatSeedLogin
 
-{% asset_img 20211107_112829_171910d8x8aft4h64fczc7.png %}
+![2025-02-28-00-00-50](http://pictures.winotmk.com/MC/2025-02-28-00-00-50_8e0ba904.png)
 
 种子猫登录插件
 基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe
@@ -298,7 +299,7 @@ MCBBS:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=847859](https://www.mc
 
 #### ~~Dynmap~~
 
-{% asset_img 20211107_120618_QQ_20211107120538.png %}
+![2025-02-28-00-01-19](http://pictures.winotmk.com/MC/2025-02-28-00-01-19_f4d458dc.png)
 
 20230825更新：会消耗过多云服务资源暂移除
 
@@ -315,7 +316,7 @@ Mcbbs:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=990539](https://www.mc
 
 #### Geyser-Spigot
 
-{% asset_img 20211107_122221_171511lt5zn1n8hash1d8z.png.thumb.jpg %}
+![2025-02-28-00-01-48](http://pictures.winotmk.com/MC/2025-02-28-00-01-48_5ffb87f9.png)
 
 该插件让基岩版玩家可以进入本服务器
 
@@ -331,7 +332,7 @@ Mcbbs:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=990539](https://www.mc
 
 #### GSit
 
-{% asset_img 20211107_124600_032148vqs1sp8y86p8k6pk.jpg.thumb.jpg %}
+![2025-02-28-00-01-59](http://pictures.winotmk.com/MC/2025-02-28-00-01-59_7753d937.png)
 
 座椅子插件
 
@@ -346,7 +347,7 @@ Mcbbs:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=990539](https://www.mc
 
 #### LuckPerms
 
-{% asset_img 20211107_124934_534e2167e153aa1cbba149484e5d84fe15ab431a.png %}
+![2025-02-28-00-02-10](http://pictures.winotmk.com/MC/2025-02-28-00-02-10_710adb1e.png)
 
 权限管理
 [https://www.mcbbs.net/forum.php?mod=viewthread&tid=676818](https://www.mcbbs.net/forum.php?mod=viewthread&tid=676818)
@@ -354,7 +355,8 @@ Mcbbs:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=990539](https://www.mc
 
 #### ~~MiaoChat~~
 
-{% asset_img 20211107_130410_player.png %}
+![2025-02-28-00-02-20](http://pictures.winotmk.com/MC/2025-02-28-00-02-20_c60723e4.png)
+
 聊天功能增加
 
 20230825更新：移除，被曝有后台
@@ -366,7 +368,7 @@ Mcbbs:[https://www.mcbbs.net/forum.php?mod=viewthread&tid=990539](https://www.mc
 
 #### NekoMaid
 
-{% asset_img 20211107_130817_005546dtz88n1h8s3fff2h.png %}
+![2025-02-28-00-02-35](http://pictures.winotmk.com/MC/2025-02-28-00-02-35_f2094a00.png)
 
 Wed后台管理插件
 
@@ -374,7 +376,7 @@ Wed后台管理插件
 
 #### PocketGamesPo
 
-{% asset_img 20211107_132118_101703t8dh21764rt0tj2a.png.thumb.jpg %}
+![2025-02-28-00-03-01](http://pictures.winotmk.com/MC/2025-02-28-00-03-01_2e632f3e.png)
 
 34+口袋游戏|随时随地想玩就玩
 
@@ -403,7 +405,7 @@ Wed后台管理插件
 
 #### Residence
 
-{% asset_img 20211107_132529_114058j3twwd0zpthmq8op.png %}
+![2025-02-28-00-03-12](http://pictures.winotmk.com/MC/2025-02-28-00-03-12_f6ad867b.png)
 
 圈地插件
 

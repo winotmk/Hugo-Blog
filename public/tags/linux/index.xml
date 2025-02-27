@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Linux on WinNote</title>
-        <link>http://localhost:1313/tags/linux/</link>
+        <link>http://localhost:10354/tags/linux/</link>
         <description>Recent content in Linux on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>calibre_web的pdf封面提取问题</title>
-        <link>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
+        <link>http://localhost:10354/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
         <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
+        <guid>http://localhost:10354/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;&lt;br&gt;
 作为自己nas上的图书馆时发现pdf文件无法生成封面，&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925124359.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925124359.png&#34;
 	
 	
 	
@@ -34,7 +34,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程
 &lt;/h2&gt;&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123504.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123504.png&#34;
 	
 	
 	
@@ -44,7 +44,7 @@
 &gt;&lt;br&gt;
 查看文件：/config/calbre-web/calbre-web.log&lt;br&gt;
 有这么一行：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123738.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123738.png&#34;
 	
 	
 	
@@ -57,7 +57,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;PDF转就转不出来&lt;br&gt;
 所以找到了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123303.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123303.png&#34;
 	
 	
 	
@@ -70,7 +70,7 @@
 &lt;pre&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123414.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123414.png&#34;
 	
 	
 	
@@ -83,7 +83,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/gshang2017/docker/issues/133&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;&lt;br&gt;
 如果一编辑图书的元数据就卡死，可用尝试：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925134344.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925134344.png&#34;
 	
 	
 	
@@ -92,7 +92,7 @@
 	
 &gt;&lt;br&gt;
 这两条设置为true,则&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925134613.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925134613.png&#34;
 	
 	
 	
@@ -103,7 +103,7 @@
 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
 &lt;h2 id=&#34;弯路&#34;&gt;弯路
 &lt;/h2&gt;&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925140205.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925140205.png&#34;
 	
 	
 	
@@ -124,7 +124,7 @@
 为了试验，我用&lt;code&gt;FROM ubuntu:latest&lt;/code&gt;作为镜像基底，然后：&lt;/p&gt;
 &lt;h3 id=&#34;装calibre-web&#34;&gt;装calibre-web
 &lt;/h3&gt;&lt;p&gt;安装calibre-web：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925132535.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925132535.png&#34;
 	
 	
 	
@@ -175,14 +175,14 @@ export LD_LIBRARY_PATH=&amp;quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HO
         </item>
         <item>
         <title>给docker容器内配置中文环境(minecraft开服相关)</title>
-        <link>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+        <link>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+        <guid>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
         <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815141238.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815141238.png&#34;
 	
 	
 	
@@ -197,7 +197,7 @@ export LD_LIBRARY_PATH=&amp;quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HO
 &lt;/h2&gt;&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815121544.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815121544.png&#34;
 	
 	
 	
@@ -219,7 +219,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！&lt;br&gt;
 出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123217.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123217.png&#34;
 	
 	
 	
@@ -227,7 +227,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123240.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123240.png&#34;
 	
 	
 	
@@ -238,7 +238,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量
 &lt;/h2&gt;&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;&lt;br&gt;
 确定环境变量生效了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123341.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123341.png&#34;
 	
 	
 	
@@ -253,7 +253,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;locale -a
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123200.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123200.png&#34;
 	
 	
 	
@@ -268,7 +268,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132128.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132128.png&#34;
 	
 	
 	
@@ -293,7 +293,7 @@ ENV LANG zh_CN.UTF-8
 &lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;docker build -t jre8u342_ch .
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123827.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123827.png&#34;
 	
 	
 	
@@ -311,7 +311,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;因为dockerfile里已经设置过&lt;code&gt;WORKDIR&lt;/code&gt;了所以不需要&lt;code&gt;-w&lt;/code&gt;参数&lt;/p&gt;
 &lt;p&gt;这下不会报英文了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124038.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124038.png&#34;
 	
 	
 	
@@ -319,7 +319,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124056.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124056.png&#34;
 	
 	
 	
@@ -328,7 +328,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 游戏里也是中文环境的返回信息&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124137.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124137.png&#34;
 	
 	
 	
@@ -341,7 +341,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;先导入这个镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132343.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132343.png&#34;
 	
 	
 	
@@ -350,7 +350,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 然后简单配置一下端口和mc服务器目录就可以了,和上面的&lt;code&gt;docker run&lt;/code&gt;其实是一样的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132446.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132446.png&#34;
 	
 	
 	
@@ -386,7 +386,7 @@ rcon.port=25575
 &lt;pre&gt;&lt;code&gt;mcrcon -H 服务器地址 -p your_passwd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后就可以一样敲各种minecraft管理命令了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815125134.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815125134.png&#34;
 	
 	
 	
@@ -395,7 +395,7 @@ rcon.port=25575
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;好了不说了博主我要去挖矿开荒了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133408.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133408.png&#34;
 	
 	
 	
@@ -403,7 +403,7 @@ rcon.port=25575
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133429.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133429.png&#34;
 	
 	
 	
@@ -423,10 +423,10 @@ rcon.port=25575
         </item>
         <item>
         <title>Linux和docker常用命令</title>
-        <link>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;p&gt;还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考&lt;/p&gt;
 &lt;h2 id=&#34;文件操作相关&#34;&gt;文件操作相关
 &lt;/h2&gt;&lt;h3 id=&#34;复制目录&#34;&gt;复制目录
@@ -443,7 +443,7 @@ xz 上传Zmodem
 &lt;h3 id=&#34;挂载u盘&#34;&gt;挂载U盘
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;fdisk -l
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619152526.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619152526.png&#34;
 	
 	
 	
@@ -456,7 +456,7 @@ xz 上传Zmodem
 &lt;pre&gt;&lt;code&gt;mount -t vfat /dev/sda1 /mnt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;来挂载U盘&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619152710.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619152710.png&#34;
 	
 	
 	
@@ -548,10 +548,10 @@ screen -r id或窗口名称
         </item>
         <item>
         <title>地理数据采集器计划</title>
-        <link>http://localhost:1313/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</link>
+        <link>http://localhost:10354/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</link>
         <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</guid>
+        <guid>http://localhost:10354/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/</guid>
         <description>&lt;h2 id=&#34;简介&#34;&gt;简介
 &lt;/h2&gt;&lt;p&gt;想要做一个便携的小设备，能够实现以下功能&lt;/p&gt;
 &lt;ul&gt;
@@ -575,7 +575,7 @@ screen -r id或窗口名称
 最后发现现在目前树莓派zero2w的价格只有一百出头了，可能比某些arduino的原版板子还便宜，值得一试，幸狐看起来也不错的样子，回头再研究&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;下面这是树莓派zero2w跑通串口通信时的样子&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240617150029.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240617150029.png&#34;
 	
 	
 	
@@ -585,7 +585,7 @@ screen -r id或窗口名称
 &gt;&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;这个网站不错：https://pinout.xyz/&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240618185812.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240618185812.png&#34;
 	
 	
 	
@@ -598,7 +598,7 @@ screen -r id或窗口名称
 &lt;/h2&gt;&lt;h3 id=&#34;ft232串口工具&#34;&gt;FT232串口工具
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/FT232_USB_UART_Board&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.waveshare.net/wiki/FT232_USB_UART_Board&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160444.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160444.png&#34;
 	
 	
 	
@@ -609,7 +609,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;gps模块&#34;&gt;GPS模块
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/LC76G_GPS_Module&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.waveshare.net/wiki/LC76G_GPS_Module&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160514.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160514.png&#34;
 	
 	
 	
@@ -618,7 +618,7 @@ screen -r id或窗口名称
 	
 &gt;&lt;br&gt;
 在准备安装micropyGPS时&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160324.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160324.png&#34;
 	
 	
 	
@@ -633,7 +633,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;raspberry-zero-2w&#34;&gt;Raspberry Zero 2W
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160629.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160629.png&#34;
 	
 	
 	
@@ -644,7 +644,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;ups-模块&#34;&gt;UPS 模块
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/UPS_HAT_%28C%29&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.waveshare.net/wiki/UPS_HAT_(C)&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160718.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160718.png&#34;
 	
 	
 	
@@ -655,7 +655,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;环境传感器&#34;&gt;环境传感器
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/shop/Environment-Sensor-HAT.htm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.waveshare.net/shop/Environment-Sensor-HAT.htm&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619160754.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619160754.png&#34;
 	
 	
 	
@@ -674,7 +674,7 @@ screen -r id或窗口名称
 Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://microsoft.github.io/Data-Science-For-Beginners/#/3-Data-Visualization/09-visualization-quantities/README&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://microsoft.github.io/Data-Science-For-Beginners/#/3-Data-Visualization/09-visualization-quantities/README&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240717142402.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240717142402.png&#34;
 	
 	
 	
@@ -685,7 +685,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
 &lt;h4 id=&#34;streamlit&#34;&gt;Streamlit
 &lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/streamlit/streamlit&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/streamlit/streamlit&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240717143550.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240717143550.png&#34;
 	
 	
 	
@@ -702,7 +702,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
 &lt;/h4&gt;&lt;p&gt;配合gps数据收集可以展示出来&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tumic0/GPXSee&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/tumic0/GPXSee&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240719120310.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240719120310.png&#34;
 	
 	
 	
@@ -716,7 +716,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
     &gt;https://lvgl.100ask.net/master/get-started/index.html&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/lvgl/lvgl&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/lvgl/lvgl&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240719122911.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240719122911.png&#34;
 	
 	
 	
@@ -729,7 +729,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
     &gt;https://squareline.io/&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1DX4y1v727/?vd_source=b7b7bdf106a064893c3c79e4a961f383&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/video/BV1DX4y1v727/?vd_source=b7b7bdf106a064893c3c79e4a961f383&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240719121330.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240719121330.png&#34;
 	
 	
 	
@@ -740,7 +740,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
 &lt;h4 id=&#34;guiguider-同上类别但免费&#34;&gt;guiguider 同上类别但免费
 &lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1yW421R7zK/?spm_id_from=333.788.recommend_more_video.7&amp;amp;vd_source=b7b7bdf106a064893c3c79e4a961f383&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/video/BV1yW421R7zK/?spm_id_from=333.788.recommend_more_video.7&amp;vd_source=b7b7bdf106a064893c3c79e4a961f383&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240719122655.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240719122655.png&#34;
 	
 	
 	
@@ -750,7 +750,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;figma&#34;&gt;figma
 &lt;/h4&gt;&lt;p&gt;UI前期设计软件&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240719121825.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240719121825.png&#34;
 	
 	
 	
@@ -763,7 +763,7 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
     &gt;https://github.com/AstraThreshold/oled-ui-astra&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1i4421D7nJ/?vd_source=b7b7bdf106a064893c3c79e4a961f383&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/video/BV1i4421D7nJ/?vd_source=b7b7bdf106a064893c3c79e4a961f383&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240719120151.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240719120151.png&#34;
 	
 	
 	
@@ -775,10 +775,10 @@ Matplotlib是一个出色的库，可用于创建各种简单和复杂的图表&
         </item>
         <item>
         <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
-        <link>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
+        <link>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
         <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
+        <guid>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
         <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
 &lt;/code&gt;&lt;/pre&gt;
@@ -807,7 +807,7 @@ ftp-data        12520/udp
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
 &lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240617155755.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240617155755.png&#34;
 	
 	
 	
@@ -830,7 +830,7 @@ export LANG=en_US.UTF-8&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;&lt;br&gt;
 然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240618170337.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240618170337.png&#34;
 	
 	
 	
@@ -843,13 +843,13 @@ export LANG=en_US.UTF-8&lt;br&gt;
         </item>
         <item>
         <title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本</title>
-        <link>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
+        <link>http://localhost:10354/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</link>
         <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
+        <guid>http://localhost:10354/posts/240110_sd%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/</guid>
         <description>&lt;h2 id=&#34;创建阿里云pai-dsw实例跑kohya&#34;&gt;创建阿里云PAI DSW实例跑kohya
 &lt;/h2&gt;&lt;p&gt;镜像我这里选：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240110174810.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240110174810.png&#34;
 	
 	
 	
@@ -867,7 +867,7 @@ kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件
 在workspace根目录直接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git clone https://github.com/bmaltais/kohya_ss.git
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240110175054.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240110175054.png&#34;
 	
 	
 	
@@ -884,7 +884,7 @@ chmod +x ./setup.sh
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然镜像里带py310，但是似乎还是要装一下python3-tk&lt;br&gt;
 之后安装脚本会自动完成，我大概花了5分钟&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240110193312.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240110193312.png&#34;
 	
 	
 	
@@ -895,7 +895,7 @@ chmod +x ./setup.sh
 然后运行启动webui&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com ./gui.sh --headless
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114153.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240111114153.png&#34;
 	
 	
 	
@@ -909,7 +909,7 @@ chmod +x ./setup.sh
     &gt;https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;kohya_ss的dreambooth训练参数&#34;&gt;kohya_ss的Dreambooth训练参数
 &lt;/h2&gt;&lt;h3 id=&#34;source-model&#34;&gt;source model
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111114635.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240111114635.png&#34;
 	
 	
 	
@@ -922,7 +922,7 @@ chmod +x ./setup.sh
 &lt;/h3&gt;&lt;p&gt;这个tag里比较简单，没什么好说的&lt;br&gt;
 Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样&lt;/p&gt;
 &lt;h3 id=&#34;parameters&#34;&gt;parameters
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240111115115.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240111115115.png&#34;
 	
 	
 	
@@ -936,7 +936,7 @@ Image folder里写上训练集目录，注意写上的目录底下应该是例�
 &lt;/h4&gt;&lt;p&gt;这里能填关键词和每多少轮出个预览图，玩玩用&lt;br&gt;
 都准备好了就可以点 &lt;code&gt;start training&lt;/code&gt;，但webui不会有任何提示..要看之前启webui的终端&lt;br&gt;
 这样就是开始训练了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240111121059.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240111121059.png&#34;
 	
 	
 	
@@ -999,7 +999,7 @@ Traceback (most recent call last):
 cuda下载：https://developer.nvidia.com/cuda-downloads&lt;br&gt;
 但是有时候需要特定版本：https://developer.nvidia.com/cuda-toolkit-archive&lt;br&gt;
 以11.8为例，系统是ubuntu22.04，所以这样选：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240111133431.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240111133431.png&#34;
 	
 	
 	
@@ -1013,7 +1013,7 @@ wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/
 sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;大约3-4GB左右，运行后需要等一会，会弹出交互界面&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240111135108.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240111135108.png&#34;
 	
 	
 	
@@ -1026,7 +1026,7 @@ sudo sh cuda_11.8.0_520.61.05_linux.run
 &lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54928967e417&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.jianshu.com/p/54928967e417&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;装好以后他会提示：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240111135653.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240111135653.png&#34;
 	
 	
 	
@@ -1076,11 +1076,11 @@ export BNB_CUDA_VERSION=117
         </item>
         <item>
         <title>Linux上的命令行代理工具</title>
-        <link>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:10354/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240109144331.png&#34;
+        <guid>http://localhost:10354/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240109144331.png&#34;
 	
 	
 	
@@ -1138,7 +1138,7 @@ sudo vim /etc/shadowsocks-libev/config.json
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;即可做为客户端启动&lt;br&gt;
 这里我启动成功以后显示：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240109150557.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240109150557.png&#34;
 	
 	
 	
@@ -1185,7 +1185,7 @@ socks5  127.0.0.1 1080
 &lt;pre&gt;&lt;code&gt;curl cip.cc
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;得到&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240109152134.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240109152134.png&#34;
 	
 	
 	
@@ -1196,7 +1196,7 @@ socks5  127.0.0.1 1080
 &lt;p&gt;我们加上proxychains以后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;proxychains curl cip.cc
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240109152400.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240109152400.png&#34;
 	
 	
 	
@@ -1257,11 +1257,550 @@ export https_proxy=&amp;quot;socks5://127.0.0.1:1080&amp;quot;
 </description>
         </item>
         <item>
+        <title>树莓派路由器</title>
+        <link>http://localhost:10354/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</link>
+        <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:10354/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-38-00_04ccdd2b.png" alt="Featured image of post 树莓派路由器" /&gt;&lt;h2 id=&#34;树莓派cm4的&#34;&gt;树莓派CM4的
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-34-27_3ed43929.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-34-27&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;openwrt-web界面安装中文&#34;&gt;openWrt web界面安装中文
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/da01ce070688&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/da01ce070688&lt;/a&gt;&lt;br&gt;
+更新包目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4&lt;br&gt;
+改之!!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-34-42_cc680b8c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-34-42&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可能还不行&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-34-51_3067ff9e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-34-51&#34;
+	
+	
+&gt;&lt;br&gt;
+这俩防火墙设置一下&lt;/p&gt;
+&lt;p&gt;如果还不行&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-35-08_3790e90c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-35-08&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;DNS记得指定一下&lt;/p&gt;
+&lt;p&gt;这下就能通了&lt;/p&gt;
+&lt;p&gt;PS也可以点配置opkg，然后加一条&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;src/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把源换为国内&lt;/p&gt;
+&lt;p&gt;然后&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg install luci-i18n-base-zh-cn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;提示&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Configuring luci-i18n-base-zh-cn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再回来看web界面就已经是中文了&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-35-29_6bae8db5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-35-29&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;如果要开启sftp传输服务&#34;&gt;如果要开启sftp传输服务
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/twn39/code/issues/279&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/twn39/code/issues/279&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;开启sftp的话可以很方便用WinSCP登录，文件管理神器&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-35-53_b47f6f7d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-35-53&#34;
+	
+	
+&gt;&lt;br&gt;
+那么如何启用 sftp 服务呢？先安装对应的软件：&lt;/p&gt;
+&lt;p&gt;opkg install vsftpd openssh-sftp-server&lt;br&gt;
+设置系统开启后自动启动 sftp 服务：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;/etc/init.d/vsftpd enable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动 sftp 服务：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; /etc/init.d/vsftpd start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。&lt;/p&gt;
+&lt;h2 id=&#34;装网卡驱动&#34;&gt;装网卡驱动
+&lt;/h2&gt;&lt;p&gt;我的CM4拓展板子是微雪的这个&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-38-00_04ccdd2b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-38-00&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&lt;/a&gt;&lt;br&gt;
+有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://openwrt.org/packages/pkgdata/kmod-r8169&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://openwrt.org/packages/pkgdata/kmod-r8169&lt;/a&gt;&lt;br&gt;
+那么就好办了&lt;br&gt;
+安装就行了：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; opkg install kmod-r8169
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装完成以重启openwrt我们看到这里已经读到了eth1口&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-36-13_d439d39c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-36-13&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置路由器wan口&#34;&gt;设置路由器WAN口
+&lt;/h2&gt;&lt;p&gt;添加新端口，设备选装好驱动以后出现的eth1，协议我选pppoe因为我拿路由拨号&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-36-26_39379bf9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-36-26&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;如果要自己加安装包&#34;&gt;如果要自己加安装包：
+&lt;/h2&gt;&lt;p&gt;放到一个tmp目录里&lt;br&gt;
+CD到tmp目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;opkg install *.ipk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;关于扩容挂载点&#34;&gt;关于扩容挂载点
+&lt;/h2&gt;&lt;p&gt;参考资料：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/e83459242afb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/e83459242afb&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/ls0111/article/details/128769859&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/ls0111/article/details/128769859&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PS我选的是树莓派cpu对应的ext4文件系统的固件，SQUASHFS就不碰了不熟悉&lt;br&gt;
+首先安装安装cfdisk，注意这里要先更新下opkg&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
+opkg install cfdisk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后打开cfdisk&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是我打不开&lt;br&gt;
+比如我的这块硬盘是内置EMMC硬盘, 显示名称是/dev/mmcblk0.&lt;br&gt;
+一般的内置硬盘应该是/dev/sda之类的.&lt;/p&gt;
+&lt;p&gt;使用cfdisk命令，进入分区页面&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk /dev/mmcblk0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果普通是内置硬盘&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-36-46_6bdb51de.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-36-46&#34;
+	
+	
+&gt;&lt;br&gt;
+按照参考资料中的教程一路继续&lt;br&gt;
+做到格式化新分区就可以了，注意mmcblk0p3要替换成自己的盘符&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;mkfs.ext4 /dev/mmcblk0p3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fdisk -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;df -h
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;命令，查看是否成功创建新分区。&lt;/p&gt;
+&lt;p&gt;然后在Luci web界面里面增加挂载点：&lt;br&gt;
+我是直接从OpenWrt官网下的，不是修改版，所以木有这个选项。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
+opkg install block-mount
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启路由，界面会有挂载点出现，进入&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-36-58_81a1a3d0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-36-58&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;挂载刚才格式化的硬盘以后&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-37-06_4d068da8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-37-06&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;复制这段&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;mkdir -p /tmp/introot
+mkdir -p /tmp/extroot
+mount --bind / /tmp/introot
+mount /dev/sda1 /tmp/extroot
+tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -
+umount /tmp/introot
+umount /tmp/extroot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mount /dev/sda1 /tmp/extroot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要改为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mount /dev/mmcblk0p3 /tmp/extroot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/2025-02-27-23-37-24_6ba17b13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-37-24&#34;
+	
+	
+&gt;&lt;br&gt;
+满血了！！&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>流量异常排查</title>
+        <link>http://localhost:10354/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</link>
+        <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:10354/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/2025-02-27-23-32-48_4ea790f6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-32-48&#34;
+	
+	
+&gt;&lt;br&gt;
+挖个坑。。。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>生成秘钥连接至github————用来推hexo</title>
+        <link>http://localhost:10354/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
+        <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:10354/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-30_51beb5cc.png" alt="Featured image of post 生成秘钥连接至github————用来推hexo" /&gt;&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;邮箱自然是我的git注册邮箱&lt;/p&gt;
+&lt;h2 id=&#34;如果修改passphrade密码&#34;&gt;如果修改passphrade密码
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -p -f ~/.ssh/id_ed25519
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
+&lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-30-51_e913dfa6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-30-51&#34;
+	
+	
+&gt;&lt;br&gt;
+打开/root/.ssh/id_ed25519.pub&lt;br&gt;
+复制到这里&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-30_51beb5cc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-31-30&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/settings/ssh/new&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/settings/ssh/new&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PS官方已不推荐用rsa加密&lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;测试
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-41_8f57328d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-31-41&#34;
+	
+	
+&gt;&lt;br&gt;
+这里输入yes&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-51_592f0bdc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-31-51&#34;
+	
+	
+&gt;&lt;br&gt;
+成功！&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>安装ArchLinux系统（详细过程）</title>
+        <link>http://localhost:10354/posts/%E5%AE%89%E8%A3%85arch/</link>
+        <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:10354/posts/%E5%AE%89%E8%A3%85arch/</guid>
+        <description>&lt;p&gt;参考文章：&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/138951848&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/138951848&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;官方WIKI安装指南（上文和本文大致流程基于此）：&lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Installation_guide&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://wiki.archlinux.org/title/Installation_guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;家里旧笔记本淘汰装个Linux跑跑服务发挥余热，&lt;br&gt;
+这里是彻底格式化硬盘新安装，而不需要多系统引导&lt;/p&gt;
+&lt;p&gt;我的环境有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2核  Intel(R) Pentium(R) CPU 997 @ 1.60GHz&lt;/li&gt;
+&lt;li&gt;4GB 1600内存&lt;/li&gt;
+&lt;li&gt;UEFI启动（不能为BIOS）&lt;/li&gt;
+&lt;li&gt;Samsang 850 EVO 250G 2.5寸SATA接口&lt;/li&gt;
+&lt;li&gt;无线网卡拆掉了，用得是网线&lt;/li&gt;
+&lt;li&gt;路由器上全局梯子（所以我没有换源，用官方源速度足够了）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://archlinux.org/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://archlinux.org/download/&lt;/a&gt;&lt;br&gt;
+下载发行版的Linux的ISO&lt;br&gt;
+然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-41_6fe1b0ee.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-39-41&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;然后重启电脑从U盘启动&lt;/p&gt;
+&lt;h2 id=&#34;硬盘准备&#34;&gt;硬盘准备
+&lt;/h2&gt;&lt;p&gt;进入U盘系统后先连pacman试试&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -Syyy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-55_7733f272.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-39-55&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;检查硬盘&#34;&gt;检查硬盘
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;lsblk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-07_d009c4a5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-40-07&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;建立分区&#34;&gt;建立分区
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;cfdisk /dev/sda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;选择New 回车，然后&lt;br&gt;
+选择Write 回车 输入 yes 回车&lt;br&gt;
+写入完成 选择Quit 回车退出&lt;/p&gt;
+&lt;h3 id=&#34;格式化&#34;&gt;格式化
+&lt;/h3&gt;&lt;p&gt;将刚刚分好的区格式化为ext4格式，这里认准分区号sda1&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;mkfs.ext4 /dev/sda1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;挂载分区&#34;&gt;挂载分区
+&lt;/h3&gt;&lt;p&gt;sda1&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;mount /dev/sda1 /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装系统&#34;&gt;安装系统
+&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacstrap /mnt base linux linux-firmware nano
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;生成fstab文件&#34;&gt;生成fstab文件
+&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;检查生成的fstab文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;cat /mnt/etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;配置新系统&#34;&gt;配置新系统
+&lt;/h2&gt;&lt;h3 id=&#34;切换到装好的系统&#34;&gt;切换到装好的系统
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;arch-chroot /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;设置时区&#34;&gt;设置时区
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;设置locale&#34;&gt;设置locale
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/locale.gen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ctrl+W 输入 #en_US 回车 找到UTF-8那一行 删掉前面的#&lt;/p&gt;
+&lt;p&gt;Ctrl+W 输入 #zh_CN 回车 找到UTF-8那一行 删掉前面的#&lt;br&gt;
+Ctrl+X 然后Y保存退出&lt;br&gt;
+生成locale&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;locale-gen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;创建并写入/etc/locale.conf文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/locale.conf 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;填入内容，注意这里只能填这个&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;LANG=en_US.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;创建并写入hostname&#34;&gt;创建并写入hostname
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我这里名字叫WinArch&lt;br&gt;
+保存退出&lt;/p&gt;
+&lt;h3 id=&#34;修改hosts&#34;&gt;修改hosts
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-26_f63948a7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-40-26&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;保存退出&lt;/p&gt;
+&lt;p&gt;建议上述编辑的内容都用cat输出检查一下&lt;/p&gt;
+&lt;h3 id=&#34;root用户创建密码&#34;&gt;root用户创建密码
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后输入并确认密码&lt;/p&gt;
+&lt;h3 id=&#34;装启动器和一些软件&#34;&gt;装启动器和一些软件
+&lt;/h3&gt;&lt;p&gt;包含了一些常用到的软件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;intel的cpu，需要安装intel的微码文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S intel-ucode
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;完成之后输入&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;grub-install /dev/sda
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意是硬盘位置不是分区位置，硬盘上也只有刚刚安装的Arch系统&lt;/p&gt;
+&lt;p&gt;生成grub.cfg&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;出现吧啦吧啦done就完成了&lt;/p&gt;
+&lt;h2 id=&#34;退出新系统重启&#34;&gt;退出新系统重启
+&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;exit
+reboot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟&lt;/p&gt;
+&lt;h2 id=&#34;新建用户并授权&#34;&gt;新建用户并授权
+&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;useradd -m -G wheel winotmk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的&lt;br&gt;
+创建密码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;passwd winotmk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;授权&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;EDITOR=nano visudo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）&lt;/p&gt;
+&lt;h2 id=&#34;安装display-server和display-manager&#34;&gt;安装Display Server和Display Manager
+&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S xorg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后我喜欢KDE桌面，所以装：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S sddm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;设置开机启动&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;systemctl enable sddm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;PS.取消开机启动是&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;systemctl disable sddm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装desktop-environment&#34;&gt;安装Desktop Environment
+&lt;/h2&gt;&lt;p&gt;KDE：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S plasma kde-applications packagekit-qt5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装中文的字体&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S noto-fonts-cjk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;好了，大功告成&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-42-43_c78205c3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-42-43&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>ArchLinux命令集</title>
-        <link>http://localhost:1313/posts/archlinux%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:10354/posts/archlinux%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Sun, 24 Oct 2021 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/archlinux%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:10354/posts/archlinux%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;p&gt;刚装完archlinux后ifconfig无法使用?&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# pacman -S net-tools dnsutils inetutils iproute2
 &lt;/code&gt;&lt;/pre&gt;
@@ -1385,10 +1924,10 @@ screen -d -r yourname -&amp;gt; 结束当前session并回到yourname这个sessio
         </item>
         <item>
         <title>linux文件和目录权限</title>
-        <link>http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <link>http://localhost:10354/posts/linux%E6%9D%83%E9%99%90/</link>
+        <pubDate>Sun, 24 Oct 2021 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/</guid>
+        <guid>http://localhost:10354/posts/linux%E6%9D%83%E9%99%90/</guid>
         <description>&lt;p&gt;*本文摘录整理为主&lt;/p&gt;
 &lt;p&gt;用&lt;code&gt;ls -l&lt;/code&gt;查看权限：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　
@@ -1433,7 +1972,16 @@ lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&amp;gt;
 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;{% asset_img 20211012_231624_2018091016360849.png 800 %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-11_2249d00f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-54-11&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;图片来源：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zhuoya_/article/details/77418413&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.csdn.net/zhuoya_/article/details/77418413&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;共显示了七列信息，从左至右依次为：权限、文件数、归属用户、归属群组、文件大小、创建日期、文件名称&lt;br&gt;
@@ -1503,7 +2051,16 @@ d ：第一位表示文件类型&lt;/p&gt;
 rwx rw- r&amp;ndash;&lt;br&gt;
 7    6    4&lt;br&gt;
 三个一组,rwx权限分别对应421相加得7,rw-对应42相加,r&amp;ndash;对应4&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211012_232003_20180910175047158.gif 500 %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-26_341c9e8c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-54-26&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;图片来源：&lt;a class=&#34;link&#34; href=&#34;http://man.linuxde.net/chmod&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://man.linuxde.net/chmod&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;举例：-rw-r&amp;ndash;r&amp;ndash;，即为644权限&lt;br&gt;
@@ -1587,470 +2144,12 @@ u:所有者, g:所属组,o:其他人,a:所有;
 </description>
         </item>
         <item>
-        <title>安装ArchLinux系统（详细过程）</title>
-        <link>http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/</guid>
-        <description>&lt;p&gt;参考文章：&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/138951848&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://zhuanlan.zhihu.com/p/138951848&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;官方WIKI安装指南（上文和本文大致流程基于此）：&lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Installation_guide&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://wiki.archlinux.org/title/Installation_guide&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;家里旧笔记本淘汰装个Linux跑跑服务发挥余热，&lt;br&gt;
-这里是彻底格式化硬盘新安装，而不需要多系统引导&lt;/p&gt;
-&lt;p&gt;我的环境有：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;2核  Intel(R) Pentium(R) CPU 997 @ 1.60GHz&lt;/li&gt;
-&lt;li&gt;4GB 1600内存&lt;/li&gt;
-&lt;li&gt;UEFI启动（不能为BIOS）&lt;/li&gt;
-&lt;li&gt;Samsang 850 EVO 250G 2.5寸SATA接口&lt;/li&gt;
-&lt;li&gt;无线网卡拆掉了，用得是网线&lt;/li&gt;
-&lt;li&gt;路由器上全局梯子（所以我没有换源，用官方源速度足够了）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://archlinux.org/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://archlinux.org/download/&lt;/a&gt;&lt;br&gt;
-下载发行版的Linux的ISO&lt;br&gt;
-然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211024_224012.png 800 %}&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;然后重启电脑从U盘启动&lt;/p&gt;
-&lt;h2 id=&#34;硬盘准备&#34;&gt;硬盘准备
-&lt;/h2&gt;&lt;p&gt;进入U盘系统后先连pacman试试&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -Syyy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;{% asset_img 20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png 800 %}&lt;/p&gt;
-&lt;h3 id=&#34;检查硬盘&#34;&gt;检查硬盘
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;lsblk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;{% asset_img 20211024_231805.png 500 %}&lt;/p&gt;
-&lt;h3 id=&#34;建立分区&#34;&gt;建立分区
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;cfdisk /dev/sda
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;选择New 回车，然后&lt;br&gt;
-选择Write 回车 输入 yes 回车&lt;br&gt;
-写入完成 选择Quit 回车退出&lt;/p&gt;
-&lt;h3 id=&#34;格式化&#34;&gt;格式化
-&lt;/h3&gt;&lt;p&gt;将刚刚分好的区格式化为ext4格式，这里认准分区号sda1&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;mkfs.ext4 /dev/sda1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;挂载分区&#34;&gt;挂载分区
-&lt;/h3&gt;&lt;p&gt;sda1&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;mount /dev/sda1 /mnt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;安装系统&#34;&gt;安装系统
-&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacstrap /mnt base linux linux-firmware nano
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;生成fstab文件&#34;&gt;生成fstab文件
-&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;检查生成的fstab文件&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;cat /mnt/etc/fstab
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;配置新系统&#34;&gt;配置新系统
-&lt;/h2&gt;&lt;h3 id=&#34;切换到装好的系统&#34;&gt;切换到装好的系统
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;arch-chroot /mnt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;设置时区&#34;&gt;设置时区
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;设置locale&#34;&gt;设置locale
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/locale.gen
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ctrl+W 输入 #en_US 回车 找到UTF-8那一行 删掉前面的#&lt;/p&gt;
-&lt;p&gt;Ctrl+W 输入 #zh_CN 回车 找到UTF-8那一行 删掉前面的#&lt;br&gt;
-Ctrl+X 然后Y保存退出&lt;br&gt;
-生成locale&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;locale-gen
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;创建并写入/etc/locale.conf文件&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/locale.conf 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;填入内容，注意这里只能填这个&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;LANG=en_US.UTF-8
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;创建并写入hostname&#34;&gt;创建并写入hostname
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/hostname
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我这里名字叫WinArch&lt;br&gt;
-保存退出&lt;/p&gt;
-&lt;h3 id=&#34;修改hosts&#34;&gt;修改hosts
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;nano /etc/hosts
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg 800 %}&lt;/p&gt;
-&lt;p&gt;保存退出&lt;/p&gt;
-&lt;p&gt;建议上述编辑的内容都用cat输出检查一下&lt;/p&gt;
-&lt;h3 id=&#34;root用户创建密码&#34;&gt;root用户创建密码
-&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;passwd
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后输入并确认密码&lt;/p&gt;
-&lt;h3 id=&#34;装启动器和一些软件&#34;&gt;装启动器和一些软件
-&lt;/h3&gt;&lt;p&gt;包含了一些常用到的软件&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;intel的cpu，需要安装intel的微码文件&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S intel-ucode
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;完成之后输入&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;grub-install /dev/sda
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;注意是硬盘位置不是分区位置，硬盘上也只有刚刚安装的Arch系统&lt;/p&gt;
-&lt;p&gt;生成grub.cfg&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;grub-mkconfig -o /boot/grub/grub.cfg
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;出现吧啦吧啦done就完成了&lt;/p&gt;
-&lt;h2 id=&#34;退出新系统重启&#34;&gt;退出新系统重启
-&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;exit
-reboot
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟&lt;/p&gt;
-&lt;h2 id=&#34;新建用户并授权&#34;&gt;新建用户并授权
-&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;useradd -m -G wheel winotmk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的&lt;br&gt;
-创建密码&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;passwd winotmk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;授权&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;EDITOR=nano visudo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）&lt;/p&gt;
-&lt;h2 id=&#34;安装display-server和display-manager&#34;&gt;安装Display Server和Display Manager
-&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S xorg
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后我喜欢KDE桌面，所以装：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S sddm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;设置开机启动&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;systemctl enable sddm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;PS.取消开机启动是&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;systemctl disable sddm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;安装desktop-environment&#34;&gt;安装Desktop Environment
-&lt;/h2&gt;&lt;p&gt;KDE：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S plasma kde-applications packagekit-qt5
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装中文的字体&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;pacman -S noto-fonts-cjk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;好了，大功告成&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;reboot
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;{% asset_img 20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg 800 %}&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>流量异常排查</title>
-        <link>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618000510.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-挖个坑。。。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>生成秘钥连接至github————用来推hexo</title>
-        <link>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
-        <description>&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;邮箱自然是我的git注册邮箱&lt;/p&gt;
-&lt;h2 id=&#34;如果修改passphrade密码&#34;&gt;如果修改passphrade密码
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -p -f ~/.ssh/id_ed25519
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
-&lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618002355.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-打开/root/.ssh/id_ed25519.pub&lt;br&gt;
-复制到这里&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230618002554.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://github.com/settings/ssh/new&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/settings/ssh/new&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;PS官方已不推荐用rsa加密&lt;/p&gt;
-&lt;h2 id=&#34;测试&#34;&gt;测试
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618003332.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-这里输入yes&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230618003428.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-成功！&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>树莓派路由器</title>
-        <link>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/</guid>
-        <description>&lt;h2 id=&#34;树莓派cm4的&#34;&gt;树莓派CM4的
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230614212800.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;openwrt-web界面安装中文&#34;&gt;openWrt web界面安装中文
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/da01ce070688&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.jianshu.com/p/da01ce070688&lt;/a&gt;&lt;br&gt;
-更新包目录：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4&lt;br&gt;
-改之!!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230614001635.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;可能还不行&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230617224422.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-这俩防火墙设置一下&lt;/p&gt;
-&lt;p&gt;如果还不行&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230617231305.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-DNS记得指定一下&lt;/p&gt;
-&lt;p&gt;这下就能通了&lt;/p&gt;
-&lt;p&gt;PS也可以点配置opkg，然后加一条&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;src/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;把源换为国内&lt;/p&gt;
-&lt;p&gt;然后&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg install luci-i18n-base-zh-cn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;提示&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;Configuring luci-i18n-base-zh-cn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;再回来看web界面就已经是中文了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230614001825.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;如果要开启sftp传输服务&#34;&gt;如果要开启sftp传输服务
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/twn39/code/issues/279&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/twn39/code/issues/279&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;开启sftp的话可以很方便用WinSCP登录，文件管理神器&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230614002052.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-那么如何启用 sftp 服务呢？先安装对应的软件：&lt;/p&gt;
-&lt;p&gt;opkg install vsftpd openssh-sftp-server&lt;br&gt;
-设置系统开启后自动启动 sftp 服务：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;/etc/init.d/vsftpd enable
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;启动 sftp 服务：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; /etc/init.d/vsftpd start
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。&lt;/p&gt;
-&lt;h2 id=&#34;装网卡驱动&#34;&gt;装网卡驱动
-&lt;/h2&gt;&lt;p&gt;我的CM4拓展板子是微雪的这个&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230617234921.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI&lt;/a&gt;&lt;br&gt;
-有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://openwrt.org/packages/pkgdata/kmod-r8169&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://openwrt.org/packages/pkgdata/kmod-r8169&lt;/a&gt;&lt;br&gt;
-那么就好办了&lt;br&gt;
-安装就行了：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; opkg install kmod-r8169
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装完成以重启openwrt我们看到这里已经读到了eth1口&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230614003210.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;设置路由器wan口&#34;&gt;设置路由器WAN口
-&lt;/h2&gt;&lt;p&gt;添加新端口，设备选装好驱动以后出现的eth1，协议我选pppoe因为我拿路由拨号&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230614003850.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;如果要自己加安装包&#34;&gt;如果要自己加安装包：
-&lt;/h2&gt;&lt;p&gt;放到一个tmp目录里&lt;br&gt;
-CD到tmp目录&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;opkg install *.ipk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;关于扩容挂载点&#34;&gt;关于扩容挂载点
-&lt;/h2&gt;&lt;p&gt;参考资料：&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/e83459242afb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.jianshu.com/p/e83459242afb&lt;/a&gt;&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/ls0111/article/details/128769859&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.csdn.net/ls0111/article/details/128769859&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;PS我选的是树莓派cpu对应的ext4文件系统的固件，SQUASHFS就不碰了不熟悉&lt;br&gt;
-首先安装安装cfdisk，注意这里要先更新下opkg&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
-opkg install cfdisk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后打开cfdisk&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;但是我打不开&lt;br&gt;
-比如我的这块硬盘是内置EMMC硬盘, 显示名称是/dev/mmcblk0.&lt;br&gt;
-一般的内置硬盘应该是/dev/sda之类的.&lt;/p&gt;
-&lt;p&gt;使用cfdisk命令，进入分区页面&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk /dev/mmcblk0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;如果普通是内置硬盘&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cfdisk
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230617234233.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-按照参考资料中的教程一路继续&lt;br&gt;
-做到格式化新分区就可以了，注意mmcblk0p3要替换成自己的盘符&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;mkfs.ext4 /dev/mmcblk0p3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;运行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;fdisk -l
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;或者&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;df -h
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;命令，查看是否成功创建新分区。&lt;/p&gt;
-&lt;p&gt;然后在Luci web界面里面增加挂载点：&lt;br&gt;
-我是直接从OpenWrt官网下的，不是修改版，所以木有这个选项。&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;opkg update
-opkg install block-mount
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;重启路由，界面会有挂载点出现，进入&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230614222923.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;挂载刚才格式化的硬盘以后&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230614223908.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;复制这段&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;mkdir -p /tmp/introot
-mkdir -p /tmp/extroot
-mount --bind / /tmp/introot
-mount /dev/sda1 /tmp/extroot
-tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -
-umount /tmp/introot
-umount /tmp/extroot
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;其中的&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mount /dev/sda1 /tmp/extroot
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;要改为&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mount /dev/mmcblk0p3 /tmp/extroot
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230617234310.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-满血了！！&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>树莓派上架设TimeMachine服务</title>
-        <link>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <link>http://localhost:10354/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</link>
+        <pubDate>Thu, 14 Oct 2021 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</guid>
-        <description>&lt;p&gt;{% asset_img 20211013_002640.png 800 %}&lt;/p&gt;
+        <guid>http://localhost:10354/posts/%E6%A0%91%E8%8E%93%E6%B4%BEtimemachine/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/2025-02-27-23-44-08_12ebde84.png" alt="Featured image of post 树莓派上架设TimeMachine服务" /&gt;&lt;p&gt;&lt;/p&gt;
 &lt;h2 id=&#34;命令&#34;&gt;命令
 &lt;/h2&gt;&lt;p&gt;前半参考：&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/335259509&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

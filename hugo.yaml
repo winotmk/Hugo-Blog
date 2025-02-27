@@ -55,8 +55,8 @@ params:
         customText:
 
     dateFormat:
-        published: Jan 02, 2006
-        lastUpdated: Jan 02, 2006 15:04 MST
+        published: 2006-01-02 
+        lastUpdated: 2006-01-02  15:04 MST
 
     sidebar:
         emoji: 🪐
@@ -76,20 +76,22 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: disqusjs
 
+        #https://disqus.com/api/applications/
         disqusjs:
-            shortname:
-            apiUrl:
-            apiKey:
-            admin:
-            adminLabel:
+            shortname: winNote
+            apiUrl: https://disqus.skk.moe/disqus/
+            apiKey: oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp
+            admin: winNote
+            adminLabel: winNote
 
         utterances:
             repo:
             issueTerm: pathname
             label:
 
+        #类utterances 
         beaudar:
             repo:
             issueTerm: pathname
@@ -101,6 +103,7 @@ params:
             site:
             locale:
 
+        #https://vssue.js.org/
         vssue:
             platform:
             owner:
@@ -110,6 +113,9 @@ params:
             autoCreateIssue: false
 
         # Waline client configuration see: https://waline.js.org/en/reference/component.html
+        #需要架设服务端，推荐了Vercel.com看起来有意思
+        #需要数据库tidbcloud.com谷歌登录过
+        #感觉有点复杂先弃用
         waline:
             serverURL:
             lang:
@@ -124,6 +130,8 @@ params:
                 admin: Admin
                 placeholder:
 
+        #https://twikoo.js.org/frontend.html#%E5%9C%A8-hugo-%E4%B8%AD%E4%BD%BF%E7%94%A8
+        #比较简单，没有登录没有表情图片
         twikoo:
             envId:
             region:
@@ -136,6 +144,10 @@ params:
             serverName: "cactus.chat"
             siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
 
+
+        #https://giscus.app/zh-CN
+        #类utterances 
+        #展示博客https://mazhuang.org/2020/05/03/blog-template-qna/
         giscus:
             repo:
             repoID:

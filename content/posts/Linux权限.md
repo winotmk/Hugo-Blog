@@ -1,5 +1,6 @@
 ---
 title: linux文件和目录权限
+date: 2021-10-24
 tags:
   - linux
 ---
@@ -50,7 +51,7 @@ lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -> home/a
 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/
 ```
 <!-- more -->
-{% asset_img 20211012_231624_2018091016360849.png 800 %}
+![2025-02-27-23-54-11](http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-11_2249d00f.png)
 
 图片来源：[https://blog.csdn.net/zhuoya_/article/details/77418413](https://blog.csdn.net/zhuoya_/article/details/77418413)
 
@@ -82,7 +83,7 @@ rwx rw- r--
 7    6    4
 三个一组,rwx权限分别对应421相加得7,rw-对应42相加,r--对应4
 
-{% asset_img 20211012_232003_20180910175047158.gif 500 %}
+![2025-02-27-23-54-26](http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-26_341c9e8c.png)
 
 图片来源：[http://man.linuxde.net/chmod](http://man.linuxde.net/chmod)
 

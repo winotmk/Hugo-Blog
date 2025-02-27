@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=10354&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="https://winotmk.github.io/\ngithub：https://github.com/winotmk/winotmk.github.io\n总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题\n">
 <title>hexo&#43;github</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/hexo&#43;github/'>
+<link rel='canonical' href='http://localhost:10354/posts/hexo&#43;github/'>
 
 <link rel="stylesheet" href="/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css"><meta property='og:title' content="hexo+github">
 <meta property='og:description' content="https://winotmk.github.io/\ngithub：https://github.com/winotmk/winotmk.github.io\n总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题\n">
-<meta property='og:url' content='http://localhost:1313/posts/hexo&#43;github/'>
+<meta property='og:url' content='http://localhost:10354/posts/hexo&#43;github/'>
 <meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='hexo' /><meta property='article:tag' content='github' /><meta property='article:published_time' content='2021-10-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-10-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="hexo+github">
 <meta name="twitter:description" content="https://winotmk.github.io/\ngithub：https://github.com/winotmk/winotmk.github.io\n总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
@@ -324,6 +324,28 @@
 
     
      
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+         
+             <a href="/tags/hexo/" >
+                 Hexo
+             </a>
+         
+             <a href="/tags/github/" >
+                 Github
+             </a>
+         
+     </header>
+     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -339,6 +361,19 @@
     
 
     <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021-10-13</time>
+            </div>
         
 
         
@@ -471,47 +506,61 @@ valine：<a class="link" href="https://valine.js.org"  target="_blank" rel="noop
      
     
         
-    <div class="disqus-container">
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
     <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
             });
         }
-    })
-</script>
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
 
     
 
@@ -631,7 +680,7 @@ valine：<a class="link" href="https://valine.js.org"  target="_blank" rel="noop
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

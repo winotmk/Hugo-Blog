@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Next on WinNote</title>
-        <link>http://localhost:1313/tags/next/</link>
+        <link>http://localhost:10354/tags/next/</link>
         <description>Recent content in Next on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Sat, 05 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/next/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 05 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/next/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
-        <link>http://localhost:1313/posts/docker01/</link>
+        <link>http://localhost:10354/posts/docker01/</link>
         <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/docker01/</guid>
+        <guid>http://localhost:10354/posts/docker01/</guid>
         <description>&lt;style type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;
 .nav-number { 
     display:none !important;
@@ -30,11 +30,13 @@
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）&lt;br&gt;
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的&lt;br&gt;
 最后成品的结构大致如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829140549.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-02_461c3121.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-02&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -47,20 +49,24 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 &lt;strong&gt;3.ddns&lt;/strong&gt;&lt;br&gt;
 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像&lt;/p&gt;
 &lt;p&gt;还挂了一个NAS盘：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142400.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-26_46c6e19a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-26&#34;
 	
 	
 &gt;&lt;br&gt;
 挂载以后：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-35_bc212f63.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-35&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -482,11 +488,13 @@ tail -f /start_ssh.log
 &lt;p&gt;启动脚本，主要启动了ssh服务，并且用&lt;code&gt;tail -f&lt;/code&gt;让这个容器一直运行以方便我们来连接&lt;/p&gt;
 &lt;h4 id=&#34;313-开始构建镜像&#34;&gt;3.1.3 开始构建镜像
 &lt;/h4&gt;&lt;p&gt;先&lt;code&gt;CD&lt;/code&gt;到Dockerfile所在的目录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829135356.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-10-57_85fedbc9.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-10-57&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -530,11 +538,13 @@ node -v
 git -v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;输出：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124045.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-11_3d59334a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-11&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -543,11 +553,13 @@ git -v
 &lt;/h4&gt;&lt;h5 id=&#34;设置&#34;&gt;设置
 &lt;/h5&gt;&lt;p&gt;毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再&lt;code&gt;commit&lt;/code&gt;为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢&lt;br&gt;
 接下来设置root密码和重启ssh服务&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124114.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-21_0c7fd65b.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-21&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -556,33 +568,39 @@ git -v
 service ssh restart
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;尝试使用PuTTY进行SSH &lt;a class=&#34;link&#34; href=&#34;mailto:root@127.0.0.1&#34; &gt;root@127.0.0.1&lt;/a&gt;登录：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829123658.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-33_fdc9ecda.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-33&#34;
 	
 	
 &gt;&lt;br&gt;
 成功!!!&lt;br&gt;
 接下来配置git和ssh，要生成新的ssh公钥&lt;br&gt;
 详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124332.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-48_647a6186.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-48&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;github邮箱@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;得到密钥默认在&lt;code&gt;/root/.ssh/id_ed25519.pub&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124753.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-12-13_dd9d9ecb.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-12-13&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -590,11 +608,13 @@ service ssh restart
 测试SSH连接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829125208.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-12-23_9f4a79cd.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-12-23&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -641,20 +661,24 @@ service ssh restart
 &lt;/h5&gt;&lt;p&gt;之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧&lt;br&gt;
 打开Workbench远程连接，启动ssh&lt;br&gt;
 由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811153438.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-14-08_59350d93.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-14-08&#34;
 	
 	
 &gt;&lt;br&gt;
 使用PuTTY工具登录成功！！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811153400.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-13-59_dd471be1.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-13-59&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -732,39 +756,47 @@ pasv_max_port=31000
 &lt;p&gt;来设置端口&lt;br&gt;
 注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧&lt;/p&gt;
 &lt;p&gt;*这里遇到过一个小坑坑&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155702.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-14-45_1313f14d.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-14-45&#34;
 	
 	
 &gt;&lt;br&gt;
 构建器报错，一直卡在&lt;code&gt;Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155358.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-01_61908eb5.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-01&#34;
 	
 	
 &gt;&lt;br&gt;
 自己在容器内运行&lt;code&gt;service vsftpd start&lt;/code&gt;的时候同样如此，一般这样是因为&lt;code&gt;vsftpd.conf&lt;/code&gt;文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把&lt;code&gt;vsftpd.conf&lt;/code&gt;打开再保存一下就可以成功运行&lt;code&gt;service vsftpd start&lt;/code&gt;&lt;br&gt;
 我发现这个文件的格式是UTF-8 CRLF&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155602.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-30_14a47584.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-30&#34;
 	
 	
 &gt;&lt;br&gt;
 修改为LF&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155623.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-38_b5d21031.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-38&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -791,11 +823,13 @@ pasv_max_port=31000
     &gt;https://github.com/jeessy2/ddns-go&lt;/a&gt;&lt;br&gt;
 先贴上官方镜像的层：&lt;br&gt;
 &lt;strong&gt;jeessy/ddns-go&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230904184205.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-07_a03a145f.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-07&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -884,11 +918,13 @@ fi
 阿里云提供容器镜像服务，我自己玩开通个人实例即可&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://cr.console.aliyun.com/cn-shanghai/instances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://cr.console.aliyun.com/cn-shanghai/instances&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811150239.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-41_03b9efc6.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-41&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -908,20 +944,24 @@ registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
 &lt;p&gt;再分别&lt;code&gt;push&lt;/code&gt;即可&lt;/p&gt;
 &lt;h3 id=&#34;42-在阿里云上使用容器实例eci运行镜像&#34;&gt;4.2 在阿里云上使用容器实例（ECI）运行镜像
 &lt;/h3&gt;&lt;p&gt;阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&amp;gt;生成&amp;gt;部署&amp;gt;关闭的服务来说，花不了几毛钱&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811151948.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-51_c8efac34.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-51&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后就能看到我们上传的镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811152250.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-59_7422cb6f.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-59&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -938,11 +978,13 @@ ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 
 &lt;p&gt;博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ECI价格计算附表&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;52-用模板创建eci&#34;&gt;5.2 用模板创建eci
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230907171351.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-17-18_4d97b3f6.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-17-18&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1015,11 +1057,13 @@ Volume:
 &lt;p&gt;这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns&lt;br&gt;
 &lt;code&gt;Command:&lt;/code&gt;写法目测类似dockerfile里的&lt;code&gt;CMD&lt;/code&gt;，我习惯做好启动sh脚本就是为了方便这里再调用&lt;br&gt;
 最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-17-56_bc212f63.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-17-56&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1029,30 +1073,36 @@ Volume:
 &lt;pre&gt;&lt;code&gt;eci run -f hexo_debian_eci.yaml -w 20
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230907174209.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-19_748517aa.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-19&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;6-hexo本地编辑环境设置如何用vscode舒服的写md文档&#34;&gt;6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
 &lt;/h2&gt;&lt;h3 id=&#34;61-vscodessh-fs插件配置&#34;&gt;6.1 VSCodeSSH FS插件配置
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908113634.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-33_e39a872e.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-33&#34;
 	
 	
 &gt;&lt;br&gt;
 简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908113824.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-42_2bdf1198.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-42&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1060,30 +1110,36 @@ Volume:
 &lt;h3 id=&#34;62-markdown-paste插件配置&#34;&gt;6.2 Markdown Paste插件配置
 &lt;/h3&gt;&lt;p&gt;一个很方便的在VScode里直接粘图的插件&lt;/p&gt;
 &lt;h4 id=&#34;配置&#34;&gt;配置：
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908114845.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-51_08d61cb4.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-51&#34;
 	
 	
 &gt;&lt;br&gt;
 会用时间来命名图片&lt;br&gt;
-然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908115038.png&#34;
+然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-01_bae3735a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-01&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后文件》首选项》键盘快捷方式&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908115303.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-19_690acbb0.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-19&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1091,21 +1147,25 @@ Volume:
 配置完成！&lt;/p&gt;
 &lt;h4 id=&#34;使用&#34;&gt;使用：
 &lt;/h4&gt;&lt;p&gt;截图我习惯用Sinpaste，按F1就能截图&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908115743.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-36_68b61e41.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-36&#34;
 	
 	
 &gt;&lt;br&gt;
 然后点右下角复制按钮&lt;br&gt;
 在VScode的markdown文档里&lt;code&gt;ctrl+alt+a&lt;/code&gt;就能粘图了！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908113947.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-45_282c0fc0.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-45&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1114,11 +1174,13 @@ Volume:
 &lt;/h3&gt;&lt;p&gt;先把images文件夹单独放到工作区里&lt;br&gt;
 然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令&lt;br&gt;
 sftp.json目录下会出现一个名为的基本配置文件.vscode&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908121346.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-58_4d3f4080.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-58&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1157,21 +1219,23 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode&lt;br&gt;
         </item>
         <item>
         <title>next主题增加近期文章侧边栏</title>
-        <link>http://localhost:1313/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</link>
+        <link>http://localhost:10354/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</link>
         <pubDate>Thu, 27 Jul 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</guid>
+        <guid>http://localhost:10354/posts/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/</guid>
         <description>&lt;h2 id=&#34;边栏显示文章列表效果&#34;&gt;边栏显示文章列表效果
 &lt;/h2&gt;&lt;p&gt;我还奇怪next没用提供这样的功能，文章一多一篇篇翻实在是累，还好找到了有人实现最近文章的功能，那么做文章列表也就同理了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230727113321.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/2025-02-28-00-06-56_9999a2e7.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
+		alt=&#34;2025-02-28-00-06-56&#34;
 	
-&gt;&lt;br&gt;
-我修改过的代码&lt;br&gt;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我修改过的代码&lt;br&gt;
 首先是：&lt;/p&gt;
 &lt;h3 id=&#34;sidebarnjk&#34;&gt;sidebar.njk
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;/hexo-theme-next/layout/_macro/sidebar.njk&lt;/code&gt;&lt;br&gt;
@@ -1251,15 +1315,17 @@ recent_posts_layout: block
 recent_posts: true
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然而实际效果是只会显示“最新文章”几个字&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230727111720.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/2025-02-28-00-07-34_09b50eb8.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
+		alt=&#34;2025-02-28-00-07-34&#34;
 	
-&gt;&lt;br&gt;
-查了得知&lt;/p&gt;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查了得知&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NexT 的架構檔案格式從 swig 改成 njk，照著舊的文章貼上不會成功&lt;/p&gt;&lt;/blockquote&gt;
 &lt;hr&gt;

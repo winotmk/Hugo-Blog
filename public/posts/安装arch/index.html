@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=10354&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n">
 <title>安装ArchLinux系统（详细过程）</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
+<link rel='canonical' href='http://localhost:10354/posts/%E5%AE%89%E8%A3%85arch/'>
 
 <link rel="stylesheet" href="/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css"><meta property='og:title' content="安装ArchLinux系统（详细过程）">
 <meta property='og:description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n">
-<meta property='og:url' content='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
+<meta property='og:url' content='http://localhost:10354/posts/%E5%AE%89%E8%A3%85arch/'>
 <meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2021-10-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-10-25T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="安装ArchLinux系统（详细过程）">
 <meta name="twitter:description" content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
@@ -368,6 +368,19 @@
 
     <footer class="article-time">
         
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021-10-25</time>
+            </div>
+        
 
         
             <div>
@@ -389,7 +402,7 @@
             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M8 14l0 .01" /><path d="M12 14l0 .01" /><path d="M16 14l0 .01" /><path d="M8 17l0 .01" /><path d="M12 17l0 .01" /><path d="M16 17l0 .01" /></svg>
             <time class="article-time--reading">
                 <time class="article-time--reading">
-                    字数: 1164
+                    字数: 1139
                 </time>
             </time>
         </div>
@@ -432,18 +445,45 @@
     >https://archlinux.org/download/</a><br>
 下载发行版的Linux的ISO<br>
 然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便</p>
-<p>{% asset_img 20211024_224012.png 800 %}</p>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-41_6fe1b0ee.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-39-41"
+	
+	
+></p>
 <!-- more -->
 <p>然后重启电脑从U盘启动</p>
 <h2 id="硬盘准备">硬盘准备
 </h2><p>进入U盘系统后先连pacman试试</p>
 <pre><code class="language-Shell">pacman -Syyy
 </code></pre>
-<p>{% asset_img 20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png 800 %}</p>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-55_7733f272.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-39-55"
+	
+	
+></p>
 <h3 id="检查硬盘">检查硬盘
 </h3><pre><code class="language-Shell">lsblk
 </code></pre>
-<p>{% asset_img 20211024_231805.png 500 %}</p>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-07_d009c4a5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-40-07"
+	
+	
+></p>
 <h3 id="建立分区">建立分区
 </h3><pre><code class="language-Shell">cfdisk /dev/sda
 </code></pre>
@@ -497,8 +537,17 @@ Ctrl+X 然后Y保存退出<br>
 <h3 id="修改hosts">修改hosts
 </h3><pre><code class="language-Shell">nano /etc/hosts
 </code></pre>
-<p>写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）</p>
-<p>{% asset_img 20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg 800 %}</p>
+<p>写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）<br>
+<img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-26_f63948a7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-40-26"
+	
+	
+></p>
 <p>保存退出</p>
 <p>建议上述编辑的内容都用cat输出检查一下</p>
 <h3 id="root用户创建密码">root用户创建密码
@@ -558,7 +607,16 @@ reboot
 <p>好了，大功告成</p>
 <pre><code class="language-Shell">reboot
 </code></pre>
-<p>{% asset_img 20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg 800 %}</p>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-42-43_c78205c3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-42-43"
+	
+	
+></p>
 
 </section>
 
@@ -582,47 +640,61 @@ reboot
      
     
         
-    <div class="disqus-container">
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
     <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
             });
         }
-    })
-</script>
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
 
     
 
@@ -742,7 +814,7 @@ reboot
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

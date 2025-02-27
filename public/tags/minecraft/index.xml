@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Minecraft on WinNote</title>
-        <link>http://localhost:1313/tags/minecraft/</link>
+        <link>http://localhost:10354/tags/minecraft/</link>
         <description>Recent content in Minecraft on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>给docker容器内配置中文环境(minecraft开服相关)</title>
-        <link>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+        <link>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+        <guid>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
         <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815141238.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815141238.png&#34;
 	
 	
 	
@@ -31,7 +31,7 @@
 &lt;/h2&gt;&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815121544.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815121544.png&#34;
 	
 	
 	
@@ -53,7 +53,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！&lt;br&gt;
 出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123217.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123217.png&#34;
 	
 	
 	
@@ -61,7 +61,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123240.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123240.png&#34;
 	
 	
 	
@@ -72,7 +72,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量
 &lt;/h2&gt;&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;&lt;br&gt;
 确定环境变量生效了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123341.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123341.png&#34;
 	
 	
 	
@@ -87,7 +87,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;locale -a
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123200.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123200.png&#34;
 	
 	
 	
@@ -102,7 +102,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132128.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132128.png&#34;
 	
 	
 	
@@ -127,7 +127,7 @@ ENV LANG zh_CN.UTF-8
 &lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;docker build -t jre8u342_ch .
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123827.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123827.png&#34;
 	
 	
 	
@@ -145,7 +145,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;因为dockerfile里已经设置过&lt;code&gt;WORKDIR&lt;/code&gt;了所以不需要&lt;code&gt;-w&lt;/code&gt;参数&lt;/p&gt;
 &lt;p&gt;这下不会报英文了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124038.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124038.png&#34;
 	
 	
 	
@@ -153,7 +153,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124056.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124056.png&#34;
 	
 	
 	
@@ -162,7 +162,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 游戏里也是中文环境的返回信息&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124137.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124137.png&#34;
 	
 	
 	
@@ -175,7 +175,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;先导入这个镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132343.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132343.png&#34;
 	
 	
 	
@@ -184,7 +184,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 然后简单配置一下端口和mc服务器目录就可以了,和上面的&lt;code&gt;docker run&lt;/code&gt;其实是一样的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132446.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132446.png&#34;
 	
 	
 	
@@ -220,7 +220,7 @@ rcon.port=25575
 &lt;pre&gt;&lt;code&gt;mcrcon -H 服务器地址 -p your_passwd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后就可以一样敲各种minecraft管理命令了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815125134.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815125134.png&#34;
 	
 	
 	
@@ -229,7 +229,7 @@ rcon.port=25575
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;好了不说了博主我要去挖矿开荒了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133408.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133408.png&#34;
 	
 	
 	
@@ -237,7 +237,7 @@ rcon.port=25575
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133429.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133429.png&#34;
 	
 	
 	
@@ -257,11 +257,11 @@ rcon.port=25575
         </item>
         <item>
         <title>SourceCraft服务器</title>
-        <link>http://localhost:1313/posts/mc/</link>
+        <link>http://localhost:10354/posts/mc/</link>
         <pubDate>Sun, 07 Nov 2021 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/mc/</guid>
-        <description>&lt;p&gt;{% asset_img 20211107_114809_QQ_20211107114745.png %}&lt;/p&gt;
+        <guid>http://localhost:10354/posts/mc/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/MC/2025-02-27-23-58-20_41d3fcaa.png" alt="Featured image of post SourceCraft服务器" /&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;Java服务器地址：mc.winotmk.com:25465&lt;br&gt;
 基岩服务器地址：mc.winotmk.com:19132&lt;/p&gt;
 &lt;p&gt;网站：&lt;br&gt;
@@ -278,7 +278,16 @@ Web地图：&lt;a class=&#34;link&#34; href=&#34;http://mcmap.winotmk.com&#34;  
 Lobby&lt;br&gt;
 MainWorld -Nether -TheEnd&lt;br&gt;
 LyhWorld&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211118_131504__Map.jpg %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-58-52_69aad3ef.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-58-52&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;现有传送门：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Lobby去塔顶&lt;/li&gt;
@@ -323,7 +332,16 @@ LyhWorld&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;首先选择一个版本&lt;br&gt;
 如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版&lt;br&gt;
 或者在windows和MAC上玩Java版&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211118132752.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-11_9e56d9af.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-11&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;附上Windows游戏购买链接&lt;br&gt;
 java：&lt;a class=&#34;link&#34; href=&#34;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&lt;/a&gt;&lt;br&gt;
@@ -343,20 +361,65 @@ java：&lt;a class=&#34;link&#34; href=&#34;https://www.minecraft.net/zh-hans/st
 &lt;h4 id=&#34;下载客户端&#34;&gt;下载客户端
 &lt;/h4&gt;&lt;p&gt;运行HMCL登陆器&lt;/p&gt;
 &lt;p&gt;登录方式选离线模即可，写个名字，即游玩服务器时的名字&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211107_164216___20211107164202.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-23_b3cad586.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-23&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;ps.如果启动失败请确保使用了java17&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211107_165918___20211107164459.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-32_c5b58d87.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-32&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;进游戏选择&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211107_164108___20211107164032.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-41_39df0b39.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-41&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;第一次进服务器需要按T&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;然后输入/reg 密码 密码&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;注册&lt;/p&gt;
 &lt;p&gt;enjoy！&lt;/p&gt;
 &lt;h3 id=&#34;基岩版连接服务器&#34;&gt;基岩版连接服务器
 &lt;/h3&gt;&lt;p&gt;启动游戏选服务器，添加服务器&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211107_205807_QQ_20211107205503.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-51_9e2d5ea9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-51&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;然后输入地址mc.winotmk.com端口19132&lt;/p&gt;
-&lt;p&gt;{% asset_img 20211107_205827_QQ_20211107205427.png %}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-59_8d4c333a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-59&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;服务器插件列表&#34;&gt;服务器插件列表
 &lt;/h2&gt;&lt;p&gt;以下部分玩家有兴趣可看&lt;/p&gt;
 &lt;p&gt;插件有功能类和玩法类多种，简单记录一下目前所有的插件&lt;/p&gt;
@@ -393,8 +456,17 @@ java：&lt;a class=&#34;link&#34; href=&#34;https://www.minecraft.net/zh-hans/st
 &lt;li&gt;&lt;del&gt;wolfyutilities-1.7.2.0&lt;/del&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;actionhealth&#34;&gt;ActionHealth
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_103036_77a753a3753ee2059b26bcd92b4c7a7d435c2a3e.png %}&lt;br&gt;
-在物品栏上显示血量&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-21_f74c2081.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-21&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在物品栏上显示血量&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/action-bar-health.2661/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.spigotmc.org/resources/action-bar-health.2661/&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;ancientgates&#34;&gt;AncientGates
@@ -432,7 +504,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;blocklocker&#34;&gt;BlockLocker
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_111619_41f1202f45cd6bc7d4f8574c9e32ec12d9b92aef.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-32_48cd7dd1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-32&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;上锁插件&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;使用方法&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 放置木牌&lt;/strong&gt;&lt;br&gt;
@@ -460,7 +541,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 商店页面编辑器：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1273221&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1273221&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;catseedlogin&#34;&gt;CatSeedLogin
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_112829_171910d8x8aft4h64fczc7.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-50_8e0ba904.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-50&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;种子猫登录插件&lt;br&gt;
 基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe&lt;/p&gt;
 &lt;blockquote&gt;
@@ -487,7 +577,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;p&gt;MCBBS:&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=847859&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=847859&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;dynmap&#34;&gt;&lt;del&gt;Dynmap&lt;/del&gt;
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_120618_QQ_20211107120538.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-19_f4d458dc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-19&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;20230825更新：会消耗过多云服务资源暂移除&lt;/p&gt;
 &lt;p&gt;Web端卫星地图，还可3d显示，实时显示在线玩家位置，上帝视角&lt;/p&gt;
 &lt;p&gt;Mcbbs:&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=990539&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -499,7 +598,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=619883&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=619883&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;geyser-spigot&#34;&gt;Geyser-Spigot
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_122221_171511lt5zn1n8hash1d8z.png.thumb.jpg %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-48_5ffb87f9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-48&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;该插件让基岩版玩家可以进入本服务器&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://geysermc.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://geysermc.org/&lt;/a&gt;&lt;br&gt;
@@ -511,7 +619,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/thread-1141658-1-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/thread-1141658-1-1.html&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;gsit&#34;&gt;GSit
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_124600_032148vqs1sp8y86p8k6pk.jpg.thumb.jpg %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-59_7753d937.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-59&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;座椅子插件&lt;/p&gt;
 &lt;p&gt;/gsit(/sit) 坐在方块上&lt;br&gt;
 /glgy(/lay) 躺在方块上&lt;br&gt;
@@ -523,27 +640,63 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;luckperms&#34;&gt;LuckPerms
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_124934_534e2167e153aa1cbba149484e5d84fe15ab431a.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-10_710adb1e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-10&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;权限管理&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=676818&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=676818&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/luckperms.28140/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.spigotmc.org/resources/luckperms.28140/&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;miaochat&#34;&gt;&lt;del&gt;MiaoChat&lt;/del&gt;
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_130410_player.png %}&lt;br&gt;
-聊天功能增加&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-20_c60723e4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-20&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;聊天功能增加&lt;/p&gt;
 &lt;p&gt;20230825更新：移除，被曝有后台&lt;/p&gt;
 &lt;p&gt;聊天的时候输出%数字，代表展示手上物品&lt;br&gt;
 %1-9 代表快捷物品栏1-9号格子的物品&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631240&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631240&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;nekomaid&#34;&gt;NekoMaid
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_130817_005546dtz88n1h8s3fff2h.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-35_f2094a00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-35&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;Wed后台管理插件&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1230139&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1230139&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;pocketgamespo&#34;&gt;PocketGamesPo
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_132118_101703t8dh21764rt0tj2a.png.thumb.jpg %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-03-01_2e632f3e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-03-01&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;34+口袋游戏|随时随地想玩就玩&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;玩家命令:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -569,7 +722,16 @@ MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.p
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=913753&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=913753&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;residence&#34;&gt;Residence
-&lt;/h4&gt;&lt;p&gt;{% asset_img 20211107_132529_114058j3twwd0zpthmq8op.png %}&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-03-12_f6ad867b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-03-12&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;圈地插件&lt;/p&gt;
 &lt;p&gt;/res ? —— 查看帮助&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631343&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

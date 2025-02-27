@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Github on WinNote</title>
-        <link>http://localhost:1313/tags/github/</link>
+        <link>http://localhost:10354/tags/github/</link>
         <description>Recent content in Github on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/github/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/github/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Git常用命令</title>
-        <link>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:10354/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:10354/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;h3 id=&#34;1-进入本地仓库目录&#34;&gt;&lt;strong&gt;1. 进入本地仓库目录&lt;/strong&gt;
 &lt;/h3&gt;&lt;p&gt;打开终端（或 Git Bash），切换到仓库根目录：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /path/to/your-repo
@@ -156,10 +156,10 @@ git config -l&lt;br&gt;
         </item>
         <item>
         <title>Hugo_GithubAction自动部署到阿里云OSS</title>
-        <link>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
+        <link>http://localhost:10354/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
         <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
+        <guid>http://localhost:10354/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
         <description>&lt;p&gt;整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事&lt;br&gt;
 参考文章：&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -297,11 +297,11 @@ git commit -m &amp;quot;更新主题&amp;quot;
         </item>
         <item>
         <title>生成秘钥连接至github————用来推hexo</title>
-        <link>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <link>http://localhost:10354/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
+        <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
-        <description>&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
+        <guid>http://localhost:10354/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-30_51beb5cc.png" alt="Featured image of post 生成秘钥连接至github————用来推hexo" /&gt;&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
 &lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;邮箱自然是我的git注册邮箱&lt;/p&gt;
@@ -310,21 +310,25 @@ git commit -m &amp;quot;更新主题&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
 &lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618002355.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-30-51_e913dfa6.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-30-51&#34;
 	
 	
 &gt;&lt;br&gt;
 打开/root/.ssh/id_ed25519.pub&lt;br&gt;
 复制到这里&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230618002554.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-30_51beb5cc.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-31-30&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -334,24 +338,100 @@ git commit -m &amp;quot;更新主题&amp;quot;
 &lt;h2 id=&#34;测试&#34;&gt;测试
 &lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618003332.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-41_8f57328d.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-31-41&#34;
 	
 	
 &gt;&lt;br&gt;
 这里输入yes&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230618003428.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/2025-02-27-23-31-51_592f0bdc.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
+		alt=&#34;2025-02-27-23-31-51&#34;
+	
 	
 &gt;&lt;br&gt;
 成功！&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>hexo&#43;github</title>
+        <link>http://localhost:10354/posts/hexo&#43;github/</link>
+        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:10354/posts/hexo&#43;github/</guid>
+        <description>&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://winotmk.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;github：&lt;a class=&#34;link&#34; href=&#34;https://github.com/winotmk/winotmk.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/winotmk/winotmk.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题&lt;/p&gt;
+&lt;p&gt;主要参考：&lt;a class=&#34;link&#34; href=&#34;https://cuifengwei.com/2020/02/21/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0GitHub/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基于树莓派搭建Hexo博客部署到GitHub/Gitee&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;前期第二参考：&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/44233946&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hexo——轻量、简易、高逼格的博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;更详细的安装过程：&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26625249&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub+Hexo 搭建个人网站详细教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;hexo官方文档：&lt;a class=&#34;link&#34; href=&#34;https://hexo.io/docs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hexo.io/docs/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;hexo博客文档（似乎和上面有不少内容重叠）：&lt;a class=&#34;link&#34; href=&#34;https://theme-next.js.org/docs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://theme-next.js.org/docs/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装hexo&#34;&gt;安装hexo
+&lt;/h2&gt;&lt;p&gt;下载armv7版本的node.js：&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/en/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nodejs下载&lt;/a&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;配置github&#34;&gt;配置github
+&lt;/h2&gt;&lt;p&gt;git key配置：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_36711388/article/details/88780372&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;github每次需要输入密码和用户名的问题&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;取消使用key令牌后还要输入密码：&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1095516&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;取消 SSH 私钥密码&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;后期配置&#34;&gt;后期配置
+&lt;/h2&gt;&lt;h3 id=&#34;hexo配置&#34;&gt;hexo配置
+&lt;/h3&gt;&lt;p&gt;官方文档：&lt;a class=&#34;link&#34; href=&#34;https://hexo.io/zh-cn/docs/configuration&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hexo.io/zh-cn/docs/configuration&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;主题&#34;&gt;主题
+&lt;/h3&gt;&lt;p&gt;Next主题github：&lt;a class=&#34;link&#34; href=&#34;https://github.com/next-theme/hexo-theme-next&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/next-theme/hexo-theme-next&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Next主题的文档(ps.页面样式好看可参考)：&lt;a class=&#34;link&#34; href=&#34;http://theme-next.iissnan.com/third-party-services.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;第三方服务集成&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Next主题代码框高亮预览设置：&lt;a class=&#34;link&#34; href=&#34;https://theme-next.js.org/highlight/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://theme-next.js.org/highlight/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;资产文件夹&#34;&gt;资产文件夹
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hexo.io/docs/asset-folders&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hexo.io/docs/asset-folders&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;访客统计&#34;&gt;访客统计
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.dazhuanlan.com/jane2382/topics/1350442https:/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DevOps 访客数统计 &amp;amp; google analytics 数据分析&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://qiuyiwu.github.io/2019/01/26/Hexo-View/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;将文章视图添加到您的 Hexo 博客&lt;/a&gt;(有LeanCloud和Firebase比较分析）&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhangjh.me/2016/04/12/hexo-visit-analytics-md/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;给hexo博客文章添加阅读次数统计&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;hexo next主题的leancloud安全插件github：&lt;a class=&#34;link&#34; href=&#34;https://github.com/theme-next/hexo-leancloud-counter-security&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/theme-nex&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;上面链接的说明：&lt;a class=&#34;link&#34; href=&#34;https://leaferx.online/2018/02/11/lc-security/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Leancloud访客统计插件重大安全漏洞修复指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Firebase:&lt;a class=&#34;link&#34; href=&#34;https://console.firebase.google.com/project/winnote-visitor/overview&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://console.firebase.google&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;评论&#34;&gt;评论
+&lt;/h3&gt;&lt;p&gt;畅言：&lt;a class=&#34;link&#34; href=&#34;https://changyan.kuaizhan.com/v3/changyan/overview&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://changyan.kuaizhan.com/v3/changyan/overview&lt;/a&gt;&lt;br&gt;
+valine：&lt;a class=&#34;link&#34; href=&#34;https://valine.js.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://valine.js.org&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;h3 id=&#34;配置vscode&#34;&gt;配置vscode：
+&lt;/h3&gt;&lt;p&gt;本来都是用&lt;strong&gt;putty&lt;/strong&gt;打指令，用&lt;strong&gt;WinSCP&lt;/strong&gt;访问我的目录操作的，但是&lt;strong&gt;WinSCP&lt;/strong&gt;自带的文本编辑过与拉跨，有几次多打空格没看出来导致直接&lt;code&gt;hexo g&lt;/code&gt;失败，后来突发奇想为啥不找个轻量级的IDE直接去写这些呢，于是用起了vscode&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/weixin_42592326/article/details/108058711https:/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Vscode配置ftp连接远程服务器（上传本地文件）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;不过自己测试发现不好用，于是用了&lt;strong&gt;SSH FS&lt;/strong&gt;这个vscode插件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_34769573/article/details/80445681&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;相对路径./与../区别&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         

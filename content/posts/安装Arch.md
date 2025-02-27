@@ -1,5 +1,6 @@
 ---
 title: 安装ArchLinux系统（详细过程）
+date: 2021-10-25
 tags:
   - linux
 ---
@@ -25,7 +26,7 @@ https://archlinux.org/download/
 下载发行版的Linux的ISO
 然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便
 
-{% asset_img 20211024_224012.png 800 %}
+![2025-02-27-23-39-41](http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-41_6fe1b0ee.png)
 <!-- more -->
 
 然后重启电脑从U盘启动
@@ -37,16 +38,14 @@ https://archlinux.org/download/
 ```Shell
 pacman -Syyy
 ```
-
-{% asset_img 20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png 800 %}
+![2025-02-27-23-39-55](http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-55_7733f272.png)
 
 ### 检查硬盘
 
 ```Shell
 lsblk
 ```
-
-{% asset_img 20211024_231805.png 500 %}
+![2025-02-27-23-40-07](http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-07_d009c4a5.png)
 
 ### 建立分区
 
@@ -150,8 +149,7 @@ nano /etc/hosts
 ```
 
 写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）
-
-{% asset_img 20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg 800 %}
+![2025-02-27-23-40-26](http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-26_f63948a7.png)
 
 保存退出
 
@@ -268,5 +266,5 @@ pacman -S noto-fonts-cjk
 ```Shell
 reboot
 ```
-{% asset_img 20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg 800 %}
+![2025-02-27-23-42-43](http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-42-43_c78205c3.png)
 

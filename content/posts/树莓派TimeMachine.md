@@ -1,13 +1,13 @@
 ---
 title: 树莓派上架设TimeMachine服务
+date: 2021-10-14
 tags:
   - linux
   - rashbeerypi
+image: http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/2025-02-27-23-44-08_12ebde84.png
 ---
 
-
-{% asset_img 20211013_002640.png 800 %}
-
+![2025-02-27-23-44-08 [hugo-no-render]](http://pictures.winotmk.com/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/2025-02-27-23-44-08_12ebde84.png)
 
 
 ## 命令

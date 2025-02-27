@@ -3,7 +3,6 @@ title: ArchLinux命令集
 date: 2021-10-24
 tags:
     - linux
-
 ---
 
 刚装完archlinux后ifconfig无法使用?

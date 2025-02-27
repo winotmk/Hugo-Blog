@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=10354&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
 <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/docker01/'>
+<link rel='canonical' href='http://localhost:10354/posts/docker01/'>
 
 <link rel="stylesheet" href="/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css"><meta property='og:title' content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
 <meta property='og:description' content=" 一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的\n">
-<meta property='og:url' content='http://localhost:1313/posts/docker01/'>
+<meta property='og:url' content='http://localhost:10354/posts/docker01/'>
 <meta property='og:site_name' content='WinNote'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='hexo' /><meta property='article:tag' content='next' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='阿里云' /><meta property='article:tag' content='eci' /><meta property='article:published_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-05T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行">
@@ -451,7 +451,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 05, 2023</time>
+                <time class="article-time--published">2023-08-05</time>
             </div>
         
 
@@ -515,11 +515,13 @@
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）<br>
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的<br>
 最后成品的结构大致如下图：</p>
-<p><img src="/images/20230829140549.png"
+<p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-09-02_461c3121.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-09-02"
 	
 	
 ></p>
@@ -532,20 +534,24 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 <strong>3.ddns</strong><br>
 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像</p>
 <p>还挂了一个NAS盘：<br>
-<img src="/images/20230829142400.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-09-26_46c6e19a.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-09-26"
 	
 	
 ><br>
 挂载以后：<br>
-<img src="/images/20230829142501.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-09-35_bc212f63.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-09-35"
 	
 	
 ><br>
@@ -967,11 +973,13 @@ tail -f /start_ssh.log
 <p>启动脚本，主要启动了ssh服务，并且用<code>tail -f</code>让这个容器一直运行以方便我们来连接</p>
 <h4 id="313-开始构建镜像">3.1.3 开始构建镜像
 </h4><p>先<code>CD</code>到Dockerfile所在的目录<br>
-<img src="/images/20230829135356.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-10-57_85fedbc9.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-10-57"
 	
 	
 ></p>
@@ -1015,11 +1023,13 @@ node -v
 git -v
 </code></pre>
 <p>输出：<br>
-<img src="/images/20230829124045.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-11-11_3d59334a.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-11-11"
 	
 	
 ><br>
@@ -1028,11 +1038,13 @@ git -v
 </h4><h5 id="设置">设置
 </h5><p>毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再<code>commit</code>为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢<br>
 接下来设置root密码和重启ssh服务<br>
-<img src="/images/20230829124114.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-11-21_0c7fd65b.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-11-21"
 	
 	
 ></p>
@@ -1041,33 +1053,39 @@ git -v
 service ssh restart
 </code></pre>
 <p>尝试使用PuTTY进行SSH <a class="link" href="mailto:root@127.0.0.1" >root@127.0.0.1</a>登录：<br>
-<img src="/images/20230829123658.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-11-33_fdc9ecda.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-11-33"
 	
 	
 ><br>
 成功!!!<br>
 接下来配置git和ssh，要生成新的ssh公钥<br>
 详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent<br>
-<img src="/images/20230829124332.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-11-48_647a6186.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-11-48"
 	
 	
 ></p>
 <pre><code>ssh-keygen -t ed25519 -C &quot;github邮箱@qq.com&quot;
 </code></pre>
 <p>得到密钥默认在<code>/root/.ssh/id_ed25519.pub</code><br>
-<img src="/images/20230829124753.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-12-13_dd9d9ecb.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-12-13"
 	
 	
 ><br>
@@ -1075,11 +1093,13 @@ service ssh restart
 测试SSH连接：</p>
 <pre><code>ssh -T git@github.com
 </code></pre>
-<p><img src="/images/20230829125208.png"
+<p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-12-23_9f4a79cd.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-12-23"
 	
 	
 ><br>
@@ -1126,20 +1146,24 @@ service ssh restart
 </h5><p>之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧<br>
 打开Workbench远程连接，启动ssh<br>
 由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录<br>
-<img src="/images/20230811153438.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-14-08_59350d93.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-14-08"
 	
 	
 ><br>
 使用PuTTY工具登录成功！！<br>
-<img src="/images/20230811153400.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-13-59_dd471be1.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-13-59"
 	
 	
 ><br>
@@ -1217,39 +1241,47 @@ pasv_max_port=31000
 <p>来设置端口<br>
 注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧</p>
 <p>*这里遇到过一个小坑坑<br>
-<img src="/images/20230829155702.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-14-45_1313f14d.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-14-45"
 	
 	
 ><br>
 构建器报错，一直卡在<code>Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).</code><br>
-<img src="/images/20230829155358.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-15-01_61908eb5.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-15-01"
 	
 	
 ><br>
 自己在容器内运行<code>service vsftpd start</code>的时候同样如此，一般这样是因为<code>vsftpd.conf</code>文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把<code>vsftpd.conf</code>打开再保存一下就可以成功运行<code>service vsftpd start</code><br>
 我发现这个文件的格式是UTF-8 CRLF<br>
-<img src="/images/20230829155602.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-15-30_14a47584.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-15-30"
 	
 	
 ><br>
 修改为LF<br>
-<img src="/images/20230829155623.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-15-38_b5d21031.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-15-38"
 	
 	
 ><br>
@@ -1276,11 +1308,13 @@ pasv_max_port=31000
     >https://github.com/jeessy2/ddns-go</a><br>
 先贴上官方镜像的层：<br>
 <strong>jeessy/ddns-go</strong><br>
-<img src="/images/20230904184205.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-16-07_a03a145f.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-16-07"
 	
 	
 ><br>
@@ -1369,11 +1403,13 @@ fi
 阿里云提供容器镜像服务，我自己玩开通个人实例即可<br>
 <a class="link" href="https://cr.console.aliyun.com/cn-shanghai/instances"  target="_blank" rel="noopener"
     >https://cr.console.aliyun.com/cn-shanghai/instances</a></p>
-<p><img src="/images/20230811150239.png"
+<p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-16-41_03b9efc6.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-16-41"
 	
 	
 ></p>
@@ -1393,20 +1429,24 @@ registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
 <p>再分别<code>push</code>即可</p>
 <h3 id="42-在阿里云上使用容器实例eci运行镜像">4.2 在阿里云上使用容器实例（ECI）运行镜像
 </h3><p>阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&gt;生成&gt;部署&gt;关闭的服务来说，花不了几毛钱</p>
-<p><img src="/images/20230811151948.png"
+<p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-16-51_c8efac34.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-16-51"
 	
 	
 ></p>
 <p>然后就能看到我们上传的镜像<br>
-<img src="/images/20230811152250.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-16-59_7422cb6f.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-16-59"
 	
 	
 ></p>
@@ -1423,11 +1463,13 @@ ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 
 <p>博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站<a class="link" href="https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/"  target="_blank" rel="noopener"
     >ECI价格计算附表</a></p>
 <h3 id="52-用模板创建eci">5.2 用模板创建eci
-</h3><p><img src="/images/20230907171351.png"
+</h3><p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-17-18_4d97b3f6.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-17-18"
 	
 	
 ><br>
@@ -1500,11 +1542,13 @@ Volume:
 <p>这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns<br>
 <code>Command:</code>写法目测类似dockerfile里的<code>CMD</code>，我习惯做好启动sh脚本就是为了方便这里再调用<br>
 最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录<br>
-<img src="/images/20230829142501.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-17-56_bc212f63.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-17-56"
 	
 	
 ><br>
@@ -1514,30 +1558,36 @@ Volume:
 <pre><code>eci run -f hexo_debian_eci.yaml -w 20
 </code></pre>
 <p>不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！<br>
-<img src="/images/20230907174209.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-18-19_748517aa.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-18-19"
 	
 	
 ></p>
 <h2 id="6-hexo本地编辑环境设置如何用vscode舒服的写md文档">6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
 </h2><h3 id="61-vscodessh-fs插件配置">6.1 VSCodeSSH FS插件配置
-</h3><p><img src="/images/20230908113634.png"
+</h3><p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-18-33_e39a872e.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-18-33"
 	
 	
 ><br>
 简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便<br>
-<img src="/images/20230908113824.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-18-42_2bdf1198.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-18-42"
 	
 	
 ><br>
@@ -1545,30 +1595,36 @@ Volume:
 <h3 id="62-markdown-paste插件配置">6.2 Markdown Paste插件配置
 </h3><p>一个很方便的在VScode里直接粘图的插件</p>
 <h4 id="配置">配置：
-</h4><p><img src="/images/20230908114845.png"
+</h4><p><img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-18-51_08d61cb4.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-18-51"
 	
 	
 ><br>
 会用时间来命名图片<br>
-然后会将图片放入MD文件目录下的<code>images</code>下</p>
-<p><img src="/images/20230908115038.png"
+然后会将图片放入MD文件目录下的<code>images</code>下<br>
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-19-01_bae3735a.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-19-01"
 	
 	
 ></p>
 <p>然后文件》首选项》键盘快捷方式<br>
-<img src="/images/20230908115303.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-19-19_690acbb0.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-19-19"
 	
 	
 ><br>
@@ -1576,21 +1632,25 @@ Volume:
 配置完成！</p>
 <h4 id="使用">使用：
 </h4><p>截图我习惯用Sinpaste，按F1就能截图<br>
-<img src="/images/20230908115743.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-19-36_68b61e41.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-19-36"
 	
 	
 ><br>
 然后点右下角复制按钮<br>
 在VScode的markdown文档里<code>ctrl+alt+a</code>就能粘图了！<br>
-<img src="/images/20230908113947.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-19-45_282c0fc0.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-19-45"
 	
 	
 ><br>
@@ -1599,11 +1659,13 @@ Volume:
 </h3><p>先把images文件夹单独放到工作区里<br>
 然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令<br>
 sftp.json目录下会出现一个名为的基本配置文件.vscode<br>
-<img src="/images/20230908121346.png"
+<img src="http://pictures.winotmk.com/Docker01/2025-02-28-00-19-58_4d3f4080.png"
 	
 	
 	
 	loading="lazy"
+	
+		alt="2025-02-28-00-19-58"
 	
 	
 ><br>
@@ -1746,47 +1808,61 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode<br>
      
     
         
-    <div class="disqus-container">
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
     <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
             });
         }
-    })
-</script>
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
 
     
 
@@ -1906,7 +1982,7 @@ sftp.json目录下会出现一个名为的基本配置文件.vscode<br>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

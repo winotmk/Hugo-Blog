@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=10354&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ ">
 <title>linux文件和目录权限</title>
 
-<link rel='canonical' href='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
+<link rel='canonical' href='http://localhost:10354/posts/linux%E6%9D%83%E9%99%90/'>
 
 <link rel="stylesheet" href="/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css"><meta property='og:title' content="linux文件和目录权限">
-<meta property='og:description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n">
-<meta property='og:url' content='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
+<meta property='og:description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ ">
+<meta property='og:url' content='http://localhost:10354/posts/linux%E6%9D%83%E9%99%90/'>
 <meta property='og:site_name' content='WinNote'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2021-10-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-10-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
 <meta name="twitter:title" content="linux文件和目录权限">
-<meta name="twitter:description" content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ {% asset_img 20211012_231624_2018091016360849.png 800 %}\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ "><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
@@ -344,6 +344,19 @@
 
     <footer class="article-time">
         
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021-10-24</time>
+            </div>
+        
 
         
             <div>
@@ -365,7 +378,7 @@
             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M8 14l0 .01" /><path d="M12 14l0 .01" /><path d="M16 14l0 .01" /><path d="M8 17l0 .01" /><path d="M12 17l0 .01" /><path d="M16 17l0 .01" /></svg>
             <time class="article-time--reading">
                 <time class="article-time--reading">
-                    字数: 1175
+                    字数: 1165
                 </time>
             </time>
         </div>
@@ -432,7 +445,16 @@ lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; hom
 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/
 </code></pre>
 <!-- more -->
-<p>{% asset_img 20211012_231624_2018091016360849.png 800 %}</p>
+<p><img src="http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-11_2249d00f.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-54-11"
+	
+	
+></p>
 <p>图片来源：<a class="link" href="https://blog.csdn.net/zhuoya_/article/details/77418413"  target="_blank" rel="noopener"
     >https://blog.csdn.net/zhuoya_/article/details/77418413</a></p>
 <p>共显示了七列信息，从左至右依次为：权限、文件数、归属用户、归属群组、文件大小、创建日期、文件名称<br>
@@ -502,7 +524,16 @@ d ：第一位表示文件类型</p>
 rwx rw- r&ndash;<br>
 7    6    4<br>
 三个一组,rwx权限分别对应421相加得7,rw-对应42相加,r&ndash;对应4</p>
-<p>{% asset_img 20211012_232003_20180910175047158.gif 500 %}</p>
+<p><img src="http://pictures.winotmk.com/Linux%E6%9D%83%E9%99%90/2025-02-27-23-54-26_341c9e8c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-54-26"
+	
+	
+></p>
 <p>图片来源：<a class="link" href="http://man.linuxde.net/chmod"  target="_blank" rel="noopener"
     >http://man.linuxde.net/chmod</a></p>
 <p>举例：-rw-r&ndash;r&ndash;，即为644权限<br>
@@ -606,47 +637,61 @@ u:所有者, g:所属组,o:其他人,a:所有;
      
     
         
-    <div class="disqus-container">
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
     <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
             });
         }
-    })
-</script>
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
 
     
 
@@ -766,7 +811,7 @@ u:所有者, g:所属组,o:其他人,a:所有;
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6e41f30ac73d910b93ca490f6997cfe67ffc2ae732e5259b236ee69467402550.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

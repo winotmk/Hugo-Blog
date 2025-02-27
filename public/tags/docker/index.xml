@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Docker on WinNote</title>
-        <link>http://localhost:1313/tags/docker/</link>
+        <link>http://localhost:10354/tags/docker/</link>
         <description>Recent content in Docker on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>calibre_web的pdf封面提取问题</title>
-        <link>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
+        <link>http://localhost:10354/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</link>
         <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
+        <guid>http://localhost:10354/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;p&gt;在用&lt;code&gt;johngong/calibre-web:latest&lt;/code&gt;这个镜像 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;&lt;br&gt;
 作为自己nas上的图书馆时发现pdf文件无法生成封面，&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925124359.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925124359.png&#34;
 	
 	
 	
@@ -34,7 +34,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;最终有效的解决方法的折腾流程&#34;&gt;最终有效的解决方法的折腾流程
 &lt;/h2&gt;&lt;p&gt;我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123504.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123504.png&#34;
 	
 	
 	
@@ -44,7 +44,7 @@
 &gt;&lt;br&gt;
 查看文件：/config/calbre-web/calbre-web.log&lt;br&gt;
 有这么一行：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123738.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123738.png&#34;
 	
 	
 	
@@ -57,7 +57,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;PDF转就转不出来&lt;br&gt;
 所以找到了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123303.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123303.png&#34;
 	
 	
 	
@@ -70,7 +70,7 @@
 &lt;pre&gt;&lt;code&gt;apk add --no-cache imagemagick imagemagick-pdf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925123414.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925123414.png&#34;
 	
 	
 	
@@ -83,7 +83,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/gshang2017/docker/issues/133&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/gshang2017/docker/issues/133&lt;/a&gt;&lt;br&gt;
 如果一编辑图书的元数据就卡死，可用尝试：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925134344.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925134344.png&#34;
 	
 	
 	
@@ -92,7 +92,7 @@
 	
 &gt;&lt;br&gt;
 这两条设置为true,则&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925134613.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925134613.png&#34;
 	
 	
 	
@@ -103,7 +103,7 @@
 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用&lt;/p&gt;
 &lt;h2 id=&#34;弯路&#34;&gt;弯路
 &lt;/h2&gt;&lt;p&gt;这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925140205.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925140205.png&#34;
 	
 	
 	
@@ -124,7 +124,7 @@
 为了试验，我用&lt;code&gt;FROM ubuntu:latest&lt;/code&gt;作为镜像基底，然后：&lt;/p&gt;
 &lt;h3 id=&#34;装calibre-web&#34;&gt;装calibre-web
 &lt;/h3&gt;&lt;p&gt;安装calibre-web：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240925132535.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240925132535.png&#34;
 	
 	
 	
@@ -175,14 +175,14 @@ export LD_LIBRARY_PATH=&amp;quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HO
         </item>
         <item>
         <title>给docker容器内配置中文环境(minecraft开服相关)</title>
-        <link>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+        <link>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+        <guid>http://localhost:10354/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
         <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815141238.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815141238.png&#34;
 	
 	
 	
@@ -197,7 +197,7 @@ export LD_LIBRARY_PATH=&amp;quot;${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HO
 &lt;/h2&gt;&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815121544.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815121544.png&#34;
 	
 	
 	
@@ -219,7 +219,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！&lt;br&gt;
 出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123217.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123217.png&#34;
 	
 	
 	
@@ -227,7 +227,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123240.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123240.png&#34;
 	
 	
 	
@@ -238,7 +238,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量
 &lt;/h2&gt;&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;&lt;br&gt;
 确定环境变量生效了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815123341.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815123341.png&#34;
 	
 	
 	
@@ -253,7 +253,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;locale -a
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123200.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123200.png&#34;
 	
 	
 	
@@ -268,7 +268,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132128.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132128.png&#34;
 	
 	
 	
@@ -293,7 +293,7 @@ ENV LANG zh_CN.UTF-8
 &lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;docker build -t jre8u342_ch .
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123827.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815123827.png&#34;
 	
 	
 	
@@ -311,7 +311,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;因为dockerfile里已经设置过&lt;code&gt;WORKDIR&lt;/code&gt;了所以不需要&lt;code&gt;-w&lt;/code&gt;参数&lt;/p&gt;
 &lt;p&gt;这下不会报英文了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124038.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124038.png&#34;
 	
 	
 	
@@ -319,7 +319,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124056.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124056.png&#34;
 	
 	
 	
@@ -328,7 +328,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 游戏里也是中文环境的返回信息&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815124137.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815124137.png&#34;
 	
 	
 	
@@ -341,7 +341,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;先导入这个镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132343.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132343.png&#34;
 	
 	
 	
@@ -350,7 +350,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 然后简单配置一下端口和mc服务器目录就可以了,和上面的&lt;code&gt;docker run&lt;/code&gt;其实是一样的&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815132446.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815132446.png&#34;
 	
 	
 	
@@ -386,7 +386,7 @@ rcon.port=25575
 &lt;pre&gt;&lt;code&gt;mcrcon -H 服务器地址 -p your_passwd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后就可以一样敲各种minecraft管理命令了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815125134.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240815125134.png&#34;
 	
 	
 	
@@ -395,7 +395,7 @@ rcon.port=25575
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;好了不说了博主我要去挖矿开荒了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133408.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133408.png&#34;
 	
 	
 	
@@ -403,7 +403,7 @@ rcon.port=25575
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240815133429.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240815133429.png&#34;
 	
 	
 	
@@ -423,11 +423,11 @@ rcon.port=25575
         </item>
         <item>
         <title>用容器来运行streamlit</title>
-        <link>http://localhost:1313/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
+        <link>http://localhost:10354/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
         <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724152543.png&#34;
+        <guid>http://localhost:10354/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240724152543.png&#34;
 	
 	
 	
@@ -484,7 +484,7 @@ CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&a
 保持运行并想下次继续用可以&lt;br&gt;
 &lt;code&gt;docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest&lt;/code&gt;&lt;br&gt;
 *用容器跑起来的一些例程APP：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240724152253.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240724152253.png&#34;
 	
 	
 	
@@ -492,7 +492,7 @@ CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&a
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240724152303.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240724152303.png&#34;
 	
 	
 	
@@ -504,10 +504,10 @@ CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&a
         </item>
         <item>
         <title>Linux和docker常用命令</title>
-        <link>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:10354/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;p&gt;还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考&lt;/p&gt;
 &lt;h2 id=&#34;文件操作相关&#34;&gt;文件操作相关
 &lt;/h2&gt;&lt;h3 id=&#34;复制目录&#34;&gt;复制目录
@@ -524,7 +524,7 @@ xz 上传Zmodem
 &lt;h3 id=&#34;挂载u盘&#34;&gt;挂载U盘
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;fdisk -l
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619152526.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619152526.png&#34;
 	
 	
 	
@@ -537,7 +537,7 @@ xz 上传Zmodem
 &lt;pre&gt;&lt;code&gt;mount -t vfat /dev/sda1 /mnt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;来挂载U盘&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619152710.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619152710.png&#34;
 	
 	
 	
@@ -629,11 +629,11 @@ screen -r id或窗口名称
         </item>
         <item>
         <title>软件和网站收集</title>
-        <link>http://localhost:1313/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</link>
+        <link>http://localhost:10354/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</link>
         <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619114459.png&#34;
+        <guid>http://localhost:10354/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619114459.png&#34;
 	
 	
 	
@@ -653,7 +653,7 @@ screen -r id或窗口名称
 &lt;a class=&#34;link&#34; href=&#34;https://kydsj.vip/doku.php?id=wiki:%E8%87%AA%E6%89%98%E7%AE%A1-%E7%94%B5%E5%AD%90%E4%B9%A6%E5%92%8C%E7%BB%BC%E5%90%88%E5%9B%BE%E4%B9%A6%E9%A6%86%E7%B3%BB%E7%BB%9F&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://kydsj.vip/doku.php?id=wiki:自托管-电子书和综合图书馆系统&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;很多开源软件项目分享，分类详细品种丰富&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240619113833.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240619113833.png&#34;
 	
 	
 	
@@ -666,7 +666,7 @@ screen -r id或窗口名称
 &lt;p&gt;LinuxServer.io 文档之家！我们的目标是确保所有镜像都正确记录所有相关信息，以帮助我们的用户入门。除了每个镜像的单独设置指南外，还有与运行 Docker 容器有关的一般信息和最佳实践&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://docs.linuxserver.io/images/docker-calibre-web/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://docs.linuxserver.io/images/docker-calibre-web/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619114936.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619114936.png&#34;
 	
 	
 	
@@ -680,7 +680,7 @@ screen -r id或窗口名称
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.webpagetest.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;www.webpagetest.org&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;感觉是很强的网站性能分析工具&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240806152808.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240806152808.png&#34;
 	
 	
 	
@@ -688,7 +688,7 @@ screen -r id或窗口名称
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240806152822.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240806152822.png&#34;
 	
 	
 	
@@ -699,7 +699,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;又拍云&#34;&gt;又拍云
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.upyun.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.upyun.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806153828.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240806153828.png&#34;
 	
 	
 	
@@ -710,7 +710,7 @@ screen -r id或窗口名称
 &lt;h3 id=&#34;autodl&#34;&gt;autodl
 &lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.autodl.com/market/list&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.autodl.com/market/list&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806153956.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240806153956.png&#34;
 	
 	
 	
@@ -720,7 +720,7 @@ screen -r id或窗口名称
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;b影音文件资料整理&#34;&gt;B.影音/文件/资料整理
 &lt;/h2&gt;&lt;h3 id=&#34;emby&#34;&gt;emby
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619112801.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619112801.png&#34;
 	
 	
 	
@@ -735,7 +735,7 @@ screen -r id或窗口名称
     &gt;https://github.com/MediaBrowser/Emby?tab=readme-ov-file&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://emby.media/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://emby.media/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619112854.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619112854.png&#34;
 	
 	
 	
@@ -744,7 +744,7 @@ screen -r id或窗口名称
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;jellyfin&#34;&gt;jellyfin
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619113420.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619113420.png&#34;
 	
 	
 	
@@ -758,7 +758,7 @@ screen -r id或窗口名称
     &gt;https://github.com/jellyfin/jellyfin&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://jellyfin.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://jellyfin.org/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619113518.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619113518.png&#34;
 	
 	
 	
@@ -776,7 +776,7 @@ screen -r id或窗口名称
 目前自用的docker镜像：&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/johngong/calibre-web&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/r/johngong/calibre-web&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619115310.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619115310.png&#34;
 	
 	
 	
@@ -785,7 +785,7 @@ screen -r id或窗口名称
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;nextcloud&#34;&gt;Nextcloud
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619113143.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619113143.png&#34;
 	
 	
 	
@@ -800,7 +800,7 @@ screen -r id或窗口名称
     &gt;https://github.com/nextcloud&lt;/a&gt;&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://nextcloud.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://nextcloud.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619113206.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619113206.png&#34;
 	
 	
 	
@@ -809,7 +809,7 @@ screen -r id或窗口名称
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;found&#34;&gt;Found
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240719123503.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240719123503.png&#34;
 	
 	
 	
@@ -823,7 +823,7 @@ screen -r id或窗口名称
     &gt;https://www.aalab.com.cn/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;c工具类&#34;&gt;C.工具类
 &lt;/h2&gt;&lt;h3 id=&#34;matomo&#34;&gt;matomo
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240619113019.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240619113019.png&#34;
 	
 	
 	
@@ -844,7 +844,7 @@ screen -r id或窗口名称
 &lt;p&gt;Upverter 是一个模块化的、基于网络的电子电路设计工具，可以完成所有工作——PCB 设计、原理图、自动布线、3D 预览和按照您的确切规格构建订单——用户不再需要为开源项目付费。&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://upverter.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://upverter.com/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240806153057.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240806153057.png&#34;
 	
 	
 	
@@ -852,7 +852,7 @@ screen -r id或窗口名称
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240806153111.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240806153111.png&#34;
 	
 	
 	
@@ -861,7 +861,7 @@ screen -r id或窗口名称
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;manim&#34;&gt;manim
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240814160651.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240814160651.png&#34;
 	
 	
 	
@@ -872,7 +872,7 @@ screen -r id或窗口名称
 &lt;a class=&#34;link&#34; href=&#34;https://www.manim.community/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.manim.community/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;可以做出3B1B那样好看的数学动画（可以用来做视频的工具)&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240814160523.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240814160523.png&#34;
 	
 	
 	
@@ -884,19 +884,12 @@ screen -r id或窗口名称
         </item>
         <item>
         <title>群晖上用容器搭建SVN服务器</title>
-        <link>http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <link>http://localhost:10354/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
         <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231214182733.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;br&gt;
-事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS&lt;br&gt;
+        <guid>http://localhost:10354/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-24-37_b1d8f5bc.png" alt="Featured image of post 群晖上用容器搭建SVN服务器" /&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS&lt;br&gt;
 另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的&lt;/p&gt;
 &lt;p&gt;所用镜像：https://hub.docker.com/r/garethflowers/svn-server&lt;br&gt;
 备选镜像（看起来也很不错，拉取次数也过1M：https://hub.docker.com/r/elleflorio/svn-server&lt;/p&gt;
@@ -905,11 +898,13 @@ screen -r id或窗口名称
 &lt;a class=&#34;link&#34; href=&#34;https://blog.51cto.com/u_12701820/6544028&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.51cto.com/u_12701820/6544028&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;准备镜像&#34;&gt;准备镜像
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231213184128.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-25-08_639c0ca7.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-25-08&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -922,56 +917,68 @@ screen -r id或窗口名称
 &lt;/code&gt;&lt;/pre&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;就能得到一个&lt;code&gt;svn-server.tar&lt;/code&gt;的文件了，把这个文件上传到ContainerManager里&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214164925.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-25-38_13b3756a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
+		alt=&#34;2025-02-28-00-25-38&#34;
 	
-&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214165029.png&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-25-46_4273e443.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-25-46&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后左边的TAG里选容器》新增，选择刚上传的svn-server&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214165249.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-01_7194985a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-01&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置镜像&#34;&gt;配置镜像
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20231214171830.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-14_4d37cb36.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-14&#34;
 	
 	
 &gt;&lt;br&gt;
 镜像用法说明，基本上配置个端口和映射库就行&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214172511.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-23_899aa97e.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-23&#34;
 	
 	
 &gt;&lt;br&gt;
 &lt;code&gt;/SVN_library/SVN_Folder&lt;/code&gt;是我专门创建的新的NAS文件夹&lt;/p&gt;
 &lt;p&gt;之后下一步容器就能启动起来了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/2023121417311214.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-33_ea608804.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-33&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -983,20 +990,24 @@ screen -r id或窗口名称
 &lt;p&gt;（以下部分参考: &lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1650131&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://cloud.tencent.com/developer/article/1650131&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;然后找到&lt;code&gt;/SVN_library/SVN_Folder/WinSVN/conf&lt;/code&gt;，里面是SVN的配置文件了&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214175225.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-48_18f7ff0c.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-48&#34;
 	
 	
 &gt;&lt;br&gt;
 编辑&lt;code&gt;svnserve.conf&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214175133.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-26-57_620c4c5f.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-26-57&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1004,51 +1015,61 @@ screen -r id或窗口名称
 auth-access = write    #授权用户有可写权限&lt;br&gt;
 password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
 &lt;p&gt;编辑&lt;code&gt;passwd&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214175701.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-27-07_4751d042.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-27-07&#34;
 	
 	
 &gt;&lt;br&gt;
 添加了自己的账户，至于分区权限我暂时用不到&lt;/p&gt;
 &lt;p&gt;记得重启容器，服务器部分好像就差不多了&lt;/p&gt;
 &lt;p&gt;最后别忘记路由器上配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214180021.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-27-18_a3f37742.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-27-18&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;测试连接&#34;&gt;测试连接
 &lt;/h2&gt;&lt;p&gt;pc端新建个文件夹，右键SVN CheckOut&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214181003.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-27-27_806109de.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-27-27&#34;
 	
 	
 &gt;&lt;br&gt;
 地址可以输入&lt;code&gt;svn://DDNS的域名:3690/WinSVN&lt;/code&gt;，输入上面&lt;code&gt;passwd&lt;/code&gt;文件里设置好的用户名和密码就好了！！&lt;/p&gt;
 &lt;p&gt;之后就是svn客户端的基本用法了，随便放一个文件尝试上传&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214181456.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-27-37_504ade86.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-27-37&#34;
 	
 	
 &gt;&lt;br&gt;
 很快就传好了，至此这个SVN仓库宣告可用！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20231214181617.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-27-44_56447933.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-27-44&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1056,10 +1077,10 @@ password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
         </item>
         <item>
         <title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</title>
-        <link>http://localhost:1313/posts/docker01/</link>
+        <link>http://localhost:10354/posts/docker01/</link>
         <pubDate>Sat, 05 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/docker01/</guid>
+        <guid>http://localhost:10354/posts/docker01/</guid>
         <description>&lt;style type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;
 .nav-number { 
     display:none !important;
@@ -1077,11 +1098,13 @@ password-db = passwd    #指定用户配置文件，后面会用到&lt;/p&gt;
 最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）&lt;br&gt;
 恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的&lt;br&gt;
 最后成品的结构大致如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829140549.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-02_461c3121.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-02&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1094,20 +1117,24 @@ git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS�
 &lt;strong&gt;3.ddns&lt;/strong&gt;&lt;br&gt;
 因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像&lt;/p&gt;
 &lt;p&gt;还挂了一个NAS盘：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142400.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-26_46c6e19a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-26&#34;
 	
 	
 &gt;&lt;br&gt;
 挂载以后：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-09-35_bc212f63.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-09-35&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1529,11 +1556,13 @@ tail -f /start_ssh.log
 &lt;p&gt;启动脚本，主要启动了ssh服务，并且用&lt;code&gt;tail -f&lt;/code&gt;让这个容器一直运行以方便我们来连接&lt;/p&gt;
 &lt;h4 id=&#34;313-开始构建镜像&#34;&gt;3.1.3 开始构建镜像
 &lt;/h4&gt;&lt;p&gt;先&lt;code&gt;CD&lt;/code&gt;到Dockerfile所在的目录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829135356.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-10-57_85fedbc9.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-10-57&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1577,11 +1606,13 @@ node -v
 git -v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;输出：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124045.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-11_3d59334a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-11&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1590,11 +1621,13 @@ git -v
 &lt;/h4&gt;&lt;h5 id=&#34;设置&#34;&gt;设置
 &lt;/h5&gt;&lt;p&gt;毕竟自用镜像，我习惯直接把比如ssh密钥之类全都配置好，再&lt;code&gt;commit&lt;/code&gt;为一个新镜像，以后就再也不用输密码了，这样确实不安全，但是自己的hexo博客而已，何必为难自己呢&lt;br&gt;
 接下来设置root密码和重启ssh服务&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124114.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-21_0c7fd65b.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-21&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1603,33 +1636,39 @@ git -v
 service ssh restart
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;尝试使用PuTTY进行SSH &lt;a class=&#34;link&#34; href=&#34;mailto:root@127.0.0.1&#34; &gt;root@127.0.0.1&lt;/a&gt;登录：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829123658.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-33_fdc9ecda.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-33&#34;
 	
 	
 &gt;&lt;br&gt;
 成功!!!&lt;br&gt;
 接下来配置git和ssh，要生成新的ssh公钥&lt;br&gt;
 详见：https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124332.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-11-48_647a6186.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-11-48&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;github邮箱@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;得到密钥默认在&lt;code&gt;/root/.ssh/id_ed25519.pub&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829124753.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-12-13_dd9d9ecb.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-12-13&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1637,11 +1676,13 @@ service ssh restart
 测试SSH连接：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230829125208.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-12-23_9f4a79cd.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-12-23&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1688,20 +1729,24 @@ service ssh restart
 &lt;/h5&gt;&lt;p&gt;之前在本机docker内已经配好了ssh服务，讲道理应该启动则开启ssh但是不知为啥没有自动启动，以后再研究吧&lt;br&gt;
 打开Workbench远程连接，启动ssh&lt;br&gt;
 由于我启用ECI时开通了弹性公网IP，所以我可以通过这个IP:22用ssh来登录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811153438.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-14-08_59350d93.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-14-08&#34;
 	
 	
 &gt;&lt;br&gt;
 使用PuTTY工具登录成功！！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811153400.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-13-59_dd471be1.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-13-59&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1779,39 +1824,47 @@ pasv_max_port=31000
 &lt;p&gt;来设置端口&lt;br&gt;
 注意FTP默认20传输数据，21用来listen，所以改得话干脆两个都改吧&lt;/p&gt;
 &lt;p&gt;*这里遇到过一个小坑坑&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155702.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-14-45_1313f14d.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-14-45&#34;
 	
 	
 &gt;&lt;br&gt;
 构建器报错，一直卡在&lt;code&gt;Starting FTP server: vsftpdvsftpd failed - probably invalid config. ... (warning).&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155358.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-01_61908eb5.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-01&#34;
 	
 	
 &gt;&lt;br&gt;
 自己在容器内运行&lt;code&gt;service vsftpd start&lt;/code&gt;的时候同样如此，一般这样是因为&lt;code&gt;vsftpd.conf&lt;/code&gt;文件设置错了，可神奇的是我只要打开dockerDesktop的Files文件管理把&lt;code&gt;vsftpd.conf&lt;/code&gt;打开再保存一下就可以成功运行&lt;code&gt;service vsftpd start&lt;/code&gt;&lt;br&gt;
 我发现这个文件的格式是UTF-8 CRLF&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155602.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-30_14a47584.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-30&#34;
 	
 	
 &gt;&lt;br&gt;
 修改为LF&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829155623.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-15-38_b5d21031.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-15-38&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1838,11 +1891,13 @@ pasv_max_port=31000
     &gt;https://github.com/jeessy2/ddns-go&lt;/a&gt;&lt;br&gt;
 先贴上官方镜像的层：&lt;br&gt;
 &lt;strong&gt;jeessy/ddns-go&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230904184205.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-07_a03a145f.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-07&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -1931,11 +1986,13 @@ fi
 阿里云提供容器镜像服务，我自己玩开通个人实例即可&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://cr.console.aliyun.com/cn-shanghai/instances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://cr.console.aliyun.com/cn-shanghai/instances&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811150239.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-41_03b9efc6.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-41&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1955,20 +2012,24 @@ registry-vpc.cn-shanghai.aliyuncs.com/******:ddns_go_V01
 &lt;p&gt;再分别&lt;code&gt;push&lt;/code&gt;即可&lt;/p&gt;
 &lt;h3 id=&#34;42-在阿里云上使用容器实例eci运行镜像&#34;&gt;4.2 在阿里云上使用容器实例（ECI）运行镜像
 &lt;/h3&gt;&lt;p&gt;阿里云ECI提供这个服务，你可以直接用现有的镜像也可以自己上传（就是上一步镜像服务里上传的镜像）按秒收费！不过作为hexo这种启用&amp;gt;生成&amp;gt;部署&amp;gt;关闭的服务来说，花不了几毛钱&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230811151948.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-51_c8efac34.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-51&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后就能看到我们上传的镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230811152250.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-16-59_7422cb6f.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-16-59&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -1985,11 +2046,13 @@ ECI是 Serverless 和容器化的弹性计算服务。您无需管理底层 ECS 
 &lt;p&gt;博主：比ECS云服务器灵活得多，本地用docker制作好镜像以后，上传，随启随用，用完就释放，成本可以很低,但如果连开一个月，并不会比ECS划算，详见本站&lt;a class=&#34;link&#34; href=&#34;https://winotmk.github.io/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ECI价格计算附表&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;52-用模板创建eci&#34;&gt;5.2 用模板创建eci
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230907171351.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-17-18_4d97b3f6.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-17-18&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -2062,11 +2125,13 @@ Volume:
 &lt;p&gt;这里启了上面做好的3个镜像，分别实现hexo，ftp，还有ddns&lt;br&gt;
 &lt;code&gt;Command:&lt;/code&gt;写法目测类似dockerfile里的&lt;code&gt;CMD&lt;/code&gt;，我习惯做好启动sh脚本就是为了方便这里再调用&lt;br&gt;
 最后一段声明了我的一个阿里云NAS卷，卷里的内容就是我的hexo目录&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230829142501.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-17-56_bc212f63.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-17-56&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -2076,30 +2141,36 @@ Volume:
 &lt;pre&gt;&lt;code&gt;eci run -f hexo_debian_eci.yaml -w 20
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;不出意外的话会返回一个eci的id编号，打开web会发现已经创建成功了！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230907174209.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-19_748517aa.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-19&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;6-hexo本地编辑环境设置如何用vscode舒服的写md文档&#34;&gt;6 hexo本地编辑环境设置————如何用VSCode舒服的写MD文档
 &lt;/h2&gt;&lt;h3 id=&#34;61-vscodessh-fs插件配置&#34;&gt;6.1 VSCodeSSH FS插件配置
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908113634.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-33_e39a872e.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-33&#34;
 	
 	
 &gt;&lt;br&gt;
 简单配置一下服务器地址和用户密码就可以把远程目录映射到工作区里，很方便&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908113824.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-42_2bdf1198.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-42&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -2107,30 +2178,36 @@ Volume:
 &lt;h3 id=&#34;62-markdown-paste插件配置&#34;&gt;6.2 Markdown Paste插件配置
 &lt;/h3&gt;&lt;p&gt;一个很方便的在VScode里直接粘图的插件&lt;/p&gt;
 &lt;h4 id=&#34;配置&#34;&gt;配置：
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908114845.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-18-51_08d61cb4.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-18-51&#34;
 	
 	
 &gt;&lt;br&gt;
 会用时间来命名图片&lt;br&gt;
-然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230908115038.png&#34;
+然后会将图片放入MD文件目录下的&lt;code&gt;images&lt;/code&gt;下&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-01_bae3735a.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-01&#34;
 	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;然后文件》首选项》键盘快捷方式&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908115303.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-19_690acbb0.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-19&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -2138,21 +2215,25 @@ Volume:
 配置完成！&lt;/p&gt;
 &lt;h4 id=&#34;使用&#34;&gt;使用：
 &lt;/h4&gt;&lt;p&gt;截图我习惯用Sinpaste，按F1就能截图&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908115743.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-36_68b61e41.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-36&#34;
 	
 	
 &gt;&lt;br&gt;
 然后点右下角复制按钮&lt;br&gt;
 在VScode的markdown文档里&lt;code&gt;ctrl+alt+a&lt;/code&gt;就能粘图了！&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908113947.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-45_282c0fc0.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-45&#34;
 	
 	
 &gt;&lt;br&gt;
@@ -2161,11 +2242,13 @@ Volume:
 &lt;/h3&gt;&lt;p&gt;先把images文件夹单独放到工作区里&lt;br&gt;
 然后在Ctrl+Shift+P打开命令面板，运行SFTP: config命令&lt;br&gt;
 sftp.json目录下会出现一个名为的基本配置文件.vscode&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20230908121346.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/Docker01/2025-02-28-00-19-58_4d3f4080.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-19-58&#34;
 	
 	
 &gt;&lt;br&gt;

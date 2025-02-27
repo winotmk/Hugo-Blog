@@ -7,7 +7,7 @@ tags:
 ---
 ## 需求
 
-{% asset_img 20211214_123317_Snipaste.png %}
+![2025-02-28-00-04-57](http://pictures.winotmk.com/bat/2025-02-28-00-04-57_7f11abc1.png)
 
 注意Mesh和Texture前加了编号
 

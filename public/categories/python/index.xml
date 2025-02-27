@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on WinNote</title>
-        <link>http://localhost:1313/categories/python/</link>
+        <link>http://localhost:10354/categories/python/</link>
         <description>Recent content in Python on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/categories/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>python格式化字符串的方法</title>
-        <link>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+        <link>http://localhost:10354/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</link>
         <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+        <guid>http://localhost:10354/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
         <description>&lt;p&gt;问题:&lt;br&gt;
 例如&lt;br&gt;
 &lt;code&gt;print(&amp;quot;位置过期:%-6.0f秒&amp;quot;%cachetime)&lt;/code&gt;的&lt;code&gt;%-6.0f&lt;/code&gt;是什么意思？&lt;br&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Streamlit on WinNote</title>
-        <link>http://localhost:1313/tags/streamlit/</link>
+        <link>http://localhost:10354/tags/streamlit/</link>
         <description>Recent content in Streamlit on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/streamlit/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/streamlit/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>用容器来运行streamlit</title>
-        <link>http://localhost:1313/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
+        <link>http://localhost:10354/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</link>
         <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240724152543.png&#34;
+        <guid>http://localhost:10354/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240724152543.png&#34;
 	
 	
 	
@@ -70,7 +70,7 @@ CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&a
 保持运行并想下次继续用可以&lt;br&gt;
 &lt;code&gt;docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest&lt;/code&gt;&lt;br&gt;
 *用容器跑起来的一些例程APP：&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240724152253.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240724152253.png&#34;
 	
 	
 	
@@ -78,7 +78,7 @@ CMD [&amp;quot;streamlit&amp;quot;, &amp;quot;run&amp;quot;, &amp;quot;main.py&a
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:1313/images/20240724152303.png&#34;
+&lt;img src=&#34;http://localhost:10354/images/20240724152303.png&#34;
 	
 	
 	

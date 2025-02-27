@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>WinNote</title>
-        <link>http://localhost:1313/tags/winnote/</link>
+        <link>http://localhost:10354/tags/winnote/</link>
         <description>Recent content on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>WinNote</title>
-        <link>http://localhost:1313/posts/winnote/</link>
+        <link>http://localhost:10354/posts/winnote/</link>
         <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/posts/winnote/</guid>
+        <guid>http://localhost:10354/posts/winnote/</guid>
         <description>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="Featured image of post WinNote" /&gt;&lt;!--![](images/catcat.png)--&gt;
 &lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/catcat_5d2b2bde.png&#34;
 	
