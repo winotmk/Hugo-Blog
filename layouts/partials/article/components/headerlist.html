@@ -32,6 +32,8 @@
     {{ end }}
 
     {{ partialCached "article/components/details" . .RelPermalink }}
+
+
     <!--winotmk 2025.2.25 加入首页预览-->
     <!--https://gohugo.io/methods/page/summary/#article-->
     <div class="summary" onclick="window.location.href='{{ .RelPermalink }}'">

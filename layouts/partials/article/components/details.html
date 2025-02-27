@@ -55,6 +55,7 @@
     {{ $showDate := not .Date.IsZero }}
     {{ $showFooter := or $showDate $showReadingTime }}
     {{ if $showFooter }}
+
     <footer class="article-time">
         {{ if $showDate }}
             <div>
@@ -73,6 +74,15 @@
                 </time>
             </div>
         {{ end }}
+        <!--字数统计 winotmk 25.02.27-->
+        <div>
+            {{ partial "helper/icon" "calculator" }}
+            <time class="article-time--reading">
+                <time class="article-time--reading">
+                    字数: {{ .WordCount }}
+                </time>
+            </time>
+        </div>
     </footer>
     {{ end }}
 

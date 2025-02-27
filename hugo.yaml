@@ -160,6 +160,7 @@ params:
             id:
     widgets:
         homepage:
+            - type: wormhole
             - type: search
             - type: archives
               params:
@@ -167,6 +168,7 @@ params:
             - type: categories
               params:
                   limit: 10
+            - type: clustrmaps
             - type: tag-cloud
               params:
                   limit: 20

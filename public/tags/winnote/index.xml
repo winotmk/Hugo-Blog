@@ -2,35 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>WinNote</title>
-        <link>http://localhost:8560/tags/winnote/</link>
+        <link>http://localhost:1313/tags/winnote/</link>
         <description>Recent content on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/winnote/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>WinNote</title>
-        <link>http://localhost:8560/posts/winnote/</link>
+        <link>http://localhost:1313/posts/winnote/</link>
         <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/winnote/</guid>
-        <description>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="Featured image of post WinNote" /&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/catcat.png&#34;
+        <guid>http://localhost:1313/posts/winnote/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="Featured image of post WinNote" /&gt;&lt;!--![](images/catcat.png)--&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/catcat_5d2b2bde.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;20211101_005742_IMB_3iZZzg&#34;
+		alt=&#34;2025-02-26-22-52-55&#34;
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 &lt;!--{% asset_img 20211101_005742_IMB_3iZZzg.gif 800 %}--&gt;
 &lt;p&gt;一个轻量级MD文档收集博客，不保证阅读性&lt;br&gt;
 使用树莓派+hexo构建，定制化next主题，github部署&lt;br&gt;
@@ -56,15 +50,17 @@ NAS上工作台的盘符请设置为T&lt;br&gt;
 启动ecistarter容器&lt;br&gt;
 然后&lt;code&gt;CD ecistart&lt;/code&gt; 进入目录&lt;br&gt;
 使用&lt;code&gt;. ./hexo_s&lt;/code&gt; 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20231213183015.png&#34;
+&lt;img src=&#34;http://pictures.winotmk.com/WinNote/2025-02-26-22-54-02_c17f1445.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
+		alt=&#34;2025-02-26-22-54-02&#34;
 	
-&gt;&lt;br&gt;
-之后通过VSCode的插件SSH FS来接入&lt;br&gt;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;之后通过VSCode的插件SSH FS来接入&lt;br&gt;
 md文档的目录是&lt;code&gt;./hexo/Winblog/source/_posts&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;关于图片插入：本地目录&lt;code&gt;T:\博客\md_for_hexo\Images&lt;/code&gt;将会与FTP上的&lt;code&gt;./hexo/Winblog/source/images&lt;/code&gt;自动单向同步&lt;/p&gt;
 &lt;hr&gt;
@@ -91,7 +87,7 @@ md文档的目录是&lt;code&gt;./hexo/Winblog/source/_posts&lt;/code&gt;&lt;/p&
 	
 	
 &gt;&lt;br&gt;
-还蛮好用的，绑定了&lt;code&gt;elan upload from clipboard&lt;/code&gt;到**&lt;code&gt;ctrl+shift+art+a&lt;/code&gt;**来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类&lt;/li&gt;
+还蛮好用的，绑定了&lt;code&gt;elan upload from clipboard&lt;/code&gt;到&lt;code&gt;ctrl+shift+alt+a&lt;/code&gt;来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类&lt;/li&gt;
 &lt;li&gt;vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录&lt;/li&gt;
 &lt;/ol&gt;
 </description>

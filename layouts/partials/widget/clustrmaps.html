@@ -1,0 +1,14 @@
+{{- $context := .Context -}}
+{{- $limit := default 10 .Params.limit -}}
+<section class="widget clustrmaps">
+    <div class="widget-icon">
+        {{ partial "helper/icon" "map-2" }}
+        <h2 class="widget-title section-title">访问地图</h2>
+    </div>
+    
+
+    <div class="clustrmaps">
+        <!--250227访问世界地图-->
+        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=TcBb3TLgexGtFfJFLyHQpGAW3irwdwKkFtzkhB5naKo&cl=ffffff&w=a"></script>
+    </div>
+</section>

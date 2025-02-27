@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Minecraft on WinNote</title>
-        <link>http://localhost:8560/tags/minecraft/</link>
+        <link>http://localhost:1313/tags/minecraft/</link>
         <description>Recent content in Minecraft on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>给docker容器内配置中文环境(minecraft开服相关)</title>
-        <link>http://localhost:8560/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+        <link>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+        <guid>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
         <description>&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815141238.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815141238.png&#34;
 	
 	
 	
@@ -31,7 +31,7 @@
 &lt;/h2&gt;&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815121544.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815121544.png&#34;
 	
 	
 	
@@ -53,7 +53,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！&lt;br&gt;
 出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815123217.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815123217.png&#34;
 	
 	
 	
@@ -61,7 +61,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815123240.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815123240.png&#34;
 	
 	
 	
@@ -72,7 +72,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量
 &lt;/h2&gt;&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;&lt;br&gt;
 确定环境变量生效了：&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815123341.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815123341.png&#34;
 	
 	
 	
@@ -87,7 +87,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言
 &lt;/h3&gt;&lt;pre&gt;&lt;code&gt;locale -a
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240815123200.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123200.png&#34;
 	
 	
 	
@@ -102,7 +102,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815132128.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815132128.png&#34;
 	
 	
 	
@@ -127,7 +127,7 @@ ENV LANG zh_CN.UTF-8
 &lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;docker build -t jre8u342_ch .
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240815123827.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815123827.png&#34;
 	
 	
 	
@@ -145,7 +145,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;因为dockerfile里已经设置过&lt;code&gt;WORKDIR&lt;/code&gt;了所以不需要&lt;code&gt;-w&lt;/code&gt;参数&lt;/p&gt;
 &lt;p&gt;这下不会报英文了&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815124038.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815124038.png&#34;
 	
 	
 	
@@ -153,7 +153,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815124056.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815124056.png&#34;
 	
 	
 	
@@ -162,7 +162,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 游戏里也是中文环境的返回信息&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815124137.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815124137.png&#34;
 	
 	
 	
@@ -175,7 +175,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 &lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;先导入这个镜像&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815132343.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815132343.png&#34;
 	
 	
 	
@@ -184,7 +184,7 @@ java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar 
 	
 &gt;&lt;br&gt;
 然后简单配置一下端口和mc服务器目录就可以了,和上面的&lt;code&gt;docker run&lt;/code&gt;其实是一样的&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815132446.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815132446.png&#34;
 	
 	
 	
@@ -220,7 +220,7 @@ rcon.port=25575
 &lt;pre&gt;&lt;code&gt;mcrcon -H 服务器地址 -p your_passwd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;然后就可以一样敲各种minecraft管理命令了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20240815125134.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20240815125134.png&#34;
 	
 	
 	
@@ -229,7 +229,7 @@ rcon.port=25575
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;好了不说了博主我要去挖矿开荒了&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815133408.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815133408.png&#34;
 	
 	
 	
@@ -237,7 +237,7 @@ rcon.port=25575
 	
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20240815133429.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20240815133429.png&#34;
 	
 	
 	
@@ -257,10 +257,10 @@ rcon.port=25575
         </item>
         <item>
         <title>SourceCraft服务器</title>
-        <link>http://localhost:8560/posts/mc/</link>
+        <link>http://localhost:1313/posts/mc/</link>
         <pubDate>Sun, 07 Nov 2021 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/mc/</guid>
+        <guid>http://localhost:1313/posts/mc/</guid>
         <description>&lt;p&gt;{% asset_img 20211107_114809_QQ_20211107114745.png %}&lt;/p&gt;
 &lt;p&gt;Java服务器地址：mc.winotmk.com:25465&lt;br&gt;
 基岩服务器地址：mc.winotmk.com:19132&lt;/p&gt;

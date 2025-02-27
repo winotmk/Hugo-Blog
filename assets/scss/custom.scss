@@ -150,3 +150,13 @@ code::before {
     border-radius: 5px;
     border: 1px solid #000;
 }
+
+//文章头部统计信息微调间距
+.article-time>div {
+    gap: 8px
+}
+
+//连接里的图
+.article-list--compact article .article-image img {
+    width:auto; 
+}

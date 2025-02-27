@@ -8,6 +8,10 @@ links:
   - title: Bilibili
     description: 博主B站
     website: https://space.bilibili.com/193498
+  - title: 十年之约
+    description: 本站（根域名）已加入十年之约计划
+    website: https://www.foreverblog.cn/blog/6001.html
+    image: https://img.foreverblog.cn/wormhole_2.gif
 
 menu:
     main: 

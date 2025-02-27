@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Github on WinNote</title>
-        <link>http://localhost:8560/tags/github/</link>
+        <link>http://localhost:1313/tags/github/</link>
         <description>Recent content in Github on WinNote</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>winotmk</copyright>
-        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:8560/tags/github/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/github/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Git常用命令</title>
-        <link>http://localhost:8560/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+        <link>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
         <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <guid>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
         <description>&lt;h3 id=&#34;1-进入本地仓库目录&#34;&gt;&lt;strong&gt;1. 进入本地仓库目录&lt;/strong&gt;
 &lt;/h3&gt;&lt;p&gt;打开终端（或 Git Bash），切换到仓库根目录：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /path/to/your-repo
@@ -156,10 +156,10 @@ git config -l&lt;br&gt;
         </item>
         <item>
         <title>Hugo_GithubAction自动部署到阿里云OSS</title>
-        <link>http://localhost:8560/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
+        <link>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</link>
         <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
+        <guid>http://localhost:1313/posts/250221_hugo_githubaction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91oss/</guid>
         <description>&lt;p&gt;整了大半天，总算明白GithubAction是怎么用的了，给人感觉其实有那么些像docker，而需要为其写的action规则又像dockerfile或者dockercompose，它们都是去调用一些已经做好的功能/镜像，来按步骤去一步步达成一些事&lt;br&gt;
 参考文章：&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://thooooor.github.io/posts/%E8%84%B1%E5%9D%91%E8%AE%B0%E5%BD%95/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -297,10 +297,10 @@ git commit -m &amp;quot;更新主题&amp;quot;
         </item>
         <item>
         <title>生成秘钥连接至github————用来推hexo</title>
-        <link>http://localhost:8560/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
+        <link>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:8560/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
+        <guid>http://localhost:1313/posts/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/</guid>
         <description>&lt;h2 id=&#34;生成秘钥&#34;&gt;生成秘钥
 &lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;550330147@qq.com&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
@@ -310,7 +310,7 @@ git commit -m &amp;quot;更新主题&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;直接enter即密码为空，这是秘钥的密码&lt;/p&gt;
 &lt;h2 id=&#34;复制秘钥到github&#34;&gt;复制秘钥到github
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20230618002355.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618002355.png&#34;
 	
 	
 	
@@ -320,7 +320,7 @@ git commit -m &amp;quot;更新主题&amp;quot;
 &gt;&lt;br&gt;
 打开/root/.ssh/id_ed25519.pub&lt;br&gt;
 复制到这里&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20230618002554.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230618002554.png&#34;
 	
 	
 	
@@ -334,7 +334,7 @@ git commit -m &amp;quot;更新主题&amp;quot;
 &lt;h2 id=&#34;测试&#34;&gt;测试
 &lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:8560/images/20230618003332.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/20230618003332.png&#34;
 	
 	
 	
@@ -343,7 +343,7 @@ git commit -m &amp;quot;更新主题&amp;quot;
 	
 &gt;&lt;br&gt;
 这里输入yes&lt;br&gt;
-&lt;img src=&#34;http://localhost:8560/images/20230618003428.png&#34;
+&lt;img src=&#34;http://localhost:1313/images/20230618003428.png&#34;
 	
 	
 	

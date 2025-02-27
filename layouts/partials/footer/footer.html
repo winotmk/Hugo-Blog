@@ -8,6 +8,22 @@
         {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
     </section>
     
+    <div class="article-time">
+        <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+            {{ partial "helper/icon" "users" }}
+          <span class="site-uv" title="总访客量">
+            &nbsp;<span id="busuanzi_value_site_uv"></span>
+          </span>
+        </span>
+        <span>|</span>
+        <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+            {{ partial "helper/icon" "eye" }}
+          <span class="site-pv" title="总访问量">
+            &nbsp;<span id="busuanzi_value_site_pv"></span>
+          </span>
+        </span>
+    </div>
+
     <section class="powerby">
         {{ with .Site.Params.footer.customText }}
             {{ . | safeHTML }} <br/>
