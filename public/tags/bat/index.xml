@@ -1,39 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bat on WinNote</title><link>https://winotmk.github.io/tags/bat/</link><description>Recent content in Bat on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/bat/index.xml" rel="self" type="application/rss+xml"/><item><title>批处理实现批量改名以及SVN批量改名</title><link>https://winotmk.github.io/posts/bat/</link><pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/bat/</guid><description>&lt;h2 id="需求">需求
-&lt;/h2>&lt;p>&lt;img src="http://pictures.winotmk.com/bat/2025-02-28-00-04-57_7f11abc1.png"
-loading="lazy"
-alt="2025-02-28-00-04-57"
->&lt;/p>
-&lt;p>注意Mesh和Texture前加了编号&lt;/p>
-&lt;p>工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&amp;hellip;内的Resource目录下的Texture和Mesh目录加编号)&lt;/p>
-&lt;p>感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下&lt;/p>
-&lt;h2 id="改名实现">改名实现
-&lt;/h2>&lt;p>如果单只是改名其实很简单，只需要几行即可实现：&lt;/p>
-&lt;pre>&lt;code class="language-bat">@echo off
-for /f &amp;quot;delims=&amp;quot; %%a in ('dir /ad/s/b &amp;quot;Mesh&amp;quot;') do ren &amp;quot;%%~a&amp;quot; 01-Mesh
-for /f &amp;quot;delims=&amp;quot; %%b in ('dir /ad/s/b &amp;quot;Texture&amp;quot;') do ren &amp;quot;%%~b&amp;quot; 00-Texture
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Bat on WinNote</title>
+        <link>http://localhost:1313/tags/bat/</link>
+        <description>Recent content in Bat on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/bat/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>批处理实现批量改名以及SVN批量改名</title>
+        <link>http://localhost:1313/posts/bat/</link>
+        <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/bat/</guid>
+        <description>&lt;h2 id=&#34;需求&#34;&gt;需求
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/bat/2025-02-28-00-04-57_7f11abc1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-04-57&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;注意Mesh和Texture前加了编号&lt;/p&gt;
+&lt;p&gt;工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03&amp;hellip;内的Resource目录下的Texture和Mesh目录加编号)&lt;/p&gt;
+&lt;p&gt;感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下&lt;/p&gt;
+&lt;h2 id=&#34;改名实现&#34;&gt;改名实现
+&lt;/h2&gt;&lt;p&gt;如果单只是改名其实很简单，只需要几行即可实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
+for /f &amp;quot;delims=&amp;quot; %%a in (&#39;dir /ad/s/b &amp;quot;Mesh&amp;quot;&#39;) do ren &amp;quot;%%~a&amp;quot; 01-Mesh
+for /f &amp;quot;delims=&amp;quot; %%b in (&#39;dir /ad/s/b &amp;quot;Texture&amp;quot;&#39;) do ren &amp;quot;%%~b&amp;quot; 00-Texture
 pause
-&lt;/code>&lt;/pre>
-&lt;!-- more -->
-&lt;p>&lt;code>@echo off&lt;/code>打开批处理黑窗口&lt;/p>
-&lt;p>&lt;code>for in do&lt;/code>常用在查找匹配，满足条件后执行&lt;/p>
-&lt;p>&lt;code>dir /ad/s/b &amp;quot;Mesh&amp;quot;&lt;/code>这行可以参考&lt;code>dir&lt;/code>命令的用法，&lt;code>/ab&lt;/code>在这里是只显示目录（如果是要显示文件是&lt;code>/a-d&lt;/code>）&lt;code>/s&lt;/code>显示目录和包含子目录，&lt;code>/b&lt;/code>不显示日期大小等其他信息，&lt;code>&amp;quot;Mesh&amp;quot;&lt;/code>会列出包含Mesh目录&lt;/p>
-&lt;p>&lt;code>pause&lt;/code>这里会暂停一下按任意键继续&lt;/p>
-&lt;p>所以连起来就是列出包含Mesh和Texture的目录，然后用&lt;code>ren&lt;/code>改名&lt;/p>
-&lt;h2 id="svn-rename批处理">SVN Rename批处理
-&lt;/h2>&lt;p>然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用&lt;code>ren&lt;/code>等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：&lt;/p>
-&lt;ul>
-&lt;li>log丢失，历史版本找不回来&lt;/li>
-&lt;li>如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍）&lt;/li>
-&lt;/ul>
-&lt;p>所以最好是用SVN的命令来进行操作&lt;/p>
-&lt;p>然后发现用&lt;code>svn mv oldname newname&lt;/code>就能完成&lt;/p>
-&lt;pre>&lt;code class="language-bat">svn mv Mesh 00-Mesh
-&lt;/code>&lt;/pre>
-&lt;p>移动，重命名，对svn来说都是这一个命令&lt;/p>
-&lt;p>所以大致思路就是用&lt;code>for in do&lt;/code>来找到Mesh和Texture文件夹，然后用变量来做oldname和newname&lt;/p>
-&lt;pre>&lt;code class="language-bat">@echo off
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;code&gt;@echo off&lt;/code&gt;打开批处理黑窗口&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for in do&lt;/code&gt;常用在查找匹配，满足条件后执行&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dir /ad/s/b &amp;quot;Mesh&amp;quot;&lt;/code&gt;这行可以参考&lt;code&gt;dir&lt;/code&gt;命令的用法，&lt;code&gt;/ab&lt;/code&gt;在这里是只显示目录（如果是要显示文件是&lt;code&gt;/a-d&lt;/code&gt;）&lt;code&gt;/s&lt;/code&gt;显示目录和包含子目录，&lt;code&gt;/b&lt;/code&gt;不显示日期大小等其他信息，&lt;code&gt;&amp;quot;Mesh&amp;quot;&lt;/code&gt;会列出包含Mesh目录&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pause&lt;/code&gt;这里会暂停一下按任意键继续&lt;/p&gt;
+&lt;p&gt;所以连起来就是列出包含Mesh和Texture的目录，然后用&lt;code&gt;ren&lt;/code&gt;改名&lt;/p&gt;
+&lt;h2 id=&#34;svn-rename批处理&#34;&gt;SVN Rename批处理
+&lt;/h2&gt;&lt;p&gt;然而上面的简单改名这对于我遇到的实际情况不理想，有些资源是在SVN目录库里的，对于SVN来说，直接用&lt;code&gt;ren&lt;/code&gt;等于删除Mesh旧目录，再新添加一个00-Mesh新目录，这会来带几个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;log丢失，历史版本找不回来&lt;/li&gt;
+&lt;li&gt;如果文件多，占用空间很大，浪费大家带宽（每个人update会重新下载一遍）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以最好是用SVN的命令来进行操作&lt;/p&gt;
+&lt;p&gt;然后发现用&lt;code&gt;svn mv oldname newname&lt;/code&gt;就能完成&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;svn mv Mesh 00-Mesh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;移动，重命名，对svn来说都是这一个命令&lt;/p&gt;
+&lt;p&gt;所以大致思路就是用&lt;code&gt;for in do&lt;/code&gt;来找到Mesh和Texture文件夹，然后用变量来做oldname和newname&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
 setlocal EnableDelayedExpansion
-for /f &amp;quot;delims=&amp;quot; %%b in ('dir /ad/s/b &amp;quot;Mesh&amp;quot;') do (
+
+for /f &amp;quot;delims=&amp;quot; %%b in (&#39;dir /ad/s/b &amp;quot;Mesh&amp;quot;&#39;) do (
 set &amp;quot;oldm=%%b&amp;quot;
 set &amp;quot;newm=!oldm:Mesh=00_Mesh!&amp;quot;
 echo ------旧Mesh目录名称
@@ -43,7 +65,7 @@ echo !newm!
 echo ------Mesh改名中...
 svn mv !oldm! !newm!
 )
-for /f &amp;quot;delims=&amp;quot; %%b in ('dir /ad/s/b &amp;quot;Texture&amp;quot;') do (
+for /f &amp;quot;delims=&amp;quot; %%b in (&#39;dir /ad/s/b &amp;quot;Texture&amp;quot;&#39;) do (
 set &amp;quot;oldt=%%b&amp;quot;
 set &amp;quot;newt=!oldt:Texture=01_Texture!&amp;quot;
 echo ------旧Texture目录名称
@@ -53,30 +75,31 @@ echo !newt!
 echo ------Texture改名中...
 svn mv !oldt! !newt!
 )
+
 pause
-&lt;/code>&lt;/pre>
-&lt;p>一开始卡在变量这块很久，最后发现一定要有&lt;code>setlocal EnableDelayedExpansion&lt;/code>，然后变量才可以在&lt;code>do()&lt;/code>里用&lt;code>!oldm!&lt;/code>这样，而不能用&lt;code>%oldm%&lt;/code>&lt;/p>
-&lt;p>&lt;code>set &amp;quot;newm=!oldm:Mesh=00_Mesh!&amp;quot;&lt;/code>这行的操作是字符串替换，举例来说此时&lt;code>!oldm!&lt;/code>为&lt;code>C:\Users\winte\Desktop\project\Assets01\Resource\Mesh&lt;/code>&lt;/p>
-&lt;p>会将此段字符串中的&lt;code>Mesh&lt;/code>替换为&lt;code>00_Mesh&lt;/code>,得到&lt;/p>
-&lt;p>&lt;code>C:\Users\winte\Desktop\project\Assets01\Resource\00_Mesh&lt;/code>&lt;/p>
-&lt;p>然后是一些交互上的完善，有个用到的结构&lt;/p>
-&lt;pre>&lt;code class="language-bat">@echo off
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一开始卡在变量这块很久，最后发现一定要有&lt;code&gt;setlocal EnableDelayedExpansion&lt;/code&gt;，然后变量才可以在&lt;code&gt;do()&lt;/code&gt;里用&lt;code&gt;!oldm!&lt;/code&gt;这样，而不能用&lt;code&gt;%oldm%&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;set &amp;quot;newm=!oldm:Mesh=00_Mesh!&amp;quot;&lt;/code&gt;这行的操作是字符串替换，举例来说此时&lt;code&gt;!oldm!&lt;/code&gt;为&lt;code&gt;C:\Users\winte\Desktop\project\Assets01\Resource\Mesh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;会将此段字符串中的&lt;code&gt;Mesh&lt;/code&gt;替换为&lt;code&gt;00_Mesh&lt;/code&gt;,得到&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:\Users\winte\Desktop\project\Assets01\Resource\00_Mesh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后是一些交互上的完善，有个用到的结构&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
 echo 如需要撤销操作请按r,按其他任意键退出...
 set /p a=请输入r后回车:
 if &amp;quot;%a%&amp;quot;==&amp;quot;r&amp;quot; Goto abc
 exit /b
 :abc
 ....
-&lt;/code>&lt;/pre>
-&lt;p>这里有个判断，如果按下了r键，会触发&lt;code>Goto abc&lt;/code>，然后跳转到&lt;code>:abc&lt;/code>以下的脚本，否则会直接走&lt;code>exit /b&lt;/code>退出脚本，很实用&lt;/p>
-&lt;h2 id="一些tips">一些Tips
-&lt;/h2>&lt;ul>
-&lt;li>将变量与批处理中的另一个变量的一部分匹配&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a class="link" href="https://www.thinbug.com/q/19056911" target="_blank" rel="noopener"
->https://www.thinbug.com/q/19056911&lt;/a>&lt;/p>
-&lt;p>测试这段是好用的，用来检测一段字符串是否含有一段字符串&lt;/p>
-&lt;pre>&lt;code class="language-bat">@echo off
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里有个判断，如果按下了r键，会触发&lt;code&gt;Goto abc&lt;/code&gt;，然后跳转到&lt;code&gt;:abc&lt;/code&gt;以下的脚本，否则会直接走&lt;code&gt;exit /b&lt;/code&gt;退出脚本，很实用&lt;/p&gt;
+&lt;h2 id=&#34;一些tips&#34;&gt;一些Tips
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;将变量与批处理中的另一个变量的一部分匹配&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.thinbug.com/q/19056911&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.thinbug.com/q/19056911&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;测试这段是好用的，用来检测一段字符串是否含有一段字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
 set &amp;quot;h=Hello-World&amp;quot;
 set &amp;quot;f=This is a Hello-World test&amp;quot;
 call set &amp;quot;a=%%f:%h%=%%&amp;quot;
@@ -86,37 +109,44 @@ exit /b
 :done
 echo it matched
 pause
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>一个ping通隔段时间再ping，ping不通就关机的例子&lt;br>
-&lt;a class="link" href="http://www.bathome.net/thread-12490-1-1.html" target="_blank" rel="noopener"
->http://www.bathome.net/thread-12490-1-1.html&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;pre>&lt;code class="language-bat">@echo off
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;一个ping通隔段时间再ping，ping不通就关机的例子&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;http://www.bathome.net/thread-12490-1-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.bathome.net/thread-12490-1-1.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
 :open
 ping 192.168.1.90
 if %ERRORLEVEL%==0 goto Ok
 if %ERRORLEVEL%==1 goto No
 exit
+
 :No
 cls&amp;amp;echo 不通!关机操作
 shutdown -s -f -t 5000
-::5000秒后关机
+ ::5000秒后关机
 exit
+
 :Ok
 cls&amp;amp;echo.通，10分钟后再监测，请勿关闭本窗口
 ping 127.0.1 /n 600 &amp;gt;nul
-::600秒后执行检测
+ ::600秒后执行检测
 goto open
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>如果要检测的是上段脚本执行以后的返回值，可以用到&lt;code>%ERRORLEVEL%&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a class="link" href="https://www.jianshu.com/p/5e72aed76b71" target="_blank" rel="noopener"
->https://www.jianshu.com/p/5e72aed76b71&lt;/a>&lt;/p>
-&lt;p>不过&lt;code>%ERRORLEVEL%&lt;/code>返回的是个数值，成功执行是0，不成功执行是非0，但是我用作svn命令执行判断的时候发现，有些指令即便不成功执行也返回0？懒得深究&lt;/p>
-&lt;ul>
-&lt;li>找到另外一种方法直接判断返回的字符串&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a class="link" href="https://blog.csdn.net/hadsdn/article/details/78957361" target="_blank" rel="noopener"
->https://blog.csdn.net/hadsdn/article/details/78957361&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;如果要检测的是上段脚本执行以后的返回值，可以用到&lt;code&gt;%ERRORLEVEL%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/5e72aed76b71&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/5e72aed76b71&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;不过&lt;code&gt;%ERRORLEVEL%&lt;/code&gt;返回的是个数值，成功执行是0，不成功执行是非0，但是我用作svn命令执行判断的时候发现，有些指令即便不成功执行也返回0？懒得深究&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;找到另外一种方法直接判断返回的字符串&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/hadsdn/article/details/78957361&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.csdn.net/hadsdn/article/details/78957361&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

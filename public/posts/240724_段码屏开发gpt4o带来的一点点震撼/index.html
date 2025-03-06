@@ -1,22 +1,549 @@
-<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n"><title>段码屏开发—GPT4o带来的一点点震撼</title>
-<link rel=canonical href=https://winotmk.github.io/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/><link rel=stylesheet href=/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css><meta property='og:title' content="段码屏开发—GPT4o带来的一点点震撼"><meta property='og:description' content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n"><meta property='og:url' content='https://winotmk.github.io/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'><meta property='og:site_name' content='WinNote'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='C'><meta property='article:tag' content='rashbeerypi'><meta property='article:tag' content='PICO'><meta property='article:tag' content='嵌入式开发'><meta property='article:published_time' content='2024-07-24T00:00:00+00:00'><meta property='article:modified_time' content='2024-07-24T00:00:00+00:00'><meta property='og:image' content='http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png'><meta name=twitter:title content="段码屏开发—GPT4o带来的一点点震撼"><meta name=twitter:description content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png'><link rel="shortcut icon" href=/favicon.png><link rel=stylesheet href=/highlight/styles/base16/eighties.css><script src=/highlight/highlight.min.js></script><script src=/clipboard.min.js></script><script src=/copy-to-clipboard.js></script><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"light")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_1b0ce47a1c2b08eb.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
-</a><span class=emoji>🪐</span></figure><div class=site-meta><h1 class=site-name><a href=/>WinNote</a></h1><h2 class=site-description>零碎MD文档收集|生命在于折腾</h2></div></header><ol class=menu-social><li><a href=https://space.bilibili.com/193498 target=_blank title=Bilibili rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a></li><li><a href=https://github.com/winotmk/Hugo-Blog target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://winotmk.com target=_blank title=Homepage rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9-9-9 9h2v7a2 2 0 002 2h6"/><path d="M9 21v-6a2 2 0 012-2h2c.39.0.754.112 1.061.304"/><path d="M19 21.5l2.518-2.58a1.74 1.74.0 000-2.413 1.627 1.627.0 00-2.346.0l-.168.172-.168-.172a1.627 1.627.0 00-2.346.0 1.74 1.74.0 000 2.412l2.51 2.59z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
-<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
-<span>搜索</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
-<span>链接</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><h2 class="widget-title section-title">目录</h2></div><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#硬件简介>硬件简介</a><ol><li><a href=#屏幕>屏幕</a></li><li><a href=#mcu>MCU</a></li></ol></li><li><a href=#字节byte和比特bit的对应>字节(byte)和比特(bit)的对应</a><ol><li><a href=#理解图表中的内容>理解图表中的内容</a></li><li><a href=#字节和比特的对应关系>字节和比特的对应关系</a></li><li><a href=#解释示例>解释示例</a></li><li><a href=#示例代码解释>示例代码解释</a></li><li><a href=#输出>输出</a></li></ol></li><li><a href=#数字显示与byte的对应>数字显示与byte的对应</a><ol><li><a href=#替换数组>替换数组</a></li><li><a href=#最终数组>最终数组</a></li></ol></li><li><a href=#动态将数字转换为对应的段码>动态将数字转换为对应的段码</a><ol><li><a href=#动态调整数组的代码>动态调整数组的代码</a></li><li><a href=#解释>解释</a></li></ol></li><li><a href=#小数点的处理>小数点的处理</a><ol><li><a href=#解释-1>解释</a></li><li><a href=#结果>结果</a></li></ol></li></ol></nav></div></section><form action=/search/ class="search-form widget"><p><label>搜索</label>
-<input name=keyword required placeholder=输入关键词...>
-<button title=搜索><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button></p></form></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png loading=lazy alt="Featured image of post 段码屏开发—GPT4o带来的一点点震撼"></a></div><div class=article-details><header class=article-category><div class=Winotmk_icon><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg></div><a href=/tags/c/>C
-</a><a href=/tags/rashbeerypi/>Rashbeerypi
-</a><a href=/tags/pico/>PICO
-</a><a href=/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/>嵌入式开发</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/>段码屏开发—GPT4o带来的一点点震撼</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>2024-07-24</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 6 分钟</time></div><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 7m0 1a1 1 0 011-1h6a1 1 0 011 1v1a1 1 0 01-1 1H9A1 1 0 018 9z"/><path d="M8 14v.01"/><path d="M12 14v.01"/><path d="M16 14v.01"/><path d="M8 17v.01"/><path d="M12 17v.01"/><path d="M16 17v.01"/></svg>
-<time class=article-time--reading><time class=article-time--reading>字数: 2953</time></time></div></footer></div></header><footer class=article-time style=padding-left:30px;padding-top:5px><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 104 0 2 2 0 00-4 0"/><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6"/></svg>
-<span title=阅读次数 id=busuanzi_container_page_pv style=display:inline;font-size:1.4rem>阅读次数: <span class=article-time--reading id=busuanzi_value_page_pv></span>次</span></div></footer><section class=article-content><h2 id=硬件简介>硬件简介</h2><h3 id=屏幕>屏幕</h3><p>屏幕使用了一块微雪的电子墨水段码屏<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-12-52_fb448438.png loading=lazy alt=2025-03-06-14-12-52><br>文档在这里：<br><a class=link href=https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual target=_blank rel=noopener>https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual</a></p><h3 id=mcu>MCU</h3><p>MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-00_cc94a142.png loading=lazy alt=2025-03-06-14-13-00><br><a class=link href=https://www.waveshare.net/wiki/RP2040-Zero target=_blank rel=noopener>https://www.waveshare.net/wiki/RP2040-Zero</a></p><h2 id=字节byte和比特bit的对应>字节(byte)和比特(bit)的对应</h2><p>最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，<br>本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我<br>起初这个表对于完全没接触过这块的我完全不懂他是什么意思</p><blockquote><p><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-14_466f74d2.png loading=lazy alt=2025-03-06-14-13-14></p></blockquote><p>疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-25_ed8f58ae.png loading=lazy alt=2025-03-06-14-13-25></p><p>*<strong>以下是GPT的回答</strong><br>在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。</p><h3 id=理解图表中的内容>理解图表中的内容</h3><ol><li>像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。</li><li>比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。</li><li>存储的数据: 存储在比特中的数据值（0 或 1）。</li><li>对应的颜色: 由数据值决定的像素颜色（黑色或白色）。<br>5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。</li></ol><h3 id=字节和比特的对应关系>字节和比特的对应关系</h3><ul><li>一个字节有 8 位，每一位可以是 0 或 1。</li><li>0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。</li><li>0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。</li></ul><h3 id=解释示例>解释示例</h3><ul><li>0x00 字节:<ul><li>二进制表示：00000000</li><li>每个比特位都是 0，因此对应的像素颜色是黑色。</li><li>从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。</li></ul></li><li>0xff 字节:<ul><li>二进制表示：11111111</li><li>每个比特位都是 1，因此对应的像素颜色是白色。</li><li>从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。</li></ul></li></ul><h3 id=示例代码解释>示例代码解释</h3><p>如果你想用代码来解释字节和比特之间的关系，可以如下示例：</p><pre><code class=language-python># 示例字节
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n">
+<title>段码屏开发—GPT4o带来的一点点震撼</title>
+
+<link rel='canonical' href='http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
+
+<link rel="stylesheet" href="/scss/style.min.9b3f6e87b0237b38ec496b7bdbbe9dd59eff0f831085581494a5b34fbeaf48b7.css"><meta property='og:title' content="段码屏开发—GPT4o带来的一点点震撼">
+<meta property='og:description' content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n">
+<meta property='og:url' content='http://localhost:1313/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='C' /><meta property='article:tag' content='rashbeerypi' /><meta property='article:tag' content='PICO' /><meta property='article:tag' content='嵌入式开发' /><meta property='article:published_time' content='2024-07-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-07-24T00:00:00&#43;00:00'/><meta property='og:image' content='http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png' />
+<meta name="twitter:title" content="段码屏开发—GPT4o带来的一点点震撼">
+<meta name="twitter:description" content="硬件简介\r屏幕\r屏幕使用了一块微雪的电子墨水段码屏\n文档在这里：\nhttps://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual\nMCU\rMCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的\nhttps://www.waveshare.net/wiki/RP2040-Zero\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
+        
+        <script src="/clipboard.min.js"></script>
+        <script src="/copy-to-clipboard.js"></script>
+        
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://winotmk.com'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+            <h2 class="widget-title section-title">目录</h2>
+        </div>
+        
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#硬件简介">硬件简介</a>
+      <ol>
+        <li><a href="#屏幕">屏幕</a></li>
+        <li><a href="#mcu">MCU</a></li>
+      </ol>
+    </li>
+    <li><a href="#字节byte和比特bit的对应">字节(byte)和比特(bit)的对应</a>
+      <ol>
+        <li><a href="#理解图表中的内容">理解图表中的内容</a></li>
+        <li><a href="#字节和比特的对应关系">字节和比特的对应关系</a></li>
+        <li><a href="#解释示例">解释示例</a></li>
+        <li><a href="#示例代码解释">示例代码解释</a></li>
+        <li><a href="#输出">输出</a></li>
+      </ol>
+    </li>
+    <li><a href="#数字显示与byte的对应">数字显示与byte的对应</a>
+      <ol>
+        <li><a href="#替换数组">替换数组</a></li>
+        <li><a href="#最终数组">最终数组</a></li>
+      </ol>
+    </li>
+    <li><a href="#动态将数字转换为对应的段码">动态将数字转换为对应的段码</a>
+      <ol>
+        <li><a href="#动态调整数组的代码">动态调整数组的代码</a></li>
+        <li><a href="#解释">解释</a></li>
+      </ol>
+    </li>
+    <li><a href="#小数点的处理">小数点的处理</a>
+      <ol>
+        <li><a href="#解释-1">解释</a></li>
+        <li><a href="#结果">结果</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/">
+                
+                    <img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png" loading="lazy" alt="Featured image of post 段码屏开发—GPT4o带来的一点点震撼" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    
+    
+
+    
+     
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+         
+             <a href="/tags/c/" >
+                 C
+             </a>
+         
+             <a href="/tags/rashbeerypi/" >
+                 Rashbeerypi
+             </a>
+         
+             <a href="/tags/pico/" >
+                 PICO
+             </a>
+         
+             <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" >
+                 嵌入式开发
+             </a>
+         
+     </header>
+     
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91gpt4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/">段码屏开发—GPT4o带来的一点点震撼</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-07-24</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+        
+        <div>
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M8 14l0 .01" /><path d="M12 14l0 .01" /><path d="M16 14l0 .01" /><path d="M8 17l0 .01" /><path d="M12 17l0 .01" /><path d="M16 17l0 .01" /></svg>
+            <time class="article-time--reading">
+                <time class="article-time--reading">
+                    字数: 2953
+                </time>
+            </time>
+        </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+<footer class="article-time" style="padding-left: 30px;padding-top: 5px;">
+<div>
+    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+    <span title="阅读次数" id="busuanzi_container_page_pv" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="article-time--reading" id="busuanzi_value_page_pv"></span>次
+    </span>
+</div>
+</footer>
+<section class="article-content">
+    
+    
+    <h2 id="硬件简介">硬件简介
+</h2><h3 id="屏幕">屏幕
+</h3><p>屏幕使用了一块微雪的电子墨水段码屏<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-12-52_fb448438.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-12-52"
+	
+	
+><br>
+文档在这里：<br>
+<a class="link" href="https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual"  target="_blank" rel="noopener"
+    >https://www.waveshare.net/wiki/1.9inch_Segment_e-Paper_Module_Manual</a></p>
+<h3 id="mcu">MCU
+</h3><p>MCU方面就是树莓派的PICO，只不过是物理体积更小的版本，用法是一模一样的<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-00_cc94a142.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-13-00"
+	
+	
+><br>
+<a class="link" href="https://www.waveshare.net/wiki/RP2040-Zero"  target="_blank" rel="noopener"
+    >https://www.waveshare.net/wiki/RP2040-Zero</a></p>
+<h2 id="字节byte和比特bit的对应">字节(byte)和比特(bit)的对应
+</h2><p>最近买了块高颜值段码屏，电子墨水屏原理的，一直没弄明白这个文档里说得是个啥意思，恰好最近尝试使用GPT来解决我遇到的一些编程问题，<br>
+本来只是抱着试试看的态度，因为自从chatgpt火了以后一直持观望态度，印象中还只是能给它设定模仿人格写写小说一类的，然而这次实在小震撼到我<br>
+起初这个表对于完全没接触过这块的我完全不懂他是什么意思</p>
+<blockquote>
+<p><img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-14_466f74d2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-13-14"
+	
+	
+></p></blockquote>
+<p>疑惑的关键在于0x00怎么就全0，而0xff怎么就全1了呢，于是我问GPT：<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-13-25_ed8f58ae.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-13-25"
+	
+	
+></p>
+<p>*<strong>以下是GPT的回答</strong><br>
+在这个图表中，每个字节（byte）由 8 个比特（bit）组成，且每个比特都可以存储一个二进制值（0 或 1）。这些比特在图像中对应的像素（pixel）上，决定了每个像素的颜色（例如，黑色或白色）。</p>
+<h3 id="理解图表中的内容">理解图表中的内容
+</h3><ol>
+<li>像素 (pixel): 从 1 到 16 的编号表示每个像素的位置。</li>
+<li>比特 (bit): 每个像素位置对应一个比特，从 7 到 0 代表一个字节中的每一位。</li>
+<li>存储的数据: 存储在比特中的数据值（0 或 1）。</li>
+<li>对应的颜色: 由数据值决定的像素颜色（黑色或白色）。<br>
+5。 字节 (byte): 0x00 和 0xff 表示字节的十六进制值。</li>
+</ol>
+<h3 id="字节和比特的对应关系">字节和比特的对应关系
+</h3><ul>
+<li>一个字节有 8 位，每一位可以是 0 或 1。</li>
+<li>0x00 表示 8 个比特全部为 0，转换为二进制是 00000000。</li>
+<li>0xff 表示 8 个比特全部为 1，转换为二进制是 11111111。</li>
+</ul>
+<h3 id="解释示例">解释示例
+</h3><ul>
+<li>0x00 字节:
+<ul>
+<li>二进制表示：00000000</li>
+<li>每个比特位都是 0，因此对应的像素颜色是黑色。</li>
+<li>从像素 1 到 8 的存储数据都是 0，所以对应颜色都是黑色。</li>
+</ul>
+</li>
+<li>0xff 字节:
+<ul>
+<li>二进制表示：11111111</li>
+<li>每个比特位都是 1，因此对应的像素颜色是白色。</li>
+<li>从像素 9 到 16 的存储数据都是 1，所以对应颜色都是白色。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例代码解释">示例代码解释
+</h3><p>如果你想用代码来解释字节和比特之间的关系，可以如下示例：</p>
+<pre><code class="language-python"># 示例字节
 byte_00 = 0x00  # 所有比特位都是 0
 byte_ff = 0xff  # 所有比特位都是 1
 
@@ -30,12 +557,80 @@ pixels_ff = [&quot;■&quot; if bit == '0' else &quot;□&quot; for bit in bin(b
 
 print(f&quot;0x00 对应的像素颜色: {''.join(pixels_00)}&quot;)
 print(f&quot;0xff 对应的像素颜色: {''.join(pixels_ff)}&quot;)
-</code></pre><h3 id=输出>输出</h3><pre><code class=language-plaintext>复制代码
+</code></pre>
+<h3 id="输出">输出
+</h3><pre><code class="language-plaintext">复制代码
 0x00 的二进制表示: 00000000
 0xff 的二进制表示: 11111111
 0x00 对应的像素颜色: ■■■■■■■■
 0xff 对应的像素颜色: □□□□□□□□
-</code></pre><p>在这里，■ 表示黑色像素，□ 表示白色像素。这个代码示例展示了如何根据字节中的比特值确定像素颜色。</p><p>天呐！有理有据条例清晰，秒懂了，原来byte是十六进制要转为二进制的！而8位二进制就可以表示8个数码管的开与关了！</p><h2 id=数字显示与byte的对应>数字显示与byte的对应</h2><p><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-05_de3fcb9d.png loading=lazy alt=2025-03-06-14-14-05></p><p>*<strong>GPT回答：</strong><br>为了将数字 23.8 和 54.9 表示为 DSPNUM_1in9_off 数组中的十六进制值，我们需要将每一位数字对应的十六进制编码放入数组的正确位置。根据你提供的映射：</p><ul><li><p>0 ：0xbf, 0x1f</p></li><li><p>1 ：0x00, 0x1f</p></li><li><p>2 ：0xfd, 0x17</p></li><li><p>3 ：0xf5, 0x1f</p></li><li><p>4 ：0x47, 0x1f</p></li><li><p>5 ：0xf7, 0x1d</p></li><li><p>6 ：0xff, 0x1d</p></li><li><p>7 ：0x21, 0x1f</p></li><li><p>8 ：0xff, 0x1f<br>-9 ：0xf7, 0x1f<br>根据你的要求：</p></li><li><p>数字 A 为 23.8</p><ul><li>十位 2 对应 DSPNUM_1in9_off[1] 和 DSPNUM_1in9_off[2]</li><li>个位 3 对应 DSPNUM_1in9_off[3] 和 DSPNUM_1in9_off[4]</li><li>小数点后一位 8 对应 DSPNUM_1in9_off[11] 和 DSPNUM_1in9_off[12]</li></ul></li><li><p>数字 B 为 54.9</p><ul><li>十位 5 对应 DSPNUM_1in9_off[5] 和 DSPNUM_1in9_off[6]</li><li>个位 4 对应 DSPNUM_1in9_off[7] 和 DSPNUM_1in9_off[8]</li><li>小数点后一位 9 对应 DSPNUM_1in9_off[9] 和 DSPNUM_1in9_off[10]</li></ul></li></ul><h3 id=替换数组>替换数组</h3><p>将这些值替换到数组 DSPNUM_1in9_off 中：</p><pre><code class=language-c>unsigned char DSPNUM_1in9_off[] = {
+</code></pre>
+<p>在这里，■ 表示黑色像素，□ 表示白色像素。这个代码示例展示了如何根据字节中的比特值确定像素颜色。</p>
+ <!-- more -->
+<p>天呐！有理有据条例清晰，秒懂了，原来byte是十六进制要转为二进制的！而8位二进制就可以表示8个数码管的开与关了！</p>
+<h2 id="数字显示与byte的对应">数字显示与byte的对应
+</h2><p><img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-05_de3fcb9d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-14-05"
+	
+	
+></p>
+<p>*<strong>GPT回答：</strong><br>
+为了将数字 23.8 和 54.9 表示为 DSPNUM_1in9_off 数组中的十六进制值，我们需要将每一位数字对应的十六进制编码放入数组的正确位置。根据你提供的映射：</p>
+<ul>
+<li>
+<p>0 ：0xbf, 0x1f</p>
+</li>
+<li>
+<p>1 ：0x00, 0x1f</p>
+</li>
+<li>
+<p>2 ：0xfd, 0x17</p>
+</li>
+<li>
+<p>3 ：0xf5, 0x1f</p>
+</li>
+<li>
+<p>4 ：0x47, 0x1f</p>
+</li>
+<li>
+<p>5 ：0xf7, 0x1d</p>
+</li>
+<li>
+<p>6 ：0xff, 0x1d</p>
+</li>
+<li>
+<p>7 ：0x21, 0x1f</p>
+</li>
+<li>
+<p>8 ：0xff, 0x1f<br>
+-9 ：0xf7, 0x1f<br>
+根据你的要求：</p>
+</li>
+<li>
+<p>数字 A 为 23.8</p>
+<ul>
+<li>十位 2 对应 DSPNUM_1in9_off[1] 和 DSPNUM_1in9_off[2]</li>
+<li>个位 3 对应 DSPNUM_1in9_off[3] 和 DSPNUM_1in9_off[4]</li>
+<li>小数点后一位 8 对应 DSPNUM_1in9_off[11] 和 DSPNUM_1in9_off[12]</li>
+</ul>
+</li>
+<li>
+<p>数字 B 为 54.9</p>
+<ul>
+<li>十位 5 对应 DSPNUM_1in9_off[5] 和 DSPNUM_1in9_off[6]</li>
+<li>个位 4 对应 DSPNUM_1in9_off[7] 和 DSPNUM_1in9_off[8]</li>
+<li>小数点后一位 9 对应 DSPNUM_1in9_off[9] 和 DSPNUM_1in9_off[10]</li>
+</ul>
+</li>
+</ul>
+<h3 id="替换数组">替换数组
+</h3><p>将这些值替换到数组 DSPNUM_1in9_off 中：</p>
+<pre><code class="language-c">unsigned char DSPNUM_1in9_off[] = {
     0x00,  // [0]  保持为 0x00
     0xfd,  // [1]  数字 A 的十位 2 对应
     0x17,  // [2]  数字 A 的十位 2 对应
@@ -53,10 +648,41 @@ print(f&quot;0xff 对应的像素颜色: {''.join(pixels_ff)}&quot;)
     0x00,  // [14] 保持为 0x00
     0x00   // [15] 保持为 0x00
 };
-</code></pre><h3 id=最终数组>最终数组</h3><pre><code class=language-c>unsigned char DSPNUM_1in9_off[] = {
+</code></pre>
+<h3 id="最终数组">最终数组
+</h3><pre><code class="language-c">unsigned char DSPNUM_1in9_off[] = {
     0x00, 0xfd, 0x17, 0xf5, 0x1f, 0xf7, 0x1d, 0x47, 0x1f, 0xf7, 0x1f, 0xff, 0x1f, 0x00, 0x00, 0x00
 };
-</code></pre><p>这个数组 DSPNUM_1in9_off 现在包含了你要求的数字 A 和 B 的十六进制表示形式。</p><p>GPT准确无误的理解了我的意思，这是这段代码直接得到的结果！！：<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-16_ecb74324.png loading=lazy alt=2025-03-06-14-14-16></p><h2 id=动态将数字转换为对应的段码>动态将数字转换为对应的段码</h2><p>上面一段只是实现了数字到段码的转换，作为一个温度计肯定需要每隔一段时间就将读取的温度传到这个数组里，所以我继续问<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-26_3facd89e.png loading=lazy alt=2025-03-06-14-14-26><br>GPT又准确无误的给了我方案：</p><h3 id=动态调整数组的代码>动态调整数组的代码</h3><p>为了动态调整 DSPNUM_1in9_off 数组，你可以编写一个函数，根据给定的 A 和 B 数值，动态设置数组的值。这个函数可以使用一个查找表来将数字映射到相应的字节值。</p><p>以下是一个实现示例：</p><pre><code class=language-c>#include &lt;stdio.h&gt;
+</code></pre>
+<p>这个数组 DSPNUM_1in9_off 现在包含了你要求的数字 A 和 B 的十六进制表示形式。</p>
+<p>GPT准确无误的理解了我的意思，这是这段代码直接得到的结果！！：<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-16_ecb74324.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-14-16"
+	
+	
+></p>
+<h2 id="动态将数字转换为对应的段码">动态将数字转换为对应的段码
+</h2><p>上面一段只是实现了数字到段码的转换，作为一个温度计肯定需要每隔一段时间就将读取的温度传到这个数组里，所以我继续问<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-26_3facd89e.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-14-26"
+	
+	
+><br>
+GPT又准确无误的给了我方案：</p>
+<h3 id="动态调整数组的代码">动态调整数组的代码
+</h3><p>为了动态调整 DSPNUM_1in9_off 数组，你可以编写一个函数，根据给定的 A 和 B 数值，动态设置数组的值。这个函数可以使用一个查找表来将数字映射到相应的字节值。</p>
+<p>以下是一个实现示例：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 
 // 定义数字对应的字节数组
 unsigned char digit_bytes[10][2] = {
@@ -119,7 +745,64 @@ int main() {
     return 0;
 }
 
-</code></pre><h3 id=解释>解释</h3><ol><li><p>数字到字节的映射表：</p><ul><li>digit_bytes 数组包含了每个数字（0 到 9）对应的两个字节的值。</li></ul></li><li><p>提取数字位：</p><ul><li>使用整数除法和取模运算提取 A 和 B 的十位、个位和小数点后一位。</li></ul></li><li><p>更新显示数组：</p><ul><li>使用提取到的数字位将 DSPNUM_1in9_off 数组的相应位置更新为查找表中的字节值。</li></ul></li><li><p>主函数：</p><ul><li>定义 A 和 B 的值，调用 update_display 函数更新显示数组，并打印数组内容以验证。</li></ul></li></ol><p>这样，DSPNUM_1in9_off 数组将根据传入的 A 和 B 值动态更新。</p><h2 id=小数点的处理>小数点的处理</h2><p>上面已经完整实现了两个数字到数组内的转换，但是转出来没有小数点，根据文档：</p><blockquote><p><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-58_7ccfffb8.png loading=lazy alt=2025-03-06-14-14-58></p></blockquote><p>所以要在数组的第4，8，10位做些处理</p><p>我继续对GPT说</p><p><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-41_d9de3f26.png loading=lazy alt=2025-03-06-14-14-41></p><p>GPT回答：</p><p>为了实现这个功能，我们需要将特定数组位置的十六进制数转换为二进制，修改二进制数中的特定位，然后将其转换回十六进制并存储在数组中。</p><p>以下是修改后的代码，包括处理 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10]：</p><pre><code class=language-c>#include &lt;stdio.h&gt;
+</code></pre>
+<h3 id="解释">解释
+</h3><ol>
+<li>
+<p>数字到字节的映射表：</p>
+<ul>
+<li>digit_bytes 数组包含了每个数字（0 到 9）对应的两个字节的值。</li>
+</ul>
+</li>
+<li>
+<p>提取数字位：</p>
+<ul>
+<li>使用整数除法和取模运算提取 A 和 B 的十位、个位和小数点后一位。</li>
+</ul>
+</li>
+<li>
+<p>更新显示数组：</p>
+<ul>
+<li>使用提取到的数字位将 DSPNUM_1in9_off 数组的相应位置更新为查找表中的字节值。</li>
+</ul>
+</li>
+<li>
+<p>主函数：</p>
+<ul>
+<li>定义 A 和 B 的值，调用 update_display 函数更新显示数组，并打印数组内容以验证。</li>
+</ul>
+</li>
+</ol>
+<p>这样，DSPNUM_1in9_off 数组将根据传入的 A 和 B 值动态更新。</p>
+<h2 id="小数点的处理">小数点的处理
+</h2><p>上面已经完整实现了两个数字到数组内的转换，但是转出来没有小数点，根据文档：</p>
+<blockquote>
+<p><img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-58_7ccfffb8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-14-58"
+	
+	
+></p></blockquote>
+<p>所以要在数组的第4，8，10位做些处理</p>
+<p>我继续对GPT说</p>
+<p><img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-14-41_d9de3f26.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-14-41"
+	
+	
+></p>
+<p>GPT回答：</p>
+<p>为了实现这个功能，我们需要将特定数组位置的十六进制数转换为二进制，修改二进制数中的特定位，然后将其转换回十六进制并存储在数组中。</p>
+<p>以下是修改后的代码，包括处理 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10]：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 
 // 定义数字对应的字节数组
 unsigned char digit_bytes[10][2] = {
@@ -187,15 +870,296 @@ int main() {
     return 0;
 }
 
-</code></pre><h3 id=解释-1>解释</h3><ol><li><p>函数 set_sixth_bit_to_one:</p><ul><li>使用位运算将一个字节的第六位（从右数）设置为 1。</li></ul></li><li><p>更新 DSPNUM_1in9_off 数组:</p><ul><li>按照你的要求更新数字 A 和 B 的各个位数字。</li><li>在设置 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 时，调用 set_sixth_bit_to_one 函数将其第六位设置为 1。</li></ul></li></ol><h3 id=结果>结果</h3><p>运行代码后，DSPNUM_1in9_off 数组将根据 A 和 B 的值动态更新，并且 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 的第六位将被设置为 1。</p><p>然后我就得到了：<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-10_39dd407b.png loading=lazy alt=2025-03-06-14-15-10><br>这里数字是我手动指定的<code>A=73.6</code>,<code>B=84.9</code>，可以看到小数点，百分号都已经显示出来了</p><p>再接入传感器读到的数值，温度计就差不多完工啦：<br><img src=http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png loading=lazy alt=2025-03-06-14-15-27></p><p>顺便一提这里的传感器驱动代码也是GPT帮调整的，真是神奇</p></section><footer class=article-footer><header class=article-category><div class=Winotmk_icon><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2"/></svg></div><a href=/categories/%E5%B0%8F%E6%9D%BF%E5%AD%90/>小板子</a></header></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/><div class=article-details><h2 class=article-title>地理数据采集器计划</h2></div></a></article></div></div></aside><link rel=stylesheet href=/scss/partials/comments/disqusjs.min.css><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>let disqusjs;function loadDisqusJS(){disqusjs=new DisqusJS({shortname:"winNote",siteName:"WinNote",apikey:"oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",api:"https://disqus.skk.moe/disqus/",admin:"winNote",adminLabel:"winNote"})}function lazyLoadDisqusJS(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}let e=document.createElement("script");e.src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js",e.async=!1,document.body.appendChild(e),e.onload=()=>{loadDisqusJS(),window.addEventListener("onColorSchemeChange",e=>{disqusjs&&loadDisqusJS()})}}let runningOnBrowser=typeof window!="undefined",isBot=runningOnBrowser&&!("onscroll"in window)||typeof navigator!="undefined"&&/(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent),supportsIntersectionObserver=runningOnBrowser&&"IntersectionObserver"in window;if(!isBot&&supportsIntersectionObserver){let e=new IntersectionObserver(function(t){t[0].isIntersecting&&(lazyLoadDisqusJS(),e.disconnect())});e.observe(document.getElementById("disqus_thread"))}else lazyLoadDisqusJS()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><footer class=site-footer><section class=copyright>&copy;
-2020 -
-2025 winotmk</section><div class=article-time><span class=post-meta-item id=busuanzi_container_site_uv style=display:inline><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7M5 7a4 4 0 108 0A4 4 0 105 7"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M21 21v-2a4 4 0 00-3-3.85"/></svg>
-<span class=site-uv title=总访客量>&nbsp;<span id=busuanzi_value_site_uv></span>
-</span></span><span>|</span>
-<span class=post-meta-item id=busuanzi_container_site_pv style=display:inline><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 104 0 2 2 0 00-4 0"/><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6"/></svg>
-<span class=site-pv title=总访问量>&nbsp;<span id=busuanzi_value_site_pv></span></span></span></div><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> Customized and extended by <a href=https://winotmk.com target=_blank rel=noopener>Winotmk</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-<button class="pswp__button pswp__button--share" title=Share></button>
-<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script>hljs.highlightAll()</script></body></html>
+</code></pre>
+<h3 id="解释-1">解释
+</h3><ol>
+<li>
+<p>函数 set_sixth_bit_to_one:</p>
+<ul>
+<li>使用位运算将一个字节的第六位（从右数）设置为 1。</li>
+</ul>
+</li>
+<li>
+<p>更新 DSPNUM_1in9_off 数组:</p>
+<ul>
+<li>按照你的要求更新数字 A 和 B 的各个位数字。</li>
+<li>在设置 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 时，调用 set_sixth_bit_to_one 函数将其第六位设置为 1。</li>
+</ul>
+</li>
+</ol>
+<h3 id="结果">结果
+</h3><p>运行代码后，DSPNUM_1in9_off 数组将根据 A 和 B 的值动态更新，并且 DSPNUM_1in9_off[4], DSPNUM_1in9_off[8] 和 DSPNUM_1in9_off[10] 的第六位将被设置为 1。</p>
+<p>然后我就得到了：<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-10_39dd407b.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-15-10"
+	
+	
+><br>
+这里数字是我手动指定的<code>A=73.6</code>,<code>B=84.9</code>，可以看到小数点，百分号都已经显示出来了</p>
+<p>再接入传感器读到的数值，温度计就差不多完工啦：<br>
+<img src="http://pictures.winotmk.com/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/2025-03-06-14-15-27_67f17cad.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-15-27"
+	
+	
+></p>
+<p>顺便一提这里的传感器驱动代码也是GPT帮调整的，真是神奇</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    
+    <header class="article-category">
+        <div class="Winotmk_icon">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>
+        </div>
+        
+            <a href="/categories/%E5%B0%8F%E6%9D%BF%E5%AD%90/" >
+                小板子
+            </a>
+        
+    </header>
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">地理数据采集器计划</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
+    <div id="disqus_thread"></div>
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
+            });
+        }
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <div class="article-time">
+        <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+          <span class="site-uv" title="总访客量">
+            &nbsp;<span id="busuanzi_value_site_uv"></span>
+          </span>
+        </span>
+        <span>|</span>
+        <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+          <span class="site-pv" title="总访问量">
+            &nbsp;<span id="busuanzi_value_site_pv"></span>
+          </span>
+        </span>
+    </div>
+
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+        
+        
+        <script>hljs.highlightAll();</script>
+        
+    </body>
+</html>

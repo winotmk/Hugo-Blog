@@ -1,140 +1,163 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on WinNote</title><link>https://winotmk.github.io/tags/git/</link><description>Recent content in Git on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git常用命令</title><link>https://winotmk.github.io/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link><pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid><description>&lt;h3 id="1-进入本地仓库目录">&lt;strong>1. 进入本地仓库目录&lt;/strong>
-&lt;/h3>&lt;p>打开终端（或 Git Bash），切换到仓库根目录：&lt;/p>
-&lt;pre>&lt;code class="language-bash">cd /path/to/your-repo
-&lt;/code>&lt;/pre>
-&lt;hr>
-&lt;h3 id="2-查看修改状态">&lt;strong>2. 查看修改状态&lt;/strong>
-&lt;/h3>&lt;p>检查哪些文件被修改：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git status
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>红色显示的文件表示已修改但未添加到暂存区。&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;h3 id="3-将修改添加到暂存区">&lt;strong>3. 将修改添加到暂存区&lt;/strong>
-&lt;/h3>&lt;p>添加单个文件：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git add 文件名
-&lt;/code>&lt;/pre>
-&lt;p>或添加所有修改的文件：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git add .
-&lt;/code>&lt;/pre>
-&lt;p>再次运行 &lt;code>git status&lt;/code>，绿色显示的文件表示已添加到暂存区。&lt;/p>
-&lt;hr>
-&lt;h3 id="4-提交修改到本地仓库">&lt;strong>4. 提交修改到本地仓库&lt;/strong>
-&lt;/h3>&lt;pre>&lt;code class="language-bash">git commit -m &amp;quot;描述你的修改内容（例如：修复登录页面样式问题）&amp;quot;
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>&lt;code>-m&lt;/code> 后跟提交信息，需简洁明确（推荐使用英文或中文）。&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;h3 id="5-推送修改到远程仓库">&lt;strong>5. 推送修改到远程仓库&lt;/strong>
-&lt;/h3>&lt;p>将本地提交推送到远程仓库（默认分支通常是 &lt;code>main&lt;/code> 或 &lt;code>master&lt;/code>）：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git push origin 分支名
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>例如推送到 &lt;code>main&lt;/code> 分支：
-&lt;pre>&lt;code class="language-bash">git push origin main
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;h3 id="6-验证推送结果">&lt;strong>6. 验证推送结果&lt;/strong>
-&lt;/h3>&lt;ul>
-&lt;li>访问远程仓库页面（如 GitHub），检查文件是否更新。&lt;/li>
-&lt;li>或通过命令查看远程状态：
-&lt;pre>&lt;code class="language-bash">git log --oneline # 查看本地提交记录
-git remote show origin # 检查远程仓库状态
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;!-- more -->
-&lt;h3 id="常见问题">&lt;strong>常见问题&lt;/strong>
-&lt;/h3>&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>提交后发现漏了文件&lt;/strong>：&lt;/p>
-&lt;pre>&lt;code class="language-bash"># 继续修改文件，然后再次添加并提交
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Git on WinNote</title>
+        <link>http://localhost:1313/tags/git/</link>
+        <description>Recent content in Git on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/git/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Git常用命令</title>
+        <link>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+        <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/250221_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+        <description>&lt;h3 id=&#34;1-进入本地仓库目录&#34;&gt;&lt;strong&gt;1. 进入本地仓库目录&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;打开终端（或 Git Bash），切换到仓库根目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /path/to/your-repo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-查看修改状态&#34;&gt;&lt;strong&gt;2. 查看修改状态&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;检查哪些文件被修改：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;红色显示的文件表示已修改但未添加到暂存区。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-将修改添加到暂存区&#34;&gt;&lt;strong&gt;3. 将修改添加到暂存区&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;添加单个文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git add 文件名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或添加所有修改的文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git add .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再次运行 &lt;code&gt;git status&lt;/code&gt;，绿色显示的文件表示已添加到暂存区。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-提交修改到本地仓库&#34;&gt;&lt;strong&gt;4. 提交修改到本地仓库&lt;/strong&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git commit -m &amp;quot;描述你的修改内容（例如：修复登录页面样式问题）&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-m&lt;/code&gt; 后跟提交信息，需简洁明确（推荐使用英文或中文）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-推送修改到远程仓库&#34;&gt;&lt;strong&gt;5. 推送修改到远程仓库&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;将本地提交推送到远程仓库（默认分支通常是 &lt;code&gt;main&lt;/code&gt; 或 &lt;code&gt;master&lt;/code&gt;）：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git push origin 分支名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;例如推送到 &lt;code&gt;main&lt;/code&gt; 分支：
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git push origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-验证推送结果&#34;&gt;&lt;strong&gt;6. 验证推送结果&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;访问远程仓库页面（如 GitHub），检查文件是否更新。&lt;/li&gt;
+&lt;li&gt;或通过命令查看远程状态：
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git log --oneline  # 查看本地提交记录
+git remote show origin  # 检查远程仓库状态
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;!-- more --&gt;
+&lt;h3 id=&#34;常见问题&#34;&gt;&lt;strong&gt;常见问题&lt;/strong&gt;
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;提交后发现漏了文件&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 继续修改文件，然后再次添加并提交
 git add 漏掉的文件名
-git commit --amend # 合并到上一次提交
-git push -f origin 分支名 # 强制推送（仅限自己的分支）
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>推送冲突&lt;/strong>（多人协作时可能发生）：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git pull origin 分支名 # 先拉取远程最新代码，解决冲突后再推送
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ol>
-&lt;hr>
-&lt;p>默认情况下直接使用 &lt;code>git clone&lt;/code> 不会自动克隆子模块（submodule）。子模块信息虽然记录在 &lt;code>.gitmodules&lt;/code> 文件中，但其代码需要额外操作才能同步到本地。&lt;/p>
-&lt;hr>
-&lt;h3 id="如何完整克隆包含子模块的仓库">&lt;strong>如何完整克隆包含子模块的仓库？&lt;/strong>
-&lt;/h3>&lt;h4 id="方法-1递归克隆推荐">&lt;strong>方法 1：递归克隆（推荐）&lt;/strong>
-&lt;/h4>&lt;p>在克隆时添加 &lt;code>--recurse-submodules&lt;/code> 参数，&lt;strong>一次性递归克隆主仓库和所有子模块&lt;/strong>：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git clone --recurse-submodules 仓库URL
-&lt;/code>&lt;/pre>
-&lt;hr>
-&lt;h4 id="方法-2克隆后初始化子模块">&lt;strong>方法 2：克隆后初始化子模块&lt;/strong>
-&lt;/h4>&lt;p>如果已经用普通方式克隆了主仓库，后续可以手动拉取子模块：&lt;/p>
-&lt;pre>&lt;code class="language-bash"># 进入主仓库目录
+git commit --amend  # 合并到上一次提交
+git push -f origin 分支名  # 强制推送（仅限自己的分支）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;推送冲突&lt;/strong&gt;（多人协作时可能发生）：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git pull origin 分支名  # 先拉取远程最新代码，解决冲突后再推送
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;默认情况下直接使用 &lt;code&gt;git clone&lt;/code&gt; 不会自动克隆子模块（submodule）。子模块信息虽然记录在 &lt;code&gt;.gitmodules&lt;/code&gt; 文件中，但其代码需要额外操作才能同步到本地。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;如何完整克隆包含子模块的仓库&#34;&gt;&lt;strong&gt;如何完整克隆包含子模块的仓库？&lt;/strong&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;方法-1递归克隆推荐&#34;&gt;&lt;strong&gt;方法 1：递归克隆（推荐）&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;在克隆时添加 &lt;code&gt;--recurse-submodules&lt;/code&gt; 参数，&lt;strong&gt;一次性递归克隆主仓库和所有子模块&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone --recurse-submodules 仓库URL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;方法-2克隆后初始化子模块&#34;&gt;&lt;strong&gt;方法 2：克隆后初始化子模块&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;如果已经用普通方式克隆了主仓库，后续可以手动拉取子模块：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 进入主仓库目录
 cd your-repo
+
 # 初始化子模块配置（从 .gitmodules 读取）
 git submodule init
+
 # 拉取子模块代码
 git submodule update
+
 # 或者合并成一步：
 git submodule update --init
-&lt;/code>&lt;/pre>
-&lt;hr>
-&lt;h3 id="验证子模块">&lt;strong>验证子模块&lt;/strong>
-&lt;/h3>&lt;ol>
-&lt;li>
-&lt;p>查看子模块目录是否包含文件（不再是空文件夹）：&lt;/p>
-&lt;pre>&lt;code class="language-bash">ls -la path/to/submodule
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;li>
-&lt;p>检查子模块状态：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git submodule status
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ol>
-&lt;hr>
-&lt;h3 id="常见问题-1">&lt;strong>常见问题&lt;/strong>
-&lt;/h3>&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>子模块更新失败&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>确保子模块的仓库地址可访问（尤其是私有仓库）。&lt;/li>
-&lt;li>如果子模块本身也有嵌套子模块，使用：
-&lt;pre>&lt;code class="language-bash">git submodule update --init --recursive
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>切换分支后子模块内容异常&lt;/strong>：&lt;br>
-主仓库切换分支时，子模块可能需要同步更新到对应提交：&lt;/p>
-&lt;pre>&lt;code class="language-bash">git submodule update --remote
-&lt;/code>&lt;/pre>
-&lt;/li>
-&lt;/ol>
-&lt;hr>
-&lt;h3 id="子模块工作原理">&lt;strong>子模块工作原理&lt;/strong>
-&lt;/h3>&lt;ul>
-&lt;li>主仓库只记录子模块的&lt;strong>具体提交哈希&lt;/strong>，不保存子模块的代码。&lt;/li>
-&lt;li>子模块是独立的仓库，需要单独拉取和更新。&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;h2 id="设置代理">设置代理
-&lt;/h2>&lt;pre>&lt;code>git config --global http.proxy http://127.0.0.1:7080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;验证子模块&#34;&gt;&lt;strong&gt;验证子模块&lt;/strong&gt;
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;查看子模块目录是否包含文件（不再是空文件夹）：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ls -la path/to/submodule
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检查子模块状态：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;常见问题-1&#34;&gt;&lt;strong&gt;常见问题&lt;/strong&gt;
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;子模块更新失败&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确保子模块的仓库地址可访问（尤其是私有仓库）。&lt;/li&gt;
+&lt;li&gt;如果子模块本身也有嵌套子模块，使用：
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --init --recursive
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;切换分支后子模块内容异常&lt;/strong&gt;：&lt;br&gt;
+主仓库切换分支时，子模块可能需要同步更新到对应提交：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --remote
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;子模块工作原理&#34;&gt;&lt;strong&gt;子模块工作原理&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;主仓库只记录子模块的&lt;strong&gt;具体提交哈希&lt;/strong&gt;，不保存子模块的代码。&lt;/li&gt;
+&lt;li&gt;子模块是独立的仓库，需要单独拉取和更新。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;设置代理&#34;&gt;设置代理
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;git config --global http.proxy http://127.0.0.1:7080
 git config --global https.proxy https://127.0.0.1:7080
-&lt;/code>&lt;/pre>
-&lt;p>取消设置代理&lt;/p>
-&lt;pre>&lt;code>git config --global --unset http.proxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;取消设置代理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global --unset http.proxy
 git config --global --unset https.proxy
-&lt;/code>&lt;/pre>
-&lt;p>可以通过&lt;/p>
-&lt;pre>&lt;code>git config -l
-&lt;/code>&lt;/pre>
-&lt;p>查看设置状态&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以通过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查看设置状态&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

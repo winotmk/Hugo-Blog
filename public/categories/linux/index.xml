@@ -1,308 +1,394 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on WinNote</title><link>https://winotmk.github.io/categories/linux/</link><description>Recent content in Linux on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Wed, 19 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux和docker常用命令</title><link>https://winotmk.github.io/posts/240619_linux%E5%91%BD%E4%BB%A4/</link><pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid><description>&lt;p>还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考&lt;/p>
-&lt;h2 id="文件操作相关">文件操作相关
-&lt;/h2>&lt;h3 id="复制目录">复制目录
-&lt;/h3>&lt;p>复制目录dir1和dir1目录下的文件到dir2目录里&lt;/p>
-&lt;pre>&lt;code>cp -r dir1 dir2
-&lt;/code>&lt;/pre>
-&lt;p>安装lrzsz实现zmodem串口文件传输&lt;/p>
-&lt;pre>&lt;code>rz 下载Zmodem
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Linux on WinNote</title>
+        <link>http://localhost:1313/categories/linux/</link>
+        <description>Recent content in Linux on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Wed, 19 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux和docker常用命令</title>
+        <link>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</link>
+        <pubDate>Wed, 19 Jun 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240619_linux%E5%91%BD%E4%BB%A4/</guid>
+        <description>&lt;p&gt;还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考&lt;/p&gt;
+&lt;h2 id=&#34;文件操作相关&#34;&gt;文件操作相关
+&lt;/h2&gt;&lt;h3 id=&#34;复制目录&#34;&gt;复制目录
+&lt;/h3&gt;&lt;p&gt;复制目录dir1和dir1目录下的文件到dir2目录里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cp -r dir1 dir2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装lrzsz实现zmodem串口文件传输&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rz 下载Zmodem
 xz 上传Zmodem
-&lt;/code>&lt;/pre>
-&lt;p>windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令&lt;br>
-&lt;a class="link" href="https://www.cnblogs.com/lidabo/p/4780866.html" target="_blank" rel="noopener"
->https://www.cnblogs.com/lidabo/p/4780866.html&lt;/a>&lt;/p>
-&lt;h3 id="挂载u盘">挂载U盘
-&lt;/h3>&lt;pre>&lt;code>fdisk -l
-&lt;/code>&lt;/pre>
-&lt;p>&lt;img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png"
-loading="lazy"
-alt="2025-03-06-14-08-33"
->&lt;br>
-可以看到一块14.84GB的SD卡，位置在&lt;code>/dev/sda1&lt;/code>&lt;br>
-使用&lt;/p>
-&lt;pre>&lt;code>mount -t vfat /dev/sda1 /mnt
-&lt;/code>&lt;/pre>
-&lt;p>来挂载U盘&lt;br>
-&lt;img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-41_4c306013.png"
-loading="lazy"
-alt="2025-03-06-14-08-41"
->&lt;br>
-&lt;code>cd&lt;/code>到&lt;code>/mnt&lt;/code>即可看到U盘里的文件了，另外可以在&lt;code>/mnt&lt;/code>里新建文件夹&lt;code>mkdir xxxxx&lt;/code>，再挂载到文件夹里&lt;/p>
-&lt;p>卸载：&lt;/p>
-&lt;pre>&lt;code>umount /mnt
-&lt;/code>&lt;/pre>
-&lt;h3 id="打包压缩和解压">打包压缩和解压
-&lt;/h3>&lt;p>压缩&lt;/p>
-&lt;pre>&lt;code>tar -czvf ***.tar.gz
-&lt;/code>&lt;/pre>
-&lt;p>解压&lt;/p>
-&lt;pre>&lt;code>tar -xzvf ***.tar.gz
-&lt;/code>&lt;/pre>
-&lt;h3 id="docker">docker
-&lt;/h3>&lt;p>&lt;a class="link" href="https://yeasy.gitbook.io/docker_practice/container/run" target="_blank" rel="noopener"
->https://yeasy.gitbook.io/docker_practice/container/run&lt;/a>&lt;/p>
-&lt;p>启动docker:&lt;/p>
-&lt;pre>&lt;code>sudo systemctl start docker
-&lt;/code>&lt;/pre>
-&lt;p>查看已有镜像：&lt;/p>
-&lt;pre>&lt;code>docker ps -a
-&lt;/code>&lt;/pre>
-&lt;p>启动已终止容器:&lt;/p>
-&lt;pre>&lt;code>docker container start
-&lt;/code>&lt;/pre>
-&lt;p>运行新的镜像run：&lt;/p>
-&lt;pre>&lt;code>docker run -it -d --name hexo_debian -p 22:22 -p 4000:4000 -v XXX:/hexo/ hexo_debian:V02
-&lt;/code>&lt;/pre>
-&lt;p>save:&lt;br>
-把本地镜像打包成tar方便带走&lt;/p>
-&lt;pre>&lt;code>docker save -o jre8u342_ch.tar jre8u342_ch:latest
-&lt;/code>&lt;/pre>
-&lt;p>打包好的tar用的时候可以：&lt;/p>
-&lt;pre>&lt;code>docker load -i {image_name}.tar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/lidabo/p/4780866.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.cnblogs.com/lidabo/p/4780866.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;挂载u盘&#34;&gt;挂载U盘
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;fdisk -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-08-33&#34;
+	
+	
+&gt;&lt;br&gt;
+可以看到一块14.84GB的SD卡，位置在&lt;code&gt;/dev/sda1&lt;/code&gt;&lt;br&gt;
+使用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mount -t vfat /dev/sda1 /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;来挂载U盘&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-41_4c306013.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-08-41&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;code&gt;cd&lt;/code&gt;到&lt;code&gt;/mnt&lt;/code&gt;即可看到U盘里的文件了，另外可以在&lt;code&gt;/mnt&lt;/code&gt;里新建文件夹&lt;code&gt;mkdir xxxxx&lt;/code&gt;，再挂载到文件夹里&lt;/p&gt;
+&lt;p&gt;卸载：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;umount /mnt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;打包压缩和解压&#34;&gt;打包压缩和解压
+&lt;/h3&gt;&lt;p&gt;压缩&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tar -czvf ***.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解压&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tar -xzvf ***.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;docker&#34;&gt;docker
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yeasy.gitbook.io/docker_practice/container/run&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://yeasy.gitbook.io/docker_practice/container/run&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;启动docker:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo systemctl start docker
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查看已有镜像：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker ps -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动已终止容器:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker container start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行新的镜像run：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -it -d --name hexo_debian -p 22:22 -p 4000:4000 -v XXX:/hexo/ hexo_debian:V02
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;save:&lt;br&gt;
+把本地镜像打包成tar方便带走&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打包好的tar用的时候可以：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker load -i {image_name}.tar
 docker load --input {image_name}.tar
-&lt;/code>&lt;/pre>
-&lt;p>如果没有tag可以手动打tag~&lt;/p>
-&lt;pre>&lt;code>docker tag {image_id} {image_name}:{image_tag}
-&lt;/code>&lt;/pre>
-&lt;p>自用的docker run:&lt;/p>
-&lt;pre>&lt;code>docker run -d --name=calibre-web -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e DOCKER_MODS=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:/config -v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest
-&lt;/code>&lt;/pre>
-&lt;pre>&lt;code>docker run -d --name=calibre -e PUID=1000 -e PGID=1000 -e TZ=Asia/Shanghai -e LC_ALL=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:/config --restart unless-stopped lscr.io/linuxserver/calibre:latest
-&lt;/code>&lt;/pre>
-&lt;!-- more -->
-&lt;h4 id="docker-compose">docker compose
-&lt;/h4>&lt;p>启动组&lt;br>
-&lt;code>docker compose -f hexo_debian_DockerCompose.yml up -d &lt;/code>&lt;br>
-关闭组&lt;br>
-&lt;code>docker compose -f hexo_debian_DockerCompose.yml down -v&lt;/code>&lt;br>
-启动但是会留在容器里&lt;br>
-&lt;code>docker compose up&lt;/code>&lt;br>
-启动不留在容器里&lt;br>
-&lt;code>docker compose up -d&lt;/code>&lt;br>
-进入docker容器&lt;/p>
-&lt;pre>&lt;code>docker exec -it XXX /bin/bash
-&lt;/code>&lt;/pre>
-&lt;p>退出容器但保留按&lt;code>ctrl+P+Q&lt;/code>&lt;br>
-也可以直接接要在容器里执行的命令&lt;/p>
-&lt;pre>&lt;code>docker exec hexo hexo g -d
-&lt;/code>&lt;/pre>
-&lt;p>拷贝容器内的文件出来，在宿主机上输入：&lt;/p>
-&lt;pre>&lt;code>docker cp -a vsftpd:/etc/services /root/
-&lt;/code>&lt;/pre>
-&lt;h3 id="screen">screen
-&lt;/h3>&lt;pre>&lt;code># 创建一个新的窗口
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果没有tag可以手动打tag~&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker tag {image_id} {image_name}:{image_tag}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;自用的docker run:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -d --name=calibre-web -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e DOCKER_MODS=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:/config -v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;docker run -d --name=calibre -e PUID=1000 -e PGID=1000 -e TZ=Asia/Shanghai -e LC_ALL=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:/config --restart unless-stopped lscr.io/linuxserver/calibre:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;h4 id=&#34;docker-compose&#34;&gt;docker compose
+&lt;/h4&gt;&lt;p&gt;启动组&lt;br&gt;
+&lt;code&gt;docker compose -f hexo_debian_DockerCompose.yml up -d &lt;/code&gt;&lt;br&gt;
+关闭组&lt;br&gt;
+&lt;code&gt;docker compose -f hexo_debian_DockerCompose.yml down -v&lt;/code&gt;&lt;br&gt;
+启动但是会留在容器里&lt;br&gt;
+&lt;code&gt;docker compose up&lt;/code&gt;&lt;br&gt;
+启动不留在容器里&lt;br&gt;
+&lt;code&gt;docker compose up -d&lt;/code&gt;&lt;br&gt;
+进入docker容器&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker exec -it XXX /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;退出容器但保留按&lt;code&gt;ctrl+P+Q&lt;/code&gt;&lt;br&gt;
+也可以直接接要在容器里执行的命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker exec hexo hexo g -d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;拷贝容器内的文件出来，在宿主机上输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker cp -a vsftpd:/etc/services /root/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;screen&#34;&gt;screen
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 创建一个新的窗口
 screen -S test
+ 
 # 进入窗口后 执行文件
 python test.py
+ 
 # 退出当前窗口
-ctrl+a+d （方法1：保留当前窗口）
-screen -d （方法2：保留当前窗口）
-exit （方法3：退出程序，并关闭窗口）
+ctrl+a+d   （方法1：保留当前窗口）
+screen -d  （方法2：保留当前窗口）
+exit       （方法3：退出程序，并关闭窗口）
+ 
 # 查看窗口
 screen -ls
+ 
 # 重新连接窗口
 screen -r id或窗口名称
-&lt;/code>&lt;/pre></description></item><item><title>令人头疼的vsftpd,ftp端口修改设置配置</title><link>https://winotmk.github.io/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link><pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid><description>&lt;p>这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p>
-&lt;pre>&lt;code>vim /etc/vsftpd.conf
-&lt;/code>&lt;/pre>
-&lt;p>vsftpd 配置文件：&lt;br>
-&lt;a class="link" href="https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html" target="_blank" rel="noopener"
->https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a>&lt;/p>
-&lt;h2 id="修改ftp的端口">修改ftp的端口
-&lt;/h2>&lt;p>ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p>
-&lt;pre>&lt;code>connect_from_port_20=NO
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+        <item>
+        <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
+        <link>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
+        <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
+        <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;vsftpd 配置文件：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改ftp的端口&#34;&gt;修改ftp的端口
+&lt;/h2&gt;&lt;p&gt;ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;connect_from_port_20=NO
 ftp_data_port=12520
 listen_port=12521
-&lt;/code>&lt;/pre>
-&lt;p>pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p>
-&lt;pre>&lt;code>pasv_promiscuous=YES
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pasv_promiscuous=YES
 pasv_min_port=31100
 pasv_max_port=31110
-&lt;/code>&lt;/pre>
-&lt;p>我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p>
-&lt;p>另外还有系统的services里&lt;/p>
-&lt;pre>&lt;code>vim /etc/services
-#ftp-data 20/tcp
-#ftp-data 20/udp
-ftp-data 12520/tcp
-ftp-data 12520/udp
-&lt;/code>&lt;/pre>
-&lt;p>这个不确定是否必要但还是改了吧&lt;/p>
-&lt;h2 id="中文乱码">中文乱码
-&lt;/h2>&lt;p>&lt;img src="http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-58-55_e24c0823.png"
-loading="lazy"
-alt="2025-03-06-13-58-55"
->&lt;/p>
-&lt;p>一篇不错的配置说明&lt;br>
-&lt;a class="link" href="https://blog.starryvoid.com/archives/1044.html" target="_blank" rel="noopener"
->https://blog.starryvoid.com/archives/1044.html&lt;/a>&lt;br>
-主要提到了utf8的编码问题&lt;/p>
-&lt;p>&lt;code>utf8_filesystem=YES&lt;/code>&lt;/p>
-&lt;p>如果这样还没解决，考虑是要修改容器本身的&lt;code>LANG&lt;/code>&lt;br>
-可以直接进入容器然后类似：&lt;br>
-export LANG=C.UTF-8&lt;br>
-或者&lt;br>
-export LANG=en_US.UTF-8&lt;br>
-输入locale查看结果&lt;br>
-当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里&lt;br>
-&lt;a class="link" href="https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/" target="_blank" rel="noopener"
->https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a>&lt;br>
-然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p>
-&lt;p>&lt;img src="http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-59-09_33a7b5bd.png"
-loading="lazy"
-alt="2025-03-06-13-59-09"
->&lt;/p>
-&lt;p>现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p></description></item><item><title>Linux上的命令行代理工具</title><link>https://winotmk.github.io/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid><description>&lt;img src="http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-49-57_724037d1.png" alt="Featured image of post Linux上的命令行代理工具" />&lt;p>&lt;/p>
-&lt;p>阿里云的AI白票试用还是很香的，b站顺便一搜有很多教程，跑个lora训练或者SD webui之类的&lt;br>
-但难免会遇到要拉更新之类的情况，github和huggingface.co速度慢或者连不上去也经常遇到，除了使用镜像站以外，还有可以使用代理来加速&lt;/p>
-&lt;h2 id="先通socks5">先通SOCKS5！
-&lt;/h2>&lt;h3 id="安装ss">安装ss
-&lt;/h3>&lt;p>先贴上需要用到的软件github：&lt;br>
-&lt;a class="link" href="https://github.com/shadowsocks/shadowsocks-libev" target="_blank" rel="noopener"
->https://github.com/shadowsocks/shadowsocks-libev&lt;/a>&lt;/p>
-&lt;p>以及大概解释了什么是ss2，ss-go，ss-libev&lt;br>
-&lt;a class="link" href="https://shadowsocks5.github.io/en/spec/Implementations.html" target="_blank" rel="noopener"
->https://shadowsocks5.github.io/en/spec/Implementations.html&lt;/a>&lt;/p>
-&lt;p>在云端实例命令行下，需要个尽可能简洁小巧又好用的工具，ss-libev可能会是我们的首选，ss-libev是一个轻量级安全 SOCKS5 代理，适用于嵌入式设备和低端设备，用纯 C 编写，体积小巧比较高效&lt;br>
-我的云计算镜像是基于ubuntu22.04的&lt;br>
-要安装它，直接&lt;/p>
-&lt;pre>&lt;code>sudo apt update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p&gt;
+&lt;p&gt;另外还有系统的services里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/services
+
+#ftp-data        20/tcp
+#ftp-data        20/udp
+ftp-data        12520/tcp
+ftp-data        12520/udp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
+&lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-58-55_e24c0823.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-13-58-55&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一篇不错的配置说明&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.starryvoid.com/archives/1044.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.starryvoid.com/archives/1044.html&lt;/a&gt;&lt;br&gt;
+主要提到了utf8的编码问题&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;utf8_filesystem=YES&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果这样还没解决，考虑是要修改容器本身的&lt;code&gt;LANG&lt;/code&gt;&lt;br&gt;
+可以直接进入容器然后类似：&lt;br&gt;
+export LANG=C.UTF-8&lt;br&gt;
+或者&lt;br&gt;
+export LANG=en_US.UTF-8&lt;br&gt;
+输入locale查看结果&lt;br&gt;
+当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;&lt;br&gt;
+然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-59-09_33a7b5bd.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-13-59-09&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Linux上的命令行代理工具</title>
+        <link>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+        <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240109_linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-49-57_724037d1.png" alt="Featured image of post Linux上的命令行代理工具" /&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;阿里云的AI白票试用还是很香的，b站顺便一搜有很多教程，跑个lora训练或者SD webui之类的&lt;br&gt;
+但难免会遇到要拉更新之类的情况，github和huggingface.co速度慢或者连不上去也经常遇到，除了使用镜像站以外，还有可以使用代理来加速&lt;/p&gt;
+&lt;h2 id=&#34;先通socks5&#34;&gt;先通SOCKS5！
+&lt;/h2&gt;&lt;h3 id=&#34;安装ss&#34;&gt;安装ss
+&lt;/h3&gt;&lt;p&gt;先贴上需要用到的软件github：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/shadowsocks/shadowsocks-libev&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/shadowsocks/shadowsocks-libev&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以及大概解释了什么是ss2，ss-go，ss-libev&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://shadowsocks5.github.io/en/spec/Implementations.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://shadowsocks5.github.io/en/spec/Implementations.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在云端实例命令行下，需要个尽可能简洁小巧又好用的工具，ss-libev可能会是我们的首选，ss-libev是一个轻量级安全 SOCKS5 代理，适用于嵌入式设备和低端设备，用纯 C 编写，体积小巧比较高效&lt;br&gt;
+我的云计算镜像是基于ubuntu22.04的&lt;br&gt;
+要安装它，直接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt update
 sudo apt install shadowsocks-libev
-&lt;/code>&lt;/pre>
-&lt;h3 id="配置ss">配置ss
-&lt;/h3>&lt;p>然后编辑设置：&lt;/p>
-&lt;pre>&lt;code># Edit the configuration file
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;配置ss&#34;&gt;配置ss
+&lt;/h3&gt;&lt;p&gt;然后编辑设置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Edit the configuration file
 sudo vim /etc/shadowsocks-libev/config.json
-&lt;/code>&lt;/pre>
-&lt;!-- more -->
-&lt;p>在&lt;code>config.json&lt;/code>里&lt;/p>
-&lt;pre>&lt;code>{
-&amp;quot;server&amp;quot;:&amp;quot;my_server_ip&amp;quot;,
-&amp;quot;mode&amp;quot;:&amp;quot;tcp_and_udp&amp;quot;,
-&amp;quot;server_port&amp;quot;:8388,
-&amp;quot;local_port&amp;quot;:1080,
-&amp;quot;password&amp;quot;:&amp;quot;barfoo!&amp;quot;,
-&amp;quot;timeout&amp;quot;:600,
-&amp;quot;method&amp;quot;:&amp;quot;chacha20-ietf-poly1305&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;在&lt;code&gt;config.json&lt;/code&gt;里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;server&amp;quot;:&amp;quot;my_server_ip&amp;quot;,
+    &amp;quot;mode&amp;quot;:&amp;quot;tcp_and_udp&amp;quot;,
+    &amp;quot;server_port&amp;quot;:8388,
+    &amp;quot;local_port&amp;quot;:1080,
+    &amp;quot;password&amp;quot;:&amp;quot;barfoo!&amp;quot;,
+    &amp;quot;timeout&amp;quot;:600,
+    &amp;quot;method&amp;quot;:&amp;quot;chacha20-ietf-poly1305&amp;quot;
 }
-&lt;/code>&lt;/pre>
-&lt;ul>
-&lt;li>&lt;code>server&lt;/code> :您的主机名或服务器 IP (IPv4/IPv6)&lt;/li>
-&lt;li>&lt;code>mode&lt;/code> :模式一般不动&lt;/li>
-&lt;li>&lt;code>server_port&lt;/code> :服务器端口号&lt;/li>
-&lt;li>&lt;code>local_port&lt;/code> :本地端口号，一般默认就1080&lt;/li>
-&lt;li>&lt;code>password&lt;/code> :密码&lt;/li>
-&lt;li>&lt;code>timeout&lt;/code> :连接超时（以秒为单位）&lt;/li>
-&lt;li>&lt;code>method&lt;/code> :加密算法&lt;/li>
-&lt;/ul>
-&lt;p>这些信息只要你找的代理供应商支持ss协议应该都可以拿到&lt;/p>
-&lt;p>ps顺便给同学们复习下vim，懒得用vim的可以不看，按&lt;code>a&lt;/code>进入编辑模式，方向键移动光标，编辑完成后按两下 &lt;code>ctrl+c&lt;/code> 进入指令模式然后&lt;code>:wq!&lt;/code>保存更改并退出,如果直接退出不保存是&lt;code>:q!&lt;/code>&lt;/p>
-&lt;h3 id="启动ss客户端">启动ss客户端
-&lt;/h3>&lt;p>任意目录输入&lt;/p>
-&lt;pre>&lt;code>ss-local
-&lt;/code>&lt;/pre>
-&lt;p>即可做为客户端启动&lt;br>
-这里我启动成功以后显示：&lt;br>
-&lt;img src="http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-50-33_a50cfd7a.png"
-loading="lazy"
-alt="2025-03-06-13-50-33"
->&lt;/p>
-&lt;p>ps这个软件可以以服务端启动，同样也是修改上面的&lt;code>etc/shadowsocks-libev/config.json&lt;/code>,这里挺容易混淆啊，我这里的目标是想给我的云上GPU计算实例代理加速，所以以客户端启动就行&lt;br>
-如果要以服务端启动&lt;/p>
-&lt;pre>&lt;code>systemctl start shadowsocks-libev.service
-&lt;/code>&lt;/pre>
-&lt;p>systemctl如果云上镜像里没有（大概率没有，容器镜像谁会带systemctl或者systemd呢~），可以尝试&lt;/p>
-&lt;pre>&lt;code>sudo /etc/init.d/shadowsocks-libev start
-&lt;/code>&lt;/pre>
-&lt;h2 id="安装proxychains使软件走代理">安装proxychains使软件走代理
-&lt;/h2>&lt;p>上面只做到了客户端使用SOCKS5打通代理，接下来再用另外一个软件使我们指定的命令/app走这条SOCKS5线路，也就是需要个SOCKS5转HTTP的工具来为我们所用&lt;br>
-这里发现了proxychains&lt;/p>
-&lt;blockquote>
-&lt;p>ProxyChains 是一个强制应用的 TCP 连接通过代理的工具，支持 Tor、HTTP、与 Socks 代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。&lt;/p>&lt;/blockquote>
-&lt;h3 id="安装proxychains">安装proxychains
-&lt;/h3>&lt;pre>&lt;code>sudo apt install proxychains
-&lt;/code>&lt;/pre>
-&lt;p>超快就安装好了&lt;/p>
-&lt;h3 id="配置">配置
-&lt;/h3>&lt;pre>&lt;code> vim /etc/proxychains.conf
-&lt;/code>&lt;/pre>
-&lt;pre>&lt;code>[ProxyList]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;server&lt;/code&gt; :您的主机名或服务器 IP (IPv4/IPv6)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mode&lt;/code&gt; :模式一般不动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;server_port&lt;/code&gt; :服务器端口号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;local_port&lt;/code&gt; :本地端口号，一般默认就1080&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;password&lt;/code&gt; :密码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;timeout&lt;/code&gt; :连接超时（以秒为单位）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;method&lt;/code&gt; :加密算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些信息只要你找的代理供应商支持ss协议应该都可以拿到&lt;/p&gt;
+&lt;p&gt;ps顺便给同学们复习下vim，懒得用vim的可以不看，按&lt;code&gt;a&lt;/code&gt;进入编辑模式，方向键移动光标，编辑完成后按两下 &lt;code&gt;ctrl+c&lt;/code&gt; 进入指令模式然后&lt;code&gt;:wq!&lt;/code&gt;保存更改并退出,如果直接退出不保存是&lt;code&gt;:q!&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;启动ss客户端&#34;&gt;启动ss客户端
+&lt;/h3&gt;&lt;p&gt;任意目录输入&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ss-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;即可做为客户端启动&lt;br&gt;
+这里我启动成功以后显示：&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-50-33_a50cfd7a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-13-50-33&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ps这个软件可以以服务端启动，同样也是修改上面的&lt;code&gt;etc/shadowsocks-libev/config.json&lt;/code&gt;,这里挺容易混淆啊，我这里的目标是想给我的云上GPU计算实例代理加速，所以以客户端启动就行&lt;br&gt;
+如果要以服务端启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;systemctl start shadowsocks-libev.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;systemctl如果云上镜像里没有（大概率没有，容器镜像谁会带systemctl或者systemd呢~），可以尝试&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo /etc/init.d/shadowsocks-libev start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装proxychains使软件走代理&#34;&gt;安装proxychains使软件走代理
+&lt;/h2&gt;&lt;p&gt;上面只做到了客户端使用SOCKS5打通代理，接下来再用另外一个软件使我们指定的命令/app走这条SOCKS5线路，也就是需要个SOCKS5转HTTP的工具来为我们所用&lt;br&gt;
+这里发现了proxychains&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ProxyChains 是一个强制应用的 TCP 连接通过代理的工具，支持 Tor、HTTP、与 Socks 代理。ProxyChains 只会将当前应用的 TCP 连接转发至代理，而非全局代理。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;安装proxychains&#34;&gt;安装proxychains
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo apt install proxychains
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;超快就安装好了&lt;/p&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt; vim /etc/proxychains.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[ProxyList]
 # add proxy here ...
 # meanwile
 # defaults set to &amp;quot;tor&amp;quot;
-#socks4 127.0.0.1 9050
+#socks4    127.0.0.1 9050
+
 # example
-socks5 127.0.0.1 1080
-&lt;/code>&lt;/pre>
-&lt;h3 id="使用">使用
-&lt;/h3>&lt;p>ProxyChains 的使用方式非常简单，直接在应用程序前加上 proxychains 即可&lt;br>
-例如：&lt;/p>
-&lt;pre>&lt;code>proxychains git clone https://github.com/rofl0r/proxychains-ng
-&lt;/code>&lt;/pre>
-&lt;p>但是据说ping是不行的，因为pin并不是TCP而是ICMP，所以可以尝试&lt;code>proxychains ping google.com&lt;/code>,总之我是能解析出IP但是会卡住ping不了，问题不大&lt;/p>
-&lt;p>试试看是不是通了：&lt;br>
-先试试&lt;/p>
-&lt;pre>&lt;code>curl cip.cc
-&lt;/code>&lt;/pre>
-&lt;p>得到&lt;br>
-&lt;img src="http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-50-55_9a487db6.png"
-loading="lazy"
-alt="2025-03-06-13-50-55"
->&lt;/p>
-&lt;p>我们加上proxychains以后&lt;/p>
-&lt;pre>&lt;code>proxychains curl cip.cc
-&lt;/code>&lt;/pre>
-&lt;p>&lt;img src="http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-51-05_892ae21b.png"
-loading="lazy"
-alt="2025-03-06-13-51-05"
->&lt;/p>
-&lt;p>看！效果立竿见影，而且可以灵活使用&lt;/p>
-&lt;p>另外一种方法或许可以不装proxychains&lt;br>
-直接设置变量&lt;/p>
-&lt;pre>&lt;code>export http_proxy=&amp;quot;socks5://127.0.0.1:1080&amp;quot;
+socks5  127.0.0.1 1080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;使用&#34;&gt;使用
+&lt;/h3&gt;&lt;p&gt;ProxyChains 的使用方式非常简单，直接在应用程序前加上 proxychains 即可&lt;br&gt;
+例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains git clone https://github.com/rofl0r/proxychains-ng
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是据说ping是不行的，因为pin并不是TCP而是ICMP，所以可以尝试&lt;code&gt;proxychains ping google.com&lt;/code&gt;,总之我是能解析出IP但是会卡住ping不了，问题不大&lt;/p&gt;
+&lt;p&gt;试试看是不是通了：&lt;br&gt;
+先试试&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl cip.cc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-50-55_9a487db6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-13-50-55&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我们加上proxychains以后&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains curl cip.cc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/2025-03-06-13-51-05_892ae21b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-13-51-05&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;看！效果立竿见影，而且可以灵活使用&lt;/p&gt;
+&lt;p&gt;另外一种方法或许可以不装proxychains&lt;br&gt;
+直接设置变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export http_proxy=&amp;quot;socks5://127.0.0.1:1080&amp;quot;
 export https_proxy=&amp;quot;socks5://127.0.0.1:1080&amp;quot;
-&lt;/code>&lt;/pre>
-&lt;p>可能也可以但没试过&lt;/p>
-&lt;h2 id="其他一些镜像方案">其他一些镜像方案：
-&lt;/h2>&lt;h3 id="huggingface">huggingface
-&lt;/h3>&lt;p>运行python时前加&lt;code>HF_ENDPOINT=https://hf-mirror.com&lt;/code>，这样就可以实现后续走镜像加速了&lt;/p>
-&lt;pre>&lt;code>HF_ENDPOINT=https://hf-mirror.com python your_script.py
-&lt;/code>&lt;/pre>
-&lt;p>详细用法：&lt;br>
-&lt;a class="link" href="https://hf-mirror.com/" target="_blank" rel="noopener"
->https://hf-mirror.com/&lt;/a>&lt;/p>
-&lt;h3 id="github">github
-&lt;/h3>&lt;p>示例用法，直接github域名前加&lt;code>https://mirror.ghproxy.com/&lt;/code>&lt;/p>
-&lt;pre>&lt;code>https://mirror.ghproxy.com/https://github.com/d8ahazard/sd_dreambooth_extension
-&lt;/code>&lt;/pre>
-&lt;p>详细见：&lt;br>
-&lt;a class="link" href="https://mirror.ghproxy.com/" target="_blank" rel="noopener"
->https://mirror.ghproxy.com/&lt;/a>&lt;br>
-有些部署文件里还是用的之前的域名&lt;code>https://ghproxy.com/&lt;/code>,已失效，改用二级域名&lt;code>https://mirror.ghproxy.com/&lt;/code>即可&lt;/p>
-&lt;h2 id="附录">附录
-&lt;/h2>&lt;h3 id="本文参考文章">本文参考文章
-&lt;/h3>&lt;p>linux命令行代理神器-proxychains&lt;br>
-&lt;a class="link" href="https://zhuanlan.zhihu.com/p/166375631" target="_blank" rel="noopener"
->https://zhuanlan.zhihu.com/p/166375631&lt;/a>&lt;/p>
-&lt;p>Linux 让终端走代理的几种方法&lt;br>
-&lt;a class="link" href="https://zhuanlan.zhihu.com/p/46973701" target="_blank" rel="noopener"
->https://zhuanlan.zhihu.com/p/46973701&lt;/a>&lt;/p>
-&lt;p>ss服务端和客户端安装&lt;br>
-&lt;a class="link" href="https://mkmerich.com/2018-09-23/shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85.html" target="_blank" rel="noopener"
->https://mkmerich.com/2018-09-23/shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85.html&lt;/a>&lt;/p>
-&lt;p>基本概念,什么是ss什么是socks5&lt;br>
-&lt;a class="link" href="https://reezon.github.io/2018/05/23/%E5%85%B3%E4%BA%8Ess%28%E9%85%B8%E9%85%B8%29%E5%92%8Cssr%28%E9%85%B8%E9%85%B8%E4%B9%B3%29%EF%BC%8C%E8%BF%98%E6%9C%89vpn%E5%92%8Csocks5/" target="_blank" rel="noopener"
->https://reezon.github.io/2018/05/23/%E5%85%B3%E4%BA%8Ess(%E9%85%B8%E9%85%B8)%E5%92%8Cssr(%E9%85%B8%E9%85%B8%E4%B9%B3)%EF%BC%8C%E8%BF%98%E6%9C%89vpn%E5%92%8Csocks5/&lt;/a>&lt;/p>
-&lt;p>使用Curl时可以直接用socks5&lt;br>
-&lt;a class="link" href="https://blog.emacsos.com/use-socks5-proxy-in-curl.html" target="_blank" rel="noopener"
->https://blog.emacsos.com/use-socks5-proxy-in-curl.html&lt;/a>&lt;/p>
-&lt;h3 id="其他类似方案软件">其他类似方案软件
-&lt;/h3>&lt;p>sshuttle&lt;br>
-&lt;a class="link" href="https://github.com/sshuttle/sshuttle" target="_blank" rel="noopener"
->https://github.com/sshuttle/sshuttle&lt;/a>&lt;/p>
-&lt;p>yuhaiin&lt;br>
-&lt;a class="link" href="https://github.com/yuhaiin/yuhaiin" target="_blank" rel="noopener"
->https://github.com/yuhaiin/yuhaiin&lt;/a>&lt;/p>
-&lt;p>clash-verge&lt;br>
-&lt;a class="link" href="https://github.com/zzzgydi/clash-verge" target="_blank" rel="noopener"
->https://github.com/zzzgydi/clash-verge&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可能也可以但没试过&lt;/p&gt;
+&lt;h2 id=&#34;其他一些镜像方案&#34;&gt;其他一些镜像方案：
+&lt;/h2&gt;&lt;h3 id=&#34;huggingface&#34;&gt;huggingface
+&lt;/h3&gt;&lt;p&gt;运行python时前加&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com&lt;/code&gt;，这样就可以实现后续走镜像加速了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HF_ENDPOINT=https://hf-mirror.com python your_script.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;详细用法：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://hf-mirror.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hf-mirror.com/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;github&#34;&gt;github
+&lt;/h3&gt;&lt;p&gt;示例用法，直接github域名前加&lt;code&gt;https://mirror.ghproxy.com/&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://mirror.ghproxy.com/https://github.com/d8ahazard/sd_dreambooth_extension
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;详细见：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://mirror.ghproxy.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mirror.ghproxy.com/&lt;/a&gt;&lt;br&gt;
+有些部署文件里还是用的之前的域名&lt;code&gt;https://ghproxy.com/&lt;/code&gt;,已失效，改用二级域名&lt;code&gt;https://mirror.ghproxy.com/&lt;/code&gt;即可&lt;/p&gt;
+&lt;h2 id=&#34;附录&#34;&gt;附录
+&lt;/h2&gt;&lt;h3 id=&#34;本文参考文章&#34;&gt;本文参考文章
+&lt;/h3&gt;&lt;p&gt;linux命令行代理神器-proxychains&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/166375631&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/166375631&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Linux 让终端走代理的几种方法&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/46973701&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/46973701&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ss服务端和客户端安装&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://mkmerich.com/2018-09-23/shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mkmerich.com/2018-09-23/shadowsocks%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;基本概念,什么是ss什么是socks5&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://reezon.github.io/2018/05/23/%E5%85%B3%E4%BA%8Ess%28%E9%85%B8%E9%85%B8%29%E5%92%8Cssr%28%E9%85%B8%E9%85%B8%E4%B9%B3%29%EF%BC%8C%E8%BF%98%E6%9C%89vpn%E5%92%8Csocks5/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://reezon.github.io/2018/05/23/%E5%85%B3%E4%BA%8Ess(%E9%85%B8%E9%85%B8)%E5%92%8Cssr(%E9%85%B8%E9%85%B8%E4%B9%B3)%EF%BC%8C%E8%BF%98%E6%9C%89vpn%E5%92%8Csocks5/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用Curl时可以直接用socks5&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.emacsos.com/use-socks5-proxy-in-curl.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.emacsos.com/use-socks5-proxy-in-curl.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;其他类似方案软件&#34;&gt;其他类似方案软件
+&lt;/h3&gt;&lt;p&gt;sshuttle&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/sshuttle/sshuttle&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/sshuttle/sshuttle&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;yuhaiin&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/yuhaiin/yuhaiin&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/yuhaiin/yuhaiin&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;clash-verge&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/zzzgydi/clash-verge&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/zzzgydi/clash-verge&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

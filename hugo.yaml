@@ -37,7 +37,9 @@ services:
         id:
 
 pagination:
-    pagerSize: 12
+    # pagerSize: 12
+    #因为hexo也是每页10文章
+    pagerSize: 10
 
 permalinks:
     post: /p/:slug/
@@ -275,6 +277,7 @@ markup:
         endLevel: 4
         ordered: true
         startLevel: 2
+    ## 基本关闭highlight，使用自己做的css+highlight.js
     highlight:
         noClasses: true
         codeFences: false

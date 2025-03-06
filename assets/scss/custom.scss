@@ -90,6 +90,7 @@ code::before {
     width: 100%;
 }
 */
+
 //阅读更多
 .readmore{
     margin: 0 auto;
@@ -119,6 +120,11 @@ code::before {
 }
 .summary:hover {
     opacity: 1; /* 0-1之间调节透明度 */
+}
+/*摘要框里的图片缩放设置*/
+.summary img{
+    max-width: 100%; /* 图片宽度跟随父元素变化 */
+    height: auto; /* 保持图片纵横比 */
 }
 
 .copy-button {
@@ -159,4 +165,9 @@ code::before {
 //连接里的图
 .article-list--compact article .article-image img {
     width:auto; 
+}
+
+//右侧边栏svg元素加间隔
+.widget-icon svg {
+    margin-right: 5px;
 }

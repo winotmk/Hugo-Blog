@@ -1,61 +1,1036 @@
-<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n"><title>给docker容器内配置中文环境(minecraft开服相关)</title>
-<link rel=canonical href=https://winotmk.github.io/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/><link rel=stylesheet href=/scss/style.min.0925ba54509d2c1cccd7844519226bfec147b7c309edea09034e8a311ac8ee29.css><meta property='og:title' content="给docker容器内配置中文环境(minecraft开服相关)"><meta property='og:description' content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n"><meta property='og:url' content='https://winotmk.github.io/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/'><meta property='og:site_name' content='WinNote'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='linux'><meta property='article:tag' content='docker'><meta property='article:tag' content='minecraft'><meta property='article:published_time' content='2024-08-15T00:00:00+00:00'><meta property='article:modified_time' content='2024-08-15T00:00:00+00:00'><meta property='og:image' content='http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png'><meta name=twitter:title content="给docker容器内配置中文环境(minecraft开服相关)"><meta name=twitter:description content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png'><link rel="shortcut icon" href=/favicon.png><link rel=stylesheet href=/highlight/styles/base16/eighties.css><script src=/highlight/highlight.min.js></script><script src=/clipboard.min.js></script><script src=/copy-to-clipboard.js></script><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"light")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_1b0ce47a1c2b08eb.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
-</a><span class=emoji>🪐</span></figure><div class=site-meta><h1 class=site-name><a href=/>WinNote</a></h1><h2 class=site-description>零碎MD文档收集|生命在于折腾</h2></div></header><ol class=menu-social><li><a href=https://space.bilibili.com/193498 target=_blank title=Bilibili rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a></li><li><a href=https://github.com/winotmk/Hugo-Blog target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://winotmk.com target=_blank title=Homepage rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9-9-9 9h2v7a2 2 0 002 2h6"/><path d="M9 21v-6a2 2 0 012-2h2c.39.0.754.112 1.061.304"/><path d="M19 21.5l2.518-2.58a1.74 1.74.0 000-2.413 1.627 1.627.0 00-2.346.0l-.168.172-.168-.172a1.627 1.627.0 00-2.346.0 1.74 1.74.0 000 2.412l2.51 2.59z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
-<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
-<span>搜索</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
-<span>链接</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><h2 class="widget-title section-title">目录</h2></div><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#选取docker镜像>选取docker镜像</a></li><li><a href=#设置环境变量>设置环境变量</a><ol><li><a href=#查看已有语言>查看已有语言</a></li><li><a href=#安装中文环境>安装中文环境</a></li></ol></li><li><a href=#制作新镜像>制作新镜像</a><ol><li><a href=#dockerfile>dockerfile</a></li><li><a href=#测试运行>测试运行</a></li></ol></li><li><a href=#部署到群晖>部署到群晖</a></li><li><a href=#服务器远程管理>服务器远程管理</a><ol><li><a href=#安装和服务端配置>安装和服务端配置：</a></li><li><a href=#用法>用法：</a></li></ol></li><li><a href=#参考>参考</a></li></ol></nav></div></section><form action=/search/ class="search-form widget"><p><label>搜索</label>
-<input name=keyword required placeholder=输入关键词...>
-<button title=搜索><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg></button></p></form></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png loading=lazy alt="Featured image of post 给docker容器内配置中文环境(minecraft开服相关)"></a></div><div class=article-details><header class=article-category><div class=Winotmk_icon><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg></div><a href=/tags/linux/>Linux
-</a><a href=/tags/docker/>Docker
-</a><a href=/tags/minecraft/>Minecraft</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/>给docker容器内配置中文环境(minecraft开服相关)</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>2024-08-15</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 3 分钟</time></div><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 7m0 1a1 1 0 011-1h6a1 1 0 011 1v1a1 1 0 01-1 1H9A1 1 0 018 9z"/><path d="M8 14v.01"/><path d="M12 14v.01"/><path d="M16 14v.01"/><path d="M8 17v.01"/><path d="M12 17v.01"/><path d="M16 17v.01"/></svg>
-<time class=article-time--reading><time class=article-time--reading>字数: 1318</time></time></div></footer></div></header><footer class=article-time style=padding-left:30px;padding-top:5px><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 104 0 2 2 0 00-4 0"/><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6"/></svg>
-<span title=阅读次数 id=busuanzi_container_page_pv style=display:inline;font-size:1.4rem>阅读次数: <span class=article-time--reading id=busuanzi_value_page_pv></span>次</span></div></footer><section class=article-content><p>最近找到个整合包（因为懒得一个个翻bbs<br><a class=link href="https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click" target=_blank rel=noopener>https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click</a><br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-14_5daf4b61.png loading=lazy alt=2025-03-06-14-37-14><br>这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道<br>才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！<br>服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着</p><h2 id=选取docker镜像>选取docker镜像</h2><p>docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了<br><a class=link href="https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=" target=_blank rel=noopener>https://hub.docker.com/_/openjdk/tags?page=1&page_size=&name=8u342&ordering=</a><br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-24_d9e14fdf.png loading=lazy alt=2025-03-06-14-37-24><br>所以直接</p><pre><code>docker pull openjdk:8u342-jre-slim
-</code></pre><p>然后直接这样运行就好了</p><pre><code>docker run -it -d \
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n">
+<title>给docker容器内配置中文环境(minecraft开服相关)</title>
+
+<link rel='canonical' href='http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/'>
+
+<link rel="stylesheet" href="/scss/style.min.9b3f6e87b0237b38ec496b7bdbbe9dd59eff0f831085581494a5b34fbeaf48b7.css"><meta property='og:title' content="给docker容器内配置中文环境(minecraft开服相关)">
+<meta property='og:description' content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n">
+<meta property='og:url' content='http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='minecraft' /><meta property='article:published_time' content='2024-08-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-15T00:00:00&#43;00:00'/><meta property='og:image' content='http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png' />
+<meta name="twitter:title" content="给docker容器内配置中文环境(minecraft开服相关)">
+<meta name="twitter:description" content="最近找到个整合包（因为懒得一个个翻bbs\nhttps://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click\n这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道\n才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！\n服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
+        
+        <script src="/clipboard.min.js"></script>
+        <script src="/copy-to-clipboard.js"></script>
+        
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://winotmk.com'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+            <h2 class="widget-title section-title">目录</h2>
+        </div>
+        
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#选取docker镜像">选取docker镜像</a></li>
+    <li><a href="#设置环境变量">设置环境变量</a>
+      <ol>
+        <li><a href="#查看已有语言">查看已有语言</a></li>
+        <li><a href="#安装中文环境">安装中文环境</a></li>
+      </ol>
+    </li>
+    <li><a href="#制作新镜像">制作新镜像</a>
+      <ol>
+        <li><a href="#dockerfile">dockerfile</a></li>
+        <li><a href="#测试运行">测试运行</a></li>
+      </ol>
+    </li>
+    <li><a href="#部署到群晖">部署到群晖</a></li>
+    <li><a href="#服务器远程管理">服务器远程管理</a>
+      <ol>
+        <li><a href="#安装和服务端配置">安装和服务端配置：</a></li>
+        <li><a href="#用法">用法：</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/">
+                
+                    <img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png" loading="lazy" alt="Featured image of post 给docker容器内配置中文环境(minecraft开服相关)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    
+    
+
+    
+     
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+         
+             <a href="/tags/linux/" >
+                 Linux
+             </a>
+         
+             <a href="/tags/docker/" >
+                 Docker
+             </a>
+         
+             <a href="/tags/minecraft/" >
+                 Minecraft
+             </a>
+         
+     </header>
+     
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/">给docker容器内配置中文环境(minecraft开服相关)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-08-15</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+        
+        <div>
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M8 14l0 .01" /><path d="M12 14l0 .01" /><path d="M16 14l0 .01" /><path d="M8 17l0 .01" /><path d="M12 17l0 .01" /><path d="M16 17l0 .01" /></svg>
+            <time class="article-time--reading">
+                <time class="article-time--reading">
+                    字数: 1318
+                </time>
+            </time>
+        </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+<footer class="article-time" style="padding-left: 30px;padding-top: 5px;">
+<div>
+    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+    <span title="阅读次数" id="busuanzi_container_page_pv" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="article-time--reading" id="busuanzi_value_page_pv"></span>次
+    </span>
+</div>
+</footer>
+<section class="article-content">
+    
+    
+    <p>最近找到个整合包（因为懒得一个个翻bbs<br>
+<a class="link" href="https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click"  target="_blank" rel="noopener"
+    >https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click</a><br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-14_5daf4b61.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-37-14"
+	
+	
+><br>
+这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道<br>
+才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！<br>
+服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着</p>
+<h2 id="选取docker镜像">选取docker镜像
+</h2><p>docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了<br>
+<a class="link" href="https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering="  target="_blank" rel="noopener"
+    >https://hub.docker.com/_/openjdk/tags?page=1&page_size=&name=8u342&ordering=</a><br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-24_d9e14fdf.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-37-24"
+	
+	
+><br>
+所以直接</p>
+<pre><code>docker pull openjdk:8u342-jre-slim
+</code></pre>
+<p>然后直接这样运行就好了</p>
+<pre><code>docker run -it -d \
 -p 25565:25565 \
 -v E:\game\MC\1.12.2mohist_服务端:/mc \
 -w /mc \
 --name MC1122 \
 openjdk:8u342-jre-slim \
 java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
-</code></pre><p>虽然长，但是总的来说挺简单，用<code>openjdk:8u342-jre-slim</code>镜像运行<code>java</code>命令罢了，但是！<br>出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-36_07788262.png loading=lazy alt=2025-03-06-14-37-36><br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-45_13b3dd1e.png loading=lazy alt=2025-03-06-14-37-45></p><h2 id=设置环境变量>设置环境变量</h2><p>在<code>docker run</code>的时候加上个参数<code>-e LANG="zh_CN.UTF-8"</code>，类似<code>export LANG=zh_CN.UTF-8</code><br>确定环境变量生效了：<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-53_a6720241.png loading=lazy alt=2025-03-06-14-37-53><br>但没解决问题，反而似乎导致启动的时候不认识中文的mod文件名了</p><p>在查找这个之后：<a class=link href="https://blog.csdn.net/myli92/article/details/139909499?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22139909499%22%2C%22source%22%3A%22unlogin%22%7D" target=_blank rel=noopener>docker 容器设置中文环境</a><br>发现单纯设置<code>LANG</code>的变量不行，容器里就没有中文字符集的</p><h3 id=查看已有语言>查看已有语言</h3><pre><code>locale -a
-</code></pre><p><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-02_afbf7a7b.png loading=lazy alt=2025-03-06-14-38-02></p><h3 id=安装中文环境>安装中文环境</h3><p><a class=link href=https://blog.csdn.net/star1210644725/article/details/108747049 target=_blank rel=noopener>使用DockerFile的方式快速构建一个基础镜像，解决中文环境问题</a><br>所以安装中文环境的命令可以是：</p><pre><code>apt-get install -y language-pack-zh-hans
-</code></pre><p>但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-12_22f7f27f.png loading=lazy alt=2025-03-06-14-38-12></p><p>看到:<a class=link href=https://blog.csdn.net/forever_008/article/details/103720389 target=_blank rel=noopener>Debian系统安装中文包</a></p><pre><code>dpkg-reconfigure locales
-</code></pre><p>然后再选<code>zh_CN.UTF-8</code>，可行，但是集成到镜像里没那么好使，还好有别的方法</p><h2 id=制作新镜像>制作新镜像</h2><p>参考：<a class=link href=https://blog.csdn.net/wyazyf/article/details/90676364 target=_blank rel=noopener>dockerfile文件中给debian设置中文支持</a></p><h3 id=dockerfile>dockerfile</h3><pre><code>FROM openjdk:8u342-jre-slim
+</code></pre>
+<p>虽然长，但是总的来说挺简单，用<code>openjdk:8u342-jre-slim</code>镜像运行<code>java</code>命令罢了，但是！<br>
+出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-36_07788262.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-37-36"
+	
+	
+><br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-45_13b3dd1e.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-37-45"
+	
+	
+></p>
+<h2 id="设置环境变量">设置环境变量
+</h2><p>在<code>docker run</code>的时候加上个参数<code>-e LANG=&quot;zh_CN.UTF-8&quot;</code>，类似<code>export  LANG=zh_CN.UTF-8</code><br>
+确定环境变量生效了：<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-53_a6720241.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-37-53"
+	
+	
+><br>
+但没解决问题，反而似乎导致启动的时候不认识中文的mod文件名了</p>
+<p>在查找这个之后：<a class="link" href="https://blog.csdn.net/myli92/article/details/139909499?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22139909499%22%2C%22source%22%3A%22unlogin%22%7D"  target="_blank" rel="noopener"
+    >docker 容器设置中文环境</a><br>
+发现单纯设置<code>LANG</code>的变量不行，容器里就没有中文字符集的</p>
+<h3 id="查看已有语言">查看已有语言
+</h3><pre><code>locale -a
+</code></pre>
+<p><img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-02_afbf7a7b.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-38-02"
+	
+	
+></p>
+<h3 id="安装中文环境">安装中文环境
+</h3><p><a class="link" href="https://blog.csdn.net/star1210644725/article/details/108747049"  target="_blank" rel="noopener"
+    >使用DockerFile的方式快速构建一个基础镜像，解决中文环境问题</a><br>
+所以安装中文环境的命令可以是：</p>
+<pre><code>apt-get install -y language-pack-zh-hans
+</code></pre>
+<p>但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-12_22f7f27f.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-38-12"
+	
+	
+></p>
+<p>看到:<a class="link" href="https://blog.csdn.net/forever_008/article/details/103720389"  target="_blank" rel="noopener"
+    >Debian系统安装中文包</a></p>
+<pre><code>dpkg-reconfigure locales
+</code></pre>
+<p>然后再选<code>zh_CN.UTF-8</code>，可行，但是集成到镜像里没那么好使，还好有别的方法</p>
+<h2 id="制作新镜像">制作新镜像
+</h2><p>参考：<a class="link" href="https://blog.csdn.net/wyazyf/article/details/90676364"  target="_blank" rel="noopener"
+    >dockerfile文件中给debian设置中文支持</a></p>
+<h3 id="dockerfile">dockerfile
+</h3><pre><code>FROM openjdk:8u342-jre-slim
 RUN apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get install -y locales &amp;&amp;  localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 WORKDIR /mc
 ENV LANG zh_CN.UTF-8
-</code></pre><p>保存为dockerfile文件然后</p><pre><code>docker build -t jre8u342_ch .
-</code></pre><p><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-29_a81e5d6e.png loading=lazy alt=2025-03-06-14-38-29></p><h3 id=测试运行>测试运行</h3><pre><code>docker run -it -d \
+</code></pre>
+<p>保存为dockerfile文件然后</p>
+<pre><code>docker build -t jre8u342_ch .
+</code></pre>
+<p><img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-29_a81e5d6e.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-38-29"
+	
+	
+></p>
+<h3 id="测试运行">测试运行
+</h3><pre><code>docker run -it -d \
 -p 25565:25565 \
 -v E:\game\MC\1.12.2mohist_服务端:/mc \
 --name MC1122 \
 jre8u342_ch:latest \
 java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
-</code></pre><p>因为dockerfile里已经设置过<code>WORKDIR</code>了所以不需要<code>-w</code>参数</p><p>这下不会报英文了<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-45_6edc5591.png loading=lazy alt=2025-03-06-14-38-45><br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png loading=lazy alt=2025-03-06-14-38-55><br>游戏里也是中文环境的返回信息<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-04_802db859.png loading=lazy alt=2025-03-06-14-39-04></p><h2 id=部署到群晖>部署到群晖</h2><p>先把做好的镜像打包出来，方便传到群晖NAS里</p><pre><code>docker save -o jre8u342_ch.tar jre8u342_ch:latest
-</code></pre><p>先导入这个镜像<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-12_9a72b1a7.png loading=lazy alt=2025-03-06-14-39-12><br>然后简单配置一下端口和mc服务器目录就可以了,和上面的<code>docker run</code>其实是一样的<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-21_b14c7daa.png loading=lazy alt=2025-03-06-14-39-21><br>端口的<code>25565</code>是游戏端口<code>25575</code>用作管理，下面会提到</p><h2 id=服务器远程管理>服务器远程管理</h2><p>用容器托管运行了，上哪去敲<code>/op xxxx</code>和<code>/stop</code>之类的管理命令呢？<br>可以用rcon方案！<br><a class=link href=https://wiki.vg/RCON target=_blank rel=noopener>https://wiki.vg/RCON</a><br>具体就是用这个软件：<br><a class=link href=https://github.com/Tiiffi/mcrcon target=_blank rel=noopener>https://github.com/Tiiffi/mcrcon</a></p><h3 id=安装和服务端配置>安装和服务端配置：</h3><pre><code>git clone https://github.com/Tiiffi/mcrcon.git
+</code></pre>
+<p>因为dockerfile里已经设置过<code>WORKDIR</code>了所以不需要<code>-w</code>参数</p>
+<p>这下不会报英文了<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-45_6edc5591.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-38-45"
+	
+	
+><br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-38-55"
+	
+	
+><br>
+游戏里也是中文环境的返回信息<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-04_802db859.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-04"
+	
+	
+></p>
+<h2 id="部署到群晖">部署到群晖
+</h2><p>先把做好的镜像打包出来，方便传到群晖NAS里</p>
+<pre><code>docker save -o jre8u342_ch.tar jre8u342_ch:latest
+</code></pre>
+<p>先导入这个镜像<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-12_9a72b1a7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-12"
+	
+	
+><br>
+然后简单配置一下端口和mc服务器目录就可以了,和上面的<code>docker run</code>其实是一样的<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-21_b14c7daa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-21"
+	
+	
+><br>
+端口的<code>25565</code>是游戏端口<code>25575</code>用作管理，下面会提到</p>
+<h2 id="服务器远程管理">服务器远程管理
+</h2><p>用容器托管运行了，上哪去敲<code>/op xxxx</code>和<code>/stop</code>之类的管理命令呢？<br>
+可以用rcon方案！<br>
+<a class="link" href="https://wiki.vg/RCON"  target="_blank" rel="noopener"
+    >https://wiki.vg/RCON</a><br>
+具体就是用这个软件：<br>
+<a class="link" href="https://github.com/Tiiffi/mcrcon"  target="_blank" rel="noopener"
+    >https://github.com/Tiiffi/mcrcon</a></p>
+<h3 id="安装和服务端配置">安装和服务端配置：
+</h3><pre><code>git clone https://github.com/Tiiffi/mcrcon.git
 cd mcrcon
 make
 sudo make install
-</code></pre><p>然后服务端也要配置一下，在<code>server.properties</code>里的</p><pre><code>enable-rcon=false
-</code></pre><p>改为</p><pre><code>enable-rcon=true
+</code></pre>
+<p>然后服务端也要配置一下，在<code>server.properties</code>里的</p>
+<pre><code>enable-rcon=false
+</code></pre>
+<p>改为</p>
+<pre><code>enable-rcon=true
 rcon.password=your_passwd
 rcon.port=25575
-</code></pre><h3 id=用法>用法：</h3><p>先连接</p><pre><code>mcrcon -H 服务器地址 -p your_passwd
-</code></pre><p>然后就可以一样敲各种minecraft管理命令了<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-34_c1b2c621.png loading=lazy alt=2025-03-06-14-39-34></p><p>好了不说了博主我要去挖矿开荒了<br><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-41_25bad8ab.png loading=lazy alt=2025-03-06-14-39-41></p><p><img src=http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-48_4e5af823.png loading=lazy alt=2025-03-06-14-39-48></p><h2 id=参考>参考</h2><p>debian文档，第 8 章 国际化和本地化：<br><a class=link href=https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale target=_blank rel=noopener>https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale</a></p><p>类似的打包好的docker环境MC服务器镜像有：<br><a class=link href=https://github.com/itzg/docker-minecraft-server/tree/master target=_blank rel=noopener>https://github.com/itzg/docker-minecraft-server/tree/master</a><br>对我来说功能有点多，只是参考参考</p></section><footer class=article-footer><header class=article-category><div class=Winotmk_icon><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2"/></svg></div><a href=/categories/docker/>Docker</a></header></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/><div class=article-image><img src=http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png loading=lazy data-key data-hash=http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png></div><div class=article-details><h2 class=article-title>calibre_web的pdf封面提取问题</h2></div></a></article><article class=has-image><a href=/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/><div class=article-image><img src=http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png loading=lazy data-key data-hash=http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png></div><div class=article-details><h2 class=article-title>用容器来运行streamlit</h2></div></a></article><article class=has-image><a href=/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/><div class=article-image><img src=http://pictures.winotmk.com/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/2025-03-06-14-00-54_27831b0d.png loading=lazy data-key data-hash=http://pictures.winotmk.com/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/2025-03-06-14-00-54_27831b0d.png></div><div class=article-details><h2 class=article-title>软件和网站收集</h2></div></a></article><article class=has-image><a href=/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/><div class=article-image><img src=http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-24-37_b1d8f5bc.png loading=lazy data-key data-hash=http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-24-37_b1d8f5bc.png></div><div class=article-details><h2 class=article-title>群晖上用容器搭建SVN服务器</h2></div></a></article><article><a href=/posts/docker01/><div class=article-details><h2 class=article-title>Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</h2></div></a></article></div></div></aside><link rel=stylesheet href=/scss/partials/comments/disqusjs.min.css><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>let disqusjs;function loadDisqusJS(){disqusjs=new DisqusJS({shortname:"winNote",siteName:"WinNote",apikey:"oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",api:"https://disqus.skk.moe/disqus/",admin:"winNote",adminLabel:"winNote"})}function lazyLoadDisqusJS(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}let e=document.createElement("script");e.src="https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js",e.async=!1,document.body.appendChild(e),e.onload=()=>{loadDisqusJS(),window.addEventListener("onColorSchemeChange",e=>{disqusjs&&loadDisqusJS()})}}let runningOnBrowser=typeof window!="undefined",isBot=runningOnBrowser&&!("onscroll"in window)||typeof navigator!="undefined"&&/(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent),supportsIntersectionObserver=runningOnBrowser&&"IntersectionObserver"in window;if(!isBot&&supportsIntersectionObserver){let e=new IntersectionObserver(function(t){t[0].isIntersecting&&(lazyLoadDisqusJS(),e.disconnect())});e.observe(document.getElementById("disqus_thread"))}else lazyLoadDisqusJS()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div><footer class=site-footer><section class=copyright>&copy;
-2020 -
-2025 winotmk</section><div class=article-time><span class=post-meta-item id=busuanzi_container_site_uv style=display:inline><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7M5 7a4 4 0 108 0A4 4 0 105 7"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M21 21v-2a4 4 0 00-3-3.85"/></svg>
-<span class=site-uv title=总访客量>&nbsp;<span id=busuanzi_value_site_uv></span>
-</span></span><span>|</span>
-<span class=post-meta-item id=busuanzi_container_site_pv style=display:inline><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 104 0 2 2 0 00-4 0"/><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6"/></svg>
-<span class=site-pv title=总访问量>&nbsp;<span id=busuanzi_value_site_pv></span></span></span></div><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> Customized and extended by <a href=https://winotmk.com target=_blank rel=noopener>Winotmk</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-<button class="pswp__button pswp__button--share" title=Share></button>
-<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script>hljs.highlightAll()</script></body></html>
+</code></pre>
+<h3 id="用法">用法：
+</h3><p>先连接</p>
+<pre><code>mcrcon -H 服务器地址 -p your_passwd
+</code></pre>
+<p>然后就可以一样敲各种minecraft管理命令了<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-34_c1b2c621.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-34"
+	
+	
+></p>
+<p>好了不说了博主我要去挖矿开荒了<br>
+<img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-41_25bad8ab.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-41"
+	
+	
+></p>
+<p><img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-48_4e5af823.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-03-06-14-39-48"
+	
+	
+></p>
+<h2 id="参考">参考
+</h2><p>debian文档，第 8 章 国际化和本地化：<br>
+<a class="link" href="https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale"  target="_blank" rel="noopener"
+    >https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale</a></p>
+<p>类似的打包好的docker环境MC服务器镜像有：<br>
+<a class="link" href="https://github.com/itzg/docker-minecraft-server/tree/master"  target="_blank" rel="noopener"
+    >https://github.com/itzg/docker-minecraft-server/tree/master</a><br>
+对我来说功能有点多，只是参考参考</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    
+    <header class="article-category">
+        <div class="Winotmk_icon">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>
+        </div>
+        
+            <a href="/categories/docker/" >
+                Docker
+            </a>
+        
+    </header>
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/posts/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png" loading="lazy" data-key="" data-hash="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">calibre_web的pdf封面提取问题</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/posts/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png" loading="lazy" data-key="" data-hash="http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">用容器来运行streamlit</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/posts/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="http://pictures.winotmk.com/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/2025-03-06-14-00-54_27831b0d.png" loading="lazy" data-key="" data-hash="http://pictures.winotmk.com/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/2025-03-06-14-00-54_27831b0d.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">软件和网站收集</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/posts/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-24-37_b1d8f5bc.png" loading="lazy" data-key="" data-hash="http://pictures.winotmk.com/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/2025-02-28-00-24-37_b1d8f5bc.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">群晖上用容器搭建SVN服务器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/posts/docker01/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <link rel="stylesheet" href="/scss/partials/comments/disqusjs.min.css">
+
+<div class="disqus-container">
+    <div id="disqus_thread"></div>
+    <script type="application/javascript">
+        let disqusjs;
+        function loadDisqusJS() {
+            disqusjs = new DisqusJS({
+                shortname: "winNote",
+                siteName: "WinNote",
+                apikey: "oXd89r5VDkMRzMpZNkyJHk1FMGKvhsuB0LPqe5bodKG9lHVktz1SVJ868LZNP5Hp",
+                api: "https://disqus.skk.moe/disqus/",
+                admin: "winNote",
+                adminLabel: "winNote"
+            });
+        }
+
+        function lazyLoadDisqusJS() {
+            if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                return;
+            }
+
+            let d = document.createElement('script');
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.async = false;
+            document.body.appendChild(d);
+            d.onload = () => {
+                loadDisqusJS();
+                window.addEventListener('onColorSchemeChange', (e) => {
+                    if (disqusjs) {
+                        loadDisqusJS();
+                    }
+                })
+            }
+        }
+
+        let runningOnBrowser = typeof window !== "undefined";
+        let isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        let supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        if (!isBot && supportsIntersectionObserver) {
+            let disqus_observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    lazyLoadDisqusJS();
+                    disqus_observer.disconnect();
+                }
+            });
+            disqus_observer.observe(document.getElementById('disqus_thread'));
+        } else {
+            lazyLoadDisqusJS();
+        }
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <div class="article-time">
+        <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+          <span class="site-uv" title="总访客量">
+            &nbsp;<span id="busuanzi_value_site_uv"></span>
+          </span>
+        </span>
+        <span>|</span>
+        <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+          <span class="site-pv" title="总访问量">
+            &nbsp;<span id="busuanzi_value_site_pv"></span>
+          </span>
+        </span>
+    </div>
+
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+        
+        
+        <script>hljs.highlightAll();</script>
+        
+    </body>
+</html>
