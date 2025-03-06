@@ -6,8 +6,9 @@ categories:
 tags:
 - docker
 - streamlit
+image: http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png
 ---
-![](images/20240724152543.png)
+![2025-03-06-14-16-24 [hugo-no-render]](http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-16-24_bf12f74b.png)
 一开始玩这个的时候就在想用docker跑，因为实在不想在本机里搭各种乱七八糟的环境，也懒得用Anaconda那样的中间环境，总感觉本地跑个模型才用得上那种大玩意儿，于是在dockerhub上找了找
 一些已有的可用镜像：
 https://hub.docker.com/r/aminehy/docker-streamlit-app
@@ -56,5 +57,6 @@ CMD ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.
 保持运行并想下次继续用可以
 `docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest`
 *用容器跑起来的一些例程APP：
-![](images/20240724152253.png)
-![](images/20240724152303.png)
+![2025-03-06-14-30-24](http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-30-24_1488ee48.png)
+
+![2025-03-06-14-30-30](http://pictures.winotmk.com/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/2025-03-06-14-30-30_e5ad57f1.png)

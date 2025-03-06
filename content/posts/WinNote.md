@@ -31,7 +31,6 @@ ctrl+art+a
 本站加速域名：[https://md.winotmk.com/](https://md.winotmk.com/)
 正式站：[winotmk.com](https://www.winotmk.com)
 
-点击查看更多该网站更新日志
 <!-- more -->
 ***
 2023.12.13更新

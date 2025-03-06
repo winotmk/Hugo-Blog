@@ -7,10 +7,11 @@ tags:
 - linux
 - docker
 - calibre_web
+image: http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png
 ---
 在用`johngong/calibre-web:latest`这个镜像 https://hub.docker.com/r/johngong/calibre-web
 作为自己nas上的图书馆时发现pdf文件无法生成封面，
-![](images/20240925124359.png)
+![2025-03-06-14-40-56 [hugo-no-render]](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png)
 
 断断续续排查了两周，百思不得解，尝试过：
 * 设置imagemagick的`policy.xml`文件(`/etc/Imagemagick/policy.xml`)
@@ -21,37 +22,37 @@ tags:
 
 ## 最终有效的解决方法的折腾流程
 我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）
-![](images/20240925123504.png)
+![2025-03-06-14-41-10](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-10_803172c2.png)
 查看文件：/config/calbre-web/calbre-web.log
 有这么一行：
-![](images/20240925123738.png)
+![2025-03-06-14-41-18](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-18_9e3752b4.png)
 ```
 [2024-09-25 12:10:22,144]  WARN {cps.uploader:237} Cannot extract cover image, using default: no decode delegate for this image format `PDF' @ error/constitute.c/ReadImage/746
 [2024-09-25 12:10:22,145]  WARN {cps.uploader:238} On Windows this error could be caused by missing ghostscript
 ```
 PDF转就转不出来
 所以找到了：
-![](images/20240925123303.png)
+![2025-03-06-14-41-27](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-27_d93c03ad.png)
 https://github.com/ImageMagick/ImageMagick/issues/6148
 ```
 apk add --no-cache imagemagick imagemagick-pdf
 ```
 安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！
-![](images/20240925123414.png)
+![2025-03-06-14-41-37](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-37_10ffb4fc.png)
 
 <!-- more -->
 
 ## johngong/calibre-web的一些设置
 https://github.com/gshang2017/docker/issues/133
 如果一编辑图书的元数据就卡死，可用尝试：
-![](images/20240925134344.png)
+![2025-03-06-14-41-57](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-57_941353e5.png)
 这两条设置为true,则
-![](images/20240925134613.png)
+![2025-03-06-14-42-04](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-04_5c2fe52c.png)
 这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用
 
 ## 弯路
 这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改
-![](images/20240925140205.png)
+![2025-03-06-14-42-17](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-17_22504034.png)
 https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files
 所以可以有`/etc/Imagemagick/policy.xml`:
 ```
@@ -66,7 +67,7 @@ https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-ar
 为了试验，我用`FROM ubuntu:latest`作为镜像基底，然后：
 ### 装calibre-web
 安装calibre-web：
-![](images/20240925132535.png)
+![2025-03-06-14-42-29](http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-29_e301016f.png)
 https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation
 https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows
 这里也有提到

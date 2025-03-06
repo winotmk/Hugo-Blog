@@ -8,6 +8,7 @@ tags:
 - homebrew
 - PATH
 ---
+<!--2025-02-23 14:42:0-->
 按照 https://brew.sh 这里的提示：
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

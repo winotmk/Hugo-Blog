@@ -1,60 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Mac on WinNote</title>
-        <link>http://localhost:10354/tags/mac/</link>
-        <description>Recent content in Mac on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/mac/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Mac的包管理器homebrew环境变量配置</title>
-        <link>http://localhost:10354/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link>
-        <pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:10354/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid>
-        <description>&lt;p&gt;按照 &lt;a class=&#34;link&#34; href=&#34;https://brew.sh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://brew.sh&lt;/a&gt; 这里的提示：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;装完brew后，敲brew居然不认得，还得我自己配一下&lt;br&gt;
-所以：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /opt/homebrew/bin/
-
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on WinNote</title><link>https://winotmk.github.io/tags/mac/</link><description>Recent content in Mac on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac的包管理器homebrew环境变量配置</title><link>https://winotmk.github.io/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</link><pubDate>Sun, 23 Feb 2025 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/250223_mac%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8homebrew%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</guid><description>&lt;!--2025-02-23 14:42:0-->
+&lt;p>按照 &lt;a class="link" href="https://brew.sh" target="_blank" rel="noopener"
+>https://brew.sh&lt;/a> 这里的提示：&lt;/p>
+&lt;pre>&lt;code class="language-bash">/bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>装完brew后，敲brew居然不认得，还得我自己配一下&lt;br>
+所以：&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd /opt/homebrew/bin/
 PATH=$PATH:/opt/homebrew/bin
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后再&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/
-
+&lt;/code>&lt;/pre>
+&lt;p>然后再&lt;/p>
+&lt;pre>&lt;code class="language-bash">cd ~/
 touch .zshrc
-
 echo export PATH=$PATH:/opt/homebrew/bin &amp;gt;&amp;gt; .zshrc
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这下就可以用brew啦，我主要是拿来&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bres install git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装git&lt;br&gt;
-但是神奇的是当我后面再用&lt;code&gt;vim ~/ .zshrc&lt;/code&gt;想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>新的macbook air</title>
-        <link>http://localhost:10354/posts/241031_%E6%96%B0mac/</link>
-        <pubDate>Thu, 31 Oct 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:10354/posts/241031_%E6%96%B0mac/</guid>
-        <description>&lt;p&gt;泰香辣，24年10月31，入了垂涎已久的macbook air M3，之前买的m1pro的macbookpro给了女票剪视频用了，自己平常用台式还是想入个轻便的本本，然后补贴价格入的，真香真香&lt;br&gt;
-&lt;img src=&#34;http://localhost:10354/images/20241031133508.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;现在的mac下截图有Longshot（和win下的snipaste完全平替），vscode也一样的用，svn也很好使，群晖nas上的也很好使，还能iphone投屏了！很适合带到图书馆公司里，开盖就做点东西用，重要的是重量和大小，仿佛一个大号的ipad但是x86pc能做的基本都可以做~&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;/code>&lt;/pre>
+&lt;p>这下就可以用brew啦，我主要是拿来&lt;/p>
+&lt;pre>&lt;code class="language-bash">bres install git
+&lt;/code>&lt;/pre>
+&lt;p>安装git&lt;br>
+但是神奇的是当我后面再用&lt;code>vim ~/ .zshrc&lt;/code>想看看它时却似乎打不开这个文件，难道mac的设置是一次性的生效就删&lt;/p></description></item><item><title>新的macbook air</title><link>https://winotmk.github.io/posts/241031_%E6%96%B0mac/</link><pubDate>Thu, 31 Oct 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/241031_%E6%96%B0mac/</guid><description>&lt;p>泰香辣，24年10月31，入了垂涎已久的macbook air M3，之前买的m1pro的macbookpro给了女票剪视频用了，自己平常用台式还是想入个轻便的本本，然后补贴价格入的，真香真香&lt;br>
+&lt;img src="http://pictures.winotmk.com/241031_%E6%96%B0mac/2025-03-06-14-45-47_5917940f.png"
+loading="lazy"
+alt="2025-03-06-14-45-47"
+>&lt;/p>
+&lt;p>现在的mac下截图有Longshot（和win下的snipaste完全平替），vscode也一样的用，svn也很好使，群晖nas上的也很好使，还能iphone投屏了！很适合带到图书馆公司里，开盖就做点东西用，重要的是重量和大小，仿佛一个大号的ipad但是x86pc能做的基本都可以做~&lt;/p></description></item></channel></rss>

@@ -143,15 +143,8 @@ git push -u origin main  # 假设主分支是 main
 
 通过这种方式，你只需专注于内容创作和本地代码修改，部署过程会完全自动化。
 
-
-
-
-
-
-
-
-
 ## 其他
+### hexo的action
 hexo的GithubAction自动部署，用了两个仓库——github.io与hexo项目仓库区分操作
 https://hackergavin.com/2024/01/11/hexo-automate-deploy/#%E5%88%9B%E5%BB%BA-Github-Actions-%E8%84%9A%E6%9C%AC
 

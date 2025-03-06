@@ -1,41 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Another Tag on WinNote</title>
-        <link>http://localhost:10354/tags/another-tag/</link>
-        <description>Recent content in Another Tag on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/another-tag/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>MayaMASH动力学做链子</title>
-        <link>http://localhost:10354/posts/maya_mash/</link>
-        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:10354/posts/maya_mash/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/20211009_110403_2021100901_978fdbce.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;2025-02-27-23-49-40&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/Maya_MASH/2025-02-27-23-50-07_ef6f7f8f.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;2025-02-27-23-50-07&#34;
-	
-	
-&gt;&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Another Tag on WinNote</title><link>https://winotmk.github.io/tags/another-tag/</link><description>Recent content in Another Tag on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/another-tag/index.xml" rel="self" type="application/rss+xml"/><item><title>MayaMASH动力学做链子</title><link>https://winotmk.github.io/posts/maya_mash/</link><pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/maya_mash/</guid><description>&lt;p>&lt;img src="http://pictures.winotmk.com/20211009_110403_2021100901_978fdbce.gif"
+loading="lazy"
+alt="2025-02-27-23-49-40"
+>&lt;/p>
+&lt;!-- more -->
+&lt;p>&lt;img src="http://pictures.winotmk.com/Maya_MASH/2025-02-27-23-50-07_ef6f7f8f.png"
+loading="lazy"
+alt="2025-02-27-23-50-07"
+>&lt;/p></description></item></channel></rss>

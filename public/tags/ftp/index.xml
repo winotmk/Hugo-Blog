@@ -1,80 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Ftp on WinNote</title>
-        <link>http://localhost:10354/tags/ftp/</link>
-        <description>Recent content in Ftp on WinNote</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>winotmk</copyright>
-        <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:10354/tags/ftp/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>令人头疼的vsftpd,ftp端口修改设置配置</title>
-        <link>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link>
-        <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:10354/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid>
-        <description>&lt;p&gt;这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vim /etc/vsftpd.conf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;vsftpd 配置文件：&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;修改ftp的端口&#34;&gt;修改ftp的端口
-&lt;/h2&gt;&lt;p&gt;ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;connect_from_port_20=NO
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ftp on WinNote</title><link>https://winotmk.github.io/tags/ftp/</link><description>Recent content in Ftp on WinNote</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>winotmk</copyright><lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://winotmk.github.io/tags/ftp/index.xml" rel="self" type="application/rss+xml"/><item><title>令人头疼的vsftpd,ftp端口修改设置配置</title><link>https://winotmk.github.io/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</link><pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><guid>https://winotmk.github.io/posts/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/</guid><description>&lt;p>这么个小小的软件花费了不成正比的时间去弄他，十分令人头疼，简单记录几点重要的设置&lt;/p>
+&lt;pre>&lt;code>vim /etc/vsftpd.conf
+&lt;/code>&lt;/pre>
+&lt;p>vsftpd 配置文件：&lt;br>
+&lt;a class="link" href="https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html" target="_blank" rel="noopener"
+>https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html&lt;/a>&lt;/p>
+&lt;h2 id="修改ftp的端口">修改ftp的端口
+&lt;/h2>&lt;p>ftp的监听和实际数据传输是两个端口，如果要改最好都改&lt;/p>
+&lt;pre>&lt;code>connect_from_port_20=NO
 ftp_data_port=12520
 listen_port=12521
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pasv_promiscuous=YES
+&lt;/code>&lt;/pre>
+&lt;p>pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来&lt;/p>
+&lt;pre>&lt;code>pasv_promiscuous=YES
 pasv_min_port=31100
 pasv_max_port=31110
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p&gt;
-&lt;p&gt;另外还有系统的services里&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vim /etc/services
-
-#ftp-data        20/tcp
-#ftp-data        20/udp
-ftp-data        12520/tcp
-ftp-data        12520/udp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个不确定是否必要但还是改了吧&lt;/p&gt;
-&lt;h2 id=&#34;中文乱码&#34;&gt;中文乱码
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240617155755.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;一篇不错的配置说明&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.starryvoid.com/archives/1044.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.starryvoid.com/archives/1044.html&lt;/a&gt;&lt;br&gt;
-主要提到了utf8的编码问题&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;utf8_filesystem=YES&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如果这样还没解决，考虑是要修改容器本身的&lt;code&gt;LANG&lt;/code&gt;&lt;br&gt;
-可以直接进入容器然后类似：&lt;br&gt;
-export LANG=C.UTF-8&lt;br&gt;
-或者&lt;br&gt;
-export LANG=en_US.UTF-8&lt;br&gt;
-输入locale查看结果&lt;br&gt;
-当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里&lt;br&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a&gt;&lt;br&gt;
-然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:10354/images/20240618170337.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;/code>&lt;/pre>
+&lt;p>我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..&lt;/p>
+&lt;p>另外还有系统的services里&lt;/p>
+&lt;pre>&lt;code>vim /etc/services
+#ftp-data 20/tcp
+#ftp-data 20/udp
+ftp-data 12520/tcp
+ftp-data 12520/udp
+&lt;/code>&lt;/pre>
+&lt;p>这个不确定是否必要但还是改了吧&lt;/p>
+&lt;h2 id="中文乱码">中文乱码
+&lt;/h2>&lt;p>&lt;img src="http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-58-55_e24c0823.png"
+loading="lazy"
+alt="2025-03-06-13-58-55"
+>&lt;/p>
+&lt;p>一篇不错的配置说明&lt;br>
+&lt;a class="link" href="https://blog.starryvoid.com/archives/1044.html" target="_blank" rel="noopener"
+>https://blog.starryvoid.com/archives/1044.html&lt;/a>&lt;br>
+主要提到了utf8的编码问题&lt;/p>
+&lt;p>&lt;code>utf8_filesystem=YES&lt;/code>&lt;/p>
+&lt;p>如果这样还没解决，考虑是要修改容器本身的&lt;code>LANG&lt;/code>&lt;br>
+可以直接进入容器然后类似：&lt;br>
+export LANG=C.UTF-8&lt;br>
+或者&lt;br>
+export LANG=en_US.UTF-8&lt;br>
+输入locale查看结果&lt;br>
+当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里&lt;br>
+&lt;a class="link" href="https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/" target="_blank" rel="noopener"
+>https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/&lt;/a>&lt;br>
+然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题&lt;/p>
+&lt;p>&lt;img src="http://pictures.winotmk.com/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/2025-03-06-13-59-09_33a7b5bd.png"
+loading="lazy"
+alt="2025-03-06-13-59-09"
+>&lt;/p>
+&lt;p>现在高度怀疑是VScode的这个SFTP同步插件的锅&lt;/p></description></item></channel></rss>
