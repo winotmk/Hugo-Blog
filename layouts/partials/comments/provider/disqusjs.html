@@ -5,7 +5,7 @@
 <!--winotmk 25.3.10已手动更新css文件-->
 {{- $style := resources.Get "scss/partials/comments/disqusjs.scss" | toCSS | minify -}}
 <!-- 新增资源处理 -->
-{{- $disqusJSF := resources.Get "/disqus.js" | minify | fingerprint -}} 
+{{- $disqusJSF := resources.Get "JS/disqus.js" | minify | fingerprint -}} 
 
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
