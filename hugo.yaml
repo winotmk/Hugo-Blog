@@ -81,9 +81,10 @@ params:
         provider: disqusjs
 
         #https://disqus.com/api/applications/
+        #https://winnote.disqus.com/admin/settings/general/
         disqusjs:
             shortname: winNote
-            apiUrl: https://disqus.skk.moe/disqus/
+            apiUrl: https://winotmk-di-dry-river-e510.winotmk.workers.dev/api/
             apiKey: O0bwrfRLA6gahtq7d7xtXKmpAMrEY9ce55GnNOtYVXINOI3nL354XvNvK3nxY40y
             admin: winotmk
             adminLabel: winNote
