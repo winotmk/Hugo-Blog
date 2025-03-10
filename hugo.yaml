@@ -85,7 +85,7 @@ params:
             shortname: winNote
             apiUrl: https://disqus.skk.moe/disqus/
             apiKey: O0bwrfRLA6gahtq7d7xtXKmpAMrEY9ce55GnNOtYVXINOI3nL354XvNvK3nxY40y
-            admin: winNote
+            admin: winotmk
             adminLabel: winNote
 
         utterances:

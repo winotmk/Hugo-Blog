@@ -2,11 +2,13 @@
 {{- $disqusjs := .Site.Params.Comments.disqusjs -}}
 {{- if and (not $pc.Disable) (and $disqusjs.Shortname $disqusjs.ApiKey) -}}
 
+<!--winotmk 25.3.10已手动更新css文件-->
 {{- $style := resources.Get "scss/partials/comments/disqusjs.scss" | toCSS | minify -}}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 <div class="disqus-container">
-    <div id="disqus_thread"></div>
+    <!--<div id="disqus_thread"></div>-->
+    <div id="disqusjsbox"></div>
     <script type="application/javascript">
         let disqusjs;
         function loadDisqusJS() {
@@ -22,12 +24,13 @@
 
         function lazyLoadDisqusJS() {
             if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-                document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                document.getElementById('disqusjsbox').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
                 return;
             }
 
             let d = document.createElement('script');
-            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            //d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js';
+            d.src = 'https://cdn.jsdelivr.net/npm/disqusjs@3.0/dist/browser/disqusjs.es2015.umd.min.js'
             d.async = false;
             document.body.appendChild(d);
             d.onload = () => {
@@ -51,7 +54,7 @@
                     disqus_observer.disconnect();
                 }
             });
-            disqus_observer.observe(document.getElementById('disqus_thread'));
+            disqus_observer.observe(document.getElementById('disqusjsbox'));
         } else {
             lazyLoadDisqusJS();
         }
