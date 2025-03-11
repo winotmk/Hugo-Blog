@@ -67,3 +67,6 @@ md文档的目录是`./hexo/Winblog/source/_posts`
 经过小两周的努力，本博客已经实现了一份写作，两份部署，将之前的cdn加速域名[https://md.winotmk.com/](https://md.winotmk.com/)替换为了hugo驱动的阿里云oss部署的新博客，两个博客文章数据完全一致，只是做了两份部署（因为好玩）这么一来即便不用cdn加速，但是hugo生成的静态网页和oss的速度也可以飞速访问了，同时[https://md.winotmk.com/](https://md.winotmk.com/)还添加了disqusjs评论系统，是个完完整整的博客了，具体实现过程如下图：
 ![2025-03-10-19-53-21](http://pictures.winotmk.com/WinNote/2025-03-10-19-53-21_62c5618b.png)
 后面有时间单独出个文章说说hugo的主题定制化以及这个自动发布脚本
+
+这次在尝试了disqus和waline后还是选择了waline，后者需要自己架设，虽然用得都是免费服务，但还就是比公共且需要梯子的disqus稳且快非常多
+![2025-03-11-15-14-57](http://pictures.winotmk.com/WinNote/2025-03-11-15-14-57_91301dd5.png)

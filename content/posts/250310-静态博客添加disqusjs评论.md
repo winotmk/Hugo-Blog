@@ -78,3 +78,8 @@ async function proxy(event) {
 例如这里是我的：
 ![2025-03-10-19-39-59](http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-39-59_e2a1b57b.png)
 `https://winotmk-di-xxxxxx.winotmk.workers.dev/api/`即是我的代理地址了
+
+## 后续
+然而即便设置了这些以后，我的博客依然经常在无梯网络环境中出现类似：
+![2025-03-11-12-18-14](http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-11-12-18-14_22c104c3.png)
+评论加载很慢或者干脆加载不了的情况，正在考虑换成自架waline
