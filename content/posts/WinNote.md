@@ -62,3 +62,8 @@ md文档的目录是`./hexo/Winblog/source/_posts`
 ![2025-02-20-18-43-03](http://pictures.winotmk.com/WinNote/2025-02-20-18-43-03_f587624d.png)
 还蛮好用的，绑定了`elan upload from clipboard`到`ctrl+shift+alt+a`来粘贴并上传文件到bucket，会按照当前文档名称建文件夹分类
 1. vscode的账户真是太乱了，能用微软登录，能用github登，甚至能用微软里再用github登，今天统一为用github的550330147邮箱登录
+***
+2025.03.10再更新
+经过小两周的努力，本博客已经实现了一份写作，两份部署，将之前的cdn加速域名[https://md.winotmk.com/](https://md.winotmk.com/)替换为了hugo驱动的阿里云oss部署的新博客，两个博客文章数据完全一致，只是做了两份部署（因为好玩）这么一来即便不用cdn加速，但是hugo生成的静态网页和oss的速度也可以飞速访问了，同时[https://md.winotmk.com/](https://md.winotmk.com/)还添加了disqusjs评论系统，是个完完整整的博客了，具体实现过程如下图：
+![2025-03-10-19-53-21](http://pictures.winotmk.com/WinNote/2025-03-10-19-53-21_62c5618b.png)
+后面有时间单独出个文章说说hugo的主题定制化以及这个自动发布脚本
