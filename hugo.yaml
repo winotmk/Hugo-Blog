@@ -132,6 +132,7 @@ params:
             pageview:
             emoji:
                 - https://unpkg.com/@waline/emojis@1.1.0/weibo
+                - https://unpkg.com/@waline/emojis@1.1.0/bilibili
             requiredMeta:
                 - name
                 - email
@@ -140,6 +141,7 @@ params:
                 admin: Admin
                 placeholder:
             reaction: true
+            search: false
 
         #https://twikoo.js.org/frontend.html#%E5%9C%A8-hugo-%E4%B8%AD%E4%BD%BF%E7%94%A8
         #比较简单，没有登录没有表情图片
