@@ -23,7 +23,9 @@ jobs:
       - name: setup aliyun oss
         uses: manyuanrong/setup-ossutil@master
         with:
-          endpoint: oss-ap-southeast-1.aliyuncs.com #修改为自己的Endpoint
+          #endpoint: oss-ap-southeast-1.aliyuncs.com #修改为自己的Endpoint
+          #250311改为oss加速域名
+          endpoint: oss-accelerate.aliyuncs.com
           access-key-id: ${{ secrets.OSS_KEY_ID }}
           access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
 
