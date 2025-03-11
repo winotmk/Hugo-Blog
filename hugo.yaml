@@ -123,6 +123,9 @@ params:
 
         #需要数据库tidbcloud.com谷歌登录过
         #感觉有点复杂先弃用
+        
+        #25.3.11启用！
+        #管理地址https://waline.winotmk.com/ui
         waline:
             serverURL: https://waline.winotmk.com/
             lang: zh-CN
@@ -136,6 +139,7 @@ params:
             locale:
                 admin: Admin
                 placeholder:
+            reaction: true
 
         #https://twikoo.js.org/frontend.html#%E5%9C%A8-hugo-%E4%B8%AD%E4%BD%BF%E7%94%A8
         #比较简单，没有登录没有表情图片
