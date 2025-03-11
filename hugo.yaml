@@ -78,7 +78,8 @@ params:
 
     comments:
         enabled: true
-        provider: disqusjs
+        #provider: disqusjs
+        provider: waline
 
         #https://disqus.com/api/applications/
         #https://winnote.disqus.com/admin/settings/general/
@@ -116,15 +117,18 @@ params:
             autoCreateIssue: false
 
         # Waline client configuration see: https://waline.js.org/en/reference/component.html
+
         #需要架设服务端，推荐了Vercel.com看起来有意思
+        #250311使用winotmk@gmail登录，https://vercel.com/winotmks-projects-9de851a9/winnote_waline
+
         #需要数据库tidbcloud.com谷歌登录过
         #感觉有点复杂先弃用
         waline:
-            serverURL:
-            lang:
+            serverURL: https://waline.winotmk.com/
+            lang: zh-CN
             pageview:
             emoji:
-                - https://unpkg.com/@waline/emojis@1.0.1/weibo
+                - https://unpkg.com/@waline/emojis@1.1.0/weibo
             requiredMeta:
                 - name
                 - email
