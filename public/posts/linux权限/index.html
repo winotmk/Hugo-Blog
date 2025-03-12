@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
 
-<link rel="stylesheet" href="/scss/style.min.9b3f6e87b0237b38ec496b7bdbbe9dd59eff0f831085581494a5b34fbeaf48b7.css"><meta property='og:title' content="linux文件和目录权限">
+<link rel="stylesheet" href="/scss/style.min.9c9e876c2657722f8a1cb3e69236c628c415c7a6bef6b608f02060db59acebfa.css"><meta property='og:title' content="linux文件和目录权限">
 <meta property='og:description' content="*本文摘录整理为主\n用ls -l查看权限：\n文件属性 文件数 拥有者 所属的group 文件大小 建档日期 文件名\u3000drwx--x--x 1 root wheel 6872 2 7 22:41 compressedPackage/ drwxr-xr-x 1 liuml wheel 8620 2 15 09:32 wwwroot/\u3000lrwxrwxrwx 1 liuml wheel 46 2 24 19:30 abc@ -&gt; home/abc -rwxr-xr-x 1 liuml wheel 68568 2 29 07:43 test*\u3000- 文件名栏位 文件后面的符号含义 - / ：表明是一个目录 - @ ：表明是到其它文件的符号链接 - * ：表明是一个可执行文件。 - 对于权限设置的解释 - r 是读，w 是写，x 是执行 - 对应数字如下: - r = 4 w = 2 x = 1 - rwx ：4+2+1 = 7 - rw- ：4+2 = 6 - r-x ：4+1 = 5 - drwxr-xr-x ：755 - 第 0-1位 文件类型 - “-” ：表示普通文件； - “d” ：表示目录； - “l” ：表示链接文件； - “p” ：表示管理文件； - “b” ：表示块设备文件； - “c” ：表示字符设备文件； - “s” ：表示套接字文件； - 第 2-4位 文件所有者权限 [User] - 第 5-7位 文件所有者所在组权限 [Group] - 第 8-10位 其他用户权限 [Others] - 没有的权限用 “-” 来表示 ———————————————— 版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/u010324331/article/details/88035175/ ">
 <meta property='og:url' content='http://localhost:1313/posts/linux%E6%9D%83%E9%99%90/'>
 <meta property='og:site_name' content='WinNote'>
@@ -342,6 +342,8 @@
     
     
 
+    
+    
     <footer class="article-time">
         
             <div>
@@ -386,21 +388,27 @@
     
 
     
+
+    
 </div>
 
 </header>
 
     
-<div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
 
-<footer class="article-time">
-<div>
-    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+
+
+    <div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
     
-    <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数:<span class="waline-pageview-count" data-path="/posts/linux%E6%9D%83%E9%99%90/" />次</span>
-</div>
-</footer>
-</div>
+        <footer class="article-time">
+            <div>
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                
+                <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="waline-pageview-count" data-path="/posts/linux%E6%9D%83%E9%99%90/" /></span>
+            </div>
+        </footer>
+    </div>
+
 
 <section class="article-content">
     

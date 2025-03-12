@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/'>
 
-<link rel="stylesheet" href="/scss/style.min.9b3f6e87b0237b38ec496b7bdbbe9dd59eff0f831085581494a5b34fbeaf48b7.css"><meta property='og:title' content="linux删除目录报错时如何定位已占用的进程">
+<link rel="stylesheet" href="/scss/style.min.9c9e876c2657722f8a1cb3e69236c628c415c7a6bef6b608f02060db59acebfa.css"><meta property='og:title' content="linux删除目录报错时如何定位已占用的进程">
 <meta property='og:description' content="遇到的问题\r在我准备rm -rf ./hugo_blog_temp 删除一个目录时候\n他提示\nrm: cannot remove './hugo_blog_temp/.git/objects/pack/.nfs0000000000019b0d00000004': Device or resource busy\r显然是有进程占用了，那么如何定位是什么进程占用并kill这个进程呢？\n使用 lsof 查找进程\r# 定位正在使用该目录的进程\rlsof +D ./hugo_blog_temp\r# 或者直接指定被锁定的文件\rlsof ./hugo_blog_temp/.git/objects/pack/.nfs0000000000019b0d00000004\r然后就会得到类似：\n">
 <meta property='og:url' content='http://localhost:1313/posts/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/'>
 <meta property='og:site_name' content='WinNote'>
@@ -351,6 +351,8 @@
     
     
 
+    
+    
     <footer class="article-time">
         
             <div>
@@ -395,21 +397,27 @@
     
 
     
+
+    
 </div>
 
 </header>
 
     
-<div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
 
-<footer class="article-time">
-<div>
-    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+
+
+    <div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
     
-    <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数:<span class="waline-pageview-count" data-path="/posts/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/" />次</span>
-</div>
-</footer>
-</div>
+        <footer class="article-time">
+            <div>
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                
+                <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="waline-pageview-count" data-path="/posts/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/" /></span>
+            </div>
+        </footer>
+    </div>
+
 
 <section class="article-content">
     

@@ -1,17 +1,21 @@
 <!--250227页面访问数统计-->
-<div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
-<!--<footer class="article-time" style="padding-left: 30px;padding-top: 5px;">-->
-<footer class="article-time">
-<div>
-    {{ partial "helper/icon" "eye" }}
-    <!---
-    <span title="阅读次数" id="busuanzi_container_page_pv" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="article-time--reading" id="busuanzi_value_page_pv"></span>次
-    </span>
-    -->
-    <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}" /></span>
-</div>
-</footer>
-</div>
+<!--250312更换为waline统计数字，且ne为不为，eq为等于-->
+<!--https://gohugo.io/methods/page/section/ 返回当前文章的顶级目录名称，下面则意为排除content/page/目录下的文章-->
+{{ if ne .Section "page" }}
+    <div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
+    <!--<footer class="article-time" style="padding-left: 30px;padding-top: 5px;">-->
+        <footer class="article-time">
+            <div>
+                {{ partial "helper/icon" "eye" }}
+                <!---
+                <span title="阅读次数" id="busuanzi_container_page_pv" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="article-time--reading" id="busuanzi_value_page_pv"></span>次
+                </span>
+                -->
+                <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数: <span class="waline-pageview-count" data-path="{{ .RelPermalink }}" /></span>
+            </div>
+        </footer>
+    </div>
+{{ end }}
 
 <section class="article-content">
     <!-- Refer to https://discourse.gohugo.io/t/responsive-tables-in-markdown/10639/5 -->

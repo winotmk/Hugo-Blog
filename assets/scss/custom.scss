@@ -171,3 +171,15 @@ code::before {
 .widget-icon svg {
     margin-right: 5px;
 }
+
+
+//减小主文章容器在小分辨率下的左右padding
+@media(max-width: 768px) {
+    .main-container {
+        padding:0 5px
+    }
+    .left-sidebar {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+}
