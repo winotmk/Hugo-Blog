@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>开发 on WinNote</title>
+        <link>http://localhost:1313/tags/%E5%BC%80%E5%8F%91/</link>
+        <description>Recent content in 开发 on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Mon, 10 Mar 2025 11:33:47 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>静态博客添加disqusjs评论</title>
+        <link>http://localhost:1313/posts/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/</link>
+        <pubDate>Mon, 10 Mar 2025 11:33:47 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-48-47_460e258c.png" alt="Featured image of post 静态博客添加disqusjs评论" /&gt;&lt;p&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;注册disqus评论&#34;&gt;注册disqus评论
+&lt;/h2&gt;&lt;h3 id=&#34;获取api&#34;&gt;获取api
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://disqus.com/api/applications/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://disqus.com/api/applications/&lt;/a&gt;&lt;br&gt;
+在这里点新建一个 application，然后要绑定你的博客域名才会给公钥，记录下公钥Public Key&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-43-26_6225c1e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-10-19-43-26&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;获取shortname&#34;&gt;获取shortname
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://disqus.com/admin/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://disqus.com/admin/&lt;/a&gt;&lt;br&gt;
+如果你点开上面页面跳转了，则说明需要新建一个shortname&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-45-15_9b04d600.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-10-19-45-15&#34;
+	
+	
+&gt;&lt;br&gt;
+我这里建完后是这样的，winNote即是我的短名，有一些个性化设置可以改&lt;/p&gt;
+&lt;h2 id=&#34;设置到静态博客&#34;&gt;设置到静态博客
+&lt;/h2&gt;&lt;p&gt;我用的是hugo stack主题，已经内置了disqusjs，只需要在根目录的hugo.yaml设置里填入对应的即可&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-46-28_b2e388e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-10-19-46-28&#34;
+	
+	
+&gt;&lt;br&gt;
+这里的&lt;code&gt;ApiUrl&lt;/code&gt;是个什么呢？是我自己设置的反向代理&lt;/p&gt;
+&lt;h2 id=&#34;设置反向代理&#34;&gt;设置反向代理
+&lt;/h2&gt;&lt;p&gt;可参考：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://blog.ichr.me/post/use-disqus-conveniently/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://blog.ichr.me/post/use-disqus-conveniently/&lt;/a&gt;&lt;br&gt;
+原因是我发现作者提供的默认地址https://disqus.skk.moe/disqus/&lt;br&gt;
+似乎已经有点不好用了&lt;br&gt;
+简单搭建一下倒是很快&lt;/p&gt;
+&lt;h3 id=&#34;cloudflare-workers-反代&#34;&gt;Cloudflare Workers 反代
+&lt;/h3&gt;&lt;p&gt;在 Cloudflare 中新建一个 Worker，将下述代码替换原有代码。&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://workers.cloudflare.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://workers.cloudflare.com/&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;addEventListener(&#39;fetch&#39;, event =&amp;gt; {
+    event.respondWith(proxy(event));
+});
+
+async function proxy(event) {
+    const getReqHeader = (key) =&amp;gt; event.request.headers.get(key);
+
+    let url = new URL(event.request.url);
+    url.hostname = &amp;quot;disqus.com&amp;quot;;
+
+    let parameter = {
+        headers: {
+            &#39;Host&#39;: &#39;disqus.com&#39;,
+            &#39;User-Agent&#39;: getReqHeader(&amp;quot;User-Agent&amp;quot;),
+            &#39;Accept&#39;: getReqHeader(&amp;quot;Accept&amp;quot;),
+            &#39;Accept-Language&#39;: getReqHeader(&amp;quot;Accept-Language&amp;quot;),
+            &#39;Accept-Encoding&#39;: getReqHeader(&amp;quot;Accept-Encoding&amp;quot;),
+            &#39;Connection&#39;: &#39;keep-alive&#39;,
+            &#39;Cache-Control&#39;: &#39;max-age=0&#39;
+        }
+    };
+
+    if (event.request.headers.has(&amp;quot;Referer&amp;quot;)) {
+        parameter.headers.Referer = getReqHeader(&amp;quot;Referer&amp;quot;);
+    }
+
+    if (event.request.headers.has(&amp;quot;Origin&amp;quot;)) {
+        parameter.headers.Origin = getReqHeader(&amp;quot;Origin&amp;quot;);
+    }
+
+    return fetch(new Request(url, event.request), parameter);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;例如这里是我的：&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-10-19-39-59_e2a1b57b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-10-19-39-59&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;code&gt;https://winotmk-di-xxxxxx.winotmk.workers.dev/api/&lt;/code&gt;即是我的代理地址了&lt;/p&gt;
+&lt;h2 id=&#34;后续&#34;&gt;后续
+&lt;/h2&gt;&lt;p&gt;然而即便设置了这些以后，我的博客依然经常在无梯网络环境中出现类似：&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/2025-03-11-12-18-14_22c104c3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-11-12-18-14&#34;
+	
+	
+&gt;&lt;br&gt;
+评论加载很慢或者干脆加载不了的情况，正在考虑换成自架waline&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>python格式化字符串的方法</title>
+        <link>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+        <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240810_python%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+        <description>&lt;p&gt;问题:&lt;br&gt;
+例如&lt;br&gt;
+&lt;code&gt;print(&amp;quot;位置过期:%-6.0f秒&amp;quot;%cachetime)&lt;/code&gt;的&lt;code&gt;%-6.0f&lt;/code&gt;是什么意思？&lt;br&gt;
+&lt;code&gt;%-6.0f&lt;/code&gt;里的每一个字符都是有意义的&lt;/p&gt;
+&lt;p&gt;在 Python 中，%-6.0f 是一种格式化字符串的方法，用于格式化浮点数 cachetime 的值。让我们来逐部分解释：&lt;/p&gt;
+&lt;h2 id=&#34;解释&#34;&gt;解释
+&lt;/h2&gt;&lt;h3 id=&#34;heading&#34;&gt;%：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;%&lt;/code&gt; 是格式化操作符，用于将后面指定的变量格式化并插入到字符串中。&lt;/p&gt;
+&lt;h3 id=&#34;-6&#34;&gt;-6：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;-6&lt;/code&gt; 是一个宽度说明符，它指定了格式化后输出的最小宽度为 6 个字符。&lt;br&gt;
+&lt;code&gt;-&lt;/code&gt; 表示左对齐。如果没有这个符号（即为默认的右对齐），数字会向右对齐。&lt;br&gt;
+如果数字宽度不足 6 个字符，则会在数字右侧补充空格，以达到 6 个字符的总宽度。&lt;/p&gt;
+&lt;h3 id=&#34;0&#34;&gt;.0：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;.0&lt;/code&gt; 指定了浮点数的小数部分显示 0 位（即不显示小数部分）。因此，浮点数会被显示为整数形式。&lt;/p&gt;
+&lt;h3 id=&#34;f&#34;&gt;f：
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;f&lt;/code&gt; 表示将变量作为浮点数进行格式化。&lt;br&gt;
+ps:如果不用格式化字符串，直接&lt;code&gt;print(cachetime)&lt;/code&gt;会报错，因为不能直接打印浮点数，可以&lt;code&gt;print(str(cachetime))&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;例子&#34;&gt;例子
+&lt;/h2&gt;&lt;p&gt;假设 cachetime 的值是 820.75，则：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cachetime = 820.75
+formatted_string = u&amp;quot;位置过期:%-6.0f秒&amp;quot; % cachetime
+print(formatted_string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-makefile&#34;&gt;位置过期:821   秒
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;输出解释&#34;&gt;输出解释：
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;%-6.0f&lt;/code&gt; 将 &lt;code&gt;820.75&lt;/code&gt; 格式化为 &lt;code&gt;821&lt;/code&gt;（由于 .0 不显示小数部分）。&lt;br&gt;
+&lt;code&gt;821&lt;/code&gt; 左对齐，占用至少 6 个字符的位置。如果 &lt;code&gt;821&lt;/code&gt; 只有 3 个字符，右边会填充 3 个空格，使得总宽度为 6 个字符。&lt;br&gt;
+如果你将数字换成更小的，比如 10：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cachetime = 10
+formatted_string = u&amp;quot;位置过期:%-6.0f秒&amp;quot; % cachetime
+print(formatted_string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-makefile&#34;&gt;位置过期:10    秒
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;10 会左对齐，后面会补充 4 个空格，使总长度达到 6 个字符。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Minecraft on WinNote</title>
+        <link>http://localhost:1313/tags/minecraft/</link>
+        <description>Recent content in Minecraft on WinNote</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>winotmk</copyright>
+        <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/minecraft/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>给docker容器内配置中文环境(minecraft开服相关)</title>
+        <link>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</link>
+        <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png" alt="Featured image of post 给docker容器内配置中文环境(minecraft开服相关)" /&gt;&lt;p&gt;最近找到个整合包（因为懒得一个个翻bbs&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-14_5daf4b61.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-37-14&#34;
+	
+	
+&gt;&lt;br&gt;
+这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道&lt;br&gt;
+才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！&lt;br&gt;
+服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着&lt;/p&gt;
+&lt;h2 id=&#34;选取docker镜像&#34;&gt;选取docker镜像
+&lt;/h2&gt;&lt;p&gt;docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/_/openjdk/tags?page=1&amp;amp;page_size=&amp;amp;name=8u342&amp;amp;ordering=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-24_d9e14fdf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-37-24&#34;
+	
+	
+&gt;&lt;br&gt;
+所以直接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker pull openjdk:8u342-jre-slim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后直接这样运行就好了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -it -d \
+-p 25565:25565 \
+-v E:\game\MC\1.12.2mohist_服务端:/mc \
+-w /mc \
+--name MC1122 \
+openjdk:8u342-jre-slim \
+java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;虽然长，但是总的来说挺简单，用&lt;code&gt;openjdk:8u342-jre-slim&lt;/code&gt;镜像运行&lt;code&gt;java&lt;/code&gt;命令罢了，但是！&lt;br&gt;
+出现了一个人让人感觉不爽的小问题，服务端的log输出以及游戏内服务端来的输出都是英文的，这在之前直接windows运行时不是这样的，所以第一反应是语言环境问题&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-36_07788262.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-37-36&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-45_13b3dd1e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-37-45&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量
+&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;docker run&lt;/code&gt;的时候加上个参数&lt;code&gt;-e LANG=&amp;quot;zh_CN.UTF-8&amp;quot;&lt;/code&gt;，类似&lt;code&gt;export  LANG=zh_CN.UTF-8&lt;/code&gt;&lt;br&gt;
+确定环境变量生效了：&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-37-53_a6720241.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-37-53&#34;
+	
+	
+&gt;&lt;br&gt;
+但没解决问题，反而似乎导致启动的时候不认识中文的mod文件名了&lt;/p&gt;
+&lt;p&gt;在查找这个之后：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/myli92/article/details/139909499?csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22139909499%22%2C%22source%22%3A%22unlogin%22%7D&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;docker 容器设置中文环境&lt;/a&gt;&lt;br&gt;
+发现单纯设置&lt;code&gt;LANG&lt;/code&gt;的变量不行，容器里就没有中文字符集的&lt;/p&gt;
+&lt;h3 id=&#34;查看已有语言&#34;&gt;查看已有语言
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;locale -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-02_afbf7a7b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-38-02&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装中文环境&#34;&gt;安装中文环境
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/star1210644725/article/details/108747049&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;使用DockerFile的方式快速构建一个基础镜像，解决中文环境问题&lt;/a&gt;&lt;br&gt;
+所以安装中文环境的命令可以是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apt-get install -y language-pack-zh-hans
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但这样不行！因为这个是ubuntu的命令，查看我的docker镜像的信息发现是以debian基底的&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-12_22f7f27f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-38-12&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;看到:&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/forever_008/article/details/103720389&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Debian系统安装中文包&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dpkg-reconfigure locales
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后再选&lt;code&gt;zh_CN.UTF-8&lt;/code&gt;，可行，但是集成到镜像里没那么好使，还好有别的方法&lt;/p&gt;
+&lt;h2 id=&#34;制作新镜像&#34;&gt;制作新镜像
+&lt;/h2&gt;&lt;p&gt;参考：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/wyazyf/article/details/90676364&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;dockerfile文件中给debian设置中文支持&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dockerfile&#34;&gt;dockerfile
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;FROM openjdk:8u342-jre-slim
+RUN apt-get clean &amp;amp;&amp;amp; apt-get update &amp;amp;&amp;amp; apt-get install -y locales &amp;amp;&amp;amp;  localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+WORKDIR /mc
+ENV LANG zh_CN.UTF-8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;保存为dockerfile文件然后&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker build -t jre8u342_ch .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-29_a81e5d6e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-38-29&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;测试运行&#34;&gt;测试运行
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;docker run -it -d \
+-p 25565:25565 \
+-v E:\game\MC\1.12.2mohist_服务端:/mc \
+--name MC1122 \
+jre8u342_ch:latest \
+java -Xms2G -Xmx8G -XX:+UseG1GC -XX:+AggressiveOpts -XX:+UseCompressedOops -jar Mohist-1.12.2-c950429-server.jar nogui
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为dockerfile里已经设置过&lt;code&gt;WORKDIR&lt;/code&gt;了所以不需要&lt;code&gt;-w&lt;/code&gt;参数&lt;/p&gt;
+&lt;p&gt;这下不会报英文了&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-45_6edc5591.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-38-45&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-38-55_dd26bed1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-38-55&#34;
+	
+	
+&gt;&lt;br&gt;
+游戏里也是中文环境的返回信息&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-04_802db859.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-04&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;部署到群晖&#34;&gt;部署到群晖
+&lt;/h2&gt;&lt;p&gt;先把做好的镜像打包出来，方便传到群晖NAS里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker save -o jre8u342_ch.tar jre8u342_ch:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先导入这个镜像&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-12_9a72b1a7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-12&#34;
+	
+	
+&gt;&lt;br&gt;
+然后简单配置一下端口和mc服务器目录就可以了,和上面的&lt;code&gt;docker run&lt;/code&gt;其实是一样的&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-21_b14c7daa.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-21&#34;
+	
+	
+&gt;&lt;br&gt;
+端口的&lt;code&gt;25565&lt;/code&gt;是游戏端口&lt;code&gt;25575&lt;/code&gt;用作管理，下面会提到&lt;/p&gt;
+&lt;h2 id=&#34;服务器远程管理&#34;&gt;服务器远程管理
+&lt;/h2&gt;&lt;p&gt;用容器托管运行了，上哪去敲&lt;code&gt;/op xxxx&lt;/code&gt;和&lt;code&gt;/stop&lt;/code&gt;之类的管理命令呢？&lt;br&gt;
+可以用rcon方案！&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://wiki.vg/RCON&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://wiki.vg/RCON&lt;/a&gt;&lt;br&gt;
+具体就是用这个软件：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/Tiiffi/mcrcon&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/Tiiffi/mcrcon&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装和服务端配置&#34;&gt;安装和服务端配置：
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;git clone https://github.com/Tiiffi/mcrcon.git
+cd mcrcon
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后服务端也要配置一下，在&lt;code&gt;server.properties&lt;/code&gt;里的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;enable-rcon=false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;改为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;enable-rcon=true
+rcon.password=your_passwd
+rcon.port=25575
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;用法&#34;&gt;用法：
+&lt;/h3&gt;&lt;p&gt;先连接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mcrcon -H 服务器地址 -p your_passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后就可以一样敲各种minecraft管理命令了&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-34_c1b2c621.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-34&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;好了不说了博主我要去挖矿开荒了&lt;br&gt;
+&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-41_25bad8ab.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-41&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/2025-03-06-14-39-48_4e5af823.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-03-06-14-39-48&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考
+&lt;/h2&gt;&lt;p&gt;debian文档，第 8 章 国际化和本地化：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.debian.org/doc/manuals/debian-reference/ch08.zh-cn.html#_rationale_for_utf_8_locale&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;类似的打包好的docker环境MC服务器镜像有：&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/itzg/docker-minecraft-server/tree/master&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/itzg/docker-minecraft-server/tree/master&lt;/a&gt;&lt;br&gt;
+对我来说功能有点多，只是参考参考&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>SourceCraft服务器</title>
+        <link>http://localhost:1313/posts/mc/</link>
+        <pubDate>Sun, 07 Nov 2021 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/mc/</guid>
+        <description>&lt;img src="http://pictures.winotmk.com/MC/2025-02-27-23-58-20_41d3fcaa.png" alt="Featured image of post SourceCraft服务器" /&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Java服务器地址：mc.winotmk.com:25465&lt;br&gt;
+基岩服务器地址：mc.winotmk.com:19132&lt;/p&gt;
+&lt;p&gt;网站：&lt;br&gt;
+Web地图：&lt;a class=&#34;link&#34; href=&#34;http://mcmap.winotmk.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://mcmap.winotmk.com&lt;/a&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;服务器概况&#34;&gt;服务器概况
+&lt;/h2&gt;&lt;p&gt;目前版本：spigot-1.20.1&lt;br&gt;
+自有服务器，计划长期开服，主世界不清档，视情况可以增加副世界&lt;br&gt;
+使用了Geyser插件，实现基岩版和Java版本同服，支持多种客户端，可以在手机和电脑上同时玩 &lt;del&gt;（主机也行没测过&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;开服日期：2021-11-07&lt;br&gt;
+容器化上云: 2023-08-25&lt;/p&gt;
+&lt;p&gt;世界结构：&lt;br&gt;
+Lobby&lt;br&gt;
+MainWorld -Nether -TheEnd&lt;br&gt;
+LyhWorld&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-58-52_69aad3ef.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-58-52&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现有传送门：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lobby去塔顶&lt;/li&gt;
+&lt;li&gt;Lobby去主世界（主传送门）&lt;/li&gt;
+&lt;li&gt;Lobby去lyh存档世界&lt;/li&gt;
+&lt;li&gt;主世界往返湖边村落&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;更新log&#34;&gt;更新log
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;2023-08-25&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;版本由spigot-1.17.1更新至spigot-1.20.1&lt;/li&gt;
+&lt;li&gt;运行环境eci内运行，服务器文件nas上存储，环境和数据分离&lt;/li&gt;
+&lt;li&gt;服务器版本更新至1.20.1（顺带更新对应插件版本）&lt;br&gt;
+禁用如下插件：&lt;/li&gt;
+&lt;li&gt;PlaceholderAPI&lt;/li&gt;
+&lt;li&gt;MiaoChat(被曝有后门)&lt;/li&gt;
+&lt;li&gt;wolfyutilities&lt;/li&gt;
+&lt;li&gt;ServerMinimap(似乎没啥用)&lt;/li&gt;
+&lt;li&gt;Dynmap(web端地图，性能消耗巨大，体积巨大，暂移除)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常用玩家命令&#34;&gt;常用玩家命令
+&lt;/h2&gt;&lt;p&gt;按T输入文本&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一次进服务器需要注册&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/reg 密码 密码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;登录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/l 密码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;回主城lobby&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/spawn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;回家（上次认得床）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/home
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;回上次移动的地方（或上次死的地方)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/back
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;移动到玩家身边（需要对方确认)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/tpa 玩家名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;开始&#34;&gt;开始
+&lt;/h2&gt;&lt;p&gt;首先选择一个版本&lt;br&gt;
+如果你买过Windows版、主机，iPad之类的版本，可以选择基岩版&lt;br&gt;
+或者在windows和MAC上玩Java版&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-11_9e56d9af.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-11&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;附上Windows游戏购买链接&lt;br&gt;
+java：&lt;a class=&#34;link&#34; href=&#34;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.minecraft.net/zh-hans/store/minecraft-java-edition&lt;/a&gt;&lt;br&gt;
+基岩：&lt;a class=&#34;link&#34; href=&#34;https://www.minecraft.net/zh-hans/store/minecraft-windows10&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.minecraft.net/zh-hans/store/minecraft-windows10&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;java版连接服务器&#34;&gt;Java版连接服务器
+&lt;/h3&gt;&lt;h4 id=&#34;如果购买过正版java版本&#34;&gt;如果购买过正版java版本
+&lt;/h4&gt;&lt;p&gt;直接进多人游戏输入服务器地址&lt;code&gt;mc.winotmk.com:25465&lt;/code&gt;即可&lt;/p&gt;
+&lt;h4 id=&#34;如果没有购买&#34;&gt;如果没有购买
+&lt;/h4&gt;&lt;p&gt;这里提供原版纯净客户端：&lt;/p&gt;
+&lt;p&gt;链接：&lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://pan.baidu.com/s/1dl3mBgqhmvxPGMNVG2bRgw&lt;/a&gt;&lt;br&gt;
+提取码：lijt&lt;/p&gt;
+&lt;h4 id=&#34;下载java运行环境&#34;&gt;下载java运行环境
+&lt;/h4&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.oracle.com/java/technologies/downloads/#jdk17-windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.oracle.com/java/technologies/downloads/#jdk17-windows&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;下载客户端&#34;&gt;下载客户端
+&lt;/h4&gt;&lt;p&gt;运行HMCL登陆器&lt;/p&gt;
+&lt;p&gt;登录方式选离线模即可，写个名字，即游玩服务器时的名字&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-23_b3cad586.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-23&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ps.如果启动失败请确保使用了java17&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-32_c5b58d87.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-32&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进游戏选择&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-41_39df0b39.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-41&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一次进服务器需要按T&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;然后输入/reg 密码 密码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注册&lt;/p&gt;
+&lt;p&gt;enjoy！&lt;/p&gt;
+&lt;h3 id=&#34;基岩版连接服务器&#34;&gt;基岩版连接服务器
+&lt;/h3&gt;&lt;p&gt;启动游戏选服务器，添加服务器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-51_9e2d5ea9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-51&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后输入地址mc.winotmk.com端口19132&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-27-23-59-59_8d4c333a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-27-23-59-59&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;服务器插件列表&#34;&gt;服务器插件列表
+&lt;/h2&gt;&lt;p&gt;以下部分玩家有兴趣可看&lt;/p&gt;
+&lt;p&gt;插件有功能类和玩法类多种，简单记录一下目前所有的插件&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ActionHealth&lt;/li&gt;
+&lt;li&gt;AncientGates&lt;/li&gt;
+&lt;li&gt;AureliumSkills-Beta1.1.4&lt;/li&gt;
+&lt;li&gt;BlockLocker&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;BossShopPro&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;CatSeedLogin-1.3.9&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Dynmap-3.2.1-spigot&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;EssentialsX-2.19.0&lt;/li&gt;
+&lt;li&gt;EssentialsXChat-2.19.0&lt;/li&gt;
+&lt;li&gt;EssentialsXSpawn-2.19.0&lt;/li&gt;
+&lt;li&gt;Geyser-Spigot_基岩转发&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;GiftPack&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;GSit&lt;/li&gt;
+&lt;li&gt;LuckPerms-Bukkit-5.3.47&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;MiaoChat&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;NekoMaid&lt;/li&gt;
+&lt;li&gt;PocketGames&lt;/li&gt;
+&lt;li&gt;Residence5.0.0.4&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;ServerMinimap&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;Tree Feller-V2.2&lt;/li&gt;
+&lt;li&gt;Multiverse&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;API前置类&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;CMILib1.0.4.2_圈地前置&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;PlaceholderAPI-2.10.10&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;SmartInvs-1.2.7&lt;/li&gt;
+&lt;li&gt;Vault&lt;/li&gt;
+&lt;li&gt;Uniporter-1.3.2_Web管理前置&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;wolfyutilities-1.7.2.0&lt;/del&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;actionhealth&#34;&gt;ActionHealth
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-21_f74c2081.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-21&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在物品栏上显示血量&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/action-bar-health.2661/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/action-bar-health.2661/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;ancientgates&#34;&gt;AncientGates
+&lt;/h4&gt;&lt;p&gt;传送门&lt;/p&gt;
+&lt;p&gt;基础用法：&lt;br&gt;
+本插件可以传送一切实体，包括玩家、运输工具、实体都能进入传送门&lt;br&gt;
+这个插件不仅能跨服务器传送实体和输入指令，而且可以在进入另一个服务器时输入指令&lt;br&gt;
+指令非常简单&lt;br&gt;
+首先，需要输入指令打开功能：/gate setconf bungeeCordSupport true&lt;br&gt;
+接下来你就可以使用任何关于BC的指令，创建传送门方法与普通的方法几乎无异&lt;br&gt;
+/gate setto [id] [服务器] - 设置传送到的目的地&lt;br&gt;
+/gate setbungeetype [id] [LOCATION/SERVER] - 在本地服务器上设置传送类型&lt;br&gt;
+/gate addto [id] [服务器] - 添加传送到的服务器&lt;br&gt;
+/gate remto [id] [服务器] - 删除可以传送到的服务器&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=584063&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=584063&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;aureliumskills&#34;&gt;AureliumSkills
+&lt;/h4&gt;&lt;p&gt;技能系统&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;15 种独特的技能 (耕作Farming, 锻造Foraging, 挖矿Mining, 钓鱼Fishing, 采掘(旧版本翻译为掘土)Excavation, 箭术Archery, 防御Defense, 战斗Fighting, 耐力Endurance, 敏捷Agility, 炼金Alchemy, 附魔Enchanting, 巫术Sorcery, 治愈Healing, 以及锻造Forging)&lt;/li&gt;
+&lt;li&gt;6 种玩家属性 (生命Health, 力量Strength, 再生Regeneration, 幸运Luck, 智慧Wisdom, 以及韧性Toughness)&lt;/li&gt;
+&lt;li&gt;简洁明了, 能显示详细信息的 GUI&lt;/li&gt;
+&lt;li&gt;能够自定义物品和盔甲上的特殊属性&lt;/li&gt;
+&lt;li&gt;自定义打怪, 采集和钓鱼获得的特殊物品(掉落表/道具池, 原文为 Loot Table)&lt;/li&gt;
+&lt;li&gt;经验值来源及大小均可修改,Beta 1.1.1以后不再支持 MythicMobs 自定义怪物作为经验来源&lt;/li&gt;
+&lt;li&gt;多语言支持&lt;/li&gt;
+&lt;li&gt;ActionBar 与 BossBar 位置显示&lt;/li&gt;
+&lt;li&gt;可供开发者使用的 API&lt;/li&gt;
+&lt;li&gt;支持 MySQL&lt;/li&gt;
+&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;p&gt;/skills 或 /skill 或 /sk - 打开技能菜单,详见MCBBS&lt;br&gt;
+MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1094927&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1094927&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/aurelium-skills-advanced-skills-stats-abilities-and-more.81069/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;blocklocker&#34;&gt;BlockLocker
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-32_48cd7dd1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-32&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;上锁插件&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 放置木牌&lt;/strong&gt;&lt;br&gt;
+对于容器类: 只需放置木牌即可,[私有]和玩家名会被自动生成.&lt;br&gt;
+对于门类: 放置木牌在门上或周围的方块上即可,内容会自动生成.&lt;/p&gt;
+&lt;p&gt;其他:你也可以自己添加锁定信息,按照生成木牌的格式填写即可~&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.编辑木牌&lt;/strong&gt;&lt;br&gt;
+右击木牌,输入&amp;quot;/blocklocker &amp;lt;行数&amp;gt; &amp;lt;文本&amp;gt;&amp;ldquo;来编辑木牌.&lt;br&gt;
+指令简写: &amp;ldquo;/bl&amp;rdquo; = &amp;ldquo;/blocklocker&amp;rdquo;,方法为: &amp;ldquo;/bl &amp;lt;行数&amp;gt; &amp;lt;文本&amp;gt;&amp;rdquo;.&lt;br&gt;
+可添加其他字符来避免被识别为玩家名,例如 &amp;ldquo;~&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.信任其他玩家&lt;/strong&gt;&lt;br&gt;
+在第二步的 &amp;lt;文本&amp;gt; 内容中添加你要信任的玩家名即可.&lt;br&gt;
+如果想添加两个以上的玩家名,再放置一个木牌即可,内容会自动添加.&lt;br&gt;
+第二个木牌添加内容 &amp;ldquo;‘[更多使用者]’ ‘[所有人]’&amp;rdquo;.&lt;br&gt;
+&amp;ldquo;[所有人]&amp;ldquo;标签将允许所有人访问容器.请更改.&lt;/p&gt;
+&lt;p&gt;MCbbs搬运：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1173296&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1173296&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/blocklocker.3268/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/blocklocker.3268/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;bossshoppro&#34;&gt;&lt;del&gt;BossShopPro&lt;/del&gt;
+&lt;/h4&gt;&lt;p&gt;已移除&lt;br&gt;
+商店系统&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=829068&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=829068&lt;/a&gt;&lt;br&gt;
+商店页面编辑器：&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1273221&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1273221&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;catseedlogin&#34;&gt;CatSeedLogin
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-00-50_8e0ba904.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-00-50&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;种子猫登录插件&lt;br&gt;
+基岩入口和java入口都关闭了正版验证，所以加了登录插件来管理玩家的账号，此插件备选可替换AuthMe&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;登录&lt;br&gt;
+    /login 密码&lt;br&gt;
+    /l 密码&lt;br&gt;
+注册密码&lt;br&gt;
+  /register 密码 重复密码&lt;br&gt;
+  /reg 密码 重复密码&lt;br&gt;
+修改密码&lt;br&gt;
+  /changepassword 旧密码 新密码 重复新密码&lt;br&gt;
+  /changepw 旧密码 新密码 重复新密码&lt;/p&gt;
+&lt;p&gt;绑定邮箱  &lt;br&gt;
+/bindemail set 邮箱  &lt;br&gt;
+/bdmail set 邮箱&lt;br&gt;
+用邮箱收到的验证码完成绑定  &lt;br&gt;
+/bindemail verify 验证码  &lt;br&gt;
+/bdmail verify 验证码&lt;br&gt;
+忘记密码，请求服务器给自己绑定的邮箱发送重置密码的验证码&lt;br&gt;
+  /resetpassword forget  /repw forget&lt;br&gt;
+用邮箱收到的验证码重置密码&lt;br&gt;
+  /resetpassword re 验证码 新密码&lt;br&gt;
+  /repw re 验证码 新密码&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;MCBBS:&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=847859&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=847859&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;dynmap&#34;&gt;&lt;del&gt;Dynmap&lt;/del&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-19_f4d458dc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-19&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;20230825更新：会消耗过多云服务资源暂移除&lt;/p&gt;
+&lt;p&gt;Web端卫星地图，还可3d显示，实时显示在线玩家位置，上帝视角&lt;/p&gt;
+&lt;p&gt;Mcbbs:&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=990539&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=990539&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://dynmap.us/builds/dynmap/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://dynmap.us/builds/dynmap/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;essentialsx&#34;&gt;EssentialsX
+&lt;/h4&gt;&lt;p&gt;系列管理插件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=619883&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=619883&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;geyser-spigot&#34;&gt;Geyser-Spigot
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-48_5ffb87f9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-48&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;该插件让基岩版玩家可以进入本服务器&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://geysermc.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://geysermc.org/&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/thread-973002-1-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/thread-973002-1-1.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;giftpack&#34;&gt;&lt;del&gt;GiftPack&lt;/del&gt;
+&lt;/h4&gt;&lt;p&gt;已移除&lt;br&gt;
+礼包插件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/thread-1141658-1-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/thread-1141658-1-1.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;gsit&#34;&gt;GSit
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-01-59_7753d937.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-01-59&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;座椅子插件&lt;/p&gt;
+&lt;p&gt;/gsit(/sit) 坐在方块上&lt;br&gt;
+/glgy(/lay) 躺在方块上&lt;br&gt;
+/gcrawl(/crawl) 趴在方块上&lt;br&gt;
+/gsittoggle(/sittoggle) 开关右键坐下&lt;br&gt;
+/gsitreload(/gsitrl) 重载插件配置&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1107053&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1107053&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/gsit-modern-sit-seat-and-chair-lay-and-crawl-plugin-1-13-x-1-17-x.62325/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;luckperms&#34;&gt;LuckPerms
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-10_710adb1e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-10&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;权限管理&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=676818&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=676818&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/luckperms.28140/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/luckperms.28140/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;miaochat&#34;&gt;&lt;del&gt;MiaoChat&lt;/del&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-20_c60723e4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-20&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;聊天功能增加&lt;/p&gt;
+&lt;p&gt;20230825更新：移除，被曝有后台&lt;/p&gt;
+&lt;p&gt;聊天的时候输出%数字，代表展示手上物品&lt;br&gt;
+%1-9 代表快捷物品栏1-9号格子的物品&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631240&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631240&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;nekomaid&#34;&gt;NekoMaid
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-02-35_f2094a00.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-02-35&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Wed后台管理插件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1230139&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1230139&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;pocketgamespo&#34;&gt;PocketGamesPo
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-03-01_2e632f3e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-03-01&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;34+口袋游戏|随时随地想玩就玩&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;玩家命令:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/pocketgames|/pocket|/pg - 打开游戏菜单&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/pg help - 打开插件帮助&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;/pg menu [玩家名] - 为指定玩家打开游戏菜单&lt;/li&gt;
+&lt;li&gt;/pg multiplayer [玩家名] - 为指定玩家打开多人游戏菜单&lt;/li&gt;
+&lt;li&gt;/pg spectate [玩家名] - 为指定玩家打开观战菜单&lt;/li&gt;
+&lt;li&gt;/pg play &amp;lt;游戏ID&amp;gt; [玩家名] - 让指定的玩家玩指定的游戏&lt;/li&gt;
+&lt;li&gt;/pg highscore &amp;lt;游戏ID&amp;gt; [玩家名] - 为指定玩家打开指定游戏的高分榜&lt;/li&gt;
+&lt;li&gt;/pg duel &amp;lt;a/d/玩家名&amp;gt; [游戏ID] - 接受邀请/拒绝邀请/邀请玩家进行多人游戏&lt;/li&gt;
+&lt;li&gt;/pg check &amp;lt;玩家名&amp;gt; - 检查玩家是否在玩游戏以及玩的什么游戏&lt;/li&gt;
+&lt;li&gt;/pg list - 插件的游戏列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;管理员命令:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/pocketgamesadmin|/pga - 管理员帮助信息&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;/pga reset file &amp;lt;文件名&amp;gt; [只可填highscores.yml]&lt;/li&gt;
+&lt;li&gt;/pga reset database [表] - 刷新数据库指定的表&lt;/li&gt;
+&lt;li&gt;/pga info - 插件信息&lt;/li&gt;
+&lt;li&gt;/pga reload - 重载插件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=913753&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=913753&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;residence&#34;&gt;Residence
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;http://pictures.winotmk.com/MC/2025-02-28-00-03-12_f6ad867b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2025-02-28-00-03-12&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;圈地插件&lt;/p&gt;
+&lt;p&gt;/res ? —— 查看帮助&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631343&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=631343&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;serverminimap&#34;&gt;&lt;del&gt;Serverminimap&lt;/del&gt;
+&lt;/h4&gt;&lt;p&gt;小地图&lt;/p&gt;
+&lt;p&gt;20230825更新：似乎没啥用，移除&lt;/p&gt;
+&lt;p&gt;/minimap - 为您提供小地图项目&lt;br&gt;
+/waypoint help [command] - 为您提供有关此命令的信息&lt;br&gt;
+/waypoint add [x] [z] - 在您当前的位置或指定的 x 和 z 坐标上添加一个航点。&lt;br&gt;
+/waypoint list - 列出所有航点及其索引&lt;br&gt;
+/waypoint remove &lt;index&gt; - 删除索引为 &lt;index&gt; 的航点。注意：删除航点时，索引会发生变化。&lt;br&gt;
+/waypoint hide &lt;index&gt; [true|false] - 切换航点的可见性，或将其设置为给定的布尔值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/lp group admin permission set minimap.fastupdate&lt;br&gt;
+/lp group admin permission set minimap.command.minimap&lt;br&gt;
+/lp group admin permission set minimap.command.waypoint.help&lt;br&gt;
+/lp group admin permission set minimap.command.waypoint.list&lt;br&gt;
+/lp group admin permission set minimap.command.waypoint.add&lt;br&gt;
+/lp group admin permission set minimap.command.waypoint.remove&lt;br&gt;
+/lp group admin permission set minimap.command.waypoint.hide&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://dev.bukkit.org/projects/serverminimap&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://dev.bukkit.org/projects/serverminimap&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;tree-feller&#34;&gt;Tree Feller
+&lt;/h4&gt;&lt;p&gt;一键砍树插件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/tree-feller.92998/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/tree-feller.92998/&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;multiverse&#34;&gt;Multiverse
+&lt;/h4&gt;&lt;p&gt;多世界插件&lt;/p&gt;
+&lt;p&gt;#命令语法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mv [FILTER] [PAGE #]&lt;br&gt;
+#发送版本信息至控制台&lt;/p&gt;
+&lt;p&gt;mv version -[pbg]&lt;br&gt;
+#列出所有世界名称&lt;/p&gt;
+&lt;p&gt;mv list&lt;br&gt;
+#列出综合信息&lt;/p&gt;
+&lt;p&gt;mv info [WORLD] [PAGE]&lt;br&gt;
+*/mv info [世界名称] [页码]&lt;/p&gt;
+&lt;p&gt;#创建世界&lt;br&gt;
+mv create {名字} {环境} -s [种子] -g [生成器[:ID]] -t [生成器] [-n] -a [true|false]&lt;/p&gt;
+&lt;p&gt;#复制某个世界&lt;br&gt;
+mv clone {目标} {名字} -g [生成器[:ID]]&lt;/p&gt;
+&lt;p&gt;#转换某个世界的类型&lt;br&gt;
+mv import {名字} {环境} -g [生成器[:ID]] [-n]&lt;/p&gt;
+&lt;p&gt;#重新加载配置文件&lt;br&gt;
+mv reload&lt;/p&gt;
+&lt;p&gt;#重置当前世界的默认出生点为脚下&lt;br&gt;
+mv setspawn&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;mcbbs:&lt;a class=&#34;link&#34; href=&#34;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1016455&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.mcbbs.net/forum.php?mod=viewthread&amp;amp;tid=1016455&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/resources/multiverse-core.390/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.spigotmc.org/resources/multiverse-core.390/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

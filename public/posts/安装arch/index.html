@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n">
+<title>安装ArchLinux系统（详细过程）</title>
+
+<link rel='canonical' href='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
+
+<link rel="stylesheet" href="/scss/style.min.9b3f6e87b0237b38ec496b7bdbbe9dd59eff0f831085581494a5b34fbeaf48b7.css"><meta property='og:title' content="安装ArchLinux系统（详细过程）">
+<meta property='og:description' content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n">
+<meta property='og:url' content='http://localhost:1313/posts/%E5%AE%89%E8%A3%85arch/'>
+<meta property='og:site_name' content='WinNote'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2021-10-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-10-25T00:00:00&#43;00:00'/><meta property='og:image' content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+<meta name="twitter:title" content="安装ArchLinux系统（详细过程）">
+<meta name="twitter:description" content="参考文章：https://zhuanlan.zhihu.com/p/138951848\n官方WIKI安装指南（上文和本文大致流程基于此）：https://wiki.archlinux.org/title/Installation_guide\n家里旧笔记本淘汰装个Linux跑跑服务发挥余热，\n这里是彻底格式化硬盘新安装，而不需要多系统引导\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+        
+        <link rel="stylesheet" href="/highlight/styles/base16/eighties.css">
+        <script src="/highlight/highlight.min.js"></script>
+        
+        <script src="/clipboard.min.js"></script>
+        <script src="/copy-to-clipboard.js"></script>
+        
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_1b0ce47a1c2b08eb.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WinNote</a></h1>
+            <h2 class="site-description">零碎MD文档收集|生命在于折腾</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/193498'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/winotmk/Hugo-Blog'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://winotmk.com'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304" /><path d="M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+            <h2 class="widget-title section-title">目录</h2>
+        </div>
+        
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#准备镜像">准备镜像</a></li>
+    <li><a href="#硬盘准备">硬盘准备</a>
+      <ol>
+        <li><a href="#检查硬盘">检查硬盘</a></li>
+        <li><a href="#建立分区">建立分区</a></li>
+        <li><a href="#格式化">格式化</a></li>
+        <li><a href="#挂载分区">挂载分区</a></li>
+      </ol>
+    </li>
+    <li><a href="#安装系统">安装系统</a></li>
+    <li><a href="#生成fstab文件">生成fstab文件</a></li>
+    <li><a href="#配置新系统">配置新系统</a>
+      <ol>
+        <li><a href="#切换到装好的系统">切换到装好的系统</a></li>
+        <li><a href="#设置时区">设置时区</a></li>
+        <li><a href="#设置locale">设置locale</a></li>
+        <li><a href="#创建并写入hostname">创建并写入hostname</a></li>
+        <li><a href="#修改hosts">修改hosts</a></li>
+        <li><a href="#root用户创建密码">root用户创建密码</a></li>
+        <li><a href="#装启动器和一些软件">装启动器和一些软件</a></li>
+      </ol>
+    </li>
+    <li><a href="#退出新系统重启">退出新系统重启</a></li>
+    <li><a href="#新建用户并授权">新建用户并授权</a></li>
+    <li><a href="#安装display-server和display-manager">安装Display Server和Display Manager</a></li>
+    <li><a href="#安装desktop-environment">安装Desktop Environment</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    
+    
+
+    
+     
+     <header class="article-category">
+        <div class="Winotmk_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+        </div>
+         
+             <a href="/tags/linux/" >
+                 Linux
+             </a>
+         
+     </header>
+     
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/%E5%AE%89%E8%A3%85arch/">安装ArchLinux系统（详细过程）</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021-10-25</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+        
+        <div>
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calculator"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" /><path d="M8 14l0 .01" /><path d="M12 14l0 .01" /><path d="M16 14l0 .01" /><path d="M8 17l0 .01" /><path d="M12 17l0 .01" /><path d="M16 17l0 .01" /></svg>
+            <time class="article-time--reading">
+                <time class="article-time--reading">
+                    字数: 1139
+                </time>
+            </time>
+        </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    
+<div class="article-details" style="padding-top: 15px;padding-bottom: 0px;">
+
+<footer class="article-time">
+<div>
+    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+    
+    <span title="阅读次数" style="display: inline;font-size: 1.4rem;">阅读次数:<span class="waline-pageview-count" data-path="/posts/%E5%AE%89%E8%A3%85arch/" />次</span>
+</div>
+</footer>
+</div>
+
+<section class="article-content">
+    
+    
+    <p>参考文章：<a class="link" href="https://zhuanlan.zhihu.com/p/138951848"  target="_blank" rel="noopener"
+    >https://zhuanlan.zhihu.com/p/138951848</a></p>
+<p>官方WIKI安装指南（上文和本文大致流程基于此）：<a class="link" href="https://wiki.archlinux.org/title/Installation_guide"  target="_blank" rel="noopener"
+    >https://wiki.archlinux.org/title/Installation_guide</a></p>
+<p>家里旧笔记本淘汰装个Linux跑跑服务发挥余热，<br>
+这里是彻底格式化硬盘新安装，而不需要多系统引导</p>
+<p>我的环境有：</p>
+<ul>
+<li>2核  Intel(R) Pentium(R) CPU 997 @ 1.60GHz</li>
+<li>4GB 1600内存</li>
+<li>UEFI启动（不能为BIOS）</li>
+<li>Samsang 850 EVO 250G 2.5寸SATA接口</li>
+<li>无线网卡拆掉了，用得是网线</li>
+<li>路由器上全局梯子（所以我没有换源，用官方源速度足够了）</li>
+</ul>
+<h2 id="准备镜像">准备镜像
+</h2><p><a class="link" href="https://archlinux.org/download/"  target="_blank" rel="noopener"
+    >https://archlinux.org/download/</a><br>
+下载发行版的Linux的ISO<br>
+然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便</p>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-41_6fe1b0ee.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-39-41"
+	
+	
+></p>
+<!-- more -->
+<p>然后重启电脑从U盘启动</p>
+<h2 id="硬盘准备">硬盘准备
+</h2><p>进入U盘系统后先连pacman试试</p>
+<pre><code class="language-Shell">pacman -Syyy
+</code></pre>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-39-55_7733f272.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-39-55"
+	
+	
+></p>
+<h3 id="检查硬盘">检查硬盘
+</h3><pre><code class="language-Shell">lsblk
+</code></pre>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-07_d009c4a5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-40-07"
+	
+	
+></p>
+<h3 id="建立分区">建立分区
+</h3><pre><code class="language-Shell">cfdisk /dev/sda
+</code></pre>
+<p>选择New 回车，然后<br>
+选择Write 回车 输入 yes 回车<br>
+写入完成 选择Quit 回车退出</p>
+<h3 id="格式化">格式化
+</h3><p>将刚刚分好的区格式化为ext4格式，这里认准分区号sda1</p>
+<pre><code class="language-Shell">mkfs.ext4 /dev/sda1
+</code></pre>
+<h3 id="挂载分区">挂载分区
+</h3><p>sda1</p>
+<pre><code class="language-Shell">mount /dev/sda1 /mnt
+</code></pre>
+<h2 id="安装系统">安装系统
+</h2><pre><code class="language-Shell">pacstrap /mnt base linux linux-firmware nano
+</code></pre>
+<h2 id="生成fstab文件">生成fstab文件
+</h2><pre><code class="language-Shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
+<p>检查生成的fstab文件</p>
+<pre><code class="language-Shell">cat /mnt/etc/fstab
+</code></pre>
+<h2 id="配置新系统">配置新系统
+</h2><h3 id="切换到装好的系统">切换到装好的系统
+</h3><pre><code class="language-Shell">arch-chroot /mnt
+</code></pre>
+<h3 id="设置时区">设置时区
+</h3><pre><code class="language-Shell">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<h3 id="设置locale">设置locale
+</h3><pre><code class="language-Shell">nano /etc/locale.gen
+</code></pre>
+<p>Ctrl+W 输入 #en_US 回车 找到UTF-8那一行 删掉前面的#</p>
+<p>Ctrl+W 输入 #zh_CN 回车 找到UTF-8那一行 删掉前面的#<br>
+Ctrl+X 然后Y保存退出<br>
+生成locale</p>
+<pre><code class="language-Shell">locale-gen
+</code></pre>
+<p>创建并写入/etc/locale.conf文件</p>
+<pre><code class="language-Shell">nano /etc/locale.conf 
+</code></pre>
+<p>填入内容，注意这里只能填这个</p>
+<pre><code class="language-Shell">LANG=en_US.UTF-8
+</code></pre>
+<h3 id="创建并写入hostname">创建并写入hostname
+</h3><pre><code class="language-Shell">nano /etc/hostname
+</code></pre>
+<p>我这里名字叫WinArch<br>
+保存退出</p>
+<h3 id="修改hosts">修改hosts
+</h3><pre><code class="language-Shell">nano /etc/hosts
+</code></pre>
+<p>写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）<br>
+<img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-40-26_f63948a7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-40-26"
+	
+	
+></p>
+<p>保存退出</p>
+<p>建议上述编辑的内容都用cat输出检查一下</p>
+<h3 id="root用户创建密码">root用户创建密码
+</h3><pre><code class="language-Shell">passwd
+</code></pre>
+<p>然后输入并确认密码</p>
+<h3 id="装启动器和一些软件">装启动器和一些软件
+</h3><p>包含了一些常用到的软件</p>
+<pre><code class="language-Shell">pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo
+</code></pre>
+<p>intel的cpu，需要安装intel的微码文件</p>
+<pre><code class="language-Shell">pacman -S intel-ucode
+</code></pre>
+<p>完成之后输入</p>
+<pre><code class="language-Shell">grub-install /dev/sda
+</code></pre>
+<p>注意是硬盘位置不是分区位置，硬盘上也只有刚刚安装的Arch系统</p>
+<p>生成grub.cfg</p>
+<pre><code class="language-Shell">grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<p>出现吧啦吧啦done就完成了</p>
+<h2 id="退出新系统重启">退出新系统重启
+</h2><pre><code class="language-shell">exit
+reboot
+</code></pre>
+<p>不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟</p>
+<h2 id="新建用户并授权">新建用户并授权
+</h2><pre><code class="language-Shell">useradd -m -G wheel winotmk
+</code></pre>
+<p>我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的<br>
+创建密码</p>
+<pre><code class="language-Shell">passwd winotmk
+</code></pre>
+<p>授权</p>
+<pre><code class="language-Shell">EDITOR=nano visudo
+</code></pre>
+<p>Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）</p>
+<h2 id="安装display-server和display-manager">安装Display Server和Display Manager
+</h2><pre><code class="language-Shell">pacman -S xorg
+</code></pre>
+<p>然后我喜欢KDE桌面，所以装：</p>
+<pre><code class="language-Shell">pacman -S sddm
+</code></pre>
+<p>设置开机启动</p>
+<pre><code class="language-Shell">systemctl enable sddm
+</code></pre>
+<p>PS.取消开机启动是</p>
+<pre><code class="language-Shell">systemctl disable sddm
+</code></pre>
+<h2 id="安装desktop-environment">安装Desktop Environment
+</h2><p>KDE：</p>
+<pre><code class="language-Shell">pacman -S plasma kde-applications packagekit-qt5
+</code></pre>
+<p>安装中文的字体</p>
+<pre><code class="language-Shell">pacman -S noto-fonts-cjk
+</code></pre>
+<p>好了，大功告成</p>
+<pre><code class="language-Shell">reboot
+</code></pre>
+<p><img src="http://pictures.winotmk.com/%E5%AE%89%E8%A3%85Arch/2025-02-27-23-42-43_c78205c3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2025-02-27-23-42-43"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/weibo","https://unpkg.com/@waline/emojis@1.1.0/bilibili"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":null},"pageview":true,"reaction":true,"requiredMeta":["name","email","url"],"search":false,"serverURL":"https://waline.winotmk.com/"});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 winotmk
+    </section>
+    
+    <div class="article-time">
+        <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-users"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+          <span class="site-uv" title="总访客量">
+            &nbsp;<span id="busuanzi_value_site_uv"></span>
+          </span>
+        </span>
+        <span>|</span>
+        <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+          <span class="site-pv" title="总访问量">
+            &nbsp;<span id="busuanzi_value_site_pv"></span>
+          </span>
+        </span>
+    </div>
+
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> Customized and extended by <a href="https://winotmk.com" target="_blank" rel="noopener">Winotmk</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.defb254d668c6dc732b4312e6efedb3fb5b66c49d3b06d3b7ac31392daf76124.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+        
+        
+        
+        <script>hljs.highlightAll();</script>
+        
+    </body>
+</html>
