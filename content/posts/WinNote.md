@@ -72,4 +72,11 @@ md文档的目录是`./hexo/Winblog/source/_posts`
 这次在尝试了disqus和waline后还是选择了waline，后者需要自己架设，虽然用得都是免费服务，但还就是比公共且需要梯子的disqus稳且快非常多
 ![2025-03-11-15-14-57](http://pictures.winotmk.com/WinNote/2025-03-11-15-14-57_91301dd5.png)
 
-看到这则标志着部署成功
+***
+2025.03.19再更新
+这次将文章也托管到github上，分为3个库（还有一个发布库）储存所有内容，本地再也不需要一个文件夹，即可全部云上完成从写作到部署，感觉应该是终极形态了
+https://github.com/winotmk?tab=repositories
+- `Blog-Posts` 库为文章列表库，只存储MD文档
+- `Hexo-Blog` 库为Hexo源生成库，存储必要的修改过的next的主题，npm构建依赖文件等等，生成所用文章会由第一个库推送来，github actions触发
+- `Hugo-Blog` 库为Hugo源生成库，存储必要的修改过的hugo的主题模板，生成所用文章会由第一个库推送来，github actions触发
+- `winotmk.github.io` 库为Hexo库的部署推送的目标库，用于hexo博客的部署
