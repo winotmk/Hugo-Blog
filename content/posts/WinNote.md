@@ -80,3 +80,8 @@ https://github.com/winotmk?tab=repositories
 - `Hexo-Blog` 库为Hexo源生成库，存储必要的修改过的next的主题，npm构建依赖文件等等，生成所用文章会由第一个库推送来，github actions触发
 - `Hugo-Blog` 库为Hugo源生成库，存储必要的修改过的hugo的主题模板，生成所用文章会由第一个库推送来，github actions触发
 - `winotmk.github.io` 库为Hexo库的部署推送的目标库，用于hexo博客的部署
+2025.03.31更新流程图
+发布流程如下图：
+![2025-03-31-14-40-08](http://pictures.winotmk.com/WinNote/2025-03-31-14-40-08_56c0d3d0.png)
+
+在做这个的时候还了解到一些类似[buddy.works](https://buddy.works/)和[n8n](https://github.com/n8n-io/n8n)，这样管线/自动化流程的工具，但目前来说github action这一流程足够啦，这么一来，解决了本地文档和服务器文档要来回同步的麻烦，还搞定了一次写作多站发布的想法，同时几乎不占用本机资源，多台PC和Mac笔记本可以快速切换
