@@ -186,6 +186,7 @@ params:
             id:
     widgets:
         homepage:
+            #侧边栏26.7.23更新虫洞，去除地图，具体目录在layouts\partials\widget
             - type: wormhole
             - type: search
             - type: archives
@@ -194,7 +195,7 @@ params:
             - type: categories
               params:
                   limit: 10
-            - type: clustrmaps
+            #- type: clustrmaps
             - type: tag-cloud
               params:
                   limit: 20
