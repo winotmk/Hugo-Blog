@@ -1,33 +1,71 @@
-name: deploy blog
+name: Deploy Hugo Blog to Aliyun OSS
 
 on:
   push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 仅预览 OSS 变更
+        type: boolean
+        default: true
+
+concurrency:
+  group: hugo-oss-deploy
+  cancel-in-progress: false
+  queue: max
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4  # 使用最新版本
+      - name: Checkout latest main
+        uses: actions/checkout@v4
         with:
-          submodules: recursive    # 已包含子模块初始化
+          ref: refs/heads/main
+          submodules: recursive
+          persist-credentials: false
 
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.144.2'  # 指定版本更安全
+          hugo-version: '0.144.2'
           extended: true
-      - name: Build
-        run: hugo --minify -D
-      
-      - name: setup aliyun oss
-        uses: manyuanrong/setup-ossutil@master
-        with:
-          #endpoint: oss-ap-southeast-1.aliyuncs.com #修改为自己的Endpoint
-          #250311改为oss加速域名
-          endpoint: oss-accelerate.aliyuncs.com
-          access-key-id: ${{ secrets.OSS_KEY_ID }}
-          access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
 
-      - name: cp aliyun oss
-        run: ossutil cp -rf public oss://winhugoblog/ #修改为自己的
+      - name: Build Hugo
+        run: hugo --minify -D --destination "$RUNNER_TEMP/hugo-public"
+
+      - name: Install Rclone
+        shell: bash
+        run: |
+          cd "$RUNNER_TEMP"
+          archive=rclone-v1.74.4-linux-amd64.zip
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://github.com/rclone/rclone/releases/download/v1.74.4/$archive" -o "$archive"
+          echo "fe435e0c36228e7c2f116a8701f01127bb1f694005fc11d1f27186c8bca4115d  $archive" | sha256sum -c -
+          unzip -q "$archive"
+          echo "$RUNNER_TEMP/${archive%.zip}" >> "$GITHUB_PATH"
+
+      - name: Compare and publish to OSS
+        shell: bash
+        env:
+          RCLONE_CONFIG_OSS_TYPE: s3
+          RCLONE_CONFIG_OSS_PROVIDER: Alibaba
+          RCLONE_CONFIG_OSS_ACCESS_KEY_ID: ${{ secrets.OSS_KEY_ID }}
+          RCLONE_CONFIG_OSS_SECRET_ACCESS_KEY: ${{ secrets.OSS_KEY_SECRET }}
+          RCLONE_CONFIG_OSS_ENDPOINT: oss-accelerate.aliyuncs.com
+          RCLONE_CONFIG_OSS_NO_CHECK_BUCKET: 'true'
+          DEPLOY_MODE: ${{ (github.event_name == 'push' || inputs.dry_run == false) && 'deploy' || 'preview' }}
+        run: |
+          : "${RCLONE_CONFIG_OSS_ACCESS_KEY_ID:?Missing OSS_KEY_ID}"
+          : "${RCLONE_CONFIG_OSS_SECRET_ACCESS_KEY:?Missing OSS_KEY_SECRET}"
+          node .github/scripts/deploy-oss.mjs "$RUNNER_TEMP/hugo-public" oss:winhugoblog "$DEPLOY_MODE"
+
+      - name: Add website to summary
+        run: echo 'Website https://md.winotmk.com/' >> "$GITHUB_STEP_SUMMARY"
