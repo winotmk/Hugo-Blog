@@ -31,9 +31,10 @@
         }
 
         @include respond(xl) {
-            max-width: 1636px;
+            max-width: 1920px;
             --left-sidebar-max-width: 15%;
-            --right-sidebar-max-width: 25%;
+            --right-sidebar-max-width: min(25%, 360px);
+            justify-content: center;
         }
     }
 
@@ -85,6 +86,10 @@ main.main {
 
     @include respond(md) {
         padding-top: var(--main-top-padding);
+    }
+
+    @include respond(xl) {
+        max-width: 1200px;
     }
 }
 
