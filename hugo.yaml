@@ -1,5 +1,6 @@
 baseurl: https://md.winotmk.com/
 languageCode: zh-cn
+timeZone: Asia/Shanghai
 theme: hugo-theme-stack
 title: WinNote
 copyright: winotmk
